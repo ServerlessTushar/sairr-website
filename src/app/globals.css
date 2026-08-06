@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-forest: var(--forest);
+  --color-mist: var(--mist);
+  --color-charcoal: var(--charcoal);
+  --color-slate: var(--slate);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Sairr colour system */
+  --brand: #0e5e6f;
+  --brand-dark: #31463d;
+  --brand-light: #c8a867;
+  --sand: #e9dfc8;
+  --gold: #c8a867;
+  --forest: #31463d;
+  --mist: #f5f4ef;
+  --charcoal: #1b1d1f;
+  --slate: #6b7075;
+
+  /* Semantic tokens — 70% mist/sand, 20% teal, 10% gold/forest */
+  --background: var(--mist);
+  --foreground: var(--charcoal);
+  --card: #ffffff;
+  --card-foreground: var(--charcoal);
+  --popover: #ffffff;
+  --popover-foreground: var(--charcoal);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--sand);
+  --secondary-foreground: var(--charcoal);
+  --muted: var(--sand);
+  --muted-foreground: var(--slate);
+  --accent: var(--gold);
+  --accent-foreground: var(--charcoal);
+  --destructive: #c0392b;
+  --border: #ddd8cc;
+  --input: #ddd8cc;
+  --ring: var(--brand);
+  --chart-1: var(--brand);
+  --chart-2: #5d8896;
+  --chart-3: var(--gold);
+  --chart-4: var(--forest);
+  --chart-5: var(--slate);
+  --radius: 0.625rem;
+  --sidebar: var(--mist);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--sand);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: #ddd8cc;
+  --sidebar-ring: var(--brand);
+}
+
+.dark {
+  --background: var(--forest);
+  --foreground: var(--sand);
+  --card: #1e2e28;
+  --card-foreground: var(--sand);
+  --popover: #1e2e28;
+  --popover-foreground: var(--sand);
+  --primary: var(--sand);
+  --primary-foreground: var(--forest);
+  --secondary: #2a3d36;
+  --secondary-foreground: var(--sand);
+  --muted: #2a3d36;
+  --muted-foreground: #a8a49c;
+  --accent: var(--gold);
+  --accent-foreground: var(--charcoal);
+  --destructive: #e74c3c;
+  --border: #ffffff1a;
+  --input: #ffffff26;
+  --ring: var(--gold);
+  --chart-1: var(--sand);
+  --chart-2: #5d8896;
+  --chart-3: var(--gold);
+  --chart-4: var(--brand);
+  --chart-5: #a8a49c;
+  --sidebar: var(--forest);
+  --sidebar-foreground: var(--sand);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: var(--charcoal);
+  --sidebar-accent: #2a3d36;
+  --sidebar-accent-foreground: var(--sand);
+  --sidebar-border: #ffffff1a;
+  --sidebar-ring: var(--gold);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
