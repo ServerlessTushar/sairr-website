@@ -1,4 +1,3 @@
-import { ComingSoon } from "@/components/home/ComingSoon";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhyChooseSection } from "@/components/home/WhyChooseSection";
 import { ExperiencePreview } from "@/components/home/ExperiencePreview";
@@ -10,7 +9,7 @@ import { createMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
 
 export const metadata = createMetadata({
-  title: `${siteConfig.name} — Website Coming Soon`,
+  title: `${siteConfig.name} — ${siteConfig.tagline}`,
   description: siteConfig.description,
   path: "/",
 });
@@ -32,7 +31,7 @@ const HomeComponent = () => {
 export default function HomePage() {
   return (
     <>
-      <ComingSoon />
+      <HomeComponent />
     </>
   );
 }
