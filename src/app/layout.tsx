@@ -67,14 +67,13 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${playfair.variable} h-full scroll-smooth antialiased`}
     >
-      {/* <body className="flex min-h-full flex-col font-sans">
+      <body className="flex min-h-full flex-col font-sans">
         <JsonLd data={organizationJsonLd} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         <Toaster />
-      </body> */}
-      <body className="min-h-full flex flex-col">{children}</body>
+      </body>
     </html>
   );
 }
