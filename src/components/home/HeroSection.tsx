@@ -1,21 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/shared/ButtonLink";
-import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden">
       <div className="absolute inset-0">
-        <PlaceholderImage
-          seed="sairr-hero"
-          alt="Senior couple enjoying a scenic travel destination"
+        <Image
+          src="/sairr-coming-soon.jpeg"
+          alt="Sairr travellers on the Puri pilot journey"
+          fill
           priority
-          className="scale-105"
+          className="scale-105 object-cover object-[center_55%]"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/40" />
       </div>
 
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 py-24 sm:px-6 lg:px-8">
