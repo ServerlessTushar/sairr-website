@@ -22,7 +22,7 @@ export function TestimonialsSection() {
 
         <StaggerContainer className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((testimonial) => (
-            <motion.div key={testimonial.name} variants={staggerItem}>
+            <motion.div key={testimonial.id} variants={staggerItem}>
               <TestimonialCard testimonial={testimonial} />
             </motion.div>
           ))}

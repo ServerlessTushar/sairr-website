@@ -28,32 +28,34 @@ export default function AboutPage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <SectionHeading
-                eyebrow="About Sairr"
-                title="Built from a personal need"
-              />
-              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Sairr started with a simple frustration: planning a meaningful
-                  trip for my parents shouldn&apos;t have felt this hard. Every
-                  agency promised the world, but none understood what actually
-                  mattered — pace, comfort, dignity, and peace of mind.
-                </p>
-                <p>
-                  So I built what I wished existed. A travel company that plans
-                  every detail with the same care I&apos;d want for my own
-                  family. No jargon, no rush, no surprises.
-                </p>
-                <p>
-                  Today, Sairr helps families across India gift journeys their
-                  loved ones will talk about for years. We&apos;re small by
-                  design — because every trip deserves personal attention.
-                </p>
+              <div id="founder" className="scroll-mt-24">
+                <SectionHeading
+                  eyebrow="About Sairr"
+                  title="Built from a personal need"
+                />
+                <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Sairr started with a simple frustration: planning a meaningful
+                    trip for my parents shouldn&apos;t have felt this hard. Every
+                    agency promised the world, but none understood what actually
+                    mattered — pace, comfort, dignity, and peace of mind.
+                  </p>
+                  <p>
+                    So I built what I wished existed. A travel company that plans
+                    every detail with the same care I&apos;d want for my own
+                    family. No jargon, no rush, no surprises.
+                  </p>
+                  <p>
+                    Today, Sairr helps families across India gift journeys their
+                    loved ones will talk about for years. We&apos;re small by
+                    design — because every trip deserves personal attention.
+                  </p>
+                </div>
+                <ButtonLink href="/contact" className="mt-8 bg-brand hover:bg-brand-dark">
+                  Start a conversation
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </ButtonLink>
               </div>
-              <ButtonLink href="/contact" className="mt-8 bg-brand hover:bg-brand-dark">
-                Start a conversation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </ButtonLink>
             </FadeIn>
           </div>
         </div>

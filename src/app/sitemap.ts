@@ -1,11 +1,20 @@
 import type { MetadataRoute } from "next";
 import { experiences } from "@/data/experiences";
-import { siteConfig } from "@/data/site";
+import { legalLinks, siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/experiences", "/why-sairr", "/about", "/contact"];
+  const staticPages = [
+    "",
+    "/experiences",
+    "/why-sairr",
+    "/about",
+    "/contact",
+    ...legalLinks.map((l) => l.href),
+  ];
 
-  const experiencePages = experiences.map((e) => ({
+  const experiencePages = experiences
+    .filter((e) => e.hasDetailPage)
+    .map((e) => ({
     url: `${siteConfig.url}/experiences/${e.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

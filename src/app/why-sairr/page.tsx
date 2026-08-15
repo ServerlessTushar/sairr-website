@@ -43,7 +43,7 @@ export default function WhySairrPage() {
             <SectionHeading
               eyebrow="Our promise"
               title="What you can expect"
-              description="Six principles that guide every journey we plan."
+              description="How the journey is handled — from your door to your return."
               align="center"
               className="mx-auto"
             />

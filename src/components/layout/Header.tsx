@@ -19,13 +19,13 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-mist/90 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="font-heading text-xl font-bold tracking-tight text-brand transition-colors hover:text-brand-dark"
+          className="font-heading text-2xl font-semibold tracking-tight text-brand"
         >
-          {siteConfig.name.toUpperCase()}
+          {siteConfig.name}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -33,18 +33,19 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-slate transition-colors hover:text-brand"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <ButtonLink href="/contact" className="bg-brand hover:bg-brand-dark">
-            Plan a Journey
-          </ButtonLink>
-        </div>
+        <ButtonLink
+          href="/contact"
+          className="hidden h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-forest md:inline-flex"
+        >
+          Talk to us
+        </ButtonLink>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -55,9 +56,9 @@ export function Header() {
               </Button>
             }
           />
-          <SheetContent side="right" className="w-[300px]">
+          <SheetContent side="right" className="w-[300px] bg-mist">
             <SheetHeader>
-              <SheetTitle className="font-heading text-left">
+              <SheetTitle className="font-heading text-left text-brand">
                 {siteConfig.name}
               </SheetTitle>
             </SheetHeader>
@@ -67,9 +68,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={cn(
-                    "rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-muted",
-                  )}
+                  className={cn("rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand")}
                 >
                   {link.label}
                 </Link>
@@ -77,9 +76,9 @@ export function Header() {
               <ButtonLink
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-4 bg-brand hover:bg-brand-dark"
+                className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-forest"
               >
-                Plan a Journey
+                Talk to us
               </ButtonLink>
             </nav>
           </SheetContent>

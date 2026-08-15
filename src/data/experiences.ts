@@ -1,3 +1,5 @@
+export type ExperienceStatus = "live" | "completed" | "coming-soon";
+
 export type Experience = {
   slug: string;
   title: string;
@@ -5,6 +7,8 @@ export type Experience = {
   region: string;
   tagline: string;
   duration: string;
+  logistics: string;
+  datesLabel: string;
   bestSeason: string;
   price: string;
   description: string;
@@ -12,7 +16,16 @@ export type Experience = {
   itinerary: { day: number; title: string; description: string }[];
   included: string[];
   imageSeed: string;
+  /** Local photo when we have one. Puri uses the real pilot image. */
+  imageSrc?: string;
+  /** AI-generated stand-in — replace before launch. */
+  aiPlaceholder?: boolean;
+  status: ExperienceStatus;
+  statusLabel: string;
+  /** Product feature on the card — separate from trip availability (e.g. VIP darshan). */
+  featureLabel?: string;
   featured?: boolean;
+  hasDetailPage?: boolean;
 };
 
 export const experiences: Experience[] = [
@@ -21,212 +34,138 @@ export const experiences: Experience[] = [
     title: "Puri",
     location: "Odisha",
     region: "East India",
-    tagline: "Temples, sea breeze & slow mornings",
-    duration: "4 Days / 3 Nights",
+    tagline: "Jagannath Puri — sacred coast of Odisha",
+    duration: "3N/4D",
+    logistics: "3N/4D · Delhi → Puri",
+    datesLabel: "30 July – 2 August 2026",
     bestSeason: "Oct – Feb",
-    price: "₹18,999",
+    price: "From ₹45,000 per person",
     description:
-      "A gentle coastal escape built around comfort, culture, and unhurried discovery. Perfect for parents who want spirituality without the rush.",
+      "A gentle coastal journey around Jagannath Puri — temple, sea, and unhurried days. Built for 50+ travellers who want the sacred without the scramble.",
     highlights: [
-      "Sunrise at Jagannath Temple with guided darshan support",
-      "Comfortable beachfront stays with ground-floor rooms",
-      "Slow-paced local cuisine experiences",
-      "Dedicated trip coordinator throughout",
+      "VIP darshan support at Jagannath Temple",
+      "Comfortable stays with rest built into the day",
+      "Coordinator with you from door to door",
+      "Family updates throughout",
     ],
     itinerary: [
       {
         day: 1,
-        title: "Arrival & Welcome",
+        title: "Arrival & welcome",
         description:
-          "Private transfer to your hotel, welcome briefing, and a relaxed evening walk along the beach.",
+          "Transfer to your hotel, a quiet briefing, and an easy evening by the coast.",
       },
       {
         day: 2,
-        title: "Temple & Heritage",
+        title: "Temple & heritage",
         description:
-          "Early morning temple visit with priority assistance, followed by lunch and rest at the hotel.",
+          "Jagannath darshan with assistance, then lunch and rest — not a packed afternoon.",
       },
       {
         day: 3,
-        title: "Coastal Calm",
+        title: "Coastal calm",
         description:
-          "Visit Konark Sun Temple at a comfortable pace, with ample breaks and shaded rest stops.",
+          "Konark at a comfortable pace, with shade, breaks, and no rush back.",
       },
       {
         day: 4,
-        title: "Departure",
+        title: "Return",
         description:
-          "Leisurely breakfast and private transfer to the airport or railway station.",
+          "Breakfast, then transfer home. The journey is ours until you're back.",
       },
     ],
     included: [
-      "Accommodation in verified senior-friendly hotels",
-      "All local transfers in AC vehicles",
-      "Dedicated trip coordinator",
+      "4-star+ stay",
+      "All local transfers",
+      "Dedicated coordinator",
       "Breakfast daily",
       "Temple visit assistance",
     ],
     imageSeed: "puri-temple",
+    imageSrc: "/sairr-coming-soon.jpeg",
+    status: "completed",
+    statusLabel: "Completed · July 2026",
+    featureLabel: "VIP darshan included",
     featured: true,
+    hasDetailPage: true,
   },
   {
-    slug: "munnar",
-    title: "Munnar",
+    slug: "tirupati",
+    title: "Tirupati",
+    location: "Andhra Pradesh",
+    region: "South India",
+    tagline: "Dates coming soon",
+    duration: "",
+    logistics: "",
+    datesLabel: "Dates coming soon",
+    bestSeason: "",
+    price: "",
+    description: "A thoughtfully paced journey to Tirupati. Dates to follow.",
+    highlights: [],
+    itinerary: [],
+    included: [],
+    imageSeed: "tirupati-temple",
+    aiPlaceholder: true,
+    status: "coming-soon",
+    statusLabel: "Coming soon",
+    featured: true,
+    hasDetailPage: false,
+  },
+  {
+    slug: "kerala",
+    title: "Kerala",
     location: "Kerala",
     region: "South India",
-    tagline: "Mist, tea gardens & mountain air",
-    duration: "5 Days / 4 Nights",
-    bestSeason: "Sep – Mar",
-    price: "₹24,499",
-    description:
-      "Rolling hills, cool breezes, and the kind of pace that lets you actually breathe. Designed for travellers who love nature without strenuous trekking.",
-    highlights: [
-      "Tea estate visits with minimal walking",
-      "Scenic drives with frequent photo stops",
-      "Ayurvedic wellness session (optional)",
-      "Homely Kerala meals",
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Into the Hills",
-        description: "Scenic drive from Kochi with rest stops. Check-in and evening tea.",
-      },
-      {
-        day: 2,
-        title: "Tea Country",
-        description: "Visit a working tea plantation and enjoy a plantation lunch.",
-      },
-      {
-        day: 3,
-        title: "Nature at Ease",
-        description: "Eravikulam National Park visit (viewpoint access) and local market.",
-      },
-      {
-        day: 4,
-        title: "Wellness Day",
-        description: "Optional Ayurvedic massage and a free afternoon to rest.",
-      },
-      {
-        day: 5,
-        title: "Return",
-        description: "Leisurely departure with drop-off at Kochi airport.",
-      },
-    ],
-    included: [
-      "Hill-station accommodation with heating",
-      "Private AC vehicle for all transfers",
-      "Trip coordinator",
-      "Breakfast & dinner daily",
-      "All sightseeing entry fees",
-    ],
-    imageSeed: "munnar-tea",
+    tagline: "Dates coming soon",
+    duration: "",
+    logistics: "",
+    datesLabel: "Dates coming soon",
+    bestSeason: "",
+    price: "",
+    description: "Backwaters, coast, and unhurried days. Dates to follow.",
+    highlights: [],
+    itinerary: [],
+    included: [],
+    imageSeed: "kerala-backwaters",
+    aiPlaceholder: true,
+    status: "coming-soon",
+    statusLabel: "Coming soon",
     featured: true,
+    hasDetailPage: false,
   },
   {
-    slug: "varanasi",
-    title: "Varanasi",
-    location: "Uttar Pradesh",
-    region: "North India",
-    tagline: "Ancient ghats & timeless rituals",
-    duration: "4 Days / 3 Nights",
-    bestSeason: "Oct – Mar",
-    price: "₹21,999",
+    slug: "dubai",
+    title: "Dubai",
+    location: "UAE",
+    region: "International",
+    tagline: "Dates coming soon",
+    duration: "",
+    logistics: "",
+    datesLabel: "Dates coming soon",
+    bestSeason: "",
+    price: "",
     description:
-      "Experience one of the world's oldest living cities with the care and planning it deserves. Spiritual, serene, and deeply moving.",
-    highlights: [
-      "Sunrise boat ride on the Ganges",
-      "Evening Ganga Aarti from a comfortable viewing spot",
-      "Heritage walk at a gentle pace",
-      "24/7 on-ground support",
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Welcome to Kashi",
-        description: "Arrival, hotel check-in near the ghats, and an orientation walk.",
-      },
-      {
-        day: 2,
-        title: "Ghats & Temples",
-        description: "Sunrise boat ride, temple visits, and afternoon rest.",
-      },
-      {
-        day: 3,
-        title: "Heritage & Rituals",
-        description: "Sarnath excursion and evening Ganga Aarti experience.",
-      },
-      {
-        day: 4,
-        title: "Farewell",
-        description: "Morning rituals and departure transfer.",
-      },
-    ],
-    included: [
-      "Ghat-side hotel with elevator access",
-      "Boat ride and all transfers",
-      "Dedicated coordinator",
-      "Breakfast daily",
-      "Temple & heritage guide",
-    ],
-    imageSeed: "varanasi-ghat",
+      "An international journey — Sairr isn't domestic-only. Dates to follow.",
+    highlights: [],
+    itinerary: [],
+    included: [],
+    imageSeed: "dubai-skyline",
+    aiPlaceholder: true,
+    status: "coming-soon",
+    statusLabel: "Coming soon",
     featured: true,
-  },
-  {
-    slug: "coorg",
-    title: "Coorg",
-    location: "Karnataka",
-    region: "South India",
-    tagline: "Coffee country & quiet luxury",
-    duration: "4 Days / 3 Nights",
-    bestSeason: "Oct – Mar",
-    price: "₹22,499",
-    description:
-      "Lush plantations, cool climate, and homestay warmth. A restorative getaway for those who appreciate the finer, quieter things.",
-    highlights: [
-      "Plantation stay with home-cooked meals",
-      "Abbey Falls visit (accessible path)",
-      "Coffee tasting session",
-      "Small group size (max 12)",
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Plantation Arrival",
-        description: "Drive from Bangalore/Mysore. Welcome dinner at the estate.",
-      },
-      {
-        day: 2,
-        title: "Estate Life",
-        description: "Coffee plantation tour, tasting, and afternoon at leisure.",
-      },
-      {
-        day: 3,
-        title: "Waterfalls & Views",
-        description: "Abbey Falls and Raja's Seat with comfortable pacing.",
-      },
-      {
-        day: 4,
-        title: "Departure",
-        description: "Morning walk and transfer back.",
-      },
-    ],
-    included: [
-      "Plantation homestay accommodation",
-      "All meals included",
-      "Private vehicle transfers",
-      "Trip coordinator",
-      "Plantation tour & tasting",
-    ],
-    imageSeed: "coorg-coffee",
-    featured: false,
+    hasDetailPage: false,
   },
 ];
 
 export function getExperience(slug: string) {
-  return experiences.find((e) => e.slug === slug);
+  return experiences.find((e) => e.slug === slug && e.hasDetailPage);
 }
 
 export function getFeaturedExperiences() {
   return experiences.filter((e) => e.featured);
+}
+
+export function getDetailExperiences() {
+  return experiences.filter((e) => e.hasDetailPage);
 }

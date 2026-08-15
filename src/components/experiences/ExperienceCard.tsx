@@ -1,66 +1,87 @@
-import Link from "next/link";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import type { Experience } from "@/data/experiences";
+import { whatsappHref } from "@/data/site";
 import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
 import { ButtonLink } from "@/components/shared/ButtonLink";
-import { Badge } from "@/components/ui/badge";
+
+function cardCta(experience: Experience, comingSoon: boolean) {
+  if (comingSoon) return "Notify me";
+  if (experience.status === "live") return "Explore journey";
+  return "View journey";
+}
 
 export function ExperienceCard({ experience }: { experience: Experience }) {
+  const comingSoon = experience.status === "coming-soon";
+  const href = comingSoon
+    ? whatsappHref(
+        `I'd like to be notified when ${experience.title} dates are announced.`,
+      )
+    : `/experiences/${experience.slug}`;
+  const cta = cardCta(experience, comingSoon);
+
   return (
-    <article className="group overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/5">
+    <article className="group flex h-full flex-col">
       <div className="relative aspect-[4/3] overflow-hidden">
         <PlaceholderImage
           seed={experience.imageSeed}
-          alt={`${experience.title}, ${experience.location}`}
-          className="transition-transform duration-700 group-hover:scale-105"
+          src={experience.imageSrc}
+          aiPlaceholder={experience.aiPlaceholder}
+          alt={
+            experience.aiPlaceholder
+              ? `${experience.title} (placeholder photograph)`
+              : `${experience.title}, ${experience.location}`
+          }
+          className="transition-transform duration-700 group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4">
-          <Badge className="mb-2 bg-white/20 text-white backdrop-blur-sm">
-            {experience.region}
-          </Badge>
-          <h3 className="font-heading text-2xl font-semibold text-white">
-            {experience.title}
-          </h3>
-          <p className="text-sm text-white/80">{experience.tagline}</p>
-        </div>
       </div>
 
-      <div className="p-5">
-        <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-3.5 w-3.5" />
-            {experience.duration}
-          </span>
-          <span className="flex items-center gap-1">
-            <MapPin className="h-3.5 w-3.5" />
-            {experience.location}
-          </span>
-          <span>Best: {experience.bestSeason}</span>
-        </div>
-
-        <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
-          {experience.description}
+      <div className="flex flex-1 flex-col pt-4">
+        <p
+          className={
+            experience.status === "live"
+              ? "text-xs font-semibold uppercase tracking-wide text-charcoal"
+              : "text-[11px] font-medium uppercase tracking-[0.18em] text-gold"
+          }
+        >
+          {experience.statusLabel}
         </p>
-
-        <div className="flex items-center justify-between">
-          <p className="text-lg font-semibold text-brand">
-            {experience.price}
-            <span className="text-xs font-normal text-muted-foreground">
-              {" "}
-              / person
-            </span>
+        <h3 className="mt-2 font-heading text-2xl font-semibold tracking-tight text-charcoal">
+          {experience.title}
+        </h3>
+        <p className="mt-1 text-sm leading-relaxed text-slate">
+          {comingSoon ? experience.datesLabel : experience.tagline}
+        </p>
+        {experience.featureLabel && (
+          <p className="mt-2 text-sm font-semibold text-charcoal">
+            {experience.featureLabel}
           </p>
+        )}
+        {!comingSoon && experience.logistics && (
+          <p className="mt-2 text-sm text-slate">{experience.logistics}</p>
+        )}
+        {!comingSoon && experience.price && (
+          <p className="mt-1 text-sm text-charcoal">{experience.price}</p>
+        )}
+
+        {comingSoon ? (
           <ButtonLink
-            href={`/experiences/${experience.slug}`}
-            variant="ghost"
-            size="sm"
-            className="group/btn text-brand hover:text-brand-dark"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            variant="secondary"
+            className="mt-5 h-10 w-full rounded-lg bg-sand px-4 font-sans text-sm font-medium text-charcoal hover:bg-[color-mix(in_oklch,var(--sand),var(--charcoal)_8%)] sm:w-auto"
           >
-            View Details
-            <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+            {cta}
           </ButtonLink>
-        </div>
+        ) : (
+          <ButtonLink
+            href={href}
+            size="lg"
+            className="mt-5 h-10 w-full rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-forest sm:w-auto"
+          >
+            {cta}
+          </ButtonLink>
+        )}
       </div>
     </article>
   );

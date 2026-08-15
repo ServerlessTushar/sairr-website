@@ -1,35 +1,38 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { navLinks, siteConfig } from "@/data/site";
-import { Separator } from "@/components/ui/separator";
+import {
+  exploreLinks,
+  legalLinks,
+  siteConfig,
+  whatsappHref,
+} from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="bg-brand text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2">
+    <footer className="border-t border-charcoal/10 bg-mist text-slate">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
             <Link
               href="/"
-              className="font-heading text-2xl font-bold tracking-tight text-sand transition-colors hover:text-gold"
+              className="font-heading text-lg font-semibold text-brand"
             >
-              {siteConfig.name.toUpperCase()}
+              {siteConfig.name}
             </Link>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-sand/80">
-              {siteConfig.description}
+            <p className="mt-3 max-w-xs text-xs leading-relaxed">
+              {siteConfig.tagline}
             </p>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
+            <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
               Explore
             </h4>
             <ul className="space-y-2">
-              {navLinks.map((link) => (
+              {exploreLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-sand/80 transition-colors hover:text-sand"
+                    className="text-xs transition-colors hover:text-charcoal"
                   >
                     {link.label}
                   </Link>
@@ -39,42 +42,85 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
-              Contact
+            <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
+              Connect
             </h4>
-            <ul className="space-y-3 text-sm text-sand/80">
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0 text-gold" />
-                <a href={`tel:${siteConfig.phone}`} className="hover:text-sand">
-                  {siteConfig.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0 text-gold" />
+            <ul className="space-y-2 text-xs">
+              <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="hover:text-sand"
+                  className="hover:text-charcoal"
                 >
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0 text-gold" />
-                {siteConfig.address}
+              <li>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="hover:text-charcoal"
+                >
+                  {siteConfig.phone}
+                </a>
               </li>
+              <li>
+                <a href={whatsappHref()} className="hover:text-charcoal">
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.instagram}
+                  className="hover:text-charcoal"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.linkedin}
+                  className="hover:text-charcoal"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
+              Legal
+            </h4>
+            <ul className="space-y-2">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs transition-colors hover:text-charcoal"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <Separator className="my-8 bg-sand/20" />
-
-        <div className="flex flex-col items-center justify-between gap-4 text-xs text-sand/60 sm:flex-row">
-          <p>
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
-            reserved.
-          </p>
-          <p>Thoughtful travel, beautifully planned.</p>
+        <div className="mt-12 border-t border-charcoal/10 pt-6">
+          {/* <Link
+            href="/about#founder"
+            className="text-xs text-brand transition-colors hover:text-brand-dark"
+          >
+            [ A note from Tanmay, founder → ]
+          </Link> */}
+          {/* <div className="text-xs text-brand transition-colors hover:text-brand-dark">
+            A note from Tanmay, founder →
+          </div> */}
         </div>
+
+        <p className="mt-6 text-[11px] text-slate/80">
+          © 2026 {siteConfig.name} · {siteConfig.legalName}. All rights
+          reserved.
+        </p>
       </div>
     </footer>
   );

@@ -1,11 +1,12 @@
 export const siteConfig = {
   name: "Sairr",
-  tagline: "Thoughtful travel for the people you love",
+  legalName: "Meenadeep Experiences Pvt Ltd",
+  tagline: "More freedom to explore, less to worry about.",
   description:
-    "Sairr curates comfortable, meaningful travel experiences for seniors and families — so you can gift journeys, not just trips.",
+    "Thoughtfully designed journeys for 50+ travellers. You show up. We handle the rest.",
   url: "https://sairr.in",
   phone: "+91 98765 43210",
-  email: "hello@sairr.in",
+  email: "tanmay@sairr.in",
   whatsapp: "919876543210",
   address: "Chennai, India",
   social: {
@@ -14,10 +15,26 @@ export const siteConfig = {
   },
 } as const;
 
+export function whatsappHref(message?: string) {
+  const base = `https://wa.me/${siteConfig.whatsapp}`;
+  if (!message) return base;
+  return `${base}?text=${encodeURIComponent(message)}`;
+}
+
 export const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Talk to us" },
+] as const;
+
+export const exploreLinks = [
+  { href: "/experiences", label: "Experiences" },
+  { href: "/why-sairr", label: "Why Sairr" },
+  { href: "/about", label: "About Sairr" },
+] as const;
+
+export const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms and Conditions" },
+  { href: "/cancellation", label: "Cancellation and Refund Policy" },
 ] as const;

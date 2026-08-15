@@ -1,37 +1,52 @@
 export type Testimonial = {
+  id: string;
   name: string;
-  relation: string;
+  age: string;
   quote: string;
-  experience: string;
+  destination: string;
+  placeholder?: boolean;
 };
 
+/** Only real Puri footage belongs here. Placeholder until transcripts exist. */
 export const testimonials: Testimonial[] = [
   {
-    name: "Priya Menon",
-    relation: "Daughter, Chennai",
-    quote:
-      "I booked Puri for my parents' 40th anniversary. Sairr handled everything — from temple timings to their dietary needs. They came back glowing.",
-    experience: "Puri",
+    id: "puri-1",
+    name: "Traveller name",
+    age: "age",
+    quote: "Short, genuine excerpt pulled directly from the video.",
+    destination: "Jagannath Puri",
+    placeholder: true,
   },
   {
-    name: "Rajesh Iyer",
-    relation: "Son, Bangalore",
-    quote:
-      "My father had never travelled without us. The Sairr coordinator made him feel so cared for that he's already asking about Munnar.",
-    experience: "Munnar",
+    id: "puri-2",
+    name: "Traveller name",
+    age: "age",
+    quote: "Short, genuine excerpt pulled directly from the video.",
+    destination: "Jagannath Puri",
+    placeholder: true,
   },
   {
-    name: "Anita Sharma",
-    relation: "Planning for parents, Delhi",
-    quote:
-      "What sold me was the transparency. Every detail was on the website before I even called. No surprises, just a beautiful trip.",
-    experience: "Varanasi",
+    id: "puri-3",
+    name: "Traveller name",
+    age: "age",
+    quote: "Short, genuine excerpt pulled directly from the video.",
+    destination: "Jagannath Puri",
+    placeholder: true,
   },
   {
-    name: "Karthik & Meera",
-    relation: "Couple, Hyderabad",
-    quote:
-      "We wanted a trip we could enjoy together without worrying about logistics. Sairr let us focus on each other, not the itinerary.",
-    experience: "Coorg",
+    id: "puri-4",
+    name: "Traveller name",
+    age: "age",
+    quote: "Short, genuine excerpt pulled directly from the video.",
+    destination: "Jagannath Puri",
+    placeholder: true,
+  },
+  {
+    id: "puri-5",
+    name: "Traveller name",
+    age: "age",
+    quote: "Short, genuine excerpt pulled directly from the video.",
+    destination: "Jagannath Puri",
+    placeholder: true,
   },
 ];

@@ -7,7 +7,7 @@ import {
   MapPin,
   MessageCircle,
 } from "lucide-react";
-import { experiences, getExperience } from "@/data/experiences";
+import { getDetailExperiences, getExperience } from "@/data/experiences";
 import { experienceFaqs } from "@/data/faqs";
 import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
 import { FaqSection } from "@/components/shared/FaqSection";
@@ -22,7 +22,7 @@ import { siteConfig } from "@/data/site";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return experiences.map((e) => ({ slug: e.slug }));
+  return getDetailExperiences().map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -160,10 +160,6 @@ export default async function ExperienceDetailPage({ params }: Props) {
                 <div className="sticky top-24 rounded-2xl border border-border/60 bg-card p-6 shadow-lg">
                   <p className="text-3xl font-bold text-brand">
                     {experience.price}
-                    <span className="text-sm font-normal text-muted-foreground">
-                      {" "}
-                      / person
-                    </span>
                   </p>
 
                   <div className="mt-4 space-y-2 text-sm text-muted-foreground">
