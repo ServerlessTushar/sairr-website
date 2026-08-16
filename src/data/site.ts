@@ -10,8 +10,8 @@ export const siteConfig = {
   whatsapp: "919876543210",
   address: "Chennai, India",
   social: {
-    instagram: "https://instagram.com/sairr",
-    linkedin: "https://linkedin.com/company/sairr",
+    instagram: "https://www.instagram.com/sairr.in?igsh=Znk3cDZpbG4ydDdi",
+    linkedin: "https://www.linkedin.com/company/sairr/about/?viewAsMember=true",
   },
 } as const;
 
@@ -22,6 +22,7 @@ export function whatsappHref(message?: string) {
 }
 
 export const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About" },
