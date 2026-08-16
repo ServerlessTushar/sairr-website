@@ -3,6 +3,7 @@ import { BrandBeliefSection } from "@/components/home/BrandBeliefSection";
 import { JourneysSection } from "@/components/home/JourneysSection";
 import { WhySairrSection } from "@/components/home/WhySairrSection";
 import { RealTravellersSection } from "@/components/home/RealTravellersSection";
+import { TripGallerySection } from "@/components/home/TripGallerySection";
 import { CtaSection } from "@/components/home/CtaSection";
 import { createMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <JourneysSection />
       <WhySairrSection />
       <RealTravellersSection />
+      <TripGallerySection />
       <CtaSection />
     </>
   );
