@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import localFont from "next/font/local";
 import { Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { UtmCapture } from "@/components/shared/UtmCapture";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
@@ -96,6 +98,9 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col font-sans">
         <JsonLd data={organizationJsonLd} />
+        <Suspense fallback={null}>
+          <UtmCapture />
+        </Suspense>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
