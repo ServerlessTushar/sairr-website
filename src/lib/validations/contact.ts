@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+const utmField = z.string().max(200).optional();
+
 export const contactFormSchema = z.object({
   name: z
     .string()
@@ -7,9 +9,7 @@ export const contactFormSchema = z.object({
     .max(100, "Name is too long"),
   phone: z
     .string()
-    .min(10, "Please enter a valid phone number")
-    .max(15, "Phone number is too long")
-    .regex(/^[+\d\s-]+$/, "Please enter a valid phone number"),
+    .regex(/^\d{10}$/, "Please enter a valid 10-digit phone number"),
   planningFor: z
     .string()
     .min(2, "Please tell us who you're planning for")
@@ -19,6 +19,12 @@ export const contactFormSchema = z.object({
     .min(2, "Please share where you'd like to travel")
     .max(200, "Response is too long"),
   message: z.string().max(1000, "Message is too long").optional(),
+  utm_source: utmField,
+  utm_medium: utmField,
+  utm_id: utmField,
+  utm_content: utmField,
+  utm_term: utmField,
+  utm_campaign: utmField,
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

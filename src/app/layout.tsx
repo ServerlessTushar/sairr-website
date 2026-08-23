@@ -1,24 +1,51 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Suspense } from "react";
+import localFont from "next/font/local";
+import { Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { UtmCapture } from "@/components/shared/UtmCapture";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-sans",
+const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-sans",
 });
 
-const cormorant = Cormorant_Garamond({
+const grenettePro = localFont({
+  src: [
+    {
+      path: "../../public/Grenette-Pro/GrenettePro-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/Grenette-Pro/GrenettePro-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/Grenette-Pro/GrenettePro-Italic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/Grenette-Pro/GrenettePro-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/Grenette-Pro/GrenettePro-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-heading",
-  subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -67,10 +94,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${cormorant.variable} h-full scroll-smooth antialiased`}
+      className={`${manrope.variable} ${grenettePro.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <JsonLd data={organizationJsonLd} />
+        <Suspense fallback={null}>
+          <UtmCapture />
+        </Suspense>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

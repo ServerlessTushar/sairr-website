@@ -92,7 +92,7 @@ export function RtbCard({
   return (
     <article className={cn("flex flex-col pt-2", className)}>
       <Mark id={reason.id} />
-      <h3 className="mt-5 font-heading text-lg font-semibold leading-snug text-charcoal">
+      <h3 className="mt-5 font-heading text-lg font-semibold leading-snug text-brand">
         {reason.title}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-slate">{reason.description}</p>

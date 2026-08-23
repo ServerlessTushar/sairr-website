@@ -106,15 +106,12 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-charcoal/10 pt-6">
-          {/* <Link
+          <Link
             href="/about#founder"
-            className="text-xs text-brand transition-colors hover:text-brand-dark"
+            className="text-xs text-brand transition-colors hover:text-forest"
           >
-            [ A note from Tanmay, founder → ]
-          </Link> */}
-          {/* <div className="text-xs text-brand transition-colors hover:text-brand-dark">
             A note from Tanmay, founder →
-          </div> */}
+          </Link>
         </div>
 
         <p className="mt-6 text-[11px] text-slate/80">

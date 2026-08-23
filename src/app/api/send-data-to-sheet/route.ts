@@ -5,14 +5,15 @@ import { sendToSheetSchema } from "@/lib/validations/send-to-sheet";
 function getAllowedSheetIds(): string[] | null {
   const value = process.env.GOOGLE_ALLOWED_SHEET_IDS;
 
-  if (!value) {
-    return null;
+  if (value) {
+    return value
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
   }
 
-  return value
-    .split(",")
-    .map((id) => id.trim())
-    .filter(Boolean);
+  const sheetId = process.env.GOOGLE_SHEET_ID?.trim();
+  return sheetId ? [sheetId] : null;
 }
 
 export async function POST(request: Request) {

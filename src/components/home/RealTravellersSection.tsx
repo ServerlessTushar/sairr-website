@@ -6,7 +6,7 @@ import { CarouselSection } from "@/components/shared/CarouselSection";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 
 export function RealTravellersSection() {
-  if (testimonials.length === 0) return null;
+  const realTestimonials = testimonials.filter((t) => !t.placeholder);
 
   return (
     <section className="border-t border-charcoal/10 bg-mist">
@@ -17,14 +17,17 @@ export function RealTravellersSection() {
           </h2>
         </FadeIn>
 
-        <CarouselSection
-          className="mt-10"
-          items={testimonials}
-          getKey={(item) => item.id}
-          renderItem={(item) => <TestimonialCard testimonial={item} />}
-          slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-          ariaLabel="Traveller stories"
-        />
+        {realTestimonials.length > 0 && (
+          <CarouselSection
+            className="mt-10"
+            items={realTestimonials}
+            getKey={(item) => item.id}
+            renderItem={(item) => <TestimonialCard testimonial={item} />}
+            slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+            ariaLabel="Traveller stories"
+            autoplay={false}
+          />
+        )}
       </div>
     </section>
   );

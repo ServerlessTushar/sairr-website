@@ -7,11 +7,11 @@ import {
   contactFormSchema,
   type ContactFormData,
 } from "@/lib/validations/contact";
-import { contactLeadsSheet } from "@/data/sheets";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { getStoredUtmParams } from "@/lib/utm";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -35,20 +35,12 @@ export function ContactForm() {
 
   async function onSubmit(data: ContactFormData) {
     try {
-      const response = await fetch("/api/send-data-to-sheet", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          sheetId: contactLeadsSheet.sheetId,
-          tabName: contactLeadsSheet.tabName,
-          data: {
-            Timestamp: new Date().toISOString(),
-            Name: data.name,
-            Phone: data.phone,
-            "Planning For": data.planningFor,
-            Destination: data.destination,
-            Message: data.message ?? "",
-          },
+          ...data,
+          ...getStoredUtmParams(),
         }),
       });
 
@@ -98,10 +90,18 @@ export function ContactForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="+91 98765 43210"
+            inputMode="numeric"
+            placeholder="9876543210"
+            maxLength={10}
             aria-invalid={!!errors.phone}
             className={cn(fieldClassName, errors.phone && "border-destructive")}
-            {...register("phone")}
+            {...register("phone", {
+              onChange: (event) => {
+                event.target.value = event.target.value
+                  .replace(/\D/g, "")
+                  .slice(0, 10);
+              },
+            })}
           />
           {errors.phone && (
             <p className={errorClassName}>{errors.phone.message}</p>

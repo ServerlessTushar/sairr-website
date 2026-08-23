@@ -91,7 +91,7 @@ export default function WhySairrPage() {
                       {item.step}
                     </span>
                     <div>
-                      <h3 className="font-semibold">{item.title}</h3>
+                      <h3 className="font-heading font-semibold">{item.title}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">
                         {item.text}
                       </p>
