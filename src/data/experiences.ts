@@ -84,7 +84,7 @@ export const experiences: Experience[] = [
     imageSeed: "puri-temple",
     imageSrc: "/sairr-coming-soon.jpeg",
     status: "live",
-    statusLabel: "Booking Open",
+    statusLabel: "LIVE",
     featureLabel: "VIP darshan included",
     featured: true,
     hasDetailPage: true,

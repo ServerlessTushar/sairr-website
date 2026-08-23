@@ -9,6 +9,13 @@ function cardCta(experience: Experience, comingSoon: boolean) {
   return "View journey";
 }
 
+function statusLine(experience: Experience) {
+  if (experience.status === "live" && experience.featureLabel) {
+    return `LIVE · ${experience.featureLabel}`;
+  }
+  return experience.statusLabel;
+}
+
 export function ExperienceCard({ experience }: { experience: Experience }) {
   const comingSoon = experience.status === "coming-soon";
   const href = comingSoon
@@ -35,14 +42,8 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
       </div>
 
       <div className="flex flex-1 flex-col pt-4">
-        <p
-          className={
-            experience.status === "live"
-              ? "text-xs font-semibold uppercase tracking-wide text-charcoal"
-              : "text-[11px] font-medium uppercase tracking-[0.18em] text-gold"
-          }
-        >
-          {experience.statusLabel}
+        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
+          {statusLine(experience)}
         </p>
         <h3 className="mt-2 font-heading text-2xl font-semibold tracking-tight text-charcoal">
           {experience.title}
@@ -50,11 +51,6 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
         <p className="mt-1 text-sm leading-relaxed text-slate">
           {comingSoon ? experience.datesLabel : experience.tagline}
         </p>
-        {experience.featureLabel && (
-          <p className="mt-2 text-sm font-semibold text-charcoal">
-            {experience.featureLabel}
-          </p>
-        )}
         {!comingSoon && experience.logistics && (
           <p className="mt-2 text-sm text-slate">{experience.logistics}</p>
         )}
