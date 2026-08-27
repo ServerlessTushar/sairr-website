@@ -22,7 +22,9 @@ import { siteConfig } from "@/data/site";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return getDetailExperiences().map((e) => ({ slug: e.slug }));
+  return getDetailExperiences()
+    .filter((e) => e.slug !== "puri")
+    .map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {

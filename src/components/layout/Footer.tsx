@@ -115,8 +115,7 @@ export function Footer() {
         </div>
 
         <p className="mt-6 text-[11px] text-slate/80">
-          © 2026 {siteConfig.name} · {siteConfig.legalName}. All rights
-          reserved.
+          © 2026 {siteConfig.name}. All rights reserved.
         </p>
       </div>
     </footer>
