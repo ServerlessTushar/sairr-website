@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { UtmCapture } from "@/components/shared/UtmCapture";
 import { Toaster } from "@/components/ui/sonner";
@@ -104,6 +105,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingCallButton />
         <Toaster />
       </body>
     </html>

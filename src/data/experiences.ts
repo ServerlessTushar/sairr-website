@@ -1,3 +1,5 @@
+import { lowestLivePriceLabel } from "@/data/puri";
+
 export type ExperienceStatus = "live" | "completed" | "coming-soon";
 
 export type Experience = {
@@ -34,14 +36,14 @@ export const experiences: Experience[] = [
     title: "Puri",
     location: "Odisha",
     region: "East India",
-    tagline: "Jagannath Puri — sacred coast of Odisha",
+    tagline: "A journey of temples, sea & serenity.",
     duration: "3N/4D",
     logistics: "3N/4D · Delhi → Puri",
-    datesLabel: "30 July – 2 August 2026",
+    datesLabel: "17–20 September 2026",
     bestSeason: "Oct – Feb",
-    price: "From ₹45,000 per person",
+    price: `From ${lowestLivePriceLabel} per person`,
     description:
-      "A gentle coastal journey around Jagannath Puri — temple, sea, and unhurried days. Built for 50+ travellers who want the sacred without the scramble.",
+      "Thoughtfully designed for the way you travel after 50. Temple mornings, ancient sites, an afternoon at Konark, evenings by the sea — unhurried.",
     highlights: [
       "VIP darshan support at Jagannath Temple",
       "Comfortable stays with rest built into the day",
