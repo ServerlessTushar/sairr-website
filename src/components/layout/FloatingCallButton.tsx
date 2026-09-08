@@ -15,6 +15,7 @@ export function FloatingCallButton() {
         alt="WhatsApp"
         width={65}
         height={65}
+        className="w-[55px] h-[55px] md:w-[65px] md:h-[65px]"
       />
     </a>
   );

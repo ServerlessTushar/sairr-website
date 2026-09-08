@@ -32,11 +32,11 @@ export function CtaSection() {
               Start a conversation
             </p>
 
-            <h2 className="mt-3 font-heading text-3xl font-semibold leading-[1.15] tracking-tight text-charcoal sm:text-[2rem]">
+            <h2 className="mt-3 font-heading text-2xl md:text-3xl font-semibold leading-[1.15] tracking-tight text-charcoal sm:text-[2rem]">
               Where have you been meaning to go?
             </h2>
 
-            <p className="mt-3 text-base leading-snug text-slate">
+            <p className="mt-3 text-sm md:text-base leading-snug text-slate">
               Tell us, even if you&apos;re not sure yet. We&apos;ll make it
               happen for you
             </p>
