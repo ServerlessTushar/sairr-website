@@ -76,6 +76,7 @@ export function CarouselSection<T>({
   const [paused, setPaused] = useState(false);
 
   const maxIndex = Math.max(0, items.length - visibleCount);
+  const activeIndex = Math.min(index, maxIndex);
   const showControls = items.length > visibleCount;
 
   const getStep = useCallback(() => {
@@ -97,8 +98,15 @@ export function CarouselSection<T>({
   );
 
   useEffect(() => {
-    setIndex((current) => Math.min(current, maxIndex));
-  }, [maxIndex]);
+    const el = scrollRef.current;
+    if (!el) return;
+    const step = getStep();
+    if (!step) return;
+    const targetLeft = Math.min(el.scrollLeft, maxIndex * step);
+    if (Math.abs(el.scrollLeft - targetLeft) > 1) {
+      el.scrollTo({ left: targetLeft });
+    }
+  }, [getStep, maxIndex, visibleCount]);
 
   useEffect(() => {
     if (!autoplay || !showControls || paused) return;
@@ -108,7 +116,8 @@ export function CarouselSection<T>({
 
     const id = window.setInterval(() => {
       setIndex((current) => {
-        const next = current >= maxIndex ? 0 : current + 1;
+        const currentClamped = Math.min(current, maxIndex);
+        const next = currentClamped >= maxIndex ? 0 : currentClamped + 1;
         const el = scrollRef.current;
         const step = getStep();
 
@@ -149,12 +158,15 @@ export function CarouselSection<T>({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-12 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div
             key={getKey(item, i)}
-            className="flex w-full shrink-0 snap-start flex-col self-stretch md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
+            className="flex shrink-0 snap-start flex-col self-stretch"
+            style={{
+              width: `calc((100% - ${(visibleCount - 1) * GAP_PX}px) / ${visibleCount})`,
+            }}
           >
             <div className="flex h-full min-h-0 flex-1 flex-col">
               {renderItem(item, i)}
@@ -170,8 +182,8 @@ export function CarouselSection<T>({
             variant="outline"
             size="icon"
             aria-label="Previous slide"
-            disabled={index <= 0}
-            onClick={() => scrollToIndex(index - 1)}
+            disabled={activeIndex <= 0}
+            onClick={() => scrollToIndex(activeIndex - 1)}
             className="size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40"
           >
             <ChevronLeft className="size-4" />
@@ -181,8 +193,8 @@ export function CarouselSection<T>({
             variant="outline"
             size="icon"
             aria-label="Next slide"
-            disabled={index >= maxIndex}
-            onClick={() => scrollToIndex(index + 1)}
+            disabled={activeIndex >= maxIndex}
+            onClick={() => scrollToIndex(activeIndex + 1)}
             className="size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40"
           >
             <ChevronRight className="size-4" />
