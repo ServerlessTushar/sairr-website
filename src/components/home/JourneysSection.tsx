@@ -57,19 +57,18 @@ const journeys: Journey[] = [
 
 export function JourneysSection() {
   return (
-    <section id="experiences" className="relative overflow-hidden">
-      <div className="absolute inset-0" aria-hidden>
+    <section id="experiences" className="relative bg-mist">
+      <div className="absolute inset-x-0 top-0 -bottom-px" aria-hidden>
         <Image
           src={backgroundImg}
           alt=""
           fill
-          className="object-cover"
+          className="object-cover object-bottom"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-mist/88" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-28">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
@@ -92,7 +91,7 @@ export function JourneysSection() {
         />
 
         <FadeIn>
-          <div className="mt-12 flex justify-center">
+          <div className="mt-10 flex justify-center pb-10 lg:mt-12 lg:pb-12">
             <ButtonLink
               href="/experiences"
               size="lg"
