@@ -158,7 +158,7 @@ export function CarouselSection<T>({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-12 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div
