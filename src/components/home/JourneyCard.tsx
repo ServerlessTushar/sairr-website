@@ -39,28 +39,28 @@ function NotifyMeUnderline() {
   return (
     <svg
       aria-hidden
-      viewBox="0 0 88 10"
+      viewBox="0 0 58 10"
       fill="none"
-      className="absolute -bottom-0.5 left-0 h-2.5 w-[105%] max-w-none"
+      className="absolute -bottom-0.5 left-0 h-2.5 w-[85%] max-w-none"
       preserveAspectRatio="none"
     >
       <path
         d="M1 7.5C14 4.5 28 4 44 5.5C58 6.5 72 7 87 6.5"
         stroke={CORAL}
-        strokeWidth="1.4"
+        strokeWidth="0.5"
         strokeLinecap="round"
       />
       <path
         d="M2 8.5C16 5.5 30 5 46 6.5C60 7.5 74 8 86 7.5"
         stroke={CORAL}
-        strokeWidth="1.1"
+        strokeWidth="0.7"
         strokeLinecap="round"
         opacity="0.75"
       />
       <path
         d="M0.5 6.5C13 3.5 27 3 43 4.5C57 5.5 71 6 87.5 5"
         stroke={CORAL}
-        strokeWidth="0.9"
+        strokeWidth="0.3"
         strokeLinecap="round"
         opacity="0.55"
       />
@@ -72,7 +72,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
   const isOpen = journey.status === "booking-open";
 
   return (
-    <article className="relative flex h-full flex-col rounded-2xl bg-white p-4 shadow-[0_4px_24px_rgba(27,29,31,0.08)]">
+    <article className="relative flex h-full flex-col rounded-2xl bg-white p-2 shadow-[0_4px_24px_rgba(27,29,31,0.08)]">
       <StatusBadge status={journey.status} />
 
       <div className="relative aspect-4/3 overflow-hidden rounded-xl">
@@ -85,7 +85,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
         />
       </div>
 
-      <div className="flex flex-1 flex-col pt-4">
+      <div className="flex flex-1 flex-col pt-4 px-2">
         <p
           className="text-right text-xs font-semibold"
           style={{ color: TEAL }}
@@ -97,7 +97,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
           {journey.title}
         </h3>
 
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">
+        <p className="flex-1 text-sm leading-relaxed text-slate">
           {journey.description}
         </p>
 
