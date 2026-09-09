@@ -1,63 +1,133 @@
-import { FadeIn } from "@/components/shared/FadeIn";
-import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
+"use client";
+
+import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { FadeIn, StaggerContainer, staggerItem } from "@/components/shared/FadeIn";
+import birdIcon from "@/public/homepage/bird.png";
+import whySairr1 from "@/public/homepage/why-sairr-1.webp";
+import whySairr2 from "@/public/homepage/why-sairr-2.webp";
+import whySairr3 from "@/public/homepage/why-sairr-3.webp";
+import whySairr4 from "@/public/homepage/why-sairr-4.webp";
+
+const HIGHLIGHT = "bg-[#C8E8E8] box-decoration-clone px-0.5";
+
+type BeliefCard = {
+  id: string;
+  image: StaticImageData;
+  title: string;
+  description: ReactNode;
+};
+
+const beliefCards: BeliefCard[] = [
+  {
+    id: "families",
+    image: whySairr2,
+    title: "Made for 50+ travellers and their families.",
+    description: (
+      <>
+        <span className={HIGHLIGHT}>Thoughtfully curated</span> with care, around
+        your pace, comfort and needs.
+      </>
+    ),
+  },
+  {
+    id: "journey",
+    image: whySairr3,
+    title: "We own the journey, not just the booking",
+    description: (
+      <>
+        From doorstep pickup to your return. We handle it{" "}
+        <span className={HIGHLIGHT}>end to end.</span>
+      </>
+    ),
+  },
+  {
+    id: "quality",
+    image: whySairr4,
+    title: "Quality, without compromise",
+    description: (
+      <>
+        4-star+ stays, quality transport, food and hand-picked experiences.{" "}
+        <span className={HIGHLIGHT}>Guaranteed.</span>
+      </>
+    ),
+  },
+  {
+    id: "coordinator",
+    image: whySairr1,
+    title: "Dedicated coordinator, on ground with you",
+    description: (
+      <>
+        A trained expert takes care of the details.{" "}
+        <span className={HIGHLIGHT}>You live the journey.</span>
+      </>
+    ),
+  },
+];
+
+function BeliefCardItem({ card }: { card: BeliefCard }) {
+  return (
+    <motion.article
+      variants={staggerItem}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
+      className="group flex items-stretch overflow-hidden rounded-[14.3px] border border-[#C8A867] bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
+    >
+      <div className="relative w-[42%] shrink-0 overflow-hidden bg-mist sm:min-h-[11rem] sm:w-[34%]">
+        <Image
+          src={card.image}
+          alt=""
+          fill
+          className="object-contain object-center transition-transform duration-500 group-hover:scale-105 sm:object-cover"
+          sizes="(max-width: 640px) 42vw, 20vw"
+        />
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col justify-center px-4 py-5 sm:px-5 sm:py-6">
+        <h3 className="font-heading text-[1.05rem] font-semibold leading-snug text-black md:text-[26.4px]">
+          {card.title}
+        </h3>
+        <p className="mt-2 font-sans text-xs md:text-sm leading-relaxed text-[#5d5d5d]">
+          {card.description}
+        </p>
+      </div>
+    </motion.article>
+  );
+}
 
 export function BrandBeliefSection() {
   return (
     <section className="border-t border-charcoal/10 bg-mist">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
-          <FadeIn>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
-              Our belief
-            </p>
-            <h2 className="mt-4 font-heading text-3xl font-semibold leading-[1.2] tracking-tight text-charcoal sm:text-4xl">
-              There should always be another journey to look forward to.
+        <FadeIn>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl">
+              <span className="relative inline-block">
+                Why Sairr
+                <Image
+                  src={birdIcon}
+                  alt="bird icon"
+                  width={36}
+                  height={11}
+                  className="w-[18px] h-[5.5px] md:w-[36px] md:h-[11px] pointer-events-none absolute -top-1 left-full ml-1 sm:-top-1.5 sm:ml-1.5"
+                />
+              </span>
             </h2>
-            <div className="mt-6 h-px w-16 bg-gold" aria-hidden />
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-slate">
-              For travellers who want more from every trip — comfort, care, and
-              the freedom to simply show up.
+            <p className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg">
+              Sairr gives you the confidence to say yes, before you even book.
             </p>
-          </FadeIn>
+          </div>
+        </FadeIn>
 
-          <FadeIn delay={0.1} className="w-full overflow-visible">
-            <div className="relative mx-auto h-88 w-full max-w-104 sm:h-104 sm:max-w-md lg:ml-auto lg:mr-0">
-              <svg
-                className="pointer-events-none absolute bottom-4 left-[-8%] hidden h-24 w-[80%] text-charcoal/20 sm:block"
-                viewBox="0 0 320 80"
-                fill="none"
-                aria-hidden
-              >
-                <path
-                  d="M8 18 C 90 72, 210 78, 308 36"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeDasharray="5 7"
-                  strokeLinecap="round"
-                />
-                <path d="M300 28 l14 10 -16 4 2-14z" fill="#c8a867" />
-              </svg>
-
-              <div className="absolute top-0 left-0 h-[85%] w-[72%] overflow-hidden rounded-2xl bg-charcoal/10 shadow-xl shadow-charcoal/15">
-                <PlaceholderImage
-                  seed="belief-primary"
-                  src="/images/dipanjali-panigrahi-0IXFx5oFNIg-unsplash.jpg"
-                  alt="Sunset on the beach"
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="absolute right-0 bottom-0 h-[52%] w-[52%] rotate-6 overflow-hidden rounded-2xl border-4 border-mist bg-charcoal/10 shadow-2xl shadow-charcoal/20">
-                <PlaceholderImage
-                  seed="belief-secondary"
-                  src="/images/roberto-nickson-WoranOGrJ9k-unsplash.jpg"
-                  alt="Travellers overlooking the coast"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+        <StaggerContainer
+          className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6"
+          stagger={0.12}
+        >
+          {beliefCards.map((card) => (
+            <BeliefCardItem key={card.id} card={card} />
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );
