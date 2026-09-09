@@ -2,6 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { whatsappHref } from "@/data/site";
+import underlineImg from "@/public/homepage/underline.png";
 import { cn } from "@/lib/utils";
 
 const TEAL = "#0E5E6F";
@@ -37,34 +38,14 @@ function StatusBadge({ status }: { status: Journey["status"] }) {
 
 function NotifyMeUnderline() {
   return (
-    <svg
+    <Image
+      src={underlineImg}
+      alt=""
+      width={82}
+      height={6}
       aria-hidden
-      viewBox="0 0 58 10"
-      fill="none"
-      className="absolute -bottom-0.5 left-0 h-2.5 w-[85%] max-w-none"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M1 7.5C14 4.5 28 4 44 5.5C58 6.5 72 7 87 6.5"
-        stroke={CORAL}
-        strokeWidth="0.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2 8.5C16 5.5 30 5 46 6.5C60 7.5 74 8 86 7.5"
-        stroke={CORAL}
-        strokeWidth="0.7"
-        strokeLinecap="round"
-        opacity="0.75"
-      />
-      <path
-        d="M0.5 6.5C13 3.5 27 3 43 4.5C57 5.5 71 6 87.5 5"
-        stroke={CORAL}
-        strokeWidth="0.3"
-        strokeLinecap="round"
-        opacity="0.55"
-      />
-    </svg>
+      className="pointer-events-none absolute -bottom-0.5 left-0 h-auto w-[105%] max-w-none"
+    />
   );
 }
 

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import underlineImg from "@/public/homepage/underline.png";
 
 function isNavLinkActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -52,12 +53,22 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm md:text-lg font-medium text-[#1b1d1f] underline-offset-4 transition-colors",
-                  "hover:text-brand hover:underline hover:decoration-brand hover:font-bold",
-                  isActive && "text-brand underline decoration-brand font-bold",
+                  "relative inline-block text-sm font-medium text-[#1b1d1f] transition-colors md:text-lg",
+                  "hover:text-brand hover:font-bold",
+                  isActive && "font-bold text-brand",
                 )}
               >
                 {link.label}
+                {isActive && (
+                  <Image
+                    src={underlineImg}
+                    alt=""
+                    width={82}
+                    height={6}
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-1 left-0 h-auto w-full"
+                  />
+                )}
               </Link>
             );
           })}
@@ -65,7 +76,7 @@ export function Header() {
 
         <ButtonLink
           href="/contact"
-          className="hidden h-10 rounded-lg bg-brand px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-forest md:inline-flex"
+          className="hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-forest md:inline-flex"
         >
           Talk to us
         </ButtonLink>
@@ -95,18 +106,28 @@ export function Header() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "rounded-lg px-3 py-2 text-base underline-offset-4 transition-colors hover:bg-sand hover:text-brand hover:underline hover:decoration-brand",
-                      isActive && "text-brand underline decoration-brand",
+                      "relative inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                      isActive && "font-bold text-brand",
                     )}
                   >
                     {link.label}
+                    {isActive && (
+                      <Image
+                        src={underlineImg}
+                        alt=""
+                        width={82}
+                        height={6}
+                        aria-hidden
+                        className="pointer-events-none absolute bottom-1 left-3 h-auto w-[calc(100%-1.5rem)]"
+                      />
+                    )}
                   </Link>
                 );
               })}
               <ButtonLink
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-forest"
+                className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-[FF4859]"
               >
                 Talk to us
               </ButtonLink>
