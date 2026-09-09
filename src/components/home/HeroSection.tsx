@@ -1,35 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
+import bannerUnderlineImg from "@/public/homepage/banner-underline.png";
 
 const CORAL = "#EC575E";
 
 function HeroUnderline() {
   return (
-    <svg
+    <Image
+      src={bannerUnderlineImg}
+      alt=""
+      width={231}
+      height={8}
       aria-hidden
-      viewBox="0 0 280 10"
-      fill="none"
-      className="absolute -bottom-1 left-1/2 h-2.5 w-[110%] max-w-none -translate-x-1/2"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M2 7.5C40 4.5 80 4 140 5.5C200 6.5 240 7 278 6.5"
-        stroke={CORAL}
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4 8.5C42 5.5 82 5 142 6.5C202 7.5 242 8 276 7.5"
-        stroke={CORAL}
-        strokeWidth="1.1"
-        strokeLinecap="round"
-        opacity="0.75"
-      />
-    </svg>
+      className="pointer-events-none absolute -bottom-1 left-1/2 h-auto w-[110%] max-w-none -translate-x-1/2"
+    />
   );
 }
 
