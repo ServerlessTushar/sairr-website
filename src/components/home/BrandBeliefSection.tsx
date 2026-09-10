@@ -3,12 +3,18 @@
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { FadeIn, StaggerContainer, staggerItem } from "@/components/shared/FadeIn";
+import { FadeIn } from "@/components/shared/FadeIn";
+import {
+  CardRevealGrid,
+  GridCardRevealItem,
+} from "@/components/shared/CardReveal";
+import { TextReveal } from "@/components/shared/TextReveal";
 import birdIcon from "@/public/homepage/bird.png";
 import whySairr1 from "@/public/homepage/why-sairr-1.webp";
 import whySairr2 from "@/public/homepage/why-sairr-2.webp";
 import whySairr3 from "@/public/homepage/why-sairr-3.webp";
 import whySairr4 from "@/public/homepage/why-sairr-4.webp";
+import { imageHover } from "@/lib/motion";
 
 const HIGHLIGHT = "bg-[#C8E8E8] box-decoration-clone px-0.5";
 
@@ -66,33 +72,34 @@ const beliefCards: BeliefCard[] = [
   },
 ];
 
-function BeliefCardItem({ card }: { card: BeliefCard }) {
+function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
   return (
-    <motion.article
-      variants={staggerItem}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
+    <GridCardRevealItem
+      index={index}
+      as="article"
       className="group flex items-stretch overflow-hidden rounded-[14.3px] border border-[#C8A867] bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
     >
       <div className="relative w-[42%] shrink-0 overflow-hidden bg-mist sm:min-h-[11rem] sm:w-[34%]">
-        <Image
-          src={card.image}
-          alt=""
-          fill
-          className="object-contain object-center transition-transform duration-500 group-hover:scale-105 sm:object-cover"
-          sizes="(max-width: 640px) 42vw, 20vw"
-        />
+        <motion.div className="relative h-full min-h-[inherit]" whileHover={imageHover}>
+          <Image
+            src={card.image}
+            alt=""
+            fill
+            className="object-contain object-center sm:object-cover"
+            sizes="(max-width: 640px) 42vw, 20vw"
+          />
+        </motion.div>
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col justify-center px-4 py-5 sm:px-5 sm:py-6">
         <h3 className="font-heading text-[1.05rem] font-semibold leading-snug text-black md:text-[26.4px]">
           {card.title}
         </h3>
-        <p className="mt-2 font-sans text-xs md:text-sm leading-relaxed text-[#5d5d5d]">
+        <p className="mt-2 font-sans text-xs leading-relaxed text-[#5d5d5d] md:text-sm">
           {card.description}
         </p>
       </div>
-    </motion.article>
+    </GridCardRevealItem>
   );
 }
 
@@ -102,32 +109,50 @@ export function BrandBeliefSection() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl">
-              <span className="relative inline-block">
-                Why Sairr
-                <Image
-                  src={birdIcon}
-                  alt="bird icon"
-                  width={36}
-                  height={11}
-                  className="w-[18px] h-[5.5px] md:w-[36px] md:h-[11px] pointer-events-none absolute -top-1 left-full ml-1 sm:-top-1.5 sm:ml-1.5"
-                />
-              </span>
-            </h2>
-            <p className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg">
+            <div className="relative inline-block">
+              <TextReveal
+                as="h2"
+                text="Why Sairr"
+                className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 8, rotate: -12 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
+                className="pointer-events-none absolute -top-1 left-full ml-1 sm:-top-1.5 sm:ml-1.5"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Image
+                    src={birdIcon}
+                    alt="bird icon"
+                    width={36}
+                    height={11}
+                    className="h-[5.5px] w-[18px] md:h-[11px] md:w-[36px]"
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg"
+            >
               Sairr gives you the confidence to say yes, before you even book.
-            </p>
+            </motion.p>
           </div>
         </FadeIn>
 
-        <StaggerContainer
-          className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6"
-          stagger={0.12}
-        >
-          {beliefCards.map((card) => (
-            <BeliefCardItem key={card.id} card={card} />
+        <CardRevealGrid className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6">
+          {beliefCards.map((card, index) => (
+            <BeliefCardItem key={card.id} card={card} index={index} />
           ))}
-        </StaggerContainer>
+        </CardRevealGrid>
       </div>
     </section>
   );

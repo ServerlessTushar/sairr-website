@@ -23,6 +23,7 @@ type GalleryTileProps = {
   onClick: () => void;
   className?: string;
   reduceMotion: boolean | null;
+  index?: number;
 };
 
 function GalleryTile({
@@ -30,15 +31,22 @@ function GalleryTile({
   onClick,
   className,
   reduceMotion,
+  index = 0,
 }: GalleryTileProps) {
   return (
     <motion.button
       type="button"
       layout={reduceMotion ? false : true}
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.55,
+        delay: reduceMotion ? 0 : index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
       onClick={onClick}
       className={cn(
         "group relative min-h-[9.5rem] overflow-hidden rounded-2xl bg-card text-left sm:min-h-[11rem]",
@@ -88,6 +96,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(index)}
               className="aspect-4/3"
+              index={index}
             />
           ))}
         </AnimatePresence>
@@ -108,6 +117,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(0))}
               className="col-start-1 row-start-1 h-full"
+              index={0}
             />
           )}
           {left[1] && (
@@ -117,6 +127,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(1))}
               className="col-start-1 row-start-2 h-full"
+              index={1}
             />
           )}
           {left[2] && (
@@ -126,6 +137,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(2))}
               className="col-start-2 row-span-2 row-start-1 h-full"
+              index={2}
             />
           )}
         </AnimatePresence>
@@ -140,6 +152,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(3))}
               className="col-span-2 row-start-1 h-full"
+              index={3}
             />
           )}
           {right[1] && (
@@ -149,6 +162,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(4))}
               className="col-start-1 row-start-2 h-full"
+              index={4}
             />
           )}
           {right[2] && (
@@ -158,6 +172,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(5))}
               className="col-start-2 row-start-2 h-full"
+              index={5}
             />
           )}
         </AnimatePresence>
