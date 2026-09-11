@@ -9,10 +9,10 @@ import goldenBirdsIcon from "@/public/homepage/golden-birds.png";
 
 export function TripGallerySection() {
   return (
-    <section id="gallery" className="border-t border-charcoal/10 bg-[#F5F4EF]">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section id="gallery" className=" bg-[#F5F4EF]">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:pt-0 lg:pb-28">
         <FadeIn>
-          <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-10 lg:px-12">
+          <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-10 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -33,14 +33,14 @@ export function TripGallerySection() {
             <TextReveal
               as="h2"
               text="The moments that stay with you."
-              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-5xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-slate sm:text-lg"
+              className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
             >
               A glimpse into life on a Sairr journey.
             </motion.p>

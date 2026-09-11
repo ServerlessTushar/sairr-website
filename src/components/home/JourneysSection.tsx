@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
-import { Parallax } from "@/components/shared/Parallax";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CarouselSection } from "@/components/shared/CarouselSection";
@@ -69,19 +68,17 @@ const journeys: Journey[] = [
 export function JourneysSection() {
   return (
     <section id="experiences" className="relative bg-mist">
-      <Parallax className="absolute inset-x-0 top-0 -bottom-px" offset={40}>
-        <div className="relative h-full min-h-full" aria-hidden>
-          <Image
-            src={backgroundImg}
-            alt=""
-            fill
-            className="object-cover object-bottom"
-            sizes="100vw"
-          />
-        </div>
-      </Parallax>
+      <div className="absolute inset-0" aria-hidden>
+        <Image
+          src={backgroundImg}
+          alt=""
+          fill
+          className="object-contain object-bottom"
+          sizes="100vw"
+        />
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-28">
+      <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-20">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
@@ -94,7 +91,7 @@ export function JourneysSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-slate sm:text-lg"
+              className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
             >
               Sairr gives you the confidence to say yes, before you even book.
             </motion.p>
@@ -103,10 +100,11 @@ export function JourneysSection() {
 
         <CarouselSection
           className="mt-12 lg:mt-14"
+          slideClassName="py-6"
           items={journeys}
           getKey={(journey) => journey.slug}
           renderItem={(journey, index) => (
-            <CardRevealCarouselItem index={index} direction="left">
+            <CardRevealCarouselItem index={index} direction="left" hover={false}>
               <JourneyCard journey={journey} />
             </CardRevealCarouselItem>
           )}

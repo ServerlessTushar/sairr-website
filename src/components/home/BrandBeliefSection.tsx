@@ -76,7 +76,7 @@ function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
     <GridCardRevealItem
       index={index}
       as="article"
-      className="group flex items-stretch overflow-hidden rounded-[14.3px] border border-[#C8A867] bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
+      className="group flex items-stretch overflow-hidden rounded-[14.3px] border-[0.55px] border-[#C8A867] bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
     >
       <div className="relative w-[42%] shrink-0 overflow-hidden bg-mist sm:min-h-[11rem] sm:w-[34%]">
         <motion.div className="relative h-full min-h-[inherit]" whileHover={imageHover}>
@@ -91,10 +91,10 @@ function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col justify-center px-4 py-5 sm:px-5 sm:py-6">
-        <h3 className="font-heading text-[1.05rem] font-semibold leading-snug text-black md:text-[26.4px]">
+        <h3 className="font-sans text-[1.05rem] font-semibold leading-snug text-black md:text-[1.65rem]">
           {card.title}
         </h3>
-        <p className="mt-2 font-sans text-xs leading-relaxed text-[#5d5d5d] md:text-sm">
+        <p className="mt-2 font-sans text-xs leading-relaxed text-[#5d5d5d] md:text-[17.6px]">
           {card.description}
         </p>
       </div>
@@ -109,7 +109,7 @@ export function BrandBeliefSection() {
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <div className="relative inline-block overflow-visible">
-              <h2 className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl">
+              <h2 className="font-heading text-3xl font-black tracking-tight text-black sm:text-4xl">
                 Why{" "}
                 <span className="relative inline-block overflow-visible">
                   Sairr
@@ -139,7 +139,7 @@ export function BrandBeliefSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg"
+              className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
             >
               Sairr gives you the confidence to say yes, before you even book.
             </motion.p>

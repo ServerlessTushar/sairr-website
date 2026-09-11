@@ -19,6 +19,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <BrandBeliefSection />
+      <div className="-mt-16" />
       <JourneysSection />
       <WhySairrSection />
       <RealTravellersSection />

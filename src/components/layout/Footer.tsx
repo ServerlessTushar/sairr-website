@@ -88,7 +88,7 @@ export function Footer() {
                 className="h-[20.85px] w-[65.2px] md:h-[33.36px] md:w-[104.32px]"
               />
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-slate">
+            <p className="mt-3 text-sm md:text-[19.4px] leading-relaxed text-slate">
               With you, wherever you go next.
             </p>
 
@@ -112,7 +112,7 @@ export function Footer() {
 
             <Link
               href="/about#founder"
-              className="mt-8 inline-flex items-center gap-1 text-sm font-medium text-brand transition-colors hover:text-forest"
+              className="mt-8 inline-flex items-center gap-1 text-sm md:text-lg font-medium text-brand transition-colors hover:text-forest"
             >
               A note from founder
               <ArrowRight className="size-4" />

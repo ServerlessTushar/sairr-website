@@ -26,6 +26,7 @@ type CarouselSectionProps<T> = {
   getKey: (item: T, index: number) => string;
   slidesPerView?: SlidesPerView;
   className?: string;
+  slideClassName?: string;
   ariaLabel?: string;
   autoplay?: boolean;
   autoplayInterval?: number;
@@ -66,6 +67,7 @@ export function CarouselSection<T>({
   getKey,
   slidesPerView = { mobile: 1, tablet: 2, desktop: 3 },
   className,
+  slideClassName,
   ariaLabel = "Carousel",
   autoplay = true,
   autoplayInterval = DEFAULT_AUTOPLAY_INTERVAL_MS,
@@ -158,12 +160,15 @@ export function CarouselSection<T>({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-5 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div
             key={getKey(item, i)}
-            className="flex shrink-0 snap-start flex-col self-stretch"
+            className={cn(
+              "flex shrink-0 snap-start flex-col self-stretch px-1",
+              slideClassName,
+            )}
             style={{
               width: `calc((100% - ${(visibleCount - 1) * GAP_PX}px) / ${visibleCount})`,
             }}

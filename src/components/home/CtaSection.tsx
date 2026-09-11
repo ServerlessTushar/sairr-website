@@ -44,7 +44,7 @@ export function CtaSection() {
             >
               <motion.p
                 variants={scaleIn}
-                className="text-xs font-semibold uppercase tracking-[0.2em]"
+                className="text-[11px] font-semibold uppercase tracking-[0.2em]"
                 style={{ color: TEAL }}
               >
                 Start a conversation
