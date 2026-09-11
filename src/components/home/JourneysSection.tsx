@@ -119,11 +119,11 @@ export function JourneysSection() {
               whileTap={{ scale: 0.98 }}
             >
               <ButtonLink
-                href="/experiences"
+                href="/contact"
                 size="lg"
-                className="h-12 rounded-full bg-destructive px-8 font-sans text-sm font-semibold text-white hover:bg-destructive/90"
+                className="h-12 rounded-lg bg-[#E2555D] px-8 font-sans text-sm font-semibold text-white hover:bg-destructive/90"
               >
-                Explore All Journeys
+                Request A Callback
                 <ArrowRight className="ml-2 size-4" />
               </ButtonLink>
             </motion.div>

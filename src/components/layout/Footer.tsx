@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { siteConfig, whatsappHref } from "@/data/site";
 
@@ -6,7 +7,7 @@ const CORAL = "#EC575E";
 
 const exploreLinks = [
   { href: "/", label: "Home" },
-  { href: "/experiences", label: "Experiences" },
+  { href: "/#experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About Sairr" },
 ] as const;
@@ -78,11 +79,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           <div className="max-w-sm">
-            <Link
-              href="/"
-              className="font-heading text-4xl font-semibold tracking-tight text-brand sm:text-[2.75rem]"
-            >
-              {siteConfig.name}
+            <Link href="/" className="inline-block">
+              <Image
+                src="/sairr-logo.webp"
+                alt={siteConfig.name}
+                width={130.4}
+                height={41.7}
+                className="h-[20.85px] w-[65.2px] md:h-[33.36px] md:w-[104.32px]"
+              />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-slate">
               With you, wherever you go next.

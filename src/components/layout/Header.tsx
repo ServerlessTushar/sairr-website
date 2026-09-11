@@ -19,6 +19,7 @@ import Image from "next/image";
 import underlineImg from "@/public/homepage/underline.png";
 
 function isNavLinkActive(pathname: string, href: string) {
+  if (href.startsWith("/#")) return false;
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -26,9 +27,17 @@ function isNavLinkActive(pathname: string, href: string) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg">
+    <header
+      className={cn(
+        "top-0 z-50 w-full",
+        isHome
+          ? "fixed border-b border-charcoal/10 bg-white/55 backdrop-blur-md"
+          : "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
+      )}
+    >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"

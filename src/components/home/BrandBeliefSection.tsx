@@ -8,8 +8,7 @@ import {
   CardRevealGrid,
   GridCardRevealItem,
 } from "@/components/shared/CardReveal";
-import { TextReveal } from "@/components/shared/TextReveal";
-import birdIcon from "@/public/homepage/bird.png";
+import redBirdIcon from "@/public/homepage/red-bird.png";
 import whySairr1 from "@/public/homepage/why-sairr-1.webp";
 import whySairr2 from "@/public/homepage/why-sairr-2.webp";
 import whySairr3 from "@/public/homepage/why-sairr-3.webp";
@@ -109,32 +108,31 @@ export function BrandBeliefSection() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
-            <div className="relative inline-block">
-              <TextReveal
-                as="h2"
-                text="Why Sairr"
-                className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
-              />
-              <motion.div
-                initial={{ opacity: 0, y: 8, rotate: -12 }}
-                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-                className="pointer-events-none absolute -top-1 left-full ml-1 sm:-top-1.5 sm:ml-1.5"
-              >
-                <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Image
-                    src={birdIcon}
-                    alt="bird icon"
-                    width={36}
-                    height={11}
-                    className="h-[5.5px] w-[18px] md:h-[11px] md:w-[36px]"
-                  />
-                </motion.div>
-              </motion.div>
+            <div className="relative inline-block overflow-visible">
+              <h2 className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl">
+                Why{" "}
+                <span className="relative inline-block overflow-visible">
+                  Sairr
+                  <motion.span
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="pointer-events-none absolute -top-1 left-full ml-1 block sm:-top-1.5 sm:ml-1.5"
+                    aria-hidden
+                  >
+                    <Image
+                      src={redBirdIcon}
+                      alt=""
+                      width={33}
+                      height={11}
+                      className="block h-[11px] w-[33px] max-w-none shrink-0"
+                    />
+                  </motion.span>
+                </span>
+              </h2>
             </div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}

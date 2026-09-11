@@ -62,13 +62,6 @@ function GalleryTile({
         className="object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: image.objectPosition ?? "center" }}
       />
-
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/10 to-transparent" />
-
-      <div className="absolute inset-x-0 bottom-0 p-4">
-        <p className="text-sm font-semibold text-white">{image.journeyLabel}</p>
-        <p className="mt-0.5 text-xs text-white/90">{image.caption}</p>
-      </div>
     </motion.button>
   );
 }
@@ -251,27 +244,26 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
             />
 
             <motion.div
-              className="relative z-10 w-full max-w-5xl"
+              className="relative z-10 flex w-full max-w-[min(90vw,1200px)] flex-col items-center"
               initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
               transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-mist/15 shadow-2xl">
-                <Image
-                  src={gallerySrc(activeImage)}
-                  alt={activeImage.alt}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  style={{
-                    objectPosition: activeImage.objectPosition ?? "center",
-                  }}
-                  priority
-                />
-              </div>
+              {/* Native img so lightbox respects each photo's intrinsic aspect ratio */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                key={activeImage.id}
+                src={gallerySrc(activeImage)}
+                alt={activeImage.alt}
+                className="max-h-[75vh] w-auto max-w-full rounded-2xl border border-mist/15 object-contain shadow-2xl"
+                style={{
+                  objectPosition: activeImage.objectPosition ?? "center",
+                }}
+              />
 
-              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mt-4 flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-gold">
                     {activeImage.journeyLabel}

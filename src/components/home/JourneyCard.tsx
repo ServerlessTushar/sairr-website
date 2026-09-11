@@ -34,9 +34,9 @@ function StatusBadge({ status }: { status: Journey["status"] }) {
       viewport={{ once: true }}
       transition={{ delay: 0.3, duration: 0.4 }}
       className={cn(
-        "absolute top-8 right-0 z-10 rounded-l-full py-1.5 pr-6 pl-3 text-[10px] font-semibold tracking-[0.14em] uppercase",
+        "absolute top-8 right-0 z-10 rounded-l-full py-1.5 pr-6 pl-3 tracking-[0.14em] uppercase shadow-lg",
         "bg-white",
-        isOpen ? "text-[#EC575E]" : "text-[#6B7075]",
+        isOpen ? "text-[#EC575E] font-bold text-[10px]" : "text-[#6B7075] font-semibold text-[8px]",
       )}
     >
       {isOpen ? "Booking open" : "Coming soon"}
@@ -61,7 +61,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
   const isOpen = journey.status === "booking-open";
 
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl bg-white p-2 shadow-[0_4px_24px_rgba(27,29,31,0.08)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(27,29,31,0.14)]">
+    <article className="group relative flex h-full flex-col rounded-2xl bg-white px-2 pt-2 pb-4 shadow-[0_4px_24px_rgba(27,29,31,0.08)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(27,29,31,0.14)]">
       <StatusBadge status={journey.status} />
 
       <div className="relative aspect-4/3 overflow-hidden rounded-xl">

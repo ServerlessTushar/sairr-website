@@ -24,7 +24,7 @@ function HeroUnderline() {
   return (
     <motion.div
       variants={drawLine}
-      className="pointer-events-none absolute -bottom-1 left-1/2 h-auto w-[110%] max-w-none origin-left -translate-x-1/2"
+      className="pointer-events-none absolute -bottom-0.5 left-0 h-auto w-full origin-left"
     >
       <Image
         src={bannerUnderlineImg}
@@ -81,7 +81,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[min(calc(100dvh-5rem),52rem)] overflow-hidden"
+      className="relative min-h-dvh overflow-hidden"
     >
       <div className="absolute inset-0" aria-hidden>
         <motion.div className="h-full w-full" style={{ scale: videoScale }}>
@@ -102,27 +102,29 @@ export function HeroSection() {
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative mx-auto flex min-h-[min(calc(100dvh-5rem),52rem)] max-w-4xl items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8"
+        className="relative mx-auto flex min-h-dvh max-w-4xl items-center justify-center px-4 pb-16 pt-28 text-center sm:px-6 lg:px-8"
       >
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           animate="visible"
           variants={staggerContainer(0.14, 0.2)}
         >
-          <motion.div variants={fadeDown} className="relative inline-block pb-1">
-            <p className="text-sm font-medium text-white sm:text-base">
-              Travel after 50, designed differently
+          <motion.div variants={fadeDown} className="inline-block">
+            <p className="text-sm font-medium text-white sm:text-base md:text-[29.18px]">
+              Travel after 50,{" "}
+              <span className="relative inline-block pb-1">
+                designed differently
+                <HeroUnderline />
+              </span>
             </p>
-            <HeroUnderline />
           </motion.div>
 
           <motion.h1
             variants={heroLine}
-            className="mt-8 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]"
+            className="mt-8 font-heading text-4xl leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]"
           >
-            You show up.
-            <br />
-            We handle the rest.
+            <span className="block font-normal">You show up.</span>
+            <span className="block font-bold">We handle the rest.</span>
           </motion.h1>
 
           <motion.div

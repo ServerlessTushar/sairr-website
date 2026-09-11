@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { whatsappHref } from "@/data/site";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { Parallax } from "@/components/shared/Parallax";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/homepage/whatsapp.png";
 import bgImg from "@/public/homepage/where-u-meaning.webp";
@@ -18,17 +17,15 @@ const GRAY_BTN = "#E8E8E8";
 export function CtaSection() {
   return (
     <section className="relative overflow-hidden">
-      <Parallax className="absolute inset-0" offset={50}>
-        <div className="relative h-[120%] w-full" aria-hidden>
-          <Image
-            src={bgImg}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </Parallax>
+      <div className="absolute inset-0" aria-hidden>
+        <Image
+          src={bgImg}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <FadeIn>
@@ -37,7 +34,7 @@ export function CtaSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={scaleIn}
-            className="mx-auto max-w-4xl rounded-3xl bg-white px-8 py-8 text-center shadow-[0_8px_40px_rgba(27,29,31,0.12)] sm:px-12 sm:py-9 lg:px-14"
+            className="mx-auto max-w-4xl rounded-3xl border border-white/50 bg-white/30 px-8 py-8 text-center shadow-[0_8px_40px_rgba(27,29,31,0.12)] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
           >
             <motion.div
               variants={staggerContainer(0.1, 0.1)}
