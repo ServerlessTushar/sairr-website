@@ -15,7 +15,7 @@ import whySairr3 from "@/public/homepage/why-sairr-3.webp";
 import whySairr4 from "@/public/homepage/why-sairr-4.webp";
 import { imageHover } from "@/lib/motion";
 
-const HIGHLIGHT = "bg-[#C8E8E8] box-decoration-clone px-0.5";
+const HIGHLIGHT = "bg-[#C6fdff] box-decoration-clone px-0.5";
 
 type BeliefCard = {
   id: string;
