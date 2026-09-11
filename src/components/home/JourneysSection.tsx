@@ -11,6 +11,12 @@ import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
 import puri from "@/public/homepage/puri.webp";
+import moments1 from "@/public/homepage/moments-1.webp";
+import moments2 from "@/public/homepage/moments-2.webp";
+import moments3 from "@/public/homepage/moments-3.webp";
+import moments4 from "@/public/homepage/moments-4.webp";
+import moments5 from "@/public/homepage/moments-5.webp";
+import moments6 from "@/public/homepage/moments-6.webp";
 import rameshwaram from "@/public/homepage/rameshwaram.webp";
 import andaman from "@/public/homepage/andaman.webp";
 import bali from "@/public/homepage/bali.webp";
@@ -23,6 +29,7 @@ const journeys: Journey[] = [
     category: "Pilgrimage",
     description: "Temple bells, ocean air, and unhurried mornings.",
     image: puri,
+    images: [puri, moments1, moments2, moments3, moments4, moments5, moments6],
     status: "booking-open",
     perks: ["VIP darshan", "Beach-facing stay", "Dedicated coordinator"],
     href: "/experiences/puri",
