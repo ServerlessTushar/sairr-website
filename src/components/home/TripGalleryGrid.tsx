@@ -23,6 +23,7 @@ type GalleryTileProps = {
   onClick: () => void;
   className?: string;
   reduceMotion: boolean | null;
+  index?: number;
 };
 
 function GalleryTile({
@@ -30,15 +31,22 @@ function GalleryTile({
   onClick,
   className,
   reduceMotion,
+  index = 0,
 }: GalleryTileProps) {
   return (
     <motion.button
       type="button"
       layout={reduceMotion ? false : true}
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.55,
+        delay: reduceMotion ? 0 : index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
       onClick={onClick}
       className={cn(
         "group relative min-h-[9.5rem] overflow-hidden rounded-2xl bg-card text-left sm:min-h-[11rem]",
@@ -54,13 +62,6 @@ function GalleryTile({
         className="object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: image.objectPosition ?? "center" }}
       />
-
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/10 to-transparent" />
-
-      <div className="absolute inset-x-0 bottom-0 p-4">
-        <p className="text-sm font-semibold text-white">{image.journeyLabel}</p>
-        <p className="mt-0.5 text-xs text-white/90">{image.caption}</p>
-      </div>
     </motion.button>
   );
 }
@@ -88,6 +89,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(index)}
               className="aspect-4/3"
+              index={index}
             />
           ))}
         </AnimatePresence>
@@ -108,6 +110,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(0))}
               className="col-start-1 row-start-1 h-full"
+              index={0}
             />
           )}
           {left[1] && (
@@ -117,6 +120,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(1))}
               className="col-start-1 row-start-2 h-full"
+              index={1}
             />
           )}
           {left[2] && (
@@ -126,6 +130,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(2))}
               className="col-start-2 row-span-2 row-start-1 h-full"
+              index={2}
             />
           )}
         </AnimatePresence>
@@ -140,6 +145,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(3))}
               className="col-span-2 row-start-1 h-full"
+              index={3}
             />
           )}
           {right[1] && (
@@ -149,6 +155,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(4))}
               className="col-start-1 row-start-2 h-full"
+              index={4}
             />
           )}
           {right[2] && (
@@ -158,6 +165,7 @@ function GalleryMosaic({
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(tileIndex(5))}
               className="col-start-2 row-start-2 h-full"
+              index={5}
             />
           )}
         </AnimatePresence>
@@ -236,27 +244,26 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
             />
 
             <motion.div
-              className="relative z-10 w-full max-w-5xl"
+              className="relative z-10 flex w-full max-w-[min(90vw,1200px)] flex-col items-center"
               initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
               transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-mist/15 shadow-2xl">
-                <Image
-                  src={gallerySrc(activeImage)}
-                  alt={activeImage.alt}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  style={{
-                    objectPosition: activeImage.objectPosition ?? "center",
-                  }}
-                  priority
-                />
-              </div>
+              {/* Native img so lightbox respects each photo's intrinsic aspect ratio */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                key={activeImage.id}
+                src={gallerySrc(activeImage)}
+                alt={activeImage.alt}
+                className="max-h-[75vh] w-auto max-w-full rounded-2xl border border-mist/15 object-contain shadow-2xl"
+                style={{
+                  objectPosition: activeImage.objectPosition ?? "center",
+                }}
+              />
 
-              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mt-4 flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-gold">
                     {activeImage.journeyLabel}

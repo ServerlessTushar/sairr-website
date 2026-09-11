@@ -23,13 +23,13 @@ export function whatsappHref(message?: string) {
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/experiences", label: "Experiences" },
+  { href: "/#experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About" },
 ] as const;
 
 export const exploreLinks = [
-  { href: "/experiences", label: "Experiences" },
+  { href: "/#experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About Sairr" },
 ] as const;
