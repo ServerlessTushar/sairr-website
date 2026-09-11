@@ -90,10 +90,10 @@ function WhySairrCard({
       />
 
       <div className="min-w-0">
-        <h3 className="font-sans text-base font-semibold leading-snug text-charcoal sm:text-[1.05rem]">
+        <h3 className="font-sans text-base font-semibold leading-snug text-charcoal sm:text-2xl">
           {item.title}
         </h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-slate">
+        <p className="mt-1.5 text-sm md:text-base leading-relaxed text-slate">
           {item.description}
         </p>
       </div>
@@ -104,7 +104,7 @@ function WhySairrCard({
 export function WhySairrSection() {
   return (
     <section className="bg-brand">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <TextReveal
@@ -117,7 +117,7 @@ export function WhySairrSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg"
+              className="mt-4 text-base leading-relaxed text-white/90 sm:text-xl"
             >
               Every journey is carefully planned, vetted and refined before you
               set off.

@@ -14,6 +14,10 @@ const TEAL = "#0E5E6F";
 const CORAL = "#EC575E";
 const CARD_CAROUSEL_INTERVAL_MS = 1000;
 
+function formatPerk(perk: string) {
+  return perk.replace(/ /g, "\u00A0");
+}
+
 export type Journey = {
   slug: string;
   title: string;
@@ -131,7 +135,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
       : [journey.image];
 
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl bg-white px-2 pt-2 pb-4 shadow-[0_4px_24px_rgba(27,29,31,0.08)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(27,29,31,0.14)]">
+    <article className="group relative flex h-full flex-col rounded-2xl bg-white px-2 pt-2 pb-4 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]">
       <StatusBadge status={journey.status} />
 
       <div className="relative aspect-4/3 overflow-hidden rounded-xl">
@@ -153,7 +157,7 @@ export function JourneyCard({ journey }: { journey: Journey }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col px-2 pt-4">
+      <div className="flex flex-1 flex-col pt-4">
         <p
           className="text-right text-xs font-semibold"
           style={{ color: TEAL }}
@@ -171,20 +175,8 @@ export function JourneyCard({ journey }: { journey: Journey }) {
 
         <div className="mt-4">
           {isOpen && journey.perks && (
-            <p className="text-xs leading-relaxed text-slate">
-              {journey.perks.map((perk, i) => (
-                <span key={perk} className="text-[#0E5E6F]">
-                  {i > 0 && (
-                    <span
-                      className="mx-0.5 text-[#0E5E6F]"
-                      style={{ color: TEAL, fontSize: "14px" }}
-                    >
-                      •
-                    </span>
-                  )}
-                  {perk}
-                </span>
-              ))}
+            <p className="text-xs leading-snug text-[#0E5E6F]">
+              {journey.perks.map(formatPerk).join(" • ")}
             </p>
           )}
 
