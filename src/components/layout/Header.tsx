@@ -117,34 +117,27 @@ export function Header() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "relative inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                      "inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
                       isActive && "font-bold text-brand",
                     )}
                   >
                     {link.label}
-                    {isActive && (
-                      <Image
-                        src={underlineImg}
-                        alt=""
-                        width={82}
-                        height={6}
-                        aria-hidden
-                        className="pointer-events-none absolute bottom-1 left-3 h-auto w-[calc(100%-1.5rem)]"
-                      />
-                    )}
                   </Link>
                 );
               })}
-              <Button
+              <button
                 type="button"
                 onClick={() => {
                   setOpen(false);
                   openContactForm();
                 }}
-                className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-[FF4859]"
+                className={cn(
+                  "inline-block rounded-lg px-3 py-2 text-left text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                  pathname === "/contact" && "font-bold text-brand",
+                )}
               >
-                Talk to us
-              </Button>
+                Contact Us
+              </button>
             </nav>
           </SheetContent>
         </Sheet>

@@ -10,6 +10,7 @@ const exploreLinks = [
   { href: "/#experiences", label: "Experiences" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About Sairr" },
+  { href: "/contact", label: "Contact Us" },
 ] as const;
 
 const bottomLegalLinks = [
