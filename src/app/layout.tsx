@@ -97,7 +97,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">
+      <body className="flex min-h-full flex-col overflow-x-hidden font-sans">
         <JsonLd data={organizationJsonLd} />
         <Suspense fallback={null}>
           <UtmCapture />

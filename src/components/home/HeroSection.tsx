@@ -83,8 +83,11 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative min-h-dvh overflow-hidden"
     >
-      <div className="absolute inset-0" aria-hidden>
-        <motion.div className="h-full w-full" style={{ scale: videoScale }}>
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
+        <motion.div
+          className="h-full w-full origin-center"
+          style={{ scale: videoScale }}
+        >
           <video
             ref={videoRef}
             autoPlay
@@ -134,7 +137,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/experiences"
-                className="inline-flex h-12 min-w-[12rem] items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex h-12 w-full max-w-[12rem] items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
                 style={{ backgroundColor: CORAL }}
               >
                 Explore Experiences
@@ -145,7 +148,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/contact"
-                className="inline-flex h-12 min-w-[12rem] items-center justify-center rounded-lg bg-white px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90"
+                className="inline-flex h-12 w-full max-w-[12rem] items-center justify-center rounded-lg bg-white px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
                 Talk To Us
               </Link>
@@ -153,27 +156,6 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {!reduceMotion && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          aria-hidden
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70">
-              Scroll
-            </span>
-            <div className="h-8 w-px bg-gradient-to-b from-white/60 to-transparent" />
-          </motion.div>
-        </motion.div>
-      )}
     </section>
   );
 }
