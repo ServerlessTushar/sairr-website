@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
+import { ContactFormDialogProvider } from "@/components/forms/ContactFormDialogProvider";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { UtmCapture } from "@/components/shared/UtmCapture";
 import { Toaster } from "@/components/ui/sonner";
@@ -98,15 +99,17 @@ export default function RootLayout({
       className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased overflow-x-clip`}
     >
       <body className="flex min-h-full flex-col font-sans">
-        <JsonLd data={organizationJsonLd} />
-        <Suspense fallback={null}>
-          <UtmCapture />
-        </Suspense>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <FloatingCallButton />
-        <Toaster />
+        <ContactFormDialogProvider>
+          <JsonLd data={organizationJsonLd} />
+          <Suspense fallback={null}>
+            <UtmCapture />
+          </Suspense>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <FloatingCallButton />
+          <Toaster />
+        </ContactFormDialogProvider>
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
-import { ButtonLink } from "@/components/shared/ButtonLink";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -26,6 +26,7 @@ function isNavLinkActive(pathname: string, href: string) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { openContactForm } = useContactFormDialog();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -83,12 +84,13 @@ export function Header() {
           })}
         </nav>
 
-        <ButtonLink
-          href="/contact"
+        <Button
+          type="button"
+          onClick={() => openContactForm()}
           className="hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-forest md:inline-flex"
         >
           Talk to us
-        </ButtonLink>
+        </Button>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -115,31 +117,27 @@ export function Header() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "relative inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                      "inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
                       isActive && "font-bold text-brand",
                     )}
                   >
                     {link.label}
-                    {isActive && (
-                      <Image
-                        src={underlineImg}
-                        alt=""
-                        width={82}
-                        height={6}
-                        aria-hidden
-                        className="pointer-events-none absolute bottom-1 left-3 h-auto w-[calc(100%-1.5rem)]"
-                      />
-                    )}
                   </Link>
                 );
               })}
-              <ButtonLink
-                href="/contact"
-                onClick={() => setOpen(false)}
-                className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-[FF4859]"
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openContactForm();
+                }}
+                className={cn(
+                  "inline-block rounded-lg px-3 py-2 text-left text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                  pathname === "/contact" && "font-bold text-brand",
+                )}
               >
-                Talk to us
-              </ButtonLink>
+                Contact Us
+              </button>
             </nav>
           </SheetContent>
         </Sheet>

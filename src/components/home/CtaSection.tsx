@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { whatsappHref } from "@/data/site";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/homepage/whatsapp.png";
@@ -15,6 +16,8 @@ const CORAL = "#EC575E";
 const GRAY_BTN = "#E8E8E8";
 
 export function CtaSection() {
+  const { openContactForm } = useContactFormDialog();
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" aria-hidden>
@@ -70,13 +73,14 @@ export function CtaSection() {
                 className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center"
               >
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-                  <Link
-                    href="/contact"
-                    className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  <button
+                    type="button"
+                    onClick={() => openContactForm()}
+                    className="cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                     style={{ backgroundColor: CORAL }}
                   >
                     Request a Call Back
-                  </Link>
+                  </button>
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
@@ -84,7 +88,7 @@ export function CtaSection() {
                     href={whatsappHref("Hi Sairr — I'd like to talk about a journey.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-500 font-semibold text-charcoal transition-opacity hover:opacity-90"
                     style={{ backgroundColor: GRAY_BTN }}
                   >
                     <Image

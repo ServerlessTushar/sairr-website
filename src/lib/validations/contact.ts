@@ -2,6 +2,15 @@ import { z } from "zod";
 
 const utmField = z.string().max(200).optional();
 
+export const travelDestinations = [
+  "Puri & Bhubaneswar",
+  "Rameshwaram",
+  "Andaman & Nicobar",
+  "Bali",
+] as const;
+
+export type TravelDestination = (typeof travelDestinations)[number];
+
 export const contactFormSchema = z.object({
   name: z
     .string()
@@ -16,8 +25,11 @@ export const contactFormSchema = z.object({
     .max(200, "Response is too long"),
   destination: z
     .string()
-    .min(2, "Please share where you'd like to travel")
-    .max(200, "Response is too long"),
+    .min(1, "Please select a destination")
+    .refine((value) =>
+      travelDestinations.includes(value as TravelDestination),
+    { message: "Please select a destination" },
+    ),
   message: z.string().max(1000, "Message is too long").optional(),
   utm_source: utmField,
   utm_medium: utmField,
@@ -27,4 +39,5 @@ export const contactFormSchema = z.object({
   utm_campaign: utmField,
 });
 
-export type ContactFormData = z.infer<typeof contactFormSchema>;
+export type ContactFormFieldValues = z.input<typeof contactFormSchema>;
+export type ContactFormData = z.output<typeof contactFormSchema>;

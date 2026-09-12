@@ -1,11 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, ChevronDown } from "lucide-react";
 import {
   contactFormSchema,
+  travelDestinations,
   type ContactFormData,
+  type ContactFormFieldValues,
+  type TravelDestination,
 } from "@/lib/validations/contact";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,15 +27,40 @@ const labelClassName =
 
 const errorClassName = "text-sm text-destructive";
 
-export function ContactForm() {
+type ContactFormProps = {
+  defaultDestination?: TravelDestination;
+  onSubmitted?: () => void;
+};
+
+export function ContactForm({
+  defaultDestination,
+  onSubmitted,
+}: ContactFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<ContactFormData>({
+  } = useForm<ContactFormFieldValues, unknown, ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      planningFor: "",
+      destination: defaultDestination ?? "",
+      message: "",
+    },
   });
+
+  useEffect(() => {
+    reset({
+      name: "",
+      phone: "",
+      planningFor: "",
+      destination: defaultDestination ?? "",
+      message: "",
+    });
+  }, [defaultDestination, reset]);
 
   async function onSubmit(data: ContactFormData) {
     try {
@@ -50,10 +79,17 @@ export function ContactForm() {
         throw new Error(result.error ?? "Failed to submit enquiry");
       }
 
-      reset();
+      reset({
+        name: "",
+        phone: "",
+        planningFor: "",
+        destination: defaultDestination ?? "",
+        message: "",
+      });
       toast.success("Enquiry sent", {
         description: "Thank you! We'll be in touch within 24 hours.",
       });
+      onSubmitted?.();
     } catch (error) {
       toast.error("Something went wrong", {
         description:
@@ -142,16 +178,31 @@ export function ContactForm() {
             <Label htmlFor="destination" className={labelClassName}>
               Where would you like to travel?
             </Label>
-            <Input
-              id="destination"
-              placeholder="e.g. Puri, Kerala, or open to suggestions"
-              aria-invalid={!!errors.destination}
-              className={cn(
-                fieldClassName,
-                errors.destination && "border-destructive",
-              )}
-              {...register("destination")}
-            />
+            <div className="relative">
+              <select
+                id="destination"
+                aria-invalid={!!errors.destination}
+                className={cn(
+                  fieldClassName,
+                  "w-full appearance-none pr-10",
+                  errors.destination && "border-destructive",
+                )}
+                {...register("destination")}
+              >
+                <option value="" disabled>
+                  Select a destination
+                </option>
+                {travelDestinations.map((destination) => (
+                  <option key={destination} value={destination}>
+                    {destination}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-slate"
+                aria-hidden
+              />
+            </div>
             {errors.destination && (
               <p className={errorClassName}>{errors.destination.message}</p>
             )}
