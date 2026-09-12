@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
-import { ButtonLink } from "@/components/shared/ButtonLink";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -26,6 +26,7 @@ function isNavLinkActive(pathname: string, href: string) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { openContactForm } = useContactFormDialog();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -83,12 +84,13 @@ export function Header() {
           })}
         </nav>
 
-        <ButtonLink
-          href="/contact"
+        <Button
+          type="button"
+          onClick={() => openContactForm()}
           className="hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-forest md:inline-flex"
         >
           Talk to us
-        </ButtonLink>
+        </Button>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -133,13 +135,16 @@ export function Header() {
                   </Link>
                 );
               })}
-              <ButtonLink
-                href="/contact"
-                onClick={() => setOpen(false)}
+              <Button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openContactForm();
+                }}
                 className="mt-4 h-10 rounded-lg bg-brand px-4 font-sans text-sm font-medium text-white hover:bg-[FF4859]"
               >
                 Talk to us
-              </ButtonLink>
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>

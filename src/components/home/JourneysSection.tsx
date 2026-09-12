@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
-import { ButtonLink } from "@/components/shared/ButtonLink";
+import { Button } from "@/components/ui/button";
 import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import type { TravelDestination } from "@/lib/validations/contact";
 import puri from "@/public/homepage/puri.webp";
 import moments1 from "@/public/homepage/moments-1.webp";
 import moments2 from "@/public/homepage/moments-2.webp";
@@ -24,12 +26,13 @@ import backgroundImg from "@/public/homepage/journeys-bg-img.webp";
 const journeys: Journey[] = [
   {
     slug: "puri",
-    title: "Puri",
+    title: "Puri & Bhubaneswar",
     category: "Pilgrimage",
     description: "Temple bells, ocean air, and unhurried mornings.",
     image: puri,
     images: [puri, moments1, moments2, moments3, moments4, moments5, moments6],
     status: "booking-open",
+    destination: "Puri & Bhubaneswar",
     perks: ["VIP darshan", "Beach-facing stay", "Dedicated coordinator"],
     href: "/experiences/puri",
   },
@@ -40,6 +43,7 @@ const journeys: Journey[] = [
     description: "Where the mainland ends and faith begins.",
     image: rameshwaram,
     status: "coming-soon",
+    destination: "Rameshwaram",
     notifyMessage:
       "I'd like to be notified when Rameshwaram journey dates are announced.",
   },
@@ -50,6 +54,7 @@ const journeys: Journey[] = [
     description: "Turquoise water, white sand, and island beauty.",
     image: andaman,
     status: "coming-soon",
+    destination: "Andaman & Nicobar",
     notifyMessage:
       "I'd like to be notified when Andaman & Nicobar journey dates are announced.",
   },
@@ -60,12 +65,23 @@ const journeys: Journey[] = [
     description: "Emerald terraces, volcanic peaks, endless golden hours.",
     image: bali,
     status: "coming-soon",
+    destination: "Bali",
     notifyMessage:
       "I'd like to be notified when Bali journey dates are announced.",
   },
 ];
 
 export function JourneysSection() {
+  const { openContactForm } = useContactFormDialog();
+
+  function handleNotifyMe(destination: TravelDestination) {
+    openContactForm(destination);
+  }
+
+  function handleRequestCallback() {
+    openContactForm();
+  }
+
   return (
     <section id="experiences" className="relative bg-mist">
       <div className="absolute inset-0" aria-hidden>
@@ -105,7 +121,7 @@ export function JourneysSection() {
           getKey={(journey) => journey.slug}
           renderItem={(journey, index) => (
             <CardRevealCarouselItem index={index} direction="left" hover={false}>
-              <JourneyCard journey={journey} />
+              <JourneyCard journey={journey} onNotifyMe={handleNotifyMe} />
             </CardRevealCarouselItem>
           )}
           slidesPerView={{ mobile: 1, tablet: 2, desktop: 4 }}
@@ -123,14 +139,15 @@ export function JourneysSection() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
             >
-              <ButtonLink
-                href="/contact"
+              <Button
+                type="button"
                 size="lg"
+                onClick={handleRequestCallback}
                 className="h-12 rounded-lg bg-[#E2555D] px-8 font-sans text-sm font-semibold text-white hover:bg-destructive/90"
               >
                 Request A Callback
                 <ArrowRight className="ml-2 size-4" />
-              </ButtonLink>
+              </Button>
             </motion.div>
           </div>
         </FadeIn>

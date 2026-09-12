@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { whatsappHref } from "@/data/site";
+import type { TravelDestination } from "@/lib/validations/contact";
 import underlineImg from "@/public/homepage/underline.png";
 import { imageHover } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -26,6 +27,7 @@ export type Journey = {
   image: StaticImageData;
   images?: StaticImageData[];
   status: "booking-open" | "coming-soon";
+  destination?: TravelDestination;
   perks?: string[];
   href?: string;
   notifyMessage?: string;
@@ -127,7 +129,13 @@ function NotifyMeUnderline() {
   );
 }
 
-export function JourneyCard({ journey }: { journey: Journey }) {
+export function JourneyCard({
+  journey,
+  onNotifyMe,
+}: {
+  journey: Journey;
+  onNotifyMe?: (destination: TravelDestination) => void;
+}) {
   const isOpen = journey.status === "booking-open";
   const carouselImages =
     journey.images && journey.images.length > 0
@@ -189,6 +197,15 @@ export function JourneyCard({ journey }: { journey: Journey }) {
               Explore Journey
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
+          ) : journey.destination && onNotifyMe ? (
+            <button
+              type="button"
+              onClick={() => onNotifyMe(journey.destination!)}
+              className="cursor-pointer relative mt-4 inline-block pb-1 text-left text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+            >
+              Notify Me
+              <NotifyMeUnderline />
+            </button>
           ) : (
             <Link
               href={whatsappHref(
