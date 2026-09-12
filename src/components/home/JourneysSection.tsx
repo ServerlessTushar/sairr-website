@@ -78,7 +78,7 @@ export function JourneysSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-20">
+      <div className="relative mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
@@ -99,7 +99,7 @@ export function JourneysSection() {
         </FadeIn>
 
         <CarouselSection
-          className="mt-12 lg:mt-14"
+          className="mt-2 lg:mt-14"
           slideClassName="py-6"
           items={journeys}
           getKey={(journey) => journey.slug}
@@ -114,7 +114,7 @@ export function JourneysSection() {
         />
 
         <FadeIn delay={0.2}>
-          <div className="mt-10 flex justify-center pb-10 lg:mt-12 lg:pb-12">
+          <div className="mt-6 md:mt-10 flex justify-center pb-10 lg:mt-12 lg:pb-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

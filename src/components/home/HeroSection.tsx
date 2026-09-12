@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import {
   motion,
@@ -22,9 +22,9 @@ const CORAL = "#EC575E";
 
 function HeroUnderline() {
   return (
-    <motion.div
+    <motion.span
       variants={drawLine}
-      className="pointer-events-none absolute -bottom-0.5 left-0 h-auto w-full origin-left"
+      className="pointer-events-none absolute -bottom-0.5 left-0 block h-auto w-full origin-left"
     >
       <Image
         src={bannerUnderlineImg}
@@ -34,7 +34,7 @@ function HeroUnderline() {
         aria-hidden
         className="h-auto w-full"
       />
-    </motion.div>
+    </motion.span>
   );
 }
 
@@ -42,6 +42,7 @@ export function HeroSection() {
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const [enableParallax, setEnableParallax] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -51,18 +52,26 @@ export function HeroSection() {
   const videoScale = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [1, 1] : [1, 1.12],
+    reduceMotion || !enableParallax ? [1, 1] : [1, 1.12],
   );
   const contentY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [0, 80],
+    reduceMotion || !enableParallax ? [0, 0] : [0, 80],
   );
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.75],
     reduceMotion ? [1, 1] : [1, 0],
   );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setEnableParallax(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -83,8 +92,11 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative min-h-dvh overflow-hidden"
     >
-      <div className="absolute inset-0" aria-hidden>
-        <motion.div className="h-full w-full" style={{ scale: videoScale }}>
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
+        <motion.div
+          className="h-full w-full origin-center"
+          style={{ scale: videoScale }}
+        >
           <video
             ref={videoRef}
             autoPlay
@@ -109,8 +121,8 @@ export function HeroSection() {
           animate="visible"
           variants={staggerContainer(0.14, 0.2)}
         >
-          <motion.div variants={fadeDown} className="inline-block">
-            <p className="text-sm font-medium text-white sm:text-base md:text-[29.18px]">
+          <motion.div variants={fadeDown} className="mx-auto max-w-full">
+            <p className="text-balance text-sm font-medium text-white sm:text-base md:text-[29.18px]">
               Travel after 50,{" "}
               <span className="relative inline-block pb-1">
                 designed differently
@@ -129,23 +141,23 @@ export function HeroSection() {
 
           <motion.div
             variants={heroLine}
-            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+            className="mx-auto mt-10 flex w-[16.25rem] max-w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/experiences"
-                className="inline-flex h-12 min-w-[12rem] items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
                 style={{ backgroundColor: CORAL }}
               >
                 Explore Experiences
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4 shrink-0" />
               </Link>
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/contact"
-                className="inline-flex h-12 min-w-[12rem] items-center justify-center rounded-lg bg-white px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90"
+                className="inline-flex h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
                 Talk To Us
               </Link>
@@ -153,27 +165,6 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {!reduceMotion && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          aria-hidden
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70">
-              Scroll
-            </span>
-            <div className="h-8 w-px bg-gradient-to-b from-white/60 to-transparent" />
-          </motion.div>
-        </motion.div>
-      )}
     </section>
   );
 }

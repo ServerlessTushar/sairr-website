@@ -38,7 +38,7 @@ export function Header() {
           : "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="font-heading text-2xl font-semibold tracking-tight text-brand"

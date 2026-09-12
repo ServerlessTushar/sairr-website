@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased overflow-x-clip`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <JsonLd data={organizationJsonLd} />

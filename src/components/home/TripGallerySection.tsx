@@ -10,7 +10,7 @@ import goldenBirdsIcon from "@/public/homepage/golden-birds.png";
 export function TripGallerySection() {
   return (
     <section id="gallery" className=" bg-[#F5F4EF]">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:pt-0 lg:pb-28">
+      <div className="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8 lg:pt-0 lg:pb-28">
         <FadeIn>
           <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-10 lg:px-12">
             <motion.div

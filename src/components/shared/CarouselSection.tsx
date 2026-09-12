@@ -181,7 +181,7 @@ export function CarouselSection<T>({
       </div>
 
       {showControls && (
-        <div className="mt-6 flex items-center gap-2">
+        <div className="mt-2 md:mt-6 flex items-center justify-center gap-2">
           <Button
             type="button"
             variant="outline"
