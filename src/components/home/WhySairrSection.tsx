@@ -104,7 +104,7 @@ function WhySairrCard({
 export function WhySairrSection() {
   return (
     <section className="bg-brand">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <TextReveal

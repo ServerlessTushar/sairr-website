@@ -34,7 +34,7 @@ export function TextReveal({
     <Tag className={cn(className, splitBy === "line" && "flex flex-col")}>
       <motion.span
         className={cn(
-          "inline-flex flex-wrap",
+          "inline-flex flex-wrap justify-center",
           splitBy === "line" && "flex-col items-start",
         )}
         initial="hidden"

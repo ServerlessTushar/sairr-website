@@ -165,17 +165,17 @@ export function JourneyCard({ journey }: { journey: Journey }) {
           {journey.category}
         </p>
 
-        <h3 className="mt-1 font-heading text-2xl font-semibold tracking-tight text-charcoal">
+        <h3 className="mt-1 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
           {journey.title}
         </h3>
 
-        <p className="flex-1 text-sm leading-relaxed text-slate">
+        <p className="flex-1 text-xs md:text-sm leading-relaxed text-slate">
           {journey.description}
         </p>
 
-        <div className="mt-4">
+        <div className="mt-1 md:mt-4">
           {isOpen && journey.perks && (
-            <p className="text-xs leading-snug text-[#0E5E6F]">
+            <p className="text-[11px] md:text-xs leading-snug text-[#0E5E6F]">
               {journey.perks.map(formatPerk).join(" • ")}
             </p>
           )}

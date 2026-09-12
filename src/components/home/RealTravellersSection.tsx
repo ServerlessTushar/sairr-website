@@ -13,9 +13,9 @@ export function RealTravellersSection() {
 
   return (
     <section className="border-t border-charcoal/10 bg-mist">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
         <FadeIn>
-          <div className="lg:mx-auto lg:max-w-3xl lg:text-center">
+          <div className="text-center lg:mx-auto lg:max-w-3xl lg:text-center">
             <TextReveal
               as="h2"
               text="In their words."
@@ -34,7 +34,7 @@ export function RealTravellersSection() {
         </FadeIn>
 
         <CarouselSection
-          className="mt-10"
+          className="mt-6 md:mt-10"
           slideClassName="pb-4 pr-4"
           items={testimonials}
           getKey={(item) => item.id}
