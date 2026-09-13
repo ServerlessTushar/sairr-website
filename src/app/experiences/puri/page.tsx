@@ -1,5 +1,6 @@
 import { PuriEnquiryProvider } from "@/components/puri/PuriEnquiry";
 import { PuriHero } from "@/components/puri/PuriHero";
+import { puriHeroSectionData } from "@/components/puri/puriHeroData";
 import { PuriMoments } from "@/components/puri/PuriMoments";
 import { PuriItinerary } from "@/components/puri/PuriItinerary";
 import { puriItineraryData } from "@/components/puri/puriItineraryData";
@@ -62,7 +63,7 @@ export default function PuriExperiencePage() {
       <JsonLd data={jsonLd} />
       <PuriEnquiryProvider>
         <div className="bg-mist pb-24 md:pb-0">
-          <PuriHero />
+          <PuriHero sectionData={puriHeroSectionData} />
           <PuriMoments />
           <PuriItinerary heading="Four Days" carouselData={puriItineraryData} />
           <PuriIncluded {...puriIncludedSectionData} />
