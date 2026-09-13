@@ -1,6 +1,10 @@
 import { puriDays } from "@/data/puri";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
+import day1 from "@/public/experience/bhubaneshwar-day1.webp"
+import day2 from "@/public/experience/puri-day2.webp"
+import day3 from "@/public/experience/konark-puri-day3.webp"
+import day4 from "@/public/experience/departure-day4.webp"
 
 export function PuriItinerary() {
   return (
