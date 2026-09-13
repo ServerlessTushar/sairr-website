@@ -4,6 +4,7 @@ import { PuriMoments } from "@/components/puri/PuriMoments";
 import { PuriItinerary } from "@/components/puri/PuriItinerary";
 import { puriItineraryData } from "@/components/puri/puriItineraryData";
 import { PuriIncluded } from "@/components/puri/PuriIncluded";
+import { puriIncludedSectionData } from "@/components/puri/puriIncludedData";
 import { PuriDates } from "@/components/puri/PuriDates";
 import { PuriWords } from "@/components/puri/PuriWords";
 import { PuriFaqs } from "@/components/puri/PuriFaqs";
@@ -60,7 +61,7 @@ export default function PuriExperiencePage() {
           <PuriHero />
           <PuriMoments />
           <PuriItinerary heading="Four Days" carouselData={puriItineraryData} />
-          <PuriIncluded />
+          <PuriIncluded {...puriIncludedSectionData} />
           <PuriDates />
           <PuriWords />
           <PuriFaqs />
