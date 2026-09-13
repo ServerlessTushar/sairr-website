@@ -10,6 +10,7 @@ import { puriDatesSectionData } from "@/components/puri/puriDatesData";
 import { PuriWords } from "@/components/puri/PuriWords";
 import { puriWordsSectionData } from "@/components/puri/puriWordsData";
 import { PuriFaqs } from "@/components/puri/PuriFaqs";
+import { puriFaqsSectionData } from "@/components/puri/puriFaqsData";
 import { PuriCta } from "@/components/puri/PuriCta";
 import { PuriStickyBar } from "@/components/puri/PuriStickyBar";
 import { JsonLd } from "@/components/shared/JsonLd";
@@ -66,7 +67,7 @@ export default function PuriExperiencePage() {
           <PuriIncluded {...puriIncludedSectionData} />
           <PuriDates {...puriDatesSectionData} />
           <PuriWords {...puriWordsSectionData} />
-          <PuriFaqs />
+          <PuriFaqs {...puriFaqsSectionData} />
           <PuriCta />
           <PuriStickyBar />
         </div>
