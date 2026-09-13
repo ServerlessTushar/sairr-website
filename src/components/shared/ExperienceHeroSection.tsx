@@ -268,32 +268,27 @@ export function ExperienceHeroSection({
             </FadeIn>
           </FadeIn>
 
-          <div className="mt-8 flex min-h-0 flex-1 flex-col gap-4 lg:mt-4 lg:grid lg:grid-cols-2 lg:gap-4">
-            <div className="contents lg:col-start-1 lg:flex lg:min-h-0 lg:flex-col lg:gap-3">
-              <FadeIn delay={0.1} direction="left" className="order-1">
-                {mainImage ? (
-                  <div className="relative aspect-4/5 min-h-[14rem] overflow-hidden rounded-2xl bg-charcoal/5 lg:aspect-auto lg:min-h-0 lg:flex-1">
-                    <GalleryImage
-                      image={mainImage}
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                ) : (
-                  <div className="aspect-4/5 min-h-[14rem] rounded-2xl bg-charcoal/10 lg:min-h-0 lg:flex-1" />
-                )}
-              </FadeIn>
-
-              <div className="order-4 hidden lg:block">
-                <HighlightsList highlights={highlights} />
-              </div>
-            </div>
+          {/* Mobile: images first, then CTAs + highlights */}
+          <div className="mt-8 flex flex-col gap-4 lg:hidden">
+            <FadeIn delay={0.1} direction="left">
+              {mainImage ? (
+                <div className="relative aspect-4/5 min-h-[14rem] overflow-hidden rounded-2xl bg-charcoal/5">
+                  <GalleryImage
+                    image={mainImage}
+                    priority
+                    sizes="100vw"
+                  />
+                </div>
+              ) : (
+                <div className="aspect-4/5 min-h-[14rem] rounded-2xl bg-charcoal/10" />
+              )}
+            </FadeIn>
 
             {gridImages.length > 0 ? (
               <FadeIn
                 delay={0.15}
                 direction="right"
-                className="order-2 grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3 lg:col-start-2 lg:min-h-0 lg:h-full lg:gap-4"
+                className="grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3"
               >
                 {gridImages.map((image, index) => {
                   const isLastCell = index === gridImages.length - 1;
@@ -301,11 +296,11 @@ export function ExperienceHeroSection({
                   return (
                     <div
                       key={`${image.alt}-${index}`}
-                      className="relative min-h-0 aspect-square lg:aspect-auto"
+                      className="relative aspect-square min-h-0"
                     >
                       <GalleryImage
                         image={image}
-                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        sizes="50vw"
                         showOverlay={isLastCell}
                         extraCount={extraCount}
                         onOverlayClick={() => setGalleryOpen(true)}
@@ -316,17 +311,64 @@ export function ExperienceHeroSection({
               </FadeIn>
             ) : null}
 
-            <div className="order-3 flex flex-col gap-4 lg:hidden">
-              <FadeIn delay={0.15}>
-                <HeroCtas
-                  primaryCtaLabel={primaryCtaLabel}
-                  secondaryCtaLabel={secondaryCtaLabel}
-                  secondaryCtaHref={secondaryCtaHref}
-                  onPrimaryClick={onPrimaryClick}
-                />
-              </FadeIn>
+            <FadeIn delay={0.15}>
+              <HeroCtas
+                primaryCtaLabel={primaryCtaLabel}
+                secondaryCtaLabel={secondaryCtaLabel}
+                secondaryCtaHref={secondaryCtaHref}
+                onPrimaryClick={onPrimaryClick}
+              />
+            </FadeIn>
+            <HighlightsList highlights={highlights} />
+          </div>
+
+          {/* Desktop: two-column gallery with highlights under main image */}
+          <div className="mt-8 hidden min-h-0 flex-1 gap-4 lg:mt-4 lg:grid lg:grid-cols-2 lg:gap-4">
+            <FadeIn
+              delay={0.1}
+              direction="left"
+              className="flex min-h-0 flex-col gap-3"
+            >
+              {mainImage ? (
+                <div className="relative min-h-0 flex-1 overflow-hidden rounded-2xl bg-charcoal/5 lg:min-h-[20rem]">
+                  <GalleryImage
+                    image={mainImage}
+                    priority
+                    sizes="50vw"
+                  />
+                </div>
+              ) : (
+                <div className="min-h-0 flex-1 rounded-2xl bg-charcoal/10 lg:min-h-[20rem]" />
+              )}
               <HighlightsList highlights={highlights} />
-            </div>
+            </FadeIn>
+
+            {gridImages.length > 0 ? (
+              <FadeIn
+                delay={0.15}
+                direction="right"
+                className="grid min-h-0 h-full grid-cols-2 grid-rows-2 gap-4"
+              >
+                {gridImages.map((image, index) => {
+                  const isLastCell = index === gridImages.length - 1;
+
+                  return (
+                    <div
+                      key={`${image.alt}-${index}`}
+                      className="relative min-h-0 aspect-auto"
+                    >
+                      <GalleryImage
+                        image={image}
+                        sizes="25vw"
+                        showOverlay={isLastCell}
+                        extraCount={extraCount}
+                        onOverlayClick={() => setGalleryOpen(true)}
+                      />
+                    </div>
+                  );
+                })}
+              </FadeIn>
+            ) : null}
           </div>
         </div>
       </section>
