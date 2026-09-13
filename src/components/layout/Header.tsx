@@ -87,9 +87,9 @@ export function Header() {
         <Button
           type="button"
           onClick={() => openContactForm()}
-          className="hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-forest md:inline-flex"
+          className="cursor-pointer hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#E63B4C] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
         >
-          Talk to us
+          Contact Us
         </Button>
 
         <Sheet open={open} onOpenChange={setOpen}>

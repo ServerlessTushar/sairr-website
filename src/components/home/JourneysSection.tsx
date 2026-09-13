@@ -124,7 +124,7 @@ export function JourneysSection() {
               <JourneyCard journey={journey} onNotifyMe={handleNotifyMe} />
             </CardRevealCarouselItem>
           )}
-          slidesPerView={{ mobile: 1, tablet: 2, desktop: 4 }}
+          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 4 }}
           ariaLabel="Featured journeys"
           autoplay={false}
         />
@@ -143,11 +143,12 @@ export function JourneysSection() {
                 type="button"
                 size="lg"
                 onClick={handleRequestCallback}
-                className="h-12 rounded-lg bg-[#E2555D] px-8 font-sans text-sm font-semibold text-white hover:bg-destructive/90"
+                className="cursor-pointer bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 h-12 rounded-lg px-8 font-sans text-sm font-semibold text-white"
               >
-                Request A Callback
+                Get a Callback
                 <ArrowRight className="ml-2 size-4" />
               </Button>
+              <p className="text-xs text-slate mt-2">More destinations launching soon.</p>
             </motion.div>
           </div>
         </FadeIn>

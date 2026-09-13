@@ -20,7 +20,7 @@ export function TestimonialCard({
       <article
         className={cn(
           "flex h-full flex-col rounded-[14.08px] bg-white p-5",
-          "shadow-[16px_16px_0_#E9DFC8]",
+          "shadow-testimonial md:shadow-testimonial-lg",
         )}
       >
         <blockquote className="font-heading text-base leading-relaxed text-charcoal sm:text-[1.05rem]">

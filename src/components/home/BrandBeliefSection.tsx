@@ -84,7 +84,7 @@ function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
             src={card.image}
             alt=""
             fill
-            className="object-contain object-center sm:object-cover"
+            className="object-center object-cover"
             sizes="(max-width: 640px) 42vw, 20vw"
           />
         </motion.div>

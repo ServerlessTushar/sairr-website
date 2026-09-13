@@ -10,7 +10,7 @@ export function PlaceholderVideo({
   return (
     <div
       className={cn(
-        "relative flex aspect-[4/5] items-center justify-center bg-charcoal/8 sm:aspect-video",
+        "relative flex aspect-video items-center justify-center bg-charcoal/8",
         className,
       )}
     >

@@ -52,8 +52,7 @@ export function ExperienceCtaSection({
           <button
             type="button"
             onClick={onPrimaryClick}
-            className="cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
-            style={{ backgroundColor: CORAL }}
+            className="bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 cursor-pointer! inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
           >
             {primaryCtaLabel}
           </button>
@@ -62,8 +61,7 @@ export function ExperienceCtaSection({
             href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-charcoal shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
-            style={{ backgroundColor: GRAY_BTN }}
+            className="bg-white hover:bg-gray-100 hover:scale-104 tab:hover-0.98 opacity-70 border border-gray-300 inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold text-charcoal shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
           >
             <Image
               src={whatsappIcon}

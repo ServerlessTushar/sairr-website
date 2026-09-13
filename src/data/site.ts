@@ -5,10 +5,10 @@ export const siteConfig = {
   description:
     "Thoughtfully designed journeys for 50+ travellers. You show up. We handle the rest.",
   url: "https://sairr.in",
-  phone: "+91 98765 43210",
-  email: "tanmay@sairr.in",
-  whatsapp: "919876543210",
-  address: "Chennai, India",
+  phone: "+91 99717 37186",
+  email: "hello@sairr.in",
+  whatsapp: "919971737186",
+  address: "Gurgaon, India",
   social: {
     instagram: "https://www.instagram.com/sairr.in?igsh=Znk3cDZpbG4ydDdi",
     linkedin: "https://www.linkedin.com/company/sairr/about/?viewAsMember=true",

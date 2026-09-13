@@ -70,16 +70,15 @@ export function CtaSection() {
 
               <motion.div
                 variants={scaleIn}
-                className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center"
+                className="mt-6 flex flex-col items-stretch justify-center gap-3 md:gap-5 sm:flex-row sm:items-center sm:justify-center"
               >
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
                   <button
                     type="button"
                     onClick={() => openContactForm()}
-                    className="cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: CORAL }}
+                    className="bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
-                    Request a Call Back
+                    Get a Callback
                   </button>
                 </motion.div>
 
@@ -88,8 +87,7 @@ export function CtaSection() {
                     href={whatsappHref("Hi Sairr — I'd like to talk about a journey.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-500 font-semibold text-charcoal transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: GRAY_BTN }}
+                    className="bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
                   >
                     <Image
                       src={whatsappIcon}

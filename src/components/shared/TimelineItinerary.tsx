@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import Image, { type StaticImageData } from "next/image";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -76,8 +76,8 @@ function ItineraryImage({
       className={cn(
         "relative shrink-0 overflow-hidden rounded-xl",
         variant === "collapsed"
-          ? "h-[100px] w-[140px] sm:h-[141.3px] sm:w-[198.5px]"
-          : "aspect-[397/282.6] w-full max-w-[397px] sm:h-[282.6px] sm:w-[397px]",
+          ? "aspect-[397/282.6] w-3/4 sm:h-[106px] sm:w-[149px] sm:aspect-auto"
+          : "aspect-[397/282.6] w-full max-w-[298px] sm:h-[212px] sm:w-[298px]",
         className,
       )}
     >
@@ -88,8 +88,8 @@ function ItineraryImage({
         className="object-cover"
         sizes={
           variant === "collapsed"
-            ? "(max-width: 640px) 140px, 198px"
-            : "(max-width: 640px) 100vw, 397px"
+            ? "(max-width: 640px) 75vw, 149px"
+            : "(max-width: 640px) 100vw, 298px"
         }
       />
     </div>
@@ -102,7 +102,7 @@ function DayHeader({
   desc,
 }: Pick<ItineraryDayItem, "day" | "location" | "desc">) {
   return (
-    <div className="min-w-0 flex-1 pr-4 text-left">
+    <div className="min-w-0 flex-1 pr-10 text-left sm:pr-4">
       <p
         className="text-sm font-medium"
         style={{ color: DAY_LABEL_COLOR }}
@@ -161,7 +161,7 @@ export function TimelineItinerary({
                   className="min-w-0 flex-1 border-0 not-last:border-b-0"
                 >
                   <AccordionTrigger
-                    className="w-full items-start gap-4 p-0 hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden"
+                    className="relative w-full flex-col items-stretch justify-start gap-4 p-0 hover:no-underline sm:flex-row sm:items-start **:data-[slot=accordion-trigger-icon]:hidden"
                   >
                     <DayHeader
                       day={item.day}
@@ -169,24 +169,35 @@ export function TimelineItinerary({
                       desc={item.desc}
                     />
 
-                    <div className="flex shrink-0 items-start gap-3 sm:gap-4">
+                    <div className="flex w-full items-start gap-3 sm:w-auto sm:shrink-0 sm:gap-4">
                       <ItineraryImage
                         image={item.image}
                         alt={imageAlt}
                         variant="collapsed"
                         className="group-aria-expanded/accordion-trigger:hidden"
                       />
-                      <span className="mt-1 flex size-8 shrink-0 items-center justify-center text-charcoal/70">
-                        <ChevronRight
+                      <span className="mt-1 hidden size-8 shrink-0 items-center justify-center text-charcoal/70 sm:flex">
+                        <ChevronDown
                           className="size-4 group-aria-expanded/accordion-trigger:hidden"
                           aria-hidden
                         />
-                        <ChevronDown
+                        <ChevronUp
                           className="hidden size-4 group-aria-expanded/accordion-trigger:block"
                           aria-hidden
                         />
                       </span>
                     </div>
+
+                    <span className="absolute top-0 right-0 flex size-8 items-center justify-center text-charcoal/70 sm:hidden">
+                      <ChevronDown
+                        className="size-4 group-aria-expanded/accordion-trigger:hidden"
+                        aria-hidden
+                      />
+                      <ChevronUp
+                        className="hidden size-4 group-aria-expanded/accordion-trigger:block"
+                        aria-hidden
+                      />
+                    </span>
                   </AccordionTrigger>
 
                   <AccordionContent className="px-0 pb-0">
