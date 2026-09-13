@@ -83,7 +83,7 @@ export function JourneysSection() {
   }
 
   return (
-    <section id="experiences" className="relative bg-mist">
+    <section id="experiences" className="relative scroll-mt-24 bg-mist">
       <div className="absolute inset-0" aria-hidden>
         <Image
           src={backgroundImg}
