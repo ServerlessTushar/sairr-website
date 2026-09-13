@@ -1,3 +1,7 @@
+"use client";
+
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn } from "@/components/shared/FadeIn";
 import { LazyYouTubeEmbed } from "@/components/shared/LazyYouTubeEmbed";
 import { cn } from "@/lib/utils";
 
@@ -21,19 +25,19 @@ export function TestimonialVideoSection({
   return (
     <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
       <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl">
-          {heading}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate sm:text-lg">
-          {para}
-        </p>
+        <AnimatedSectionHeader
+          heading={heading}
+          description={para}
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+          descriptionClassName="sm:text-lg"
+        />
 
-        <div className="mt-8 sm:mt-10 lg:mt-12">
+        <FadeIn delay={0.1} className="mt-8 sm:mt-10 lg:mt-12">
           <LazyYouTubeEmbed
             videoUrl={videoUrl}
             title={resolvedTitle}
           />
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

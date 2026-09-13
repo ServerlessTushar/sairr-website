@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn } from "@/components/shared/FadeIn";
 import { cn } from "@/lib/utils";
 
 export type FaqItem = {
@@ -30,18 +32,14 @@ export function FaqAccordionSection({
   return (
     <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <div className="text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl">
-            {heading}
-          </h2>
-          {para ? (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate">
-              {para}
-            </p>
-          ) : null}
-        </div>
+        <AnimatedSectionHeader
+          heading={heading}
+          description={para}
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+        />
 
-        <Accordion className="mt-8 gap-4 sm:mt-10">
+        <FadeIn delay={0.1}>
+          <Accordion className="mt-8 gap-4 sm:mt-10">
           {faqData.map((faq, index) => (
             <AccordionItem
               key={faq.question}
@@ -64,7 +62,8 @@ export function FaqAccordionSection({
               </AccordionContent>
             </AccordionItem>
           ))}
-        </Accordion>
+          </Accordion>
+        </FadeIn>
       </div>
     </section>
   );

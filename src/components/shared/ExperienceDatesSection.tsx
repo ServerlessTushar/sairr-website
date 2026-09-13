@@ -2,6 +2,9 @@
 
 import Image, { type StaticImageData } from "next/image";
 import underlineImg from "@/public/homepage/underline.png";
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn, StaggerContainer, staggerItem } from "@/components/shared/FadeIn";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const CORAL = "#E44928";
@@ -158,35 +161,44 @@ export function ExperienceDatesSection({
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl">
-          {heading}
-        </h2>
+        <AnimatedSectionHeader
+          heading={heading}
+          align="left"
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+        />
 
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:mt-10">
+        <StaggerContainer
+          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:mt-10"
+          stagger={0.12}
+        >
           {cardsData.map((card) => (
-            <DateCard
-              key={card.id}
-              card={card}
-              onInterestClick={onInterestClick}
-            />
+            <motion.div key={card.id} variants={staggerItem}>
+              <DateCard
+                card={card}
+                onInterestClick={onInterestClick}
+              />
+            </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
 
         {upcomingBar ? (
-          <div
-            className="md:w-[60%] mt-4 flex items-center justify-between gap-3 rounded-[10px] bg-white/50 px-4 py-3 backdrop-blur-sm sm:mt-5 sm:gap-4 sm:px-6 sm:py-3"
-          >
-            <p className="min-w-0 flex-1 text-sm font-medium leading-snug text-charcoal sm:text-base lg:text-lg">
-              {upcomingBar.label}
-            </p>
-            <NotifyMeButton
-              label={upcomingBar.notifyLabel ?? "Notify Me"}
-              onClick={onNotifyClick}
-            />
-          </div>
+          <FadeIn delay={0.1}>
+            <div
+              className="mt-4 flex items-center justify-between gap-3 rounded-[10px] bg-white/50 px-4 py-3 backdrop-blur-sm sm:mt-5 sm:gap-4 sm:px-6 sm:py-3 md:w-[60%]"
+            >
+              <p className="min-w-0 flex-1 text-sm font-medium leading-snug text-charcoal sm:text-base lg:text-lg">
+                {upcomingBar.label}
+              </p>
+              <NotifyMeButton
+                label={upcomingBar.notifyLabel ?? "Notify Me"}
+                onClick={onNotifyClick}
+              />
+            </div>
+          </FadeIn>
         ) : null}
 
         {pricingNotes && pricingNotes.length > 0 ? (
+          <FadeIn delay={0.12}>
           <div className="mt-8 max-w-xl lg:mt-10">
             <p className="text-xs font-bold text-slate">Pricing notes</p>
             <ul className="pl-5 mt-2 space-y-1 text-xs leading-relaxed text-slate list-disc">
@@ -195,6 +207,7 @@ export function ExperienceDatesSection({
               ))}
             </ul>
           </div>
+          </FadeIn>
         ) : null}
       </div>
     </section>
