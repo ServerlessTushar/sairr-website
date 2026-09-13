@@ -2,6 +2,8 @@
 
 import { useState, type ReactNode } from "react";
 import { Check, X } from "lucide-react";
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn } from "@/components/shared/FadeIn";
 import { cn } from "@/lib/utils";
 
 export type IncludedExcludedItem = {
@@ -94,19 +96,17 @@ export function IncludedExcludedSection({
       className={cn("border-t border-charcoal/10 bg-mist", className)}
     >
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <div className="text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl">
-            {heading}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate">
-            {para}
-          </p>
-        </div>
+        <AnimatedSectionHeader
+          heading={heading}
+          description={para}
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+        />
 
-        <div
-          className="mt-10 rounded-2xl bg-white p-6 shadow-[0_4px_24px_rgba(27,29,31,0.06)] sm:mt-12 sm:p-8 lg:p-12"
-          role="tabpanel"
-        >
+        <FadeIn delay={0.1}>
+          <div
+            className="mt-10 rounded-2xl bg-white p-6 shadow-[0_4px_24px_rgba(27,29,31,0.06)] sm:mt-12 sm:p-8 lg:p-12"
+            role="tabpanel"
+          >
           <div
             className="flex flex-wrap gap-2"
             role="tablist"
@@ -124,10 +124,11 @@ export function IncludedExcludedSection({
             />
           </div>
 
-          <div className="mt-8 sm:mt-10">
-            <ItemGrid items={items} />
+            <div className="mt-8 sm:mt-10">
+              <ItemGrid items={items} />
+            </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

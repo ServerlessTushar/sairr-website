@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { FadeIn, StaggerContainer, staggerItem } from "@/components/shared/FadeIn";
+import { TextReveal } from "@/components/shared/TextReveal";
 import { puriMoments } from "@/data/puri";
 import puriMomentsImg from "@/public/experience/puri-moments.webp";
 
@@ -18,7 +23,7 @@ export function PuriMoments() {
   return (
     <section className="border-t border-charcoal/10">
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative aspect-4/5 w-full sm:aspect-5/6 lg:aspect-auto lg:min-h-144">
+        <FadeIn direction="left" className="relative aspect-4/5 w-full sm:aspect-5/6 lg:aspect-auto lg:min-h-144">
           <Image
             src={puriMomentsImg}
             alt="Travellers at the Jagannath Temple in Puri"
@@ -27,23 +32,34 @@ export function PuriMoments() {
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority
           />
-        </div>
+        </FadeIn>
 
         <div className="flex flex-col justify-center bg-sand px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20 xl:px-20">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl">
-            Moments That Make Puri
-          </h2>
+          <FadeIn>
+            <TextReveal
+              as="h2"
+              text="Moments That Make Puri"
+              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+            />
+          </FadeIn>
 
-          <ul className="mt-8 space-y-6 sm:mt-10 sm:space-y-7">
+          <StaggerContainer
+            className="mt-8 space-y-6 sm:mt-10 sm:space-y-7"
+            stagger={0.08}
+          >
             {puriMoments.map((moment) => (
-              <li key={moment.id} className="flex gap-3.5 sm:gap-4">
+              <motion.li
+                key={moment.id}
+                variants={staggerItem}
+                className="flex list-none gap-3.5 sm:gap-4"
+              >
                 <MomentCheckIcon />
                 <p className="text-base leading-relaxed text-charcoal sm:text-[1.0625rem] sm:leading-[1.65]">
                   <span className="font-medium">{moment.title}</span> {moment.line}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </StaggerContainer>
         </div>
       </div>
     </section>

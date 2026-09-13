@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { whatsappHref } from "@/data/site";
 import whatsappIcon from "@/public/homepage/whatsapp.png";
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn } from "@/components/shared/FadeIn";
 import { cn } from "@/lib/utils";
 
 const GOLD_BG = "#C8A867";
@@ -38,18 +40,19 @@ export function ExperienceCtaSection({
       style={{ backgroundColor: GOLD_BG }}
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
-          {heading}
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/95 sm:text-lg">
-          {para}
-        </p>
+        <AnimatedSectionHeader
+          heading={heading}
+          description={para}
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.5rem]"
+          descriptionClassName="max-w-xl text-white/95 sm:text-lg"
+        />
 
+        <FadeIn delay={0.15}>
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center">
           <button
             type="button"
             onClick={onPrimaryClick}
-            className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
+            className="cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
             style={{ backgroundColor: CORAL }}
           >
             {primaryCtaLabel}
@@ -73,6 +76,7 @@ export function ExperienceCtaSection({
             {whatsappLabel}
           </Link>
         </div>
+        </FadeIn>
       </div>
     </section>
   );

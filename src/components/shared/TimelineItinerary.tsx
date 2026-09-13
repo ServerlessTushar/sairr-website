@@ -9,6 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
+import { FadeIn } from "@/components/shared/FadeIn";
 import { cn } from "@/lib/utils";
 
 const DAY_LABEL_COLOR = "#EC575E";
@@ -130,21 +132,17 @@ export function TimelineItinerary({
       className={cn("scroll-mt-24 border-t border-charcoal/10 bg-mist", className)}
     >
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <div className="text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
-            {heading}
-          </h2>
-          {description ? (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate">
-              {description}
-            </p>
-          ) : null}
-        </div>
+        <AnimatedSectionHeader
+          heading={heading}
+          description={description}
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-brand sm:text-4xl"
+        />
 
-        <Accordion
-          defaultValue={defaultValue}
-          className="mt-12 sm:mt-16"
-        >
+        <FadeIn delay={0.1}>
+          <Accordion
+            defaultValue={defaultValue}
+            className="mt-12 sm:mt-16"
+          >
           {carouselData.map((item, index) => {
             const value = `day-${index}`;
             const imageAlt = item.imageAlt ?? item.location;
@@ -239,7 +237,8 @@ export function TimelineItinerary({
               </div>
             );
           })}
-        </Accordion>
+          </Accordion>
+        </FadeIn>
       </div>
     </section>
   );

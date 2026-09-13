@@ -11,6 +11,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  FadeIn,
+  StaggerContainer,
+  staggerItem,
+} from "@/components/shared/FadeIn";
+import { TextReveal } from "@/components/shared/TextReveal";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const CORAL = "#E44928";
@@ -146,13 +153,22 @@ export function ExperienceHeroSection({
         )}
       >
         <div className="mx-auto flex h-full max-w-7xl flex-col px-4 py-10 sm:px-6 sm:py-12 lg:min-h-[calc(100dvh-5rem)] lg:px-8 lg:py-5">
-          <div className="flex shrink-0 flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
+          <FadeIn className="flex shrink-0 flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
             <div className="min-w-0">
-              <h1 className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.35rem] lg:leading-[1.1]">
-                {heading}
-              </h1>
+              <TextReveal
+                as="h1"
+                text={heading}
+                className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.35rem] lg:leading-[1.1]"
+                splitBy="line"
+              />
 
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2 lg:mt-2.5">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2 lg:mt-2.5"
+              >
                 <div className="flex items-center gap-2.5 text-sm text-charcoal sm:text-base">
                   <Image
                     src={sunIcon}
@@ -175,10 +191,13 @@ export function ExperienceHeroSection({
                   />
                   <span>{tagline}</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+            <FadeIn
+              delay={0.15}
+              className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
+            >
               <button
                 type="button"
                 onClick={onPrimaryClick}
@@ -194,11 +213,15 @@ export function ExperienceHeroSection({
               >
                 {secondaryCtaLabel}
               </Link>
-            </div>
-          </div>
+            </FadeIn>
+          </FadeIn>
 
           <div className="mt-8 grid min-h-0 flex-1 grid-cols-1 gap-4 lg:mt-4 lg:grid-cols-2 lg:gap-4">
-            <div className="flex min-h-0 flex-col gap-4 lg:gap-3">
+            <FadeIn
+              delay={0.1}
+              direction="left"
+              className="flex min-h-0 flex-col gap-4 lg:gap-3"
+            >
               {mainImage ? (
                 <div className="relative aspect-4/5 min-h-[14rem] overflow-hidden rounded-2xl bg-charcoal/5 lg:aspect-auto lg:min-h-0 lg:flex-1">
                   <GalleryImage
@@ -212,23 +235,34 @@ export function ExperienceHeroSection({
               )}
 
               {highlights.length > 0 ? (
-                <ul className="shrink-0 space-y-2 text-sm leading-snug text-charcoal lg:space-y-1.5 lg:text-[0.9rem] lg:leading-relaxed">
+                <StaggerContainer
+                  className="shrink-0 space-y-2 lg:space-y-1.5"
+                  stagger={0.06}
+                >
                   {highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3">
+                    <motion.li
+                      key={highlight}
+                      variants={staggerItem}
+                      className="flex list-none gap-3 text-sm leading-snug text-charcoal lg:text-[0.9rem] lg:leading-relaxed"
+                    >
                       <span
                         className="mt-2 size-1.5 shrink-0 rounded-full"
                         style={{ backgroundColor: CORAL }}
                         aria-hidden
                       />
                       <span>{highlight}</span>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </StaggerContainer>
               ) : null}
-            </div>
+            </FadeIn>
 
             {gridImages.length > 0 ? (
-              <div className="grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3 lg:min-h-0 lg:h-full lg:gap-4">
+              <FadeIn
+                delay={0.15}
+                direction="right"
+                className="grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3 lg:min-h-0 lg:h-full lg:gap-4"
+              >
                 {gridImages.map((image, index) => {
                   const isLastCell = index === gridImages.length - 1;
 
@@ -247,7 +281,7 @@ export function ExperienceHeroSection({
                     </div>
                   );
                 })}
-              </div>
+              </FadeIn>
             ) : null}
           </div>
         </div>
