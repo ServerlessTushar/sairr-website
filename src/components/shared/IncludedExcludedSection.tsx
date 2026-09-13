@@ -67,10 +67,10 @@ function ItemGrid({ items }: { items: IncludedExcludedItem[] }) {
     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8">
       {items.map((item) => (
         <li key={item.text} className="flex items-start gap-4">
-          <span className="flex size-10 shrink-0 items-center justify-center text-charcoal">
+          <span className="flex size-5 md:size-8 shrink-0 items-center justify-center text-charcoal">
             {item.icon}
           </span>
-          <span className="pt-1.5 text-base leading-relaxed text-charcoal">
+          <span className="text-base leading-relaxed text-charcoal">
             {item.text}
           </span>
         </li>

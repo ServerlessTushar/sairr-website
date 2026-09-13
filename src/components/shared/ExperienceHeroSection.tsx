@@ -189,7 +189,7 @@ export function ExperienceHeroSection({
               </button>
               <Link
                 href={secondaryCtaHref}
-                className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-charcoal shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:opacity-90 sm:px-8 lg:h-11"
+                className="inline-flex h-12 items-center border border-charcoal/30 justify-center rounded-lg px-6 text-sm font-semibold text-charcoal shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:opacity-90 sm:px-8 lg:h-11"
                 style={{ backgroundColor: GRAY_BTN }}
               >
                 {secondaryCtaLabel}
