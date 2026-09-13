@@ -75,6 +75,8 @@ type CardRevealCarouselItemProps = {
   direction?: CardRevealDirection;
   hover?: boolean;
   stagger?: number;
+  /** When false, card is visible immediately (needed for carousel peek slides). */
+  revealOnScroll?: boolean;
 };
 
 export function CardRevealCarouselItem({
@@ -84,6 +86,7 @@ export function CardRevealCarouselItem({
   direction = "left",
   hover = true,
   stagger = 0.14,
+  revealOnScroll = true,
 }: CardRevealCarouselItemProps) {
   const reduceMotion = useReducedMotion();
   const hidden = cardRevealVariant(direction).hidden as {
@@ -92,12 +95,16 @@ export function CardRevealCarouselItem({
     y?: number;
   };
 
+  if (!revealOnScroll || reduceMotion) {
+    return <div className={cn("h-full", className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={cn("h-full", className)}
-      initial={reduceMotion ? false : hidden}
+      initial={hidden}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{
         duration: 0.7,
         delay: reduceMotion ? 0 : index * stagger,

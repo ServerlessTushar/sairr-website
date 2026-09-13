@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Check, X } from "lucide-react";
 import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
 import { FadeIn } from "@/components/shared/FadeIn";
@@ -19,57 +19,12 @@ export type IncludedExcludedSectionProps = {
   className?: string;
 };
 
-type Tab = "included" | "excluded";
-
-function TabButton({
-  tab,
-  activeTab,
-  onSelect,
-}: {
-  tab: Tab;
-  activeTab: Tab;
-  onSelect: (tab: Tab) => void;
-}) {
-  const isActive = activeTab === tab;
-  const isIncluded = tab === "included";
-
+function ItemList({ items }: { items: IncludedExcludedItem[] }) {
   return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={isActive}
-      onClick={() => onSelect(tab)}
-      className={cn(
-        "inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors",
-        isActive
-          ? "border-charcoal/10 bg-charcoal/5 text-brand"
-          : "border-charcoal/10 bg-white text-slate hover:bg-charcoal/[0.03]",
-      )}
-    >
-      <span
-        className={cn(
-          "flex size-5 shrink-0 items-center justify-center rounded-full text-white",
-          isIncluded ? "bg-emerald-500" : "bg-red-500",
-        )}
-        aria-hidden
-      >
-        {isIncluded ? (
-          <Check className="size-3 stroke-[3]" />
-        ) : (
-          <X className="size-3 stroke-[3]" />
-        )}
-      </span>
-      {isIncluded ? "Included" : "Not included"}
-    </button>
-  );
-}
-
-function ItemGrid({ items }: { items: IncludedExcludedItem[] }) {
-  return (
-    <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8">
+    <ul className="space-y-6 sm:space-y-7">
       {items.map((item) => (
         <li key={item.text} className="flex items-start gap-4">
-          <span className="flex size-5 md:size-8 shrink-0 items-center justify-center text-charcoal">
+          <span className="flex size-5 shrink-0 items-center justify-center text-charcoal md:size-8">
             {item.icon}
           </span>
           <span className="text-base leading-relaxed text-charcoal">
@@ -81,6 +36,45 @@ function ItemGrid({ items }: { items: IncludedExcludedItem[] }) {
   );
 }
 
+function InclusionCard({
+  variant,
+  items,
+}: {
+  variant: "included" | "excluded";
+  items: IncludedExcludedItem[];
+}) {
+  const isIncluded = variant === "included";
+
+  return (
+    <article
+      className="flex min-w-0 flex-1 flex-col rounded-2xl bg-white p-6 shadow-[0_4px_24px_rgba(27,29,31,0.06)] sm:p-8"
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className={cn(
+            "flex size-6 shrink-0 items-center justify-center rounded-full text-white sm:size-7",
+            isIncluded ? "bg-emerald-500" : "bg-red-500",
+          )}
+          aria-hidden
+        >
+          {isIncluded ? (
+            <Check className="size-3.5 stroke-[3] sm:size-4" />
+          ) : (
+            <X className="size-3.5 stroke-[3] sm:size-4" />
+          )}
+        </span>
+        <h3 className="font-heading text-xl font-semibold text-brand sm:text-2xl">
+          {isIncluded ? "Included" : "Not included"}
+        </h3>
+      </div>
+
+      <div className="mt-8 sm:mt-10">
+        <ItemList items={items} />
+      </div>
+    </article>
+  );
+}
+
 export function IncludedExcludedSection({
   heading,
   para,
@@ -88,13 +82,8 @@ export function IncludedExcludedSection({
   excluded,
   className,
 }: IncludedExcludedSectionProps) {
-  const [activeTab, setActiveTab] = useState<Tab>("included");
-  const items = activeTab === "included" ? included : excluded;
-
   return (
-    <section
-      className={cn("border-t border-charcoal/10 bg-mist", className)}
-    >
+    <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
         <AnimatedSectionHeader
           heading={heading}
@@ -103,30 +92,9 @@ export function IncludedExcludedSection({
         />
 
         <FadeIn delay={0.1}>
-          <div
-            className="mt-10 rounded-2xl bg-white p-6 shadow-[0_4px_24px_rgba(27,29,31,0.06)] sm:mt-12 sm:p-8 lg:p-12"
-            role="tabpanel"
-          >
-          <div
-            className="flex flex-wrap gap-2"
-            role="tablist"
-            aria-label="Inclusions"
-          >
-            <TabButton
-              tab="included"
-              activeTab={activeTab}
-              onSelect={setActiveTab}
-            />
-            <TabButton
-              tab="excluded"
-              activeTab={activeTab}
-              onSelect={setActiveTab}
-            />
-          </div>
-
-            <div className="mt-8 sm:mt-10">
-              <ItemGrid items={items} />
-            </div>
+          <div className="mt-10 flex flex-col gap-6 sm:mt-12 md:flex-row md:gap-8">
+            <InclusionCard variant="included" items={included} />
+            <InclusionCard variant="excluded" items={excluded} />
           </div>
         </FadeIn>
       </div>

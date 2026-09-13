@@ -87,6 +87,69 @@ function GalleryImage({
   );
 }
 
+function HighlightsList({ highlights }: { highlights: string[] }) {
+  if (highlights.length === 0) return null;
+
+  return (
+    <StaggerContainer
+      className="shrink-0 space-y-2 lg:space-y-1.5"
+      stagger={0.06}
+    >
+      {highlights.map((highlight) => (
+        <motion.li
+          key={highlight}
+          variants={staggerItem}
+          className="flex list-none gap-3 text-sm leading-snug text-charcoal lg:text-[0.9rem] lg:leading-relaxed"
+        >
+          <span
+            className="mt-2 size-1.5 shrink-0 rounded-full"
+            style={{ backgroundColor: CORAL }}
+            aria-hidden
+          />
+          <span>{highlight}</span>
+        </motion.li>
+      ))}
+    </StaggerContainer>
+  );
+}
+
+function HeroCtas({
+  primaryCtaLabel,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  onPrimaryClick,
+  className,
+}: {
+  primaryCtaLabel: string;
+  secondaryCtaLabel: string;
+  secondaryCtaHref: string;
+  onPrimaryClick: () => void;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex w-full flex-col gap-3 sm:flex-row sm:items-center",
+        className,
+      )}
+    >
+      <button
+        type="button"
+        onClick={onPrimaryClick}
+        className="inline-flex h-12 cursor-pointer items-center justify-center rounded-lg bg-[#FF4859] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:scale-104 hover:bg-[#E63B4C] hover:opacity-90 sm:px-8 lg:h-11"
+      >
+        {primaryCtaLabel}
+      </button>
+      <Link
+        href={secondaryCtaHref}
+        className="inline-flex h-12 items-center justify-center rounded-lg border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:scale-104 hover:bg-gray-100 hover:opacity-90 sm:px-8 lg:h-11"
+      >
+        {secondaryCtaLabel}
+      </Link>
+    </div>
+  );
+}
+
 function HeroGalleryDialog({
   open,
   onOpenChange,
@@ -194,74 +257,43 @@ export function ExperienceHeroSection({
               </motion.div>
             </div>
 
-            <FadeIn
-              delay={0.15}
-              className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
-            >
-              <button
-                type="button"
-                onClick={onPrimaryClick}
-                className="inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:px-8 lg:h-11"
-                style={{ backgroundColor: CORAL }}
-              >
-                {primaryCtaLabel}
-              </button>
-              <Link
-                href={secondaryCtaHref}
-                className="inline-flex h-12 items-center border border-charcoal/30 justify-center rounded-lg px-6 text-sm font-semibold text-charcoal shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:opacity-90 sm:px-8 lg:h-11"
-                style={{ backgroundColor: GRAY_BTN }}
-              >
-                {secondaryCtaLabel}
-              </Link>
+            <FadeIn delay={0.15} className="hidden shrink-0 lg:block">
+              <HeroCtas
+                primaryCtaLabel={primaryCtaLabel}
+                secondaryCtaLabel={secondaryCtaLabel}
+                secondaryCtaHref={secondaryCtaHref}
+                onPrimaryClick={onPrimaryClick}
+                className="lg:w-auto"
+              />
             </FadeIn>
           </FadeIn>
 
-          <div className="mt-8 grid min-h-0 flex-1 grid-cols-1 gap-4 lg:mt-4 lg:grid-cols-2 lg:gap-4">
-            <FadeIn
-              delay={0.1}
-              direction="left"
-              className="flex min-h-0 flex-col gap-4 lg:gap-3"
-            >
-              {mainImage ? (
-                <div className="relative aspect-4/5 min-h-[14rem] overflow-hidden rounded-2xl bg-charcoal/5 lg:aspect-auto lg:min-h-0 lg:flex-1">
-                  <GalleryImage
-                    image={mainImage}
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-              ) : (
-                <div className="aspect-4/5 min-h-[14rem] rounded-2xl bg-charcoal/10 lg:min-h-0 lg:flex-1" />
-              )}
+          <div className="mt-8 flex min-h-0 flex-1 flex-col gap-4 lg:mt-4 lg:grid lg:grid-cols-2 lg:gap-4">
+            <div className="contents lg:col-start-1 lg:flex lg:min-h-0 lg:flex-col lg:gap-3">
+              <FadeIn delay={0.1} direction="left" className="order-1">
+                {mainImage ? (
+                  <div className="relative aspect-4/5 min-h-[14rem] overflow-hidden rounded-2xl bg-charcoal/5 lg:aspect-auto lg:min-h-0 lg:flex-1">
+                    <GalleryImage
+                      image={mainImage}
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-4/5 min-h-[14rem] rounded-2xl bg-charcoal/10 lg:min-h-0 lg:flex-1" />
+                )}
+              </FadeIn>
 
-              {highlights.length > 0 ? (
-                <StaggerContainer
-                  className="shrink-0 space-y-2 lg:space-y-1.5"
-                  stagger={0.06}
-                >
-                  {highlights.map((highlight) => (
-                    <motion.li
-                      key={highlight}
-                      variants={staggerItem}
-                      className="flex list-none gap-3 text-sm leading-snug text-charcoal lg:text-[0.9rem] lg:leading-relaxed"
-                    >
-                      <span
-                        className="mt-2 size-1.5 shrink-0 rounded-full"
-                        style={{ backgroundColor: CORAL }}
-                        aria-hidden
-                      />
-                      <span>{highlight}</span>
-                    </motion.li>
-                  ))}
-                </StaggerContainer>
-              ) : null}
-            </FadeIn>
+              <div className="order-4 hidden lg:block">
+                <HighlightsList highlights={highlights} />
+              </div>
+            </div>
 
             {gridImages.length > 0 ? (
               <FadeIn
                 delay={0.15}
                 direction="right"
-                className="grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3 lg:min-h-0 lg:h-full lg:gap-4"
+                className="order-2 grid min-h-[12rem] grid-cols-2 grid-rows-2 gap-3 lg:col-start-2 lg:min-h-0 lg:h-full lg:gap-4"
               >
                 {gridImages.map((image, index) => {
                   const isLastCell = index === gridImages.length - 1;
@@ -283,6 +315,18 @@ export function ExperienceHeroSection({
                 })}
               </FadeIn>
             ) : null}
+
+            <div className="order-3 flex flex-col gap-4 lg:hidden">
+              <FadeIn delay={0.15}>
+                <HeroCtas
+                  primaryCtaLabel={primaryCtaLabel}
+                  secondaryCtaLabel={secondaryCtaLabel}
+                  secondaryCtaHref={secondaryCtaHref}
+                  onPrimaryClick={onPrimaryClick}
+                />
+              </FadeIn>
+              <HighlightsList highlights={highlights} />
+            </div>
           </div>
         </div>
       </section>
