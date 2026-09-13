@@ -2,6 +2,7 @@ import { PuriEnquiryProvider } from "@/components/puri/PuriEnquiry";
 import { PuriHero } from "@/components/puri/PuriHero";
 import { PuriMoments } from "@/components/puri/PuriMoments";
 import { PuriItinerary } from "@/components/puri/PuriItinerary";
+import { puriItineraryData } from "@/components/puri/puriItineraryData";
 import { PuriIncluded } from "@/components/puri/PuriIncluded";
 import { PuriDates } from "@/components/puri/PuriDates";
 import { PuriWords } from "@/components/puri/PuriWords";
@@ -58,7 +59,7 @@ export default function PuriExperiencePage() {
         <div className="bg-mist pb-24 md:pb-0">
           <PuriHero />
           <PuriMoments />
-          <PuriItinerary />
+          <PuriItinerary heading="Four Days" carouselData={puriItineraryData} />
           <PuriIncluded />
           <PuriDates />
           <PuriWords />
