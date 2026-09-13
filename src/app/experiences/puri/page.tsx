@@ -1,13 +1,19 @@
 import { PuriEnquiryProvider } from "@/components/puri/PuriEnquiry";
 import { PuriHero } from "@/components/puri/PuriHero";
+import { puriHeroSectionData } from "@/components/puri/puriHeroData";
 import { PuriMoments } from "@/components/puri/PuriMoments";
 import { PuriItinerary } from "@/components/puri/PuriItinerary";
 import { puriItineraryData } from "@/components/puri/puriItineraryData";
 import { PuriIncluded } from "@/components/puri/PuriIncluded";
+import { puriIncludedSectionData } from "@/components/puri/puriIncludedData";
 import { PuriDates } from "@/components/puri/PuriDates";
+import { puriDatesSectionData } from "@/components/puri/puriDatesData";
 import { PuriWords } from "@/components/puri/PuriWords";
+import { puriWordsSectionData } from "@/components/puri/puriWordsData";
 import { PuriFaqs } from "@/components/puri/PuriFaqs";
+import { puriFaqsSectionData } from "@/components/puri/puriFaqsData";
 import { PuriCta } from "@/components/puri/PuriCta";
+import { puriCtaSectionData } from "@/components/puri/puriCtaData";
 import { PuriStickyBar } from "@/components/puri/PuriStickyBar";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { createMetadata } from "@/lib/seo";
@@ -57,14 +63,14 @@ export default function PuriExperiencePage() {
       <JsonLd data={jsonLd} />
       <PuriEnquiryProvider>
         <div className="bg-mist pb-24 md:pb-0">
-          <PuriHero />
+          <PuriHero sectionData={puriHeroSectionData} />
           <PuriMoments />
           <PuriItinerary heading="Four Days" carouselData={puriItineraryData} />
-          <PuriIncluded />
-          <PuriDates />
-          <PuriWords />
-          <PuriFaqs />
-          <PuriCta />
+          <PuriIncluded {...puriIncludedSectionData} />
+          <PuriDates {...puriDatesSectionData} />
+          <PuriWords {...puriWordsSectionData} />
+          <PuriFaqs {...puriFaqsSectionData} />
+          <PuriCta sectionData={puriCtaSectionData} />
           <PuriStickyBar />
         </div>
       </PuriEnquiryProvider>
