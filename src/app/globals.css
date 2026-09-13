@@ -55,6 +55,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --shadow-testimonial: 8px 8px 0 0 var(--sand);
+  --shadow-testimonial-lg: 16px 16px 0 0 var(--sand);
 }
 
 :root {

@@ -146,8 +146,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/experiences"
-                className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
-                style={{ backgroundColor: CORAL }}
+                className="bg-[#FF4859] hover:bg-[#E63B4C] inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
                 Explore Experiences
                 <ArrowRight className="size-4 shrink-0" />

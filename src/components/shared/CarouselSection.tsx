@@ -11,10 +11,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const GAP_PX = 24;
+const GAP_PX = 12;
 const DEFAULT_AUTOPLAY_INTERVAL_MS = 5000;
 
 type SlidesPerView = {
+  /** Supports fractions (e.g. 1.1) to peek the next slide on mobile. */
   mobile?: number;
   tablet?: number;
   desktop?: number;
@@ -77,7 +78,7 @@ export function CarouselSection<T>({
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const maxIndex = Math.max(0, items.length - visibleCount);
+  const maxIndex = Math.max(0, Math.ceil(items.length - visibleCount));
   const activeIndex = Math.min(index, maxIndex);
   const showControls = items.length > visibleCount;
 
@@ -160,7 +161,7 @@ export function CarouselSection<T>({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-5 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-3 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div

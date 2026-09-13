@@ -35,7 +35,7 @@ export function RealTravellersSection() {
 
         <CarouselSection
           className="mt-6 md:mt-10"
-          slideClassName="pb-4 pr-4"
+          slideClassName="pb-3 pr-2 md:pb-4 md:pr-4"
           items={testimonials}
           getKey={(item) => item.id}
           renderItem={(item, index) => (
@@ -48,7 +48,7 @@ export function RealTravellersSection() {
               <TestimonialCard testimonial={item} variant="quote-first" />
             </CardRevealCarouselItem>
           )}
-          slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
           ariaLabel="Traveller stories"
           autoplay={false}
         />
