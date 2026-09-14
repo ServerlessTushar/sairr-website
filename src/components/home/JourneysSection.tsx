@@ -21,7 +21,8 @@ import moments6 from "@/public/homepage/moments-6.webp";
 import rameshwaram from "@/public/homepage/rameshwaram.webp";
 import andaman from "@/public/homepage/andaman.webp";
 import bali from "@/public/homepage/bali.webp";
-import backgroundImg from "@/public/homepage/journeys-bg-img.webp";
+import backgroundImgDesktop from "@/public/homepage/Bg-Destination-Home.webp";
+import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob.webp";
 
 const journeys: Journey[] = [
   {
@@ -86,10 +87,17 @@ export function JourneysSection() {
     <section id="experiences" className="relative scroll-mt-24 bg-mist">
       <div className="absolute inset-0" aria-hidden>
         <Image
-          src={backgroundImg}
+          src={backgroundImgMobile}
           alt=""
           fill
-          className="object-contain object-bottom"
+          className="object-contain object-bottom md:hidden"
+          sizes="100vw"
+        />
+        <Image
+          src={backgroundImgDesktop}
+          alt=""
+          fill
+          className="hidden object-contain object-bottom md:block"
           sizes="100vw"
         />
       </div>
@@ -148,7 +156,7 @@ export function JourneysSection() {
                 Get a Callback
                 <ArrowRight className="ml-2 size-4" />
               </Button>
-              <p className="text-xs text-slate mt-2">More destinations launching soon.</p>
+              <p className="text-xs text-[#0E5E6F] !font-semibold mt-2">More destinations launching soon.</p>
             </motion.div>
           </div>
         </FadeIn>

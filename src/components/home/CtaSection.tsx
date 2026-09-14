@@ -8,7 +8,8 @@ import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvid
 import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/homepage/whatsapp.png";
-import bgImg from "@/public/homepage/where-u-meaning.webp";
+import bgImgDesktop from "@/public/homepage/homepage-bottom.webp";
+import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob.webp";
 import { scaleIn, springSnappy, staggerContainer } from "@/lib/motion";
 
 const TEAL = "#0E5E6F";
@@ -22,10 +23,17 @@ export function CtaSection() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" aria-hidden>
         <Image
-          src={bgImg}
+          src={bgImgMobile}
           alt=""
           fill
-          className="object-cover"
+          className="object-cover md:hidden"
+          sizes="100vw"
+        />
+        <Image
+          src={bgImgDesktop}
+          alt=""
+          fill
+          className="hidden object-cover md:block"
           sizes="100vw"
         />
       </div>
