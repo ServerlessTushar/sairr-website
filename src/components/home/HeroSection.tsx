@@ -122,7 +122,7 @@ export function HeroSection() {
           variants={staggerContainer(0.14, 0.2)}
         >
           <motion.div variants={fadeDown} className="mx-auto max-w-full">
-            <p className="text-balance text-sm font-medium text-white sm:text-base md:text-[29.18px]">
+            <p className="text-balance text-lg font-medium text-white sm:text-lg md:text-[29.18px]">
               Travel after 50,{" "}
               <span className="relative inline-block pb-1">
                 designed differently
@@ -141,12 +141,12 @@ export function HeroSection() {
 
           <motion.div
             variants={heroLine}
-            className="mx-auto mt-10 flex w-[16.25rem] max-w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
+            className="mx-auto mt-10 flex w-[13rem] md:w-[16.25rem] max-w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#experiences"
-                className="bg-[#FF4859] hover:bg-[#E63B4C] inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
+                className="bg-[#FF4859] hover:bg-[#E63B4C] inline-flex h-10 md:h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-xs md:text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
                 Explore Experiences
                 <ArrowRight className="size-4 shrink-0" />
@@ -156,7 +156,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/contact"
-                className="inline-flex h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-sm font-semibold text-charcoal transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
+                className="inline-flex h-10 md:h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-xs md:text-sm font-semibold text-charcoal transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
                 Talk To Us
               </Link>

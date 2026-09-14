@@ -1,102 +1,126 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/FadeIn";
 import {
   CardRevealGrid,
   GridCardRevealItem,
 } from "@/components/shared/CardReveal";
-import redBirdIcon from "@/public/homepage/red-bird.png";
-import whySairr1 from "@/public/homepage/why-sairr-1.webp";
-import whySairr2 from "@/public/homepage/why-sairr-2.webp";
-import whySairr3 from "@/public/homepage/why-sairr-3.webp";
-import whySairr4 from "@/public/homepage/why-sairr-4.webp";
+import { TextReveal } from "@/components/shared/TextReveal";
+import goldBirdIcon from "@/public/homepage/gold-bird.webp";
+import locationPinIcon from "@/public/homepage/location-pin.webp";
+import peopleIcon from "@/public/homepage/people.webp";
+import ratingStarIcon from "@/public/homepage/rating-star.webp";
+import featuredImage from "@/public/homepage/why-sairr-2.webp";
 import { imageHover } from "@/lib/motion";
 
-const HIGHLIGHT = "bg-[#C6fdff] box-decoration-clone px-0.5";
+const ICON_BOX = "bg-[#c4a46e]";
+const CARD_SHADOW = "shadow-[0_2px_16px_rgba(27,29,31,0.08)]";
+const CARD_TITLE =
+  "font-sans text-base font-semibold leading-snug text-charcoal sm:text-lg";
+const CARD_DESC =
+  "mt-1.5 font-sans text-sm leading-relaxed text-[#5d5d5d] sm:mt-2";
 
-type BeliefCard = {
+type IconBeliefItem = {
   id: string;
-  image: StaticImageData;
+  icon: StaticImageData;
   title: string;
-  description: ReactNode;
+  description: string;
 };
 
-const beliefCards: BeliefCard[] = [
-  {
-    id: "families",
-    image: whySairr2,
-    title: "Made for 50+ travellers and their families.",
-    description: (
-      <>
-        <span className={HIGHLIGHT}>Thoughtfully curated</span> with care, around
-        your pace, comfort and needs.
-      </>
-    ),
-  },
+const featuredCard = {
+  title: "Made for 50+ travellers and their families.",
+  description:
+    "Thoughtfully curated with care, around your pace, comfort and needs.",
+};
+
+const iconBeliefItems: IconBeliefItem[] = [
   {
     id: "journey",
-    image: whySairr3,
+    icon: locationPinIcon,
     title: "We own the journey, not just the booking",
-    description: (
-      <>
-        From doorstep pickup to your return. We handle it{" "}
-        <span className={HIGHLIGHT}>end to end.</span>
-      </>
-    ),
-  },
-  {
-    id: "quality",
-    image: whySairr4,
-    title: "Quality, without compromise",
-    description: (
-      <>
-        4-star+ stays, quality transport, food and hand-picked experiences.{" "}
-        <span className={HIGHLIGHT}>Guaranteed.</span>
-      </>
-    ),
+    description:
+      "From doorstep pickup to your return. We handle it end to end.",
   },
   {
     id: "coordinator",
-    image: whySairr1,
+    icon: peopleIcon,
     title: "Dedicated coordinator, on ground with you",
-    description: (
-      <>
-        A trained expert takes care of the details.{" "}
-        <span className={HIGHLIGHT}>You live the journey.</span>
-      </>
-    ),
+    description:
+      "A trained expert takes care of the details. You live the journey.",
+  },
+  {
+    id: "quality",
+    icon: ratingStarIcon,
+    title: "Quality, without compromise",
+    description:
+      "4-star+ stays, quality transport, food and hand-picked experiences. Guaranteed.",
   },
 ];
 
-function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
+function BeliefIcon({ src }: { src: StaticImageData }) {
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={32}
+      height={32}
+      className="size-7 object-contain sm:size-8"
+      aria-hidden
+    />
+  );
+}
+
+function FeaturedBeliefCard({ index }: { index: number }) {
   return (
     <GridCardRevealItem
       index={index}
       as="article"
-      className="group flex items-stretch overflow-hidden rounded-[14.3px] border-[0.55px] border-[#C8A867] bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
+      hover={false}
+      className={`flex h-full flex-col overflow-hidden rounded-2xl bg-white lg:col-start-1 lg:row-span-3 ${CARD_SHADOW}`}
     >
-      <div className="relative w-[42%] shrink-0 overflow-hidden bg-mist sm:min-h-[11rem] sm:w-[34%]">
-        <motion.div className="relative h-full min-h-[inherit]" whileHover={imageHover}>
+      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-mist lg:aspect-auto lg:min-h-0 lg:flex-1">
+        <motion.div className="relative h-full min-h-[10rem] w-full lg:min-h-0" whileHover={imageHover}>
           <Image
-            src={card.image}
-            alt=""
+            src={featuredImage}
+            alt="Travellers enjoying a journey with Sairr"
             fill
-            className="object-center object-cover"
-            sizes="(max-width: 640px) 42vw, 20vw"
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </motion.div>
       </div>
+      <div className="shrink-0 px-5 py-5 sm:px-6 sm:py-6 lg:px-6 lg:py-5">
+        <h3 className={CARD_TITLE}>{featuredCard.title}</h3>
+        <p className={CARD_DESC}>{featuredCard.description}</p>
+      </div>
+    </GridCardRevealItem>
+  );
+}
 
-      <div className="flex min-w-0 flex-1 flex-col justify-center px-4 py-5 sm:px-5 sm:py-6">
-        <h3 className="font-sans text-[1.05rem] font-semibold leading-snug text-black md:text-[1.65rem]">
-          {card.title}
-        </h3>
-        <p className="mt-2 font-sans text-xs leading-relaxed text-[#5d5d5d] md:text-[17.6px]">
-          {card.description}
-        </p>
+function IconBeliefCard({
+  item,
+  index,
+}: {
+  item: IconBeliefItem;
+  index: number;
+}) {
+  return (
+    <GridCardRevealItem
+      index={index}
+      as="article"
+      hover={false}
+      className={`flex items-start gap-4 rounded-2xl bg-white px-4 py-5 sm:gap-5 sm:items-center sm:px-5 sm:py-6 lg:col-start-2 lg:flex-1 lg:px-6 lg:py-5 ${CARD_SHADOW}`}
+    >
+      <div
+        className={`flex size-14 shrink-0 items-center justify-center rounded-xl sm:size-16 lg:size-[4.25rem] ${ICON_BOX}`}
+      >
+        <BeliefIcon src={item.icon} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <h3 className={CARD_TITLE}>{item.title}</h3>
+        <p className={CARD_DESC}>{item.description}</p>
       </div>
     </GridCardRevealItem>
   );
@@ -105,50 +129,53 @@ function BeliefCardItem({ card, index }: { card: BeliefCard; index: number }) {
 export function BrandBeliefSection() {
   return (
     <section className="border-t border-charcoal/10 bg-mist">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <div className="relative inline-block overflow-visible">
-              <h2 className="font-heading text-3xl font-black tracking-tight text-black sm:text-4xl">
-                Why{" "}
-                <span className="relative inline-block overflow-visible">
-                  Sairr
-                  <motion.span
-                    animate={{ y: [0, -2, 0] }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="pointer-events-none absolute -top-1 left-full ml-1 block sm:-top-1.5 sm:ml-1.5"
-                    aria-hidden
-                  >
-                    <Image
-                      src={redBirdIcon}
-                      alt=""
-                      width={33}
-                      height={11}
-                      className="block h-[11px] w-[33px] max-w-none shrink-0"
-                    />
-                  </motion.span>
-                </span>
-              </h2>
+              <TextReveal
+                as="h2"
+                text="Why Sairr"
+                className="font-heading text-3xl font-black tracking-tight text-black sm:text-4xl"
+              />
+              <motion.span
+                animate={{ y: [0, -2, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="pointer-events-none absolute -top-1 right-0 translate-x-full pl-1 sm:-top-1.5 sm:pl-1.5"
+                aria-hidden
+              >
+                <Image
+                  src={goldBirdIcon}
+                  alt=""
+                  width={33}
+                  height={11}
+                  className="block h-[11px] w-[33px] max-w-none shrink-0"
+                />
+              </motion.span>
             </div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
+              className="mt-4 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg lg:text-xl"
             >
               Sairr gives you the confidence to say yes, before you even book.
             </motion.p>
           </div>
         </FadeIn>
 
-        <CardRevealGrid className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6">
-          {beliefCards.map((card, index) => (
-            <BeliefCardItem key={card.id} card={card} index={index} />
+        <CardRevealGrid
+          className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:grid-rows-3 lg:items-stretch lg:gap-6"
+          stagger={0.12}
+        >
+          <FeaturedBeliefCard index={0} />
+          {iconBeliefItems.map((item, index) => (
+            <IconBeliefCard key={item.id} item={item} index={index + 1} />
           ))}
         </CardRevealGrid>
       </div>
