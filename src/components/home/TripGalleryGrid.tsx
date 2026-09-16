@@ -49,7 +49,7 @@ function GalleryTile({
       whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
       onClick={onClick}
       className={cn(
-        "group relative min-h-[9.5rem] overflow-hidden rounded-2xl bg-card text-left sm:min-h-[11rem]",
+        "group relative overflow-hidden rounded-2xl bg-card text-left",
         className,
       )}
     >
@@ -57,12 +57,54 @@ function GalleryTile({
         src={gallerySrc(image)}
         alt={image.alt}
         fill
-        sizes="(max-width: 1024px) 100vw, 50vw"
+        sizes="(max-width: 1024px) 50vw, 25vw"
         data-ai-placeholder={image.aiPlaceholder ? "true" : undefined}
         className="object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: image.objectPosition ?? "center" }}
       />
     </motion.button>
+  );
+}
+
+function MobileGalleryBlock({
+  leftTop,
+  leftBottom,
+  rightTall,
+  indexOffset,
+  onImageClick,
+  reduceMotion,
+}: {
+  leftTop: GalleryImage;
+  leftBottom: GalleryImage;
+  rightTall: GalleryImage;
+  indexOffset: number;
+  onImageClick: (index: number) => void;
+  reduceMotion: boolean | null;
+}) {
+  return (
+    <div className="grid h-[18rem] grid-cols-2 grid-rows-[1fr_1fr] gap-3 sm:gap-4">
+      <GalleryTile
+        image={leftTop}
+        reduceMotion={reduceMotion}
+        onClick={() => onImageClick(indexOffset)}
+        className="col-start-1 row-start-1 h-full min-h-0"
+        index={indexOffset}
+      />
+      <GalleryTile
+        image={leftBottom}
+        reduceMotion={reduceMotion}
+        onClick={() => onImageClick(indexOffset + 1)}
+        className="col-start-1 row-start-2 h-full min-h-0"
+        index={indexOffset + 1}
+      />
+      <GalleryTile
+        image={rightTall}
+        reduceMotion={reduceMotion}
+        onClick={() => onImageClick(indexOffset + 2)}
+        className="col-start-2 row-span-2 row-start-1 h-full min-h-0"
+        index={indexOffset + 2}
+      />
+    </div>
   );
 }
 
@@ -75,12 +117,9 @@ function GalleryMosaic({
   onImageClick: (index: number) => void;
   reduceMotion: boolean | null;
 }) {
-  const left = images.slice(0, 3);
-  const right = images.slice(3, 6);
-
   if (images.length < 6) {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <AnimatePresence mode="popLayout">
           {images.map((image, index) => (
             <GalleryTile
@@ -88,7 +127,7 @@ function GalleryMosaic({
               image={image}
               reduceMotion={reduceMotion}
               onClick={() => onImageClick(index)}
-              className="aspect-4/3"
+              className="aspect-4/3 min-h-[9.5rem]"
               index={index}
             />
           ))}
@@ -97,80 +136,70 @@ function GalleryMosaic({
     );
   }
 
-  const tileIndex = (offset: number) => offset;
+  const [first, second, third, fourth, fifth, sixth] = images;
+
+  const desktopPlacements = [
+    { image: first, index: 0, className: "col-start-1 row-start-1 h-full" },
+    { image: second, index: 1, className: "col-start-1 row-start-2 h-full" },
+    {
+      image: third,
+      index: 2,
+      className: "col-start-2 row-span-2 row-start-1 h-full",
+    },
+    { image: fourth, index: 3, className: "col-start-3 row-start-1 h-full" },
+    { image: fifth, index: 4, className: "col-start-3 row-start-2 h-full" },
+    {
+      image: sixth,
+      index: 5,
+      className: "col-start-4 row-span-2 row-start-1 h-full",
+    },
+  ];
 
   return (
-    <div className="flex flex-col gap-4 lg:flex-row lg:gap-5">
-      <div className="grid min-h-[19rem] flex-1 grid-cols-2 grid-rows-2 gap-4 sm:min-h-[22rem] lg:min-h-[26rem]">
+    <>
+      <div className="flex flex-col gap-3 sm:gap-4 lg:hidden">
         <AnimatePresence mode="popLayout">
-          {left[0] && (
-            <GalleryTile
-              key={left[0].id}
-              image={left[0]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(0))}
-              className="col-start-1 row-start-1 h-full"
-              index={0}
-            />
-          )}
-          {left[1] && (
-            <GalleryTile
-              key={left[1].id}
-              image={left[1]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(1))}
-              className="col-start-1 row-start-2 h-full"
-              index={1}
-            />
-          )}
-          {left[2] && (
-            <GalleryTile
-              key={left[2].id}
-              image={left[2]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(2))}
-              className="col-start-2 row-span-2 row-start-1 h-full"
-              index={2}
-            />
-          )}
+          <MobileGalleryBlock
+            key="mobile-gallery-top"
+            leftTop={first}
+            leftBottom={second}
+            rightTall={third}
+            indexOffset={0}
+            onImageClick={onImageClick}
+            reduceMotion={reduceMotion}
+          />
+          <MobileGalleryBlock
+            key="mobile-gallery-bottom"
+            leftTop={fourth}
+            leftBottom={fifth}
+            rightTall={sixth}
+            indexOffset={3}
+            onImageClick={onImageClick}
+            reduceMotion={reduceMotion}
+          />
         </AnimatePresence>
       </div>
 
-      <div className="grid min-h-[19rem] flex-1 grid-cols-2 grid-rows-2 gap-4 sm:min-h-[22rem] lg:min-h-[26rem]">
+      <div
+        className="hidden gap-4 lg:grid lg:h-[24.75rem] lg:grid-cols-4 lg:grid-rows-[1fr_1fr]"
+      >
         <AnimatePresence mode="popLayout">
-          {right[0] && (
-            <GalleryTile
-              key={right[0].id}
-              image={right[0]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(3))}
-              className="col-span-2 row-start-1 h-full"
-              index={3}
-            />
-          )}
-          {right[1] && (
-            <GalleryTile
-              key={right[1].id}
-              image={right[1]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(4))}
-              className="col-start-1 row-start-2 h-full"
-              index={4}
-            />
-          )}
-          {right[2] && (
-            <GalleryTile
-              key={right[2].id}
-              image={right[2]}
-              reduceMotion={reduceMotion}
-              onClick={() => onImageClick(tileIndex(5))}
-              className="col-start-2 row-start-2 h-full"
-              index={5}
-            />
+          {desktopPlacements.map(
+            ({ image, index, className }) =>
+              image && (
+                <GalleryTile
+                  key={image.id}
+                  image={image}
+                  reduceMotion={reduceMotion}
+                  onClick={() => onImageClick(index)}
+                  className={className}
+                  index={index}
+                />
+              ),
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -11,16 +11,12 @@ import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import type { TravelDestination } from "@/lib/validations/contact";
-import puri from "@/public/homepage/puri.webp";
-import moments1 from "@/public/homepage/moments-1.webp";
-import moments2 from "@/public/homepage/moments-2.webp";
-import moments3 from "@/public/homepage/moments-3.webp";
-import moments4 from "@/public/homepage/moments-4.webp";
-import moments5 from "@/public/homepage/moments-5.webp";
-import moments6 from "@/public/homepage/moments-6.webp";
-import rameshwaram from "@/public/homepage/rameshwaram.webp";
-import andaman from "@/public/homepage/andaman.webp";
-import bali from "@/public/homepage/bali.webp";
+import puri from "@/public/homepage/journey-puri-1.webp";
+import puri2 from "@/public/homepage/journey-puri-2.webp"
+import puri3 from "@/public/homepage/journey-puri-3.webp"
+import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
+import andaman from "@/public/homepage/journey-andaman.webp";
+import bali from "@/public/homepage/journey-bali.webp";
 import backgroundImgDesktop from "@/public/homepage/Bg-Destination-Home.webp";
 import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob.webp";
 
@@ -31,10 +27,10 @@ const journeys: Journey[] = [
     category: "Pilgrimage",
     description: "Temple bells, ocean air, and unhurried mornings.",
     image: puri,
-    images: [puri, moments1, moments2, moments3, moments4, moments5, moments6],
+    images: [puri, puri2, puri3],
     status: "booking-open",
     destination: "Puri & Bhubaneswar",
-    perks: ["VIP darshan", "Beach-facing stay", "Dedicated coordinator"],
+    perks: ["VIP darshan", "Beach-facing stay", "Dedicated host"],
     href: "/experiences/puri",
   },
   {
@@ -102,7 +98,7 @@ export function JourneysSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
+      <div className="relative mx-auto max-w-7xl px-4 pt-16 sm:px-6 md:px-0 lg:pt-20">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal

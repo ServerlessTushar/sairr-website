@@ -38,14 +38,14 @@ export function CtaSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <FadeIn>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={scaleIn}
-            className="mx-auto max-w-4xl rounded-3xl border border-white/50 bg-white/30 px-8 py-8 text-center shadow-[0_8px_40px_rgba(27,29,31,0.12)] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
+            className="mx-auto max-w-2xl rounded-[17px] border border-white/50 bg-white/65 px-8 py-8 text-center shadow-[0_8px_40px_rgba(27,29,31,0.12)] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
           >
             <motion.div
               variants={staggerContainer(0.1, 0.1)}
@@ -55,7 +55,7 @@ export function CtaSection() {
             >
               <motion.p
                 variants={scaleIn}
-                className="text-[11px] font-semibold uppercase tracking-[0.2em]"
+                className="text-[11px] font-bold uppercase tracking-[0.2em]"
                 style={{ color: TEAL }}
               >
                 Start a conversation
@@ -70,7 +70,7 @@ export function CtaSection() {
 
               <motion.p
                 variants={scaleIn}
-                className="mt-3 text-sm leading-snug text-slate md:text-base"
+                className="mt-3 text-sm leading-snug text-[#6B7075] md:text-base"
               >
                 Tell us, even if you&apos;re not sure yet. We&apos;ll make it
                 happen for you
