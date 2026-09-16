@@ -165,7 +165,7 @@ export function JourneyCard({
         )}
       </div>
 
-      <div className="flex flex-1 flex-col pt-4">
+      <div className="flex flex-1 flex-col pt-4 px-2 md:px-3">
         <p
           className="text-right text-xs font-semibold"
           style={{ color: TEAL }}
@@ -173,7 +173,7 @@ export function JourneyCard({
           {journey.category}
         </p>
 
-        <h3 className="mt-1 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
+        <h3 className="mt-2 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
           {journey.title}
         </h3>
 
