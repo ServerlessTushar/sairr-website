@@ -59,7 +59,7 @@ const journeys: Journey[] = [
     slug: "bali",
     title: "Bali",
     category: "International",
-    description: "Emerald terraces, volcanic peaks, endless golden hours.",
+    description: "Emerald terraces, volcanic peaks, and endless golden hours.",
     image: bali,
     status: "coming-soon",
     destination: "Bali",
@@ -103,7 +103,7 @@ export function JourneysSection() {
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
               as="h2"
-              text="Journeys to look forward to. Choose yours."
+              text="Journeys to look forward to"
               className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.75rem] lg:leading-tight"
             />
             <motion.p
@@ -113,7 +113,7 @@ export function JourneysSection() {
               transition={{ delay: 0.35, duration: 0.6 }}
               className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
             >
-              Sairr gives you the confidence to say yes, before you even book.
+              There should always be another place worth discovering. Choose yours.
             </motion.p>
           </div>
         </FadeIn>

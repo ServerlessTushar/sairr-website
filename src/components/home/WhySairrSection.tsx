@@ -12,7 +12,7 @@ import goldBirdIcon from "@/public/homepage/gold-bird.webp";
 import locationPinIcon from "@/public/homepage/location-pin.webp";
 import peopleIcon from "@/public/homepage/people.webp";
 import ratingStarIcon from "@/public/homepage/rating-star.webp";
-import featuredImage from "@/public/homepage/why-sairr.webp";
+import featuredImage from "@/public/homepage/whySairr.webp";
 import { imageHover } from "@/lib/motion";
 
 const ICON_BOX = "bg-[#c4a46e]";
@@ -78,15 +78,16 @@ function FeaturedBeliefCard({ index }: { index: number }) {
       index={index}
       as="article"
       hover={false}
-      className={`flex flex-col overflow-hidden rounded-2xl bg-white ${CARD_SHADOW}`}
+      className={`flex flex-col overflow-hidden rounded-[14.3px] bg-white ${CARD_SHADOW}`}
     >
-      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-mist md:aspect-auto md:h-[23.313rem] md:max-w-[39.188rem] md:w-full">
-        <motion.div className="relative h-full min-h-[10rem] w-full" whileHover={imageHover}>
+      <div className="relative w-full shrink-0 overflow-hidden bg-mist md:h-[23.313rem] md:max-w-[39.188rem]">
+        <motion.div className="relative w-full md:h-full" whileHover={imageHover}>
           <Image
             src={featuredImage}
             alt="Travellers enjoying a journey with Sairr"
-            fill
-            className="object-cover"
+            width={1881}
+            height={1119}
+            className="h-auto w-full md:absolute md:inset-0 md:h-full md:w-full md:object-cover"
             sizes="(max-width: 768px) 100vw, 39.188rem"
           />
         </motion.div>
@@ -111,7 +112,7 @@ function IconBeliefCard({
       index={index}
       as="article"
       hover={false}
-      className={`flex items-start gap-4 rounded-2xl bg-white px-4 py-5 sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-1 lg:px-6 lg:py-5 ${CARD_SHADOW}`}
+      className={`flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-1 lg:px-6 lg:py-5 ${CARD_SHADOW}`}
     >
       <div
         className={`flex size-14 shrink-0 items-center justify-center rounded-xl sm:size-16 lg:size-[4.25rem] ${ICON_BOX}`}

@@ -49,7 +49,7 @@ function GalleryTile({
       whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
       onClick={onClick}
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-card text-left",
+        "group relative overflow-hidden rounded-[10px] bg-card text-left",
         className,
       )}
     >
@@ -82,7 +82,7 @@ function MobileGalleryBlock({
   reduceMotion: boolean | null;
 }) {
   return (
-    <div className="grid h-[18rem] grid-cols-2 grid-rows-[1fr_1fr] gap-3 sm:gap-4">
+    <div className="grid h-[18rem] grid-cols-2 grid-rows-[1fr_1fr] gap-2 sm:gap-3">
       <GalleryTile
         image={leftTop}
         reduceMotion={reduceMotion}
@@ -181,7 +181,7 @@ function GalleryMosaic({
       </div>
 
       <div
-        className="hidden gap-4 lg:grid lg:h-[24.75rem] lg:grid-cols-4 lg:grid-rows-[1fr_1fr]"
+        className="hidden gap-2.5 lg:grid lg:h-[24.75rem] lg:grid-cols-4 lg:grid-rows-[1fr_1fr]"
       >
         <AnimatePresence mode="popLayout">
           {desktopPlacements.map(
@@ -293,7 +293,7 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
               />
 
               <div className="mt-4 flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
+                {/* <div>
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-gold">
                     {activeImage.journeyLabel}
                   </p>
@@ -303,7 +303,7 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
                   <p className="mt-1 text-sm text-mist/70">
                     {activeImage.location}
                   </p>
-                </div>
+                </div> */}
 
                 <div className="flex items-center gap-2">
                   <button
