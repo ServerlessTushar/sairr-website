@@ -72,8 +72,7 @@ export function CtaSection() {
                 variants={scaleIn}
                 className="mt-3 text-sm leading-snug text-[#6B7075] md:text-base"
               >
-                Tell us, even if you&apos;re not sure yet. We&apos;ll make it
-                happen for you
+                Not on our list yet? Tell us, and we&apos;ll make it happen for you.
               </motion.p>
 
               <motion.div

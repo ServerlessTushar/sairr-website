@@ -37,7 +37,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-2",
     seed: "moments-2",
-    src: "/homepage/moments-2.webp",
+    src: "/homepage/moments-2b.webp",
     alt: "Travellers sharing a meal in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",

@@ -2,7 +2,7 @@ import type { ExperienceHeroSectionData } from "@/components/puri/PuriHero";
 import { puriCopy } from "@/data/puri";
 import puriHero from "@/public/homepage/puri.webp";
 import moments1 from "@/public/homepage/moments-1.webp";
-import moments2 from "@/public/homepage/moments-2.webp";
+import moments2 from "@/public/homepage/moments-2b.webp";
 import moments3 from "@/public/homepage/moments-3.webp";
 import moments4 from "@/public/homepage/moments-4.webp";
 import moments5 from "@/public/homepage/moments-5.webp";
