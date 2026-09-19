@@ -106,7 +106,7 @@ export function HeroSection() {
             preload="auto"
             className="h-full w-full object-cover"
           >
-            <source src="/homepage/banner-gif.mp4" type="video/mp4" />
+            <source src="/homepage/banner-gif-2.mp4" type="video/mp4" />
           </video>
         </motion.div>
         <div className="absolute inset-0 bg-charcoal/30" />
