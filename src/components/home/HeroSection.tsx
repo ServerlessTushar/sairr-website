@@ -75,16 +75,53 @@ export function HeroSection() {
 
   useEffect(() => {
     const video = videoRef.current;
+    const section = sectionRef.current;
     if (!video) return;
+
+    const updateVideoFit = () => {
+      if (!section) return;
+
+      const width = section.clientWidth;
+      const height = section.clientHeight;
+      if (!width || !height) return;
+
+      const viewportAspect = width / height;
+      const videoAspect =
+        video.videoWidth > 0 && video.videoHeight > 0
+          ? video.videoWidth / video.videoHeight
+          : 16 / 9;
+
+      // Wider than the video frame → object-cover crops top & bottom; bias upward.
+      if (viewportAspect > videoAspect) {
+        video.style.objectPosition = "50% 28%";
+      } else {
+        video.style.objectPosition = "50% 50%";
+      }
+    };
+
+    video.addEventListener("loadedmetadata", updateVideoFit);
+    const resizeObserver = new ResizeObserver(updateVideoFit);
+    if (section) {
+      resizeObserver.observe(section);
+    }
+    updateVideoFit();
 
     if (reduceMotion) {
       video.pause();
-      return;
+      return () => {
+        video.removeEventListener("loadedmetadata", updateVideoFit);
+        resizeObserver.disconnect();
+      };
     }
 
     void video.play().catch(() => {
       // Autoplay may be blocked; poster/overlay still shows the hero.
     });
+
+    return () => {
+      video.removeEventListener("loadedmetadata", updateVideoFit);
+      resizeObserver.disconnect();
+    };
   }, [reduceMotion]);
 
   return (
@@ -94,7 +131,7 @@ export function HeroSection() {
     >
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <motion.div
-          className="h-full w-full origin-center"
+          className="absolute inset-0 flex items-center justify-center origin-[50%_40%]"
           style={{ scale: videoScale }}
         >
           <video
@@ -104,7 +141,7 @@ export function HeroSection() {
             loop
             playsInline
             preload="auto"
-            className="h-full w-full object-cover"
+            className="min-h-full min-w-full max-h-none max-w-none object-cover"
           >
             <source src="/homepage/banner-gif-2.mp4" type="video/mp4" />
           </video>
