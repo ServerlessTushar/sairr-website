@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
@@ -75,14 +75,42 @@ export function Header() {
       : locationHash;
 
   const isHome = pathname === "/";
+  const [heroInView, setHeroInView] = useState(isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      return;
+    }
+
+    const hero = document.getElementById("home-hero");
+    if (!hero) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeroInView(entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [isHome, pathname]);
+
+  const homeHeaderOverHero = isHome && heroInView;
 
   return (
     <header
       className={cn(
-        "top-0 z-50 w-full",
-        isHome
-          ? "fixed border-b border-charcoal/10 bg-white/55 backdrop-blur-md"
-          : "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
+        "top-0 z-50 w-full transition-[background-color,border-color,backdrop-filter] duration-300",
+        isHome && "fixed",
+        !isHome && "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
+        homeHeaderOverHero &&
+          "border-b border-transparent bg-transparent backdrop-blur-none",
+        isHome &&
+          !heroInView &&
+          "border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
@@ -110,9 +138,14 @@ export function Header() {
                 href={link.href}
                 onClick={() => setPendingHash(hashFromNavHref(link.href))}
                 className={cn(
-                  "relative inline-block text-sm font-medium text-[#1b1d1f] transition-colors md:text-lg",
-                  "hover:text-brand hover:font-bold",
-                  isActive && "font-bold text-brand",
+                  "relative inline-block text-sm font-medium transition-colors md:text-lg",
+                  homeHeaderOverHero
+                    ? "text-white/90 hover:text-white hover:font-bold"
+                    : "text-[#1b1d1f] hover:text-brand hover:font-bold",
+                  isActive &&
+                    (homeHeaderOverHero
+                      ? "font-bold text-white"
+                      : "font-bold text-brand"),
                 )}
               >
                 {link.label}
@@ -143,7 +176,15 @@ export function Header() {
           <SheetTrigger
             className="md:hidden"
             render={
-              <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Open menu"
+                className={cn(
+                  homeHeaderOverHero &&
+                    "text-white hover:bg-white/10 hover:text-white",
+                )}
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             }

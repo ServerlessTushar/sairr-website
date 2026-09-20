@@ -126,6 +126,7 @@ export function HeroSection() {
 
   return (
     <section
+      id="home-hero"
       ref={sectionRef}
       className="relative min-h-dvh overflow-hidden"
     >
