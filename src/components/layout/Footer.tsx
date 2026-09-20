@@ -7,7 +7,7 @@ const CORAL = "#EC575E";
 
 const exploreLinks = [
   { href: "/", label: "Home" },
-  { href: "/#experiences", label: "Destinations" },
+  { href: "/#destinations", label: "Destinations" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About Sairr" },
   { href: "/contact", label: "Contact Us" },

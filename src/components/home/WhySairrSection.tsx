@@ -18,7 +18,7 @@ import { imageHover } from "@/lib/motion";
 const ICON_BOX = "bg-[#c4a46e]";
 const CARD_SHADOW = "shadow-[0_2px_16px_rgba(27,29,31,0.08)]";
 const CARD_TITLE =
-  "font-sans text-base font-semibold leading-snug text-charcoal sm:text-lg md:text-[26.4px]";
+  "font-sans text-base font-semibold leading-snug text-charcoal sm:text-lg md:text-[24px]";
 const CARD_DESC =
   "mt-1.5 font-sans text-sm leading-relaxed text-[#5d5d5d] sm:mt-2 md:text-[17.6px]";
 
@@ -129,7 +129,7 @@ function IconBeliefCard({
 
 export function WhySairrSection() {
   return (
-    <section className="border-t border-charcoal/10 bg-mist">
+    <section id="whySairr" className="border-t border-charcoal/10 bg-mist">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">

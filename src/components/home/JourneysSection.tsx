@@ -80,7 +80,7 @@ export function JourneysSection() {
   }
 
   return (
-    <section id="experiences" className="relative scroll-mt-24 bg-mist">
+    <section id="destinations" className="relative scroll-mt-24 bg-mist">
       <div className="absolute inset-0" aria-hidden>
         <Image
           src={backgroundImgMobile}

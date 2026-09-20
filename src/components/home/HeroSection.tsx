@@ -126,6 +126,7 @@ export function HeroSection() {
 
   return (
     <section
+      id="home-hero"
       ref={sectionRef}
       className="relative min-h-dvh overflow-hidden"
     >
@@ -185,7 +186,7 @@ export function HeroSection() {
                 href="#experiences"
                 className="bg-[#FF4859] hover:bg-[#E63B4C] inline-flex h-10 md:h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-xs md:text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
-                Explore Experiences
+                Destinations
                 <ArrowRight className="size-4 shrink-0" />
               </Link>
             </motion.div>
@@ -195,12 +196,37 @@ export function HeroSection() {
                 href="/contact"
                 className="inline-flex h-10 md:h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-xs md:text-sm font-semibold text-charcoal transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[12rem]"
               >
-                Talk To Us
+                Get a Callback
               </Link>
             </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
+
+      <motion.a
+        href="#whySairr"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70 transition-colors hover:text-white"
+        initial={reduceMotion ? false : { opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
+        aria-label="Scroll to destinations"
+      >
+        <span className="text-[10px] font-medium uppercase tracking-[0.2em]">
+          Scroll
+        </span>
+        {reduceMotion ? (
+          <span className="block h-8 w-px bg-white/60" aria-hidden />
+        ) : (
+          <motion.span
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center"
+            aria-hidden
+          >
+            <span className="block h-8 w-px bg-gradient-to-b from-white/60 to-transparent" />
+          </motion.span>
+        )}
+      </motion.a>
     </section>
   );
 }
