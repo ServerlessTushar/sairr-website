@@ -16,8 +16,8 @@ Thoughtful travel website for [Sairr](https://sairr.in) — curated experiences 
 | Route | Description |
 |-------|-------------|
 | `/` | Home — hero, trust signals, experiences preview, testimonials, FAQ |
-| `/experiences` | All curated travel experiences |
-| `/experiences/[slug]` | Individual experience detail (sales page) |
+| `/destinations` | All curated travel experiences |
+| `/destinations/[slug]` | Individual experience detail (sales page) |
 | `/why-sairr` | Why Sairr, how it works, safety & family benefits |
 | `/about` | Founder-led about page |
 | `/contact` | WhatsApp / call / email + enquiry form |

@@ -31,7 +31,7 @@ const journeys: Journey[] = [
     status: "booking-open",
     destination: "Puri & Bhubaneswar",
     perks: ["VIP darshan", "Beach-facing stay", "Dedicated host"],
-    href: "/experiences/puri",
+    href: "/destinations/puri",
   },
   {
     slug: "rameshwaram",

@@ -9,7 +9,7 @@ export const metadata = createMetadata({
   title: "Curated Travel Experiences",
   description:
     "Explore thoughtfully designed travel experiences across India — built for comfort, culture, and connection.",
-  path: "/experiences",
+  path: "/destinations",
 });
 
 export default function ExperiencesPage() {

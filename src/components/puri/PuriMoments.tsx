@@ -5,10 +5,7 @@ import { FadeIn } from "@/components/shared/FadeIn";
 import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { CarouselSection } from "@/components/shared/CarouselSection";
-import {
-  puriMomentsSectionData,
-  type PuriMomentCard,
-} from "@/components/puri/puriMomentsData";
+import { type PuriMomentCard } from "@/components/puri/puriMomentsData";
 
 function MomentCard({ moment }: { moment: PuriMomentCard }) {
   return (
@@ -31,8 +28,13 @@ function MomentCard({ moment }: { moment: PuriMomentCard }) {
   );
 }
 
-export function PuriMoments() {
-  const { heading, cards } = puriMomentsSectionData;
+export function PuriMoments({
+  heading,
+  cards,
+}: {
+  heading: string;
+  cards: PuriMomentCard[];
+}) {
 
   return (
     <section className="border-t border-charcoal/10 bg-sand">

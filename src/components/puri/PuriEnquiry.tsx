@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
-import { puriDepartures } from "@/data/puri";
+import type { Departure } from "@/data/puri";
 import { getStoredUtmParams } from "@/lib/utm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +53,13 @@ type EnquiryContextValue = {
   openEnquiry: (options?: { departureId?: string; intent?: EnquiryIntent }) => void;
 };
 
+export type DestinationEnquiryConfig = {
+  destinationName: string;
+  departures: Departure[];
+  interestMessage: string;
+  notifyMessage: string;
+};
+
 const EnquiryContext = createContext<EnquiryContextValue | null>(null);
 
 export function usePuriEnquiry() {
@@ -69,9 +76,15 @@ const fieldClassName =
 const labelClassName =
   "text-xs font-medium uppercase tracking-[0.14em] text-charcoal";
 
-export function PuriEnquiryProvider({ children }: { children: React.ReactNode }) {
+export function PuriEnquiryProvider({
+  children,
+  config,
+}: {
+  children: React.ReactNode;
+  config: DestinationEnquiryConfig;
+}) {
   const [open, setOpen] = useState(false);
-  const [departureId, setDepartureId] = useState(puriDepartures[0]?.id ?? "");
+  const [departureId, setDepartureId] = useState(config.departures[0]?.id ?? "");
   const [intent, setIntent] = useState<EnquiryIntent>("interest");
 
   const openEnquiry = useCallback(
@@ -80,11 +93,13 @@ export function PuriEnquiryProvider({ children }: { children: React.ReactNode })
       setIntent(nextIntent);
       setDepartureId(
         options?.departureId ??
-          (nextIntent === "notify" ? "upcoming" : (puriDepartures[0]?.id ?? "")),
+          (nextIntent === "notify"
+            ? "upcoming"
+            : (config.departures[0]?.id ?? "")),
       );
       setOpen(true);
     },
-    [],
+    [config.departures],
   );
 
   useEffect(() => {
@@ -108,6 +123,7 @@ export function PuriEnquiryProvider({ children }: { children: React.ReactNode })
         onOpenChange={setOpen}
         departureId={departureId}
         intent={intent}
+        config={config}
       />
     </EnquiryContext.Provider>
   );
@@ -118,11 +134,13 @@ function EnquirySheet({
   onOpenChange,
   departureId,
   intent,
+  config,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   departureId: string;
   intent: EnquiryIntent;
+  config: DestinationEnquiryConfig;
 }) {
   const {
     register,
@@ -148,7 +166,7 @@ function EnquirySheet({
   }, [departureId, open, reset]);
 
   async function onSubmit(data: EnquiryFormData) {
-    const departure = puriDepartures.find((d) => d.id === data.preferredDate);
+    const departure = config.departures.find((d) => d.id === data.preferredDate);
     const dateLabel = departure?.dates ?? data.preferredDate;
 
     try {
@@ -159,11 +177,9 @@ function EnquirySheet({
           name: data.name,
           phone: data.phone,
           planningFor: `Party of ${data.partySize}`,
-          destination: `Puri — ${dateLabel}`,
+          destination: `${config.destinationName} — ${dateLabel}`,
           message:
-            intent === "notify"
-              ? "Notify me when the next Puri departure is announced."
-              : "Interested in the Puri journey.",
+            intent === "notify" ? config.notifyMessage : config.interestMessage,
           ...getStoredUtmParams(),
         }),
       });
@@ -269,7 +285,7 @@ function EnquirySheet({
               )}
               {...register("preferredDate")}
             >
-              {puriDepartures.map((departure) => (
+              {config.departures.map((departure) => (
                 <option key={departure.id} value={departure.id}>
                   {departure.dates}
                 </option>
