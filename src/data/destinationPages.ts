@@ -21,6 +21,7 @@ import {
   puriDepartures,
 } from "@/data/puri";
 import type { TravelDestination } from "@/lib/validations/contact";
+import { galleryImages, type GalleryImage } from "@/data/gallery";
 
 export type DestinationPageContent = {
   slug: string;
@@ -42,6 +43,11 @@ export type DestinationPageContent = {
   dates: PuriDatesProps;
   words: PuriWordsProps;
   faqs: PuriFaqsProps;
+  gallery: {
+    heading: string;
+    para: string;
+    images: GalleryImage[];
+  };
   cta: ExperienceCtaSectionData;
 };
 
@@ -67,6 +73,11 @@ const puriPage: DestinationPageContent = {
   dates: puriDatesSectionData,
   words: puriWordsSectionData,
   faqs: puriFaqsSectionData,
+  gallery: {
+    heading: "The moments that stay with you.",
+    para: "A glimpse into life on the Puri journey.",
+    images: galleryImages,
+  },
   cta: puriCtaSectionData,
 };
 

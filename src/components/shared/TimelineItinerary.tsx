@@ -37,6 +37,7 @@ export type TimelineItineraryProps = {
   carouselData: ItineraryDayItem[];
   id?: string;
   className?: string;
+  flush?: boolean;
 };
 
 function TimelineNode({
@@ -123,15 +124,21 @@ export function TimelineItinerary({
   carouselData,
   id,
   className,
+  flush = false,
 }: TimelineItineraryProps) {
   const defaultValue = carouselData[0] ? ["day-0"] : [];
 
   return (
     <section
       id={id}
-      className={cn("scroll-mt-24 border-t border-charcoal/10 bg-mist", className)}
+      className={cn("scroll-mt-24 border-t border-charcoal/10 bg-[#FDFBF2]", className)}
     >
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+      <div
+        className={cn(
+          "mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28",
+          flush && "max-w-none px-0",
+        )}
+      >
         <AnimatedSectionHeader
           heading={heading}
           description={description}

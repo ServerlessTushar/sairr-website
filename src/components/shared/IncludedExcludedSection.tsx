@@ -17,6 +17,7 @@ export type IncludedExcludedSectionProps = {
   included: IncludedExcludedItem[];
   excluded: IncludedExcludedItem[];
   className?: string;
+  flush?: boolean;
 };
 
 function ItemList({ items }: { items: IncludedExcludedItem[] }) {
@@ -53,7 +54,7 @@ function InclusionCard({
         <span
           className={cn(
             "flex size-6 shrink-0 items-center justify-center rounded-full text-white sm:size-7",
-            isIncluded ? "bg-emerald-500" : "bg-red-500",
+            isIncluded ? "bg-[#43AD05]" : "bg-[#C2050B]",
           )}
           aria-hidden
         >
@@ -81,10 +82,16 @@ export function IncludedExcludedSection({
   included,
   excluded,
   className,
+  flush = false,
 }: IncludedExcludedSectionProps) {
   return (
     <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+      <div
+        className={cn(
+          "mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28",
+          flush && "max-w-none px-0",
+        )}
+      >
         <AnimatedSectionHeader
           heading={heading}
           description={para}

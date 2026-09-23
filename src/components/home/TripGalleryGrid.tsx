@@ -4,10 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import {
-  galleryImages,
-  type GalleryImage,
-} from "@/data/gallery";
+import type { GalleryImage } from "@/data/gallery";
 import { cn } from "@/lib/utils";
 
 function gallerySrc(image: GalleryImage) {
@@ -15,6 +12,7 @@ function gallerySrc(image: GalleryImage) {
 }
 
 type TripGalleryGridProps = {
+  images: GalleryImage[];
   className?: string;
 };
 
@@ -203,7 +201,7 @@ function GalleryMosaic({
   );
 }
 
-export function TripGalleryGrid({ className }: TripGalleryGridProps) {
+export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
   const reduceMotion = useReducedMotion();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -212,16 +210,16 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
   const showPrev = useCallback(() => {
     setLightboxIndex((current) => {
       if (current === null) return null;
-      return current <= 0 ? galleryImages.length - 1 : current - 1;
+      return current <= 0 ? images.length - 1 : current - 1;
     });
-  }, []);
+  }, [images.length]);
 
   const showNext = useCallback(() => {
     setLightboxIndex((current) => {
       if (current === null) return null;
-      return current >= galleryImages.length - 1 ? 0 : current + 1;
+      return current >= images.length - 1 ? 0 : current + 1;
     });
-  }, []);
+  }, [images.length]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -242,14 +240,14 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
   }, [closeLightbox, lightboxIndex, showNext, showPrev]);
 
   const activeImage =
-    lightboxIndex !== null ? galleryImages[lightboxIndex] : null;
+    lightboxIndex !== null ? images[lightboxIndex] : null;
 
   return (
     <>
       <div className={className}>
         <motion.div layout={reduceMotion ? false : true}>
           <GalleryMosaic
-            images={galleryImages}
+            images={images}
             reduceMotion={reduceMotion}
             onImageClick={setLightboxIndex}
           />
@@ -315,7 +313,7 @@ export function TripGalleryGrid({ className }: TripGalleryGridProps) {
                     <ChevronLeft className="size-5" />
                   </button>
                   <span className="min-w-12 text-center text-sm text-mist/70">
-                    {lightboxIndex + 1} / {galleryImages.length}
+                    {lightboxIndex + 1} / {images.length}
                   </span>
                   <button
                     type="button"

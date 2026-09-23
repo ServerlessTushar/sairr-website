@@ -11,6 +11,7 @@ export type PuriIncludedProps = {
   included: IncludedExcludedItem[];
   excluded: IncludedExcludedItem[];
   className?: string;
+  flush?: boolean;
 };
 
 export function PuriIncluded({
@@ -19,6 +20,7 @@ export function PuriIncluded({
   included,
   excluded,
   className,
+  flush,
 }: PuriIncludedProps) {
   return (
     <IncludedExcludedSection
@@ -27,6 +29,7 @@ export function PuriIncluded({
       included={included}
       excluded={excluded}
       className={className}
+      flush={flush}
     />
   );
 }

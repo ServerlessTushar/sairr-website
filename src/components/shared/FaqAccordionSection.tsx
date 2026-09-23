@@ -21,6 +21,7 @@ export type FaqAccordionSectionProps = {
   para?: string;
   faqData: FaqItem[];
   className?: string;
+  id?: string;
 };
 
 export function FaqAccordionSection({
@@ -28,10 +29,14 @@ export function FaqAccordionSection({
   para,
   faqData,
   className,
+  id,
 }: FaqAccordionSectionProps) {
   return (
-    <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
-      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+    <section
+      id={id}
+      className={cn("scroll-mt-24 border-t border-charcoal/10 bg-mist", className)}
+    >
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
         <AnimatedSectionHeader
           heading={heading}
           description={para}

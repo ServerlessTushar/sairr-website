@@ -5,9 +5,20 @@ import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { TripGalleryGrid } from "@/components/home/TripGalleryGrid";
+import type { GalleryImage } from "@/data/gallery";
 import goldenBirdsIcon from "@/public/homepage/golden-birds.png";
 
-export function TripGallerySection() {
+export type TripGallerySectionProps = {
+  heading: string;
+  para: string;
+  images: GalleryImage[];
+};
+
+export function TripGallerySection({
+  heading,
+  para,
+  images,
+}: TripGallerySectionProps) {
   return (
     <section id="gallery" className=" bg-[#F5F4EF]">
       <div className="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8 lg:pt-0 pb-14 lg:pb-28">
@@ -32,7 +43,7 @@ export function TripGallerySection() {
 
             <TextReveal
               as="h2"
-              text="The moments that stay with you."
+              text={heading}
               className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-5xl"
             />
             <motion.p
@@ -42,12 +53,12 @@ export function TripGallerySection() {
               transition={{ delay: 0.35, duration: 0.6 }}
               className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
             >
-              A glimpse into life on a Sairr journey.
+              {para}
             </motion.p>
           </div>
         </FadeIn>
 
-        <TripGalleryGrid className="mt-8 lg:mt-14" />
+        <TripGalleryGrid images={images} className="mt-8 lg:mt-14" />
       </div>
     </section>
   );

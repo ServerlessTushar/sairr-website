@@ -7,6 +7,7 @@ import { createMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
 import { WhySairrSection } from "@/components/home/WhySairrSection";
 import { WorkBehindTheEaseSection } from "@/components/home/WorkBehindTheEaseSection";
+import { galleryImages } from "@/data/gallery";
 
 export const metadata = createMetadata({
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -23,7 +24,11 @@ export default function HomePage() {
       <JourneysSection />
       <WorkBehindTheEaseSection />
       <RealTravellersSection />
-      <TripGallerySection />
+      <TripGallerySection
+        heading="The moments that stay with you."
+        para="A glimpse into life on a Sairr journey."
+        images={galleryImages}
+      />
       <CtaSection />
     </>
   );

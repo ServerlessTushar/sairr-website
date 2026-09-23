@@ -11,16 +11,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const GAP_PX = 12;
+const DEFAULT_GAP_PX = 12;
 const DEFAULT_AUTOPLAY_INTERVAL_MS = 5000;
 
 function getGapsInView(visibleCount: number) {
   return visibleCount <= 1 ? 0 : Math.ceil(visibleCount) - 1;
 }
 
-function getSlideWidth(visibleCount: number) {
+function getSlideWidth(visibleCount: number, gapPx: number) {
   const gaps = getGapsInView(visibleCount);
-  return `calc((100% - ${gaps * GAP_PX}px) / ${visibleCount})`;
+  return `calc((100% - ${gaps * gapPx}px) / ${visibleCount})`;
 }
 
 type SlidesPerView = {
@@ -38,6 +38,7 @@ type CarouselSectionProps<T> = {
   className?: string;
   slideClassName?: string;
   ariaLabel?: string;
+  gap?: number;
   autoplay?: boolean;
   autoplayInterval?: number;
 };
@@ -79,6 +80,7 @@ export function CarouselSection<T>({
   className,
   slideClassName,
   ariaLabel = "Carousel",
+  gap = DEFAULT_GAP_PX,
   autoplay = true,
   autoplayInterval = DEFAULT_AUTOPLAY_INTERVAL_MS,
 }: CarouselSectionProps<T>) {
@@ -95,8 +97,8 @@ export function CarouselSection<T>({
     const el = scrollRef.current;
     if (!el?.firstElementChild) return 0;
     const child = el.firstElementChild as HTMLElement;
-    return child.offsetWidth + GAP_PX;
-  }, []);
+    return child.offsetWidth + gap;
+  }, [gap]);
 
   const scrollToIndex = useCallback(
     (target: number) => {
@@ -170,17 +172,18 @@ export function CarouselSection<T>({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-3 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        style={{ gap }}
       >
         {items.map((item, i) => (
           <div
             key={getKey(item, i)}
             className={cn(
-              "flex shrink-0 snap-start flex-col self-stretch px-1",
+              "flex shrink-0 snap-start flex-col self-stretch",
               slideClassName,
             )}
             style={{
-              width: getSlideWidth(visibleCount),
+              width: getSlideWidth(visibleCount, gap),
             }}
           >
             <div className="flex h-full min-h-0 flex-1 flex-col">

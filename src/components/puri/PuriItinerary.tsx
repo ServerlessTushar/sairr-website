@@ -12,6 +12,7 @@ export type PuriItineraryProps = {
   carouselData: ItineraryDayItem[];
   id?: string;
   className?: string;
+  flush?: boolean;
 };
 
 export function PuriItinerary({
@@ -20,6 +21,7 @@ export function PuriItinerary({
   carouselData,
   id = "four-days",
   className,
+  flush,
 }: PuriItineraryProps) {
   return (
     <TimelineItinerary
@@ -28,6 +30,7 @@ export function PuriItinerary({
       description={description}
       carouselData={carouselData}
       className={className}
+      flush={flush}
     />
   );
 }
