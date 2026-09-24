@@ -22,7 +22,7 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
     ? whatsappHref(
         `I'd like to be notified when ${experience.title} dates are announced.`,
       )
-    : `/experiences/${experience.slug}`;
+    : `/destinations/${experience.slug}`;
   const cta = cardCta(experience, comingSoon);
 
   return (

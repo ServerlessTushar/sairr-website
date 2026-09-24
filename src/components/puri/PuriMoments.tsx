@@ -5,38 +5,47 @@ import { FadeIn } from "@/components/shared/FadeIn";
 import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { CarouselSection } from "@/components/shared/CarouselSection";
-import {
-  puriMomentsSectionData,
-  type PuriMomentCard,
-} from "@/components/puri/puriMomentsData";
+import { cn } from "@/lib/utils";
+import { type PuriMomentCard } from "@/components/puri/puriMomentsData";
 
 function MomentCard({ moment }: { moment: PuriMomentCard }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_2px_12px_rgba(27,29,31,0.06)]">
-      <div className="relative aspect-4/3 w-full bg-charcoal/5">
+    <article className="flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:p-[36.505px]">
+      <div className="relative aspect-square w-full shrink-0 bg-charcoal/5">
         <Image
           src={moment.image}
           alt={moment.alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 87vw, (max-width: 1024px) 48vw, 32vw"
+          sizes="(max-width: 1024px) 80vw, 233px"
         />
       </div>
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-base leading-relaxed text-charcoal sm:text-[1.0625rem] sm:leading-[1.65]">
-          <span className="font-medium">{moment.title}</span> {moment.line}
-        </p>
-      </div>
+      <p className="mt-4 text-[16px] leading-relaxed text-[#5d5d5d] lg:mt-5">
+        <span className="font-bold text-charcoal">{moment.title}</span>{" "}
+        {moment.line}
+      </p>
     </article>
   );
 }
 
-export function PuriMoments() {
-  const { heading, cards } = puriMomentsSectionData;
+export function PuriMoments({
+  heading,
+  cards,
+  flush = false,
+}: {
+  heading: string;
+  cards: PuriMomentCard[];
+  flush?: boolean;
+}) {
 
   return (
-    <section className="border-t border-charcoal/10 bg-sand">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+    <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
+      <div
+        className={cn(
+          "mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20",
+          flush && "max-w-none px-0",
+        )}
+      >
         <FadeIn>
           <TextReveal
             as="h2"
@@ -45,9 +54,10 @@ export function PuriMoments() {
           />
         </FadeIn>
 
+        <div className="mt-8 bg-[#E9DFC8] py-6 pr-0 pl-4 sm:mt-10 sm:py-8 sm:pl-6 lg:pl-8">
         <CarouselSection
-          className="mt-8 sm:mt-10"
-          slideClassName="py-2 pr-2 md:pr-3"
+          slideClassName="py-2"
+          gap={12}
           items={cards}
           getKey={(item) => item.id}
           renderItem={(item, index) => (
@@ -57,14 +67,16 @@ export function PuriMoments() {
               stagger={0.12}
               hover={false}
               revealOnScroll={false}
+              className="h-full bg-transparent"
             >
               <MomentCard moment={item} />
             </CardRevealCarouselItem>
           )}
-          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
+          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 2.15 }}
           ariaLabel="Moments that make Puri"
           autoplay={false}
         />
+        </div>
       </div>
     </section>
   );

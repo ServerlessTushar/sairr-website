@@ -26,7 +26,7 @@ export function ExperiencePreview() {
               title="Curated experiences"
               description="Domestic journeys designed for comfort, culture, and connection."
             />
-            <ButtonLink href="/experiences" variant="outline" className="shrink-0">
+            <ButtonLink href="/destinations" variant="outline" className="shrink-0">
               View All
               <ArrowRight className="ml-2 h-4 w-4" />
             </ButtonLink>

@@ -5,7 +5,7 @@ import { legalLinks, siteConfig } from "@/data/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
-    "/experiences",
+    "/destinations",
     "/why-sairr",
     "/about",
     "/contact",
@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const experiencePages = experiences
     .filter((e) => e.hasDetailPage)
     .map((e) => ({
-    url: `${siteConfig.url}/experiences/${e.slug}`,
+    url: `${siteConfig.url}/destinations/${e.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
