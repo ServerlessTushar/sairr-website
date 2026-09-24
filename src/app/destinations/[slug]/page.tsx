@@ -10,6 +10,7 @@ import { PuriFaqs } from "@/components/puri/PuriFaqs";
 import { PuriCta } from "@/components/puri/PuriCta";
 import { PuriStickyBar } from "@/components/puri/PuriStickyBar";
 import { TripGallerySection } from "@/components/home/TripGallerySection";
+import { GroupTravelSection } from "@/components/shared/GroupTravelSection";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { createMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
@@ -100,6 +101,13 @@ export default async function DestinationPage({ params }: Props) {
                 flush
                 heading={destination.itineraryHeading}
                 carouselData={destination.itinerary}
+              />
+              <GroupTravelSection
+                heading="Traveling with your own group?"
+                description="We create private journeys for families and friends, tailored around your dates, interests and trip duration."
+                imageSrc="/destinations/your-own-group.webp"
+                imageAlt="Friends enjoying a trip together"
+                buttonLabel="Talk To Us"
               />
               <PuriWords flush {...destination.words} />
               <PuriIncluded flush {...destination.included} />
