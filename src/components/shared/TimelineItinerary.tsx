@@ -26,7 +26,10 @@ export type ItineraryDayItem = {
   location: string;
   desc: string;
   details: string[];
-  image: StaticImageData;
+  /** Large image shown when expanded. */
+  image: StaticImageData | string;
+  /** Compact preview shown while the day is collapsed. */
+  smallImage?: StaticImageData | string;
   imageAlt?: string;
   included: ItineraryIncludedItem[];
 };
@@ -67,7 +70,7 @@ function ItineraryImage({
   variant,
   className,
 }: {
-  image: StaticImageData;
+  image: StaticImageData | string;
   alt: string;
   variant: "collapsed" | "expanded";
   className?: string;
@@ -77,8 +80,8 @@ function ItineraryImage({
       className={cn(
         "relative shrink-0 overflow-hidden rounded-xl",
         variant === "collapsed"
-          ? "aspect-[397/282.6] w-3/4 sm:h-[106px] sm:w-[149px] sm:aspect-auto"
-          : "aspect-[397/282.6] w-full max-w-[298px] sm:h-[212px] sm:w-[298px]",
+          ? "aspect-[288/156.8] w-full max-w-[288px]"
+          : "aspect-[738.84/404.35] w-full max-w-[738.84px]",
         className,
       )}
     >
@@ -89,8 +92,8 @@ function ItineraryImage({
         className="object-cover"
         sizes={
           variant === "collapsed"
-            ? "(max-width: 640px) 75vw, 149px"
-            : "(max-width: 640px) 100vw, 298px"
+            ? "(max-width: 640px) min(calc(100vw - 5rem), 288px), 288px"
+            : "(max-width: 768px) calc(100vw - 5rem), 739px"
         }
       />
     </div>
@@ -135,7 +138,7 @@ export function TimelineItinerary({
     >
       <div
         className={cn(
-          "mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28",
+          "mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20",
           flush && "max-w-none px-0",
         )}
       >
@@ -148,7 +151,7 @@ export function TimelineItinerary({
         <FadeIn delay={0.1}>
           <Accordion
             defaultValue={defaultValue}
-            className="mt-12 sm:mt-16"
+            className="mt-10 sm:mt-12"
           >
           {carouselData.map((item, index) => {
             const value = `day-${index}`;
@@ -159,7 +162,7 @@ export function TimelineItinerary({
             return (
               <div
                 key={value}
-                className="flex gap-4 border-b border-charcoal/10 py-6 first:pt-0 last:border-b-0 sm:gap-5 sm:py-8"
+                className="flex gap-4 border-b border-gold/50 py-5 first:pt-0 last:border-b-0 sm:gap-6 sm:py-6"
               >
                 <TimelineNode isFirst={isFirst} isLast={isLast} />
 
@@ -168,7 +171,7 @@ export function TimelineItinerary({
                   className="min-w-0 flex-1 border-0 not-last:border-b-0"
                 >
                   <AccordionTrigger
-                    className="relative w-full flex-col items-stretch justify-start gap-4 p-0 hover:no-underline sm:flex-row sm:items-start **:data-[slot=accordion-trigger-icon]:hidden"
+                    className="relative w-full flex-col items-stretch justify-start gap-3 p-0 hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden"
                   >
                     <DayHeader
                       day={item.day}
@@ -176,26 +179,32 @@ export function TimelineItinerary({
                       desc={item.desc}
                     />
 
-                    <div className="flex w-full items-start gap-3 sm:w-auto sm:shrink-0 sm:gap-4">
+                    {item.included.length > 0 ? (
+                      <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-xs italic text-slate sm:text-sm">
+                        {item.included.map((included) => (
+                          <span
+                            key={`${included.title}-${included.details}`}
+                            className="flex items-center gap-1"
+                          >
+                            <span className="flex size-5 shrink-0 items-center justify-center text-gold">
+                              {included.icon}
+                            </span>
+                            {included.title} {included.details}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    <div className="w-full max-w-[288px]">
                       <ItineraryImage
-                        image={item.image}
+                        image={item.smallImage ?? item.image}
                         alt={imageAlt}
                         variant="collapsed"
                         className="group-aria-expanded/accordion-trigger:hidden"
                       />
-                      <span className="mt-1 hidden size-8 shrink-0 items-center justify-center text-charcoal/70 sm:flex">
-                        <ChevronDown
-                          className="size-4 group-aria-expanded/accordion-trigger:hidden"
-                          aria-hidden
-                        />
-                        <ChevronUp
-                          className="hidden size-4 group-aria-expanded/accordion-trigger:block"
-                          aria-hidden
-                        />
-                      </span>
                     </div>
 
-                    <span className="absolute top-0 right-0 flex size-8 items-center justify-center text-charcoal/70 sm:hidden">
+                    <span className="absolute top-0 right-0 flex size-8 items-center justify-center text-gold">
                       <ChevronDown
                         className="size-4 group-aria-expanded/accordion-trigger:hidden"
                         aria-hidden
@@ -208,13 +217,21 @@ export function TimelineItinerary({
                   </AccordionTrigger>
 
                   <AccordionContent className="px-0 pb-0">
-                    <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-                      <div className="min-w-0 flex-1">
-                        <ul className="space-y-3 text-base leading-relaxed text-charcoal">
+                    <div className="mt-4 max-w-[920px]">
+                      <ItineraryImage
+                        image={item.image}
+                        alt={imageAlt}
+                        variant="expanded"
+                        className="mb-4"
+                      />
+
+                      <div className="max-w-[830px]">
+                        <p className="mb-4 text-sm leading-relaxed text-slate sm:text-base">{item.desc}</p>
+                        <ul className="space-y-1 text-sm leading-relaxed text-slate sm:text-base">
                           {item.details.map((detail) => (
                             <li key={detail} className="flex gap-3">
                               <span
-                                className="mt-2.5 size-1.5 shrink-0 rounded-full bg-charcoal/35"
+                                className="mt-2.5 size-1.5 shrink-0 rounded-full bg-brand"
                                 aria-hidden
                               />
                               <span>{detail}</span>
@@ -222,33 +239,7 @@ export function TimelineItinerary({
                           ))}
                         </ul>
 
-                        {item.included.length > 0 ? (
-                          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
-                            {item.included.map((included) => (
-                              <div
-                                key={`${included.title}-${included.details}`}
-                                className="flex items-center gap-2.5 text-sm text-charcoal"
-                              >
-                                <span className="flex size-8 shrink-0 items-center justify-center text-brand">
-                                  {included.icon}
-                                </span>
-                                <span>
-                                  <span className="font-medium">
-                                    {included.title}:
-                                  </span>{" "}
-                                  {included.details}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        ) : null}
                       </div>
-
-                      <ItineraryImage
-                        image={item.image}
-                        alt={imageAlt}
-                        variant="expanded"
-                      />
                     </div>
                   </AccordionContent>
                 </AccordionItem>

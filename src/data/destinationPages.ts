@@ -67,7 +67,7 @@ const puriPage: DestinationPageContent = {
   },
   hero: puriHeroSectionData,
   moments: puriMomentsSectionData,
-  itineraryHeading: "Four Days",
+  itineraryHeading: "Itinerary",
   itinerary: puriItineraryData,
   included: puriIncludedSectionData,
   dates: puriDatesSectionData,
