@@ -73,7 +73,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
             className="max-w-3xl font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]"
           />
           <Image
-            src="/destinations/hero-section-birds.webp"
+            src="/destinations/gold-bird-pair.webp"
             alt=""
             width={88}
             height={36}

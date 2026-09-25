@@ -74,8 +74,8 @@ const puriPage: DestinationPageContent = {
   words: puriWordsSectionData,
   faqs: puriFaqsSectionData,
   gallery: {
-    heading: "The moments that stay with you.",
-    para: "A glimpse into life on the Puri journey.",
+    heading: "A Few Frames From The Journey",
+    para: "",
     images: galleryImages,
   },
   cta: puriCtaSectionData,

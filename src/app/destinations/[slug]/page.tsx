@@ -119,11 +119,13 @@ export default async function DestinationPage({ params }: Props) {
               </div>
             </aside>
           </div>
-
+          <div className="mt-20" />
           <TripGallerySection
             heading={destination.gallery.heading}
             para={destination.gallery.para}
             images={destination.gallery.images}
+            variant="destination"
+            showBird
           />
           <PuriFaqs id="faqs" {...destination.faqs} />
           <PuriCta className="!bg-[#0E5E6F]" sectionData={destination.cta} />
