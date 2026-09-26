@@ -41,32 +41,32 @@ export const puriHeroSectionData: ExperienceHeroSectionData = {
   ],
   highlights: [
     {
-      icon: "/destinations/gold-plane.svg",
+      icon: "/destinations/flight.svg",
       title: "Return flights",
       detail: "Origin ↔ Bhubaneswar",
     },
     {
-      icon: "/destinations/gold-hotel.svg",
+      icon: "/destinations/seaside-view.svg",
       title: "4-star & above stay",
       detail: "Sea-facing in Puri",
     },
     {
-      icon: "/destinations/gold-food.svg",
+      icon: "/destinations/food.svg",
       title: "All 3 meals",
       detail: "Breakfast · Lunch · Dinner",
     },
     {
-      icon: "/destinations/gold-temple.svg",
+      icon: "/destinations/temple.svg",
       title: "Pandit-led VIP darshan",
       detail: "Jagannath Temple",
     },
     {
-      icon: "/destinations/gold-car.svg",
+      icon: "/destinations/car.svg",
       title: "Door-to-door AC transfers",
       detail: "Home ↔ Airport ↔ Every stop",
     },
     {
-      icon: "/destinations/gold-user-check.svg",
+      icon: "/destinations/profile.svg",
       title: "Dedicated Sairr host",
       detail: "Taking care of the details, throughout the journey",
     },

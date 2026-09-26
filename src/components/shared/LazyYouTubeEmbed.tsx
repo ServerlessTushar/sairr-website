@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 type LazyYouTubeEmbedProps = {
   videoUrl: string;
   title: string;
+  thumbnail?: string;
   className?: string;
 };
 
@@ -34,10 +35,45 @@ function VideoPlaceholder({ title }: { title: string }) {
 export function LazyYouTubeEmbed({
   videoUrl,
   title,
+  thumbnail,
   className,
 }: LazyYouTubeEmbedProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = getYouTubeVideoId(videoUrl);
+
+  // If no video ID but custom thumbnail is provided, show thumbnail with play button
+  if (!videoId && thumbnail) {
+    return (
+      <div
+        className={cn(
+          "group relative aspect-video w-full overflow-hidden rounded-2xl bg-charcoal/15",
+          className,
+        )}
+        role="img"
+        aria-label={title}
+      >
+        <img
+          src={thumbnail}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <span
+          className="absolute inset-0 bg-charcoal/20 transition-colors group-hover:bg-charcoal/30"
+          aria-hidden
+        />
+        <span
+          className="absolute inset-0 flex items-center justify-center"
+          aria-hidden
+        >
+          <span className="flex size-16 items-center justify-center rounded-full bg-white/90 text-charcoal shadow-md transition-transform duration-300 group-hover:scale-105 sm:size-20">
+            <Play className="ml-1 size-7 fill-current sm:size-8" />
+          </span>
+        </span>
+      </div>
+    );
+  }
 
   if (!videoId) {
     return <VideoPlaceholder title={title} />;
@@ -55,7 +91,7 @@ export function LazyYouTubeEmbed({
         aria-label={`Play video: ${title}`}
       >
         <img
-          src={getYouTubeThumbnailUrl(videoId)}
+          src={thumbnail || getYouTubeThumbnailUrl(videoId)}
           alt=""
           loading="lazy"
           decoding="async"

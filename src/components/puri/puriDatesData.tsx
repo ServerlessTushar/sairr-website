@@ -8,10 +8,20 @@ import {
 import puriDateBgImg from "@/public/experience/puriDatedBg.webp";
 
 function parseDepartureDates(dates: string) {
-  const match = dates.match(/^(.+)\s+(\d{4})$/);
+  // Handle format like "8-11 Oct' 26"
+  const match = dates.match(/^(.+?)\s+([A-Za-z]+)'\s+(\d{2})$/);
+  if (match) {
+    return {
+      dateRange: match[1],
+      year: `20${match[3]}`,
+    };
+  }
+  
+  // Fallback to original format like "8-11 October 2026"
+  const oldMatch = dates.match(/^(.+)\s+(\d{4})$/);
   return {
-    dateRange: match?.[1] ?? dates,
-    year: match?.[2] ?? "",
+    dateRange: oldMatch?.[1] ?? dates,
+    year: oldMatch?.[2] ?? "",
   };
 }
 
@@ -25,9 +35,8 @@ const liveCards = getLiveDepartures().map((departure) => {
     duration: departure.duration,
     travellers: departure.seatsAvailable,
     price: departure.price != null ? formatInr(departure.price) : undefined,
-    note: departure.note
-      ? departure.note.charAt(0).toUpperCase() + departure.note.slice(1)
-      : undefined,
+    note: departure.note,
+    selected: departure.id === "nov-2026-1",
   };
 });
 

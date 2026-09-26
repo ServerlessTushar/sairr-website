@@ -14,8 +14,8 @@ const exploreLinks = [
 ] as const;
 
 const bottomLegalLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms and Conditions" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-and-conditions", label: "Terms and Conditions" },
 ] as const;
 
 function WhatsAppIcon({ className }: { className?: string }) {

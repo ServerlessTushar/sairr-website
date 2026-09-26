@@ -35,7 +35,7 @@ export const exploreLinks = [
 ] as const;
 
 export const legalLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms and Conditions" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-and-conditions", label: "Terms and Conditions" },
   { href: "/cancellation", label: "Cancellation and Refund Policy" },
 ] as const;

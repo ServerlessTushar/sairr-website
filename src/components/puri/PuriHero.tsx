@@ -157,7 +157,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
 export function PuriHeroDetails({ sectionData }: PuriHeroProps) {
   return (
     <div className="pt-6 pb-2 lg:pt-8">
-      <p className="max-w-3xl text-sm leading-relaxed text-charcoal sm:text-base">
+      <p className="max-w-3xl text-xs leading-relaxed text-charcoal sm:text-sm">
         {sectionData.body}
       </p>
       <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-5 rounded-2xl bg-white px-4 py-5 shadow-[0_2px_16px_rgba(27,29,31,0.06)] sm:grid-cols-2 sm:px-6 sm:py-6 lg:grid-cols-3">

@@ -22,13 +22,13 @@ export type IncludedExcludedSectionProps = {
 
 function IncludedList({ items }: { items: IncludedExcludedItem[] }) {
   return (
-    <ul className="grid gap-x-10 gap-y-6 md:grid-cols-2 lg:gap-x-16">
+    <ul className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-12">
       {items.map((item) => (
         <li key={item.text} className="flex items-start gap-5">
-          <span className="flex size-8 shrink-0 items-center justify-center text-charcoal md:size-10">
+          <span className="flex size-6 shrink-0 items-center justify-center text-charcoal md:size-8">
             {item.icon}
           </span>
-          <span className="text-base leading-relaxed text-charcoal sm:text-lg">
+          <span className="text-sm leading-relaxed text-charcoal sm:text-base">
             {item.text}
           </span>
         </li>
@@ -68,10 +68,10 @@ export function IncludedExcludedSection({
           <div className={cn(hasHeader && "mt-10 sm:mt-12")}>
             <section aria-labelledby="included-heading">
               <div className="flex items-center gap-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#43AD05] text-white sm:size-10" aria-hidden>
-                  <Check className="size-5 stroke-[3]" />
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#43AD05] text-white" aria-hidden>
+                  <Check className="size-4.5 stroke-[3]" />
                 </span>
-                <h3 id="included-heading" className="font-sans text-2xl font-semibold text-brand sm:text-3xl">
+                <h3 id="included-heading" className="font-sans text-[20px] font-semibold text-brand sm:text-[26px]">
                   What&apos;s Included
                 </h3>
               </div>
@@ -84,14 +84,14 @@ export function IncludedExcludedSection({
 
             <section aria-labelledby="excluded-heading">
               <div className="flex items-center gap-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C2050B] text-white sm:size-10" aria-hidden>
-                  <X className="size-5 stroke-[3]" />
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#C2050B] text-white" aria-hidden>
+                  <X className="size-4.5 stroke-[3]" />
                 </span>
-                <h3 id="excluded-heading" className="font-sans text-2xl font-semibold text-brand sm:text-3xl">
+                <h3 id="excluded-heading" className="font-sans text-[20px] font-semibold text-brand sm:text-[26px]">
                   What&apos;s not included
                 </h3>
               </div>
-              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 text-base leading-relaxed text-charcoal marker:text-charcoal sm:mt-8 sm:grid-cols-2 sm:text-lg lg:gap-x-16">
+              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 text-sm leading-relaxed text-charcoal marker:text-charcoal sm:mt-8 sm:grid-cols-2 sm:text-base lg:gap-x-16">
                 {excluded.map((item) => (
                   <li key={item.text} className="pl-1">{item.text}</li>
                 ))}

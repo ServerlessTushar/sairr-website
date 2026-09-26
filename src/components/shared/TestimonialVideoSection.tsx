@@ -10,6 +10,7 @@ export type TestimonialVideoSectionProps = {
   para: string;
   videoUrl?: string;
   videoTitle?: string;
+  thumbnail?: string;
   className?: string;
   flush?: boolean;
 };
@@ -19,13 +20,14 @@ export function TestimonialVideoSection({
   para,
   videoUrl = "",
   videoTitle,
+  thumbnail,
   className,
   flush = false,
 }: TestimonialVideoSectionProps) {
   const resolvedTitle = videoTitle ?? heading;
 
   return (
-    <section className={cn("border-t border-charcoal/10 bg-mist", className)}>
+    <section className={cn("border-t border-charcoal/10", className)}>
       <div
         className={cn(
           "mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-28",
@@ -43,6 +45,7 @@ export function TestimonialVideoSection({
           <LazyYouTubeEmbed
             videoUrl={videoUrl}
             title={resolvedTitle}
+            thumbnail={thumbnail}
           />
         </FadeIn>
       </div>
