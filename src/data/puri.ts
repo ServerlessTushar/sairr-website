@@ -314,7 +314,7 @@ export const puriFaqs: Faq[] = [
   {
     question: "What's included in the trip?",
     answer:
-      "Return flights from your origin city, 4-star & above stays in Bhubaneswar and Puri, sea-facing accommodation in Puri, VIP darshan with a Pandit at the Jagannath Temple, all meals at hotels or carefully curated restaurants, and door-to-door transfers in private AC vehicles. Not included: personal shopping, temple offerings, room service, liquor and the mini-bar.",
+      `Return flights from your origin city, 4-star & above stays in Bhubaneswar and Puri, sea-facing accommodation in Puri, VIP darshan with a Pandit at the Jagannath Temple, all meals at hotels or carefully curated restaurants, and door-to-door transfers in private AC vehicles. Not included: personal shopping, temple offerings, room service, liquor and the mini-bar.`,
   },
   {
     question: "What's the pace of the trip like?",
