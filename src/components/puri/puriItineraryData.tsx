@@ -3,29 +3,28 @@ import type { ItineraryDayItem } from "@/components/puri/PuriItinerary";
 import { puriDays } from "@/data/puri";
 
 const serviceIcons = {
-  car: "/destinations/gold-car.svg",
-  flight: "/destinations/gold-plane.svg",
-  host: "/destinations/gold-user-check.svg",
-  transfers: "/destinations/gold-handshake.svg",
-  tickets: "/destinations/gold-tickets.svg",
-  temple: "/destinations/gold-temple.svg",
-  meals: "/destinations/gold-food.svg",
+  car: "/destinations/car.svg",
+  flight: "/destinations/flight.svg",
+  host: "/destinations/profile.svg",
+  transfers: "/destinations/car.svg",
+  tickets: "/destinations/tickets.svg",
+  temple: "/destinations/temple.svg",
+  meals: "/destinations/food.svg",
 } as const;
 
 const dayServices = [
   [
-    [serviceIcons.car, "Home pickup", ""],
+    [serviceIcons.car, "Home pickup & Transfers", ""],
     [serviceIcons.flight, "Flight", ""],
     [serviceIcons.host, "Dedicated host", ""],
-    [serviceIcons.transfers, "Transfers", ""],
     [serviceIcons.tickets, "Guide & entry tickets", ""],
-    [serviceIcons.meals, "", "Lunch · Dinner"],
+    [serviceIcons.meals, "", " Lunch and Dinner"],
   ],
   [
     [serviceIcons.host, "Dedicated host", ""],
     [serviceIcons.transfers, "Transfers", ""],
     [serviceIcons.temple, "VIP Darshan", ""],
-    [serviceIcons.meals, "", "Lunch · Dinner"],
+    [serviceIcons.meals, "", "Lunch and Dinner"],
   ],
   [
     [serviceIcons.host, "Dedicated host", ""],
@@ -35,7 +34,6 @@ const dayServices = [
   ],
   [
     [serviceIcons.host, "Dedicated host", ""],
-    [serviceIcons.transfers, "Transfers", ""],
     [serviceIcons.flight, "Flight", ""],
     [serviceIcons.meals, "", "Breakfast"],
     [serviceIcons.car, "Home drop-off", ""],

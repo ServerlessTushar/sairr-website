@@ -10,6 +10,7 @@ export type TestimonialVideoSectionProps = {
   para: string;
   videoUrl?: string;
   videoTitle?: string;
+  thumbnail?: string;
   className?: string;
   flush?: boolean;
 };
@@ -19,6 +20,7 @@ export function TestimonialVideoSection({
   para,
   videoUrl = "",
   videoTitle,
+  thumbnail,
   className,
   flush = false,
 }: TestimonialVideoSectionProps) {
@@ -43,6 +45,7 @@ export function TestimonialVideoSection({
           <LazyYouTubeEmbed
             videoUrl={videoUrl}
             title={resolvedTitle}
+            thumbnail={thumbnail}
           />
         </FadeIn>
       </div>

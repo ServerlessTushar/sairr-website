@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { usePuriEnquiry } from "@/components/puri/PuriEnquiry";
 import type { DateCardData } from "@/components/shared/ExperienceDatesSection";
@@ -31,7 +30,7 @@ function splitDate(dateRange: string, year: string) {
   }
 
   const month = MONTHS[match[2]] ?? match[2].slice(0, 3);
-  return { days: match[1], when: `${month}, ${shortYear}` };
+  return { days: match[1], when: `${month}' ${shortYear}` };
 }
 
 export type DestinationBookingRailProps = {
@@ -55,7 +54,6 @@ export function DestinationBookingRail({
 }: DestinationBookingRailProps) {
   const { openEnquiry } = usePuriEnquiry();
   const { openContactForm } = useContactFormDialog();
-  const [notesOpen, setNotesOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
@@ -63,52 +61,63 @@ export function DestinationBookingRail({
         <h2 className="font-heading text-xl font-semibold text-[#0E5E6F]">
           {title}
         </h2>
-        <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-slate">
-          <span>{duration}</span>
-          {groupSize ? <span>Group Size: {groupSize}</span> : null}
+        <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate">
+          <span className="flex items-center gap-1.5">
+            <Image
+              src="/destinations/gold-sun.svg"
+              alt=""
+              width={16}
+              height={16}
+              className="size-4"
+            />
+            {duration}
+          </span>
+          {groupSize ? (
+            <span className="flex items-center gap-1.5">
+              <Image
+                src="/destinations/gold-hero-people.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="size-4"
+              />
+              Group Size: {groupSize}
+            </span>
+          ) : null}
         </p>
 
         <div className="mt-5 flex items-end justify-between gap-3">
           <p className="text-sm text-slate">
             Starting from
-            <span className="mt-1 block font-heading text-3xl font-semibold text-[#0E5E6F]">
+            <span className="mt-1 block font-heading text-[20.3px] font-semibold text-[#0E5E6F]">
               {priceLabel}
-              <span className="text-base font-normal">/person</span>
+              <span className="text-[10px] font-normal">/person</span>
             </span>
           </p>
+          <button
+            type="button"
+            onClick={() => openEnquiry()}
+            className="inline-flex h-11 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+          >
+            I&apos;m Interested
+          </button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => openEnquiry()}
-          className="mt-4 inline-flex h-11 w-full cursor-pointer items-center justify-center rounded-lg bg-[#FF4859] text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
-        >
-          I&apos;m Interested
-        </button>
+        <div className={`mt-4 text-[8px] text-slate flex flex-row gap-8`}>
+          <div>• Based on Delhi/NCR as origin</div>
+          <div>• Reserve your spot @ ₹0</div>
+        </div>
 
         {pricingNotes.length > 0 ? (
           <div className="mt-4 border-t border-charcoal/10 pt-3">
-            <button
-              type="button"
-              onClick={() => setNotesOpen((open) => !open)}
-              className="flex w-full items-center justify-between text-left text-sm font-medium text-charcoal"
-              aria-expanded={notesOpen}
-            >
-              Pricing notes
-              <ChevronDown
-                className={cn(
-                  "size-4 transition-transform",
-                  notesOpen && "rotate-180",
-                )}
-              />
-            </button>
-            {notesOpen ? (
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-xs leading-relaxed text-slate">
-                {pricingNotes.map((note) => (
-                  <li key={note}>{note}</li>
-                ))}
-              </ul>
-            ) : null}
+            <p className="text-sm font-medium text-charcoal">
+              Check Pricing notes
+            </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-xs leading-relaxed text-slate">
+              {pricingNotes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
           </div>
         ) : null}
       </article>
@@ -116,8 +125,7 @@ export function DestinationBookingRail({
       {cards.length > 0 ? (
         <div>
           <p className="font-heading text-lg font-semibold text-[#0E5E6F]">
-            Dates: <span className="font-medium">Live</span>
-            <span className="font-normal text-slate"> · Open for booking</span>
+            Choose your dates
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-3">
             {cards.map((card) => {
@@ -126,23 +134,27 @@ export function DestinationBookingRail({
               return (
                 <li
                   key={card.id}
-                  className="rounded-xl border border-charcoal/10 bg-white px-3 py-3"
+                  className={cn(
+                    "rounded-[8px] bg-white px-3 py-3 border-[0.5px] border-solid border-[#C8A867]"
+                  )}
                 >
-                  <p className="font-heading text-lg font-semibold leading-none text-charcoal">
-                    {days}
-                  </p>
-                  <p className="mt-1 text-xs text-slate">{when}</p>
-                  {card.note ? (
-                    <p className="mt-2 inline-flex rounded-full bg-[#F3E7C3] px-2 py-0.5 text-[10px] font-semibold tracking-wide text-charcoal uppercase">
-                      {card.note}
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="font-heading text-lg font-semibold leading-none text-charcoal">
+                      {days}
                     </p>
-                  ) : null}
+                    {card.note ? (
+                      <p className={`inline-flex shrink-0 rounded-full ${card.note === 'BEST WEATHER' ? 'bg-[#E1F6F8]' : 'bg-[#F3E7C3]'} px-2 py-0.5 text-[10px] font-semibold tracking-wide text-charcoal uppercase`}>
+                        {card.note}
+                      </p>
+                    ) : null}
+                  </div>
+                  <p className="mt-1 text-xs text-slate">{when}</p>
                   <button
                     type="button"
                     onClick={() =>
                       openEnquiry({ departureId: card.id, intent: "interest" })
                     }
-                    className="mt-3 text-sm font-semibold text-[#FF4859]"
+                    className="mt-3 text-sm font-semibold text-[#EC575E]"
                   >
                     I&apos;m Interested →
                   </button>
@@ -160,7 +172,7 @@ export function DestinationBookingRail({
         <button
           type="button"
           onClick={() => openContactForm(notifyDestination)}
-          className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-[#FF4859] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
+          className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
         >
           Talk To Us
         </button>
@@ -168,8 +180,15 @@ export function DestinationBookingRail({
 
       <a
         href="#faqs"
-        className="font-heading text-lg font-semibold text-charcoal"
+        className="flex items-center gap-2 font-heading text-lg font-semibold text-charcoal"
       >
+        <Image
+          src="/destinations/faq-icon.svg"
+          alt=""
+          width={20}
+          height={20}
+          className="size-5"
+        />
         FAQs - frequently asked questions
       </a>
     </div>

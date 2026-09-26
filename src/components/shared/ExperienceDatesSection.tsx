@@ -19,6 +19,7 @@ export type DateCardData = {
   price?: string;
   note?: string;
   ctaLabel?: string;
+  selected?: boolean;
 };
 
 export type ExperienceDatesSectionProps = {
