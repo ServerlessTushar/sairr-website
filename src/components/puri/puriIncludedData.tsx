@@ -1,12 +1,13 @@
 import Image from "next/image";
 import type { IncludedExcludedItem } from "@/components/puri/PuriIncluded";
 import { puriIncluded, puriNotIncluded } from "@/data/puri";
-import included1 from "@/public/destinations/gold-plane.svg";
-import included2 from "@/public/destinations/gold-hotel.svg";
-import included3 from "@/public/destinations/gold-food.svg";
-import included4 from "@/public/destinations/gold-temple.svg";
-import included5 from "@/public/destinations/gold-car.svg";
-import included6 from "@/public/destinations/gold-user-check.svg";
+import included1 from "@/public/destinations/flight.svg";
+import included2 from "@/public/destinations/seaside-view.svg";
+import included3 from "@/public/destinations/food.svg";
+import included4 from "@/public/destinations/car.svg";
+import included5 from "@/public/destinations/tickets.svg";
+import included6 from "@/public/destinations/temple.svg";
+import included7 from "@/public/destinations/profile.svg";
 
 const includedImages = [
   included1,
@@ -15,6 +16,7 @@ const includedImages = [
   included4,
   included5,
   included6,
+  included7
 ];
 
 function itemIcon(src: (typeof includedImages)[number]) {

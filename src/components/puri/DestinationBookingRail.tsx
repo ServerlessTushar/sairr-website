@@ -57,7 +57,7 @@ export function DestinationBookingRail({
 
   return (
     <div className="flex flex-col gap-6">
-      <article className="rounded-2xl border border-charcoal/10 bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)]">
+      <article className="rounded-2xl border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)]">
         <h2 className="font-heading text-xl font-semibold text-[#0E5E6F]">
           {title}
         </h2>
@@ -113,7 +113,7 @@ export function DestinationBookingRail({
             <p className="text-sm font-medium text-charcoal">
               Check Pricing notes
             </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-xs leading-relaxed text-slate">
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-[10px] leading-relaxed text-slate">
               {pricingNotes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
@@ -143,7 +143,7 @@ export function DestinationBookingRail({
                       {days}
                     </p>
                     {card.note ? (
-                      <p className={`inline-flex shrink-0 rounded-full ${card.note === 'BEST WEATHER' ? 'bg-[#E1F6F8]' : 'bg-[#F3E7C3]'} px-2 py-0.5 text-[10px] font-semibold tracking-wide text-charcoal uppercase`}>
+                      <p className={`inline-flex shrink-0 rounded-full ${card.note === 'BEST WEATHER' ? 'bg-[#E1F6F8]' : 'bg-[#F3E7C3]'} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}>
                         {card.note}
                       </p>
                     ) : null}
@@ -166,16 +166,16 @@ export function DestinationBookingRail({
       ) : null}
 
       <div className="border-b border-[#E7B2B2] pb-5">
-        <p className="font-heading text-lg font-semibold text-[#0E5E6F]">
-          Prefer a different date?
-        </p>
-        <button
-          type="button"
-          onClick={() => openContactForm(notifyDestination)}
-          className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
-        >
-          Talk To Us
-        </button>
+        <div className="font-heading text-lg font-semibold text-[#0E5E6F]">
+          <span className="mr-4">Prefer a different date?</span>
+          <button
+            type="button"
+            onClick={() => openContactForm(notifyDestination)}
+            className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+          >
+            Talk To Us
+          </button>
+        </div>
       </div>
 
       <a

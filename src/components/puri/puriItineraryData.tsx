@@ -57,8 +57,13 @@ export const puriItineraryData: ItineraryDayItem[] = puriDays.map(
   (day, index) => ({
     day: day.day,
     location: day.place,
-    desc: day.subtitle,
-    details: [...day.activities],
+    desc: day.desc || day.subtitle,
+    para1: day.para1,
+    para2: day.para2,
+    summary: day.summary,
+    activities1: day.activities1,
+    activities2: day.activities2,
+    details: day.activities,
     image: `/experience/itinerary-${index + 1}-big.webp`,
     smallImage: `/experience/itinerary-${index + 1}-small.webp`,
     included: dayServices[index].map(([icon, title, details]) => ({

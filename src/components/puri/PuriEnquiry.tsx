@@ -71,7 +71,7 @@ export function usePuriEnquiry() {
 }
 
 const fieldClassName =
-  "h-12 rounded-xl border-border/60 bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
+  "h-12 rounded-xl border-[#0E5E6F] bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
 
 const labelClassName =
   "text-xs font-medium uppercase tracking-[0.14em] text-charcoal";
@@ -93,9 +93,9 @@ export function PuriEnquiryProvider({
       setIntent(nextIntent);
       setDepartureId(
         options?.departureId ??
-          (nextIntent === "notify"
-            ? "upcoming"
-            : (config.departures[0]?.id ?? "")),
+        (nextIntent === "notify"
+          ? "upcoming"
+          : (config.departures[0]?.id ?? "")),
       );
       setOpen(true);
     },
@@ -275,22 +275,24 @@ function EnquirySheet({
             <Label htmlFor="puri-date" className={labelClassName}>
               Preferred date
             </Label>
-            <select
-              id="puri-date"
-              aria-invalid={!!errors.preferredDate}
-              className={cn(
-                fieldClassName,
-                "w-full appearance-none",
-                errors.preferredDate && "border-destructive",
-              )}
-              {...register("preferredDate")}
-            >
-              {config.departures.map((departure) => (
-                <option key={departure.id} value={departure.id}>
-                  {departure.dates}
-                </option>
-              ))}
-            </select>
+            <div className="border border-[#0E5E6F] rounded-xl">
+              <select
+                id="puri-date"
+                aria-invalid={!!errors.preferredDate}
+                className={cn(
+                  fieldClassName,
+                  "w-full appearance-none",
+                  errors.preferredDate && "border-destructive",
+                )}
+                {...register("preferredDate")}
+              >
+                {config.departures.map((departure) => (
+                  <option key={departure.id} value={departure.id}>
+                    {departure.dates}
+                  </option>
+                ))}
+              </select>
+            </div>
             {errors.preferredDate && (
               <p className="text-sm text-destructive">
                 {errors.preferredDate.message}
@@ -325,7 +327,7 @@ function EnquirySheet({
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="mt-2 h-12 rounded-full bg-brand px-8 text-sm font-semibold text-white hover:bg-forest"
+            className="mt-2 h-12 rounded-[4px] bg-brand px-8 text-sm font-semibold text-white hover:bg-forest"
           >
             {isSubmitting ? (
               <>

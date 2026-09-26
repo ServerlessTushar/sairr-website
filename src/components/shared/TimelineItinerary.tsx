@@ -13,7 +13,7 @@ import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader
 import { FadeIn } from "@/components/shared/FadeIn";
 import { cn } from "@/lib/utils";
 
-const DAY_LABEL_COLOR = "#EC575E";
+const DAY_LABEL_COLOR = "#E44928";
 
 export type ItineraryIncludedItem = {
   icon: ReactNode;
@@ -25,7 +25,12 @@ export type ItineraryDayItem = {
   day: number | string;
   location: string;
   desc: string;
-  details: string[];
+  para1?: string;
+  para2?: string;
+  summary?: string;
+  activities1?: { loc: string; desc: string }[];
+  activities2?: { loc: string; desc: string }[];
+  details?: string[];
   /** Large image shown when expanded. */
   image: StaticImageData | string;
   /** Compact preview shown while the day is collapsed. */
@@ -113,10 +118,10 @@ function DayHeader({
       >
         Day {day}
       </p>
-      <h3 className="mt-1 font-heading text-2xl font-semibold text-brand sm:text-3xl">
-        {location}
+      <h3 className="mt-1 font-heading text-xl sm:text-2xl" style={{ color: "#0E5E6F" }}>
+        <span className="font-semibold">{location}: </span>
+        <span className="font-normal">{desc}</span>
       </h3>
-      <p className="mt-1 text-base italic text-slate">{desc}</p>
     </div>
   );
 }
@@ -153,99 +158,151 @@ export function TimelineItinerary({
             defaultValue={defaultValue}
             className="mt-10 sm:mt-12"
           >
-          {carouselData.map((item, index) => {
-            const value = `day-${index}`;
-            const imageAlt = item.imageAlt ?? item.location;
-            const isFirst = index === 0;
-            const isLast = index === carouselData.length - 1;
+            {carouselData.map((item, index) => {
+              const value = `day-${index}`;
+              const imageAlt = item.imageAlt ?? item.location;
+              const isFirst = index === 0;
+              const isLast = index === carouselData.length - 1;
 
-            return (
-              <div
-                key={value}
-                className="flex gap-4 border-b border-gold/50 py-5 first:pt-0 last:border-b-0 sm:gap-6 sm:py-6"
-              >
-                <TimelineNode isFirst={isFirst} isLast={isLast} />
-
-                <AccordionItem
-                  value={value}
-                  className="min-w-0 flex-1 border-0 not-last:border-b-0"
+              return (
+                <div
+                  key={value}
+                  className="flex gap-4 border-b border-gold/50 py-5 first:pt-0 last:border-b-0 sm:gap-6 sm:py-6"
                 >
-                  <AccordionTrigger
-                    className="relative w-full flex-col items-stretch justify-start gap-3 p-0 hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden"
+                  <TimelineNode isFirst={isFirst} isLast={isLast} />
+
+                  <AccordionItem
+                    value={value}
+                    className="min-w-0 flex-1 border-0 not-last:border-b-0"
                   >
-                    <DayHeader
-                      day={item.day}
-                      location={item.location}
-                      desc={item.desc}
-                    />
+                    <AccordionTrigger
+                      className="relative w-full flex-col items-stretch justify-start gap-3 p-0 hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden"
+                    >
+                      <DayHeader
+                        day={item.day}
+                        location={item.location}
+                        desc={item.desc}
+                      />
 
-                    {item.included.length > 0 ? (
-                      <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-xs italic text-slate sm:text-sm">
-                        {item.included.map((included) => (
-                          <span
-                            key={`${included.title}-${included.details}`}
-                            className="flex items-center gap-1"
-                          >
-                            <span className="flex size-5 shrink-0 items-center justify-center text-gold">
-                              {included.icon}
+                      {item.included.length > 0 ? (
+                        <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-[10px] italic text-slate sm:text-xs">
+                          {item.included.map((included) => (
+                            <span
+                              key={`${included.title}-${included.details}`}
+                              className="flex items-center gap-1"
+                            >
+                              <span className="flex size-4.5 shrink-0 items-center justify-center text-gold">
+                                {included.icon}
+                              </span>
+                              {included.title} {included.details}
                             </span>
-                            {included.title} {included.details}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    <div className="w-full max-w-[288px]">
-                      <ItineraryImage
-                        image={item.smallImage ?? item.image}
-                        alt={imageAlt}
-                        variant="collapsed"
-                        className="group-aria-expanded/accordion-trigger:hidden"
-                      />
-                    </div>
-
-                    <span className="absolute top-0 right-0 flex size-8 items-center justify-center text-gold">
-                      <ChevronDown
-                        className="size-4 group-aria-expanded/accordion-trigger:hidden"
-                        aria-hidden
-                      />
-                      <ChevronUp
-                        className="hidden size-4 group-aria-expanded/accordion-trigger:block"
-                        aria-hidden
-                      />
-                    </span>
-                  </AccordionTrigger>
-
-                  <AccordionContent className="px-0 pb-0">
-                    <div className="mt-4 max-w-[920px]">
-                      <ItineraryImage
-                        image={item.image}
-                        alt={imageAlt}
-                        variant="expanded"
-                        className="mb-4"
-                      />
-
-                      <div className="max-w-[830px]">
-                        <p className="mb-4 text-sm leading-relaxed text-slate sm:text-base">{item.desc}</p>
-                        <ul className="space-y-1 text-sm leading-relaxed text-slate sm:text-base">
-                          {item.details.map((detail) => (
-                            <li key={detail} className="flex gap-3">
-                              <span
-                                className="mt-2.5 size-1.5 shrink-0 rounded-full bg-brand"
-                                aria-hidden
-                              />
-                              <span>{detail}</span>
-                            </li>
                           ))}
-                        </ul>
+                        </div>
+                      ) : null}
 
+                      <div className="w-full max-w-[288px]">
+                        <ItineraryImage
+                          image={item.smallImage ?? item.image}
+                          alt={imageAlt}
+                          variant="collapsed"
+                          className="group-aria-expanded/accordion-trigger:hidden"
+                        />
                       </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
-            );
-          })}
+
+                      <span className="absolute top-0 right-0 flex size-8 items-center justify-center text-gold">
+                        <ChevronDown
+                          className="size-4 group-aria-expanded/accordion-trigger:hidden"
+                          aria-hidden
+                        />
+                        <ChevronUp
+                          className="hidden size-4 group-aria-expanded/accordion-trigger:block"
+                          aria-hidden
+                        />
+                      </span>
+                    </AccordionTrigger>
+
+                    <AccordionContent className="px-0 pb-0">
+                      <div className="mt-4 max-w-[920px]">
+                        <ItineraryImage
+                          image={item.image}
+                          alt={imageAlt}
+                          variant="expanded"
+                          className="mb-4"
+                        />
+
+                        <div className="max-w-[830px]">
+                          {item.para1 && (
+                            <p className="mb-4 text-xs leading-relaxed sm:text-sm" style={{ color: "#5D5D5D" }}>{item.para1}</p>
+                          )}
+
+                          {item.activities1 && item.activities1.length > 0 && (
+                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                              {item.activities1.map((activity, index) => (
+                                <li key={index} className="flex gap-3">
+                                  <span
+                                    className="mt-2.5 size-1.5 shrink-0 rounded-full"
+                                    style={{ backgroundColor: "#0E5E6F" }}
+                                    aria-hidden
+                                  />
+                                  <div>
+                                    {activity.loc && (
+                                      <span className="font-semibold" style={{ color: "#0E5E6F" }}>{activity.loc}: </span>
+                                    )}
+                                    <span style={{ color: "#5D5D5D" }}>{activity.desc}</span>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {item.para2 && (
+                            <p className="mb-4 text-xs leading-relaxed sm:text-sm" style={{ color: "#5D5D5D" }}>{item.para2}</p>
+                          )}
+
+                          {item.activities2 && item.activities2.length > 0 && (
+                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                              {item.activities2.map((activity, index) => (
+                                <li key={index} className="flex gap-3">
+                                  <span
+                                    className="mt-2.5 size-1.5 shrink-0 rounded-full"
+                                    style={{ backgroundColor: "#0E5E6F" }}
+                                    aria-hidden
+                                  />
+                                  <div>
+                                    {activity.loc && (
+                                      <span className="font-semibold" style={{ color: "#0E5E6F" }}>{activity.loc}: </span>
+                                    )}
+                                    <span style={{ color: "#5D5D5D" }}>{activity.desc}</span>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {item.summary && (
+                            <p className="text-xs leading-relaxed sm:text-sm" style={{ color: "#5D5D5D" }}>{item.summary}</p>
+                          )}
+
+                          {item.details && item.details.length > 0 && (
+                            <ul className="space-y-1 text-xs leading-relaxed text-slate sm:text-sm">
+                              {item.details.map((detail) => (
+                                <li key={detail} className="flex gap-3">
+                                  <span
+                                    className="mt-2.5 size-1.5 shrink-0 rounded-full bg-brand"
+                                    aria-hidden
+                                  />
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </div>
+              );
+            })}
           </Accordion>
         </FadeIn>
       </div>
