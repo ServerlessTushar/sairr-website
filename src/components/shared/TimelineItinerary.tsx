@@ -28,8 +28,8 @@ export type ItineraryDayItem = {
   para1?: string;
   para2?: string;
   summary?: string;
-  activities1?: { loc: string; desc: string }[];
-  activities2?: { loc: string; desc: string }[];
+  activities1?: readonly { loc: string; desc: string }[];
+  activities2?: readonly { loc: string; desc: string }[];
   details?: string[];
   /** Large image shown when expanded. */
   image: StaticImageData | string;
