@@ -25,7 +25,7 @@ export type FaqAccordionSectionProps = {
   id?: string;
 };
 
-function FaqAnswer({ answer }: { answer: FaqItem["answer"] }) {
+export function FaqAnswer({ answer }: { answer: FaqItem["answer"] }) {
   if (typeof answer === "string") {
     const paragraphs = answer
       .split("\n")
