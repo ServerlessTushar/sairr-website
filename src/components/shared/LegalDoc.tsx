@@ -1,27 +1,26 @@
+import Image from "next/image";
 import { FadeIn } from "@/components/shared/FadeIn";
+import bannerImg from "@/public/images/dipanjali-panigrahi-0IXFx5oFNIg-unsplash.jpg";
 
-export function LegalHero({
-  eyebrow,
-  title,
-  intro,
-}: {
-  eyebrow: string;
-  title: string;
-  intro: string;
-}) {
+export function LegalBanner({ title }: { title: string }) {
   return (
-    <section className="bg-mist pb-12 pt-20 lg:pb-16 lg:pt-28">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0" aria-hidden>
+        <Image
+          src={bannerImg}
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-charcoal/60" />
+      </div>
+      <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-36">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-            {eyebrow}
-          </p>
-          <h1 className="mt-4 font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-5xl">
+          <h1 className="font-heading text-4xl font-semibold uppercase tracking-wide text-white sm:text-5xl lg:text-[3.5rem]">
             {title}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate sm:text-lg">
-            {intro}
-          </p>
         </FadeIn>
       </div>
     </section>
@@ -38,7 +37,10 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-border pt-8">
+    <section
+      id={`section-${number}`}
+      className="scroll-mt-24 border-t border-border pt-8"
+    >
       <h2 className="font-heading text-xl font-semibold text-charcoal sm:text-2xl">
         <span className="text-brand">{number}.</span> {title}
       </h2>

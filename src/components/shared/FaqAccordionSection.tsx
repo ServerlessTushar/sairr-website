@@ -9,11 +9,12 @@ import {
 } from "@/components/ui/accordion";
 import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
 import { FadeIn } from "@/components/shared/FadeIn";
+import type { FaqAnswerBlock } from "@/data/faqs";
 import { cn } from "@/lib/utils";
 
 export type FaqItem = {
   question: string;
-  answer: string;
+  answer: string | FaqAnswerBlock[];
 };
 
 export type FaqAccordionSectionProps = {
@@ -23,6 +24,66 @@ export type FaqAccordionSectionProps = {
   className?: string;
   id?: string;
 };
+
+function FaqAnswer({ answer }: { answer: FaqItem["answer"] }) {
+  if (typeof answer === "string") {
+    const paragraphs = answer
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (paragraphs.length <= 1) return <>{answer}</>;
+    return (
+      <div className="space-y-3">
+        {paragraphs.map((text) => (
+          <p key={text}>{text}</p>
+        ))}
+      </div>
+    );
+  }
+
+  const nodes: React.ReactNode[] = [];
+  let bullets: string[] = [];
+  const flushBullets = (key: string) => {
+    if (!bullets.length) return;
+    nodes.push(
+      <ul
+        key={key}
+        className="list-disc space-y-1.5 pl-5 marker:text-charcoal/60"
+      >
+        {bullets.map((text) => (
+          <li key={text}>{text}</li>
+        ))}
+      </ul>
+    );
+    bullets = [];
+  };
+
+  answer.forEach((block, index) => {
+    if (block.type === "bullet") {
+      bullets.push(block.text);
+      return;
+    }
+    flushBullets(`bullets-${index}`);
+    if (block.type === "heading") {
+      nodes.push(
+        <h4
+          key={`heading-${index}`}
+          className={cn(
+            "font-heading text-sm font-semibold text-charcoal sm:text-base",
+            block.rule && "border-b border-charcoal/10 pb-2"
+          )}
+        >
+          {block.text}
+        </h4>
+      );
+    } else {
+      nodes.push(<p className="text-sm sm:text-base" key={`para-${index}`}>{block.text}</p>);
+    }
+  });
+  flushBullets("bullets-end");
+
+  return <div className="space-y-3">{nodes}</div>;
+}
 
 export function FaqAccordionSection({
   heading,
@@ -63,7 +124,7 @@ export function FaqAccordionSection({
                 />
               </AccordionTrigger>
               <AccordionContent className="px-5 pb-5 text-sm leading-relaxed text-slate sm:px-6 sm:pb-6 sm:text-[0.95rem] sm:leading-[1.7]">
-                {faq.answer}
+                <FaqAnswer answer={faq.answer} />
               </AccordionContent>
             </AccordionItem>
           ))}
