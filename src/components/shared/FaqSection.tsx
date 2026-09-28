@@ -1,4 +1,5 @@
 import type { Faq } from "@/data/faqs";
+import { FaqAnswer } from "@/components/shared/FaqAccordionSection";
 import {
   Accordion,
   AccordionContent,
@@ -19,7 +20,7 @@ export function FaqSection({ faqs, title }: { faqs: Faq[]; title?: string }) {
               {faq.question}
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground">
-              {faq.answer}
+              <FaqAnswer answer={faq.answer} />
             </AccordionContent>
           </AccordionItem>
         ))}
