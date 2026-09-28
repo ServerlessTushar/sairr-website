@@ -1,6 +1,11 @@
+export type FaqAnswerBlock =
+  | { type: "para"; text: string }
+  | { type: "heading"; text: string; rule?: boolean }
+  | { type: "bullet"; text: string };
+
 export type Faq = {
   question: string;
-  answer: string;
+  answer: string | FaqAnswerBlock[];
 };
 
 export const homeFaqs: Faq[] = [

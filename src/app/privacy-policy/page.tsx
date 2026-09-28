@@ -1,9 +1,10 @@
 import {
   Bullets,
-  LegalHero,
+  LegalBanner,
   Section,
   SubHead,
 } from "@/components/shared/LegalDoc";
+import { LegalToc } from "@/components/shared/LegalToc";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -12,6 +13,48 @@ export const metadata = createMetadata({
     "How Sairr collects, uses, shares and protects your personal information — and the rights and choices available to you.",
   path: "/privacy-policy",
 });
+
+const tocItems = [
+  { id: "section-1", label: "1. Privacy Policy" },
+  { id: "section-2", label: "2. About Sairr" },
+  { id: "section-3", label: "3. Scope of This Privacy Policy" },
+  { id: "section-4", label: "4. Our Role as a Data Fiduciary" },
+  { id: "section-5", label: "5. Information We Collect" },
+  { id: "section-6", label: "6. Why We Collect and Use Your Information" },
+  { id: "section-7", label: "7. Our Data Privacy Principles" },
+  { id: "section-8", label: "8. When We Share Personal Information" },
+  { id: "section-9", label: "9. We Share Only What Is Necessary" },
+  { id: "section-10", label: "10. WhatsApp, Phone and Email" },
+  { id: "section-11", label: "11. Marketing Communications" },
+  { id: "section-12", label: "12. Cookies, Analytics and Similar Technologies" },
+  { id: "section-13", label: "13. AI and Technology-Enabled Services" },
+  { id: "section-14", label: "14. Payment Processing" },
+  {
+    id: "section-15",
+    label: "15. Government Identification and Travel Documents",
+  },
+  {
+    id: "section-16",
+    label: "16. Special Travel, Medical, Dietary and Accessibility",
+  },
+  { id: "section-17", label: "17. Emergency Contacts" },
+  { id: "section-18", label: "18. Information About Other Travellers" },
+  { id: "section-19", label: "19. International Travel and Cross-Border" },
+  { id: "section-20", label: "20. Data Storage and Security" },
+  { id: "section-21", label: "21. Data Breach and Security Incidents" },
+  { id: "section-22", label: "22. Data Retention and Deletion" },
+  { id: "section-23", label: "23. Your Privacy Rights and Choices" },
+  { id: "section-24", label: "24. Your Responsibilities" },
+  { id: "section-25", label: "25. Children" },
+  { id: "section-26", label: "26. Photography and Trip Content" },
+  { id: "section-27", label: "27. Third-Party Websites and Services" },
+  { id: "section-28", label: "28. Data Processors and Service Providers" },
+  { id: "section-29", label: "29. No Sale or Unauthorised Commercial Use" },
+  { id: "section-30", label: "30. Corporate Transactions" },
+  { id: "section-31", label: "31. Changes to This Privacy Policy" },
+  { id: "section-32", label: "32. Governing Law" },
+  { id: "section-33", label: "33. Privacy Contact and Grievance" },
+];
 
 function Principle({ name, children }: { name: string; children: string }) {
   return (
@@ -29,25 +72,29 @@ function Principle({ name, children }: { name: string; children: string }) {
 export default function PrivacyPage() {
   return (
     <>
-      {/* Hero */}
-      <LegalHero
-        eyebrow="Privacy Policy"
-        title="What you share with us stays yours."
-        intro="We collect only what we need to plan and deliver your journey, keep it secure, and never sell your personal information. Here’s exactly what we collect and why."
-      />
+      <LegalBanner title="Privacy Policy" />
 
       {/* Policy body */}
       <section className="bg-mist pb-20 lg:pb-28">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-10">
-            <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="font-heading text-2xl font-semibold text-charcoal sm:text-3xl">
-                Privacy Policy
-              </h2>
-              <p className="mt-2 text-sm font-medium text-brand">
-                Effective: 22 September 2026
-              </p>
-              <div className="mt-5 space-y-4 text-sm leading-relaxed text-slate sm:text-base">
+        <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+          <div className="mt-12 min-w-0 lg:mt-16 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
+            <aside className="hidden lg:block">
+              <LegalToc items={tocItems} />
+            </aside>
+
+            <div className="space-y-10">
+              <Section number={1} title="Privacy Policy">
+                <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
+                  What you share with us stays yours.
+                </p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+                  Effective: 22 September 2026
+                </p>
+                <p>
+                  We collect only what we need to plan and deliver your journey,
+                  keep it secure, and never sell your personal information.
+                  Here’s exactly what we collect and why.
+                </p>
                 <p>
                   At Sairr, operated by Meenadeep Experiences Private Limited
                   (“Sairr”, “we”, “us” or “our”), we believe that your personal
@@ -78,10 +125,9 @@ export default function PrivacyPage() {
                   how long we retain it, and the rights and choices available to
                   you.
                 </p>
-              </div>
-            </div>
+              </Section>
 
-            <Section number={1} title="About Sairr">
+            <Section number={2} title="About Sairr">
               <p>
                 Sairr is a travel and experiences brand operated by Meenadeep
                 Experiences Private Limited, an Indian company providing travel
@@ -94,7 +140,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={2} title="Scope of This Privacy Policy">
+            <Section number={3} title="Scope of This Privacy Policy">
               <p>
                 This Privacy Policy applies to personal information collected by
                 Sairr through:
@@ -118,7 +164,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={3} title="Our Role as a Data Fiduciary">
+            <Section number={4} title="Our Role as a Data Fiduciary">
               <p>
                 Under applicable Indian data protection law, including the
                 Digital Personal Data Protection Act, 2023 and rules or
@@ -138,13 +184,13 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={4} title="Information We Collect">
+            <Section number={5} title="Information We Collect">
               <p>
                 The information we collect depends on how you interact with Sairr
                 and the services you use.
               </p>
 
-              <SubHead title="4.1 Enquiry and Contact Information">
+              <SubHead title="5.1 Enquiry and Contact Information">
                 When you enquire about a journey or contact us, we may collect:
               </SubHead>
               <Bullets
@@ -161,7 +207,7 @@ export default function PrivacyPage() {
                 ]}
               />
 
-              <SubHead title="4.2 Booking and Traveller Information">
+              <SubHead title="5.2 Booking and Traveller Information">
                 To arrange and deliver a journey, we may need information such
                 as:
               </SubHead>
@@ -188,7 +234,7 @@ export default function PrivacyPage() {
                 for the relevant purpose.
               </p>
 
-              <SubHead title="4.3 Payment and Transaction Information">
+              <SubHead title="5.3 Payment and Transaction Information">
                 Depending on the payment method used, we may collect or receive:
               </SubHead>
               <Bullets
@@ -215,7 +261,7 @@ export default function PrivacyPage() {
                 policy and security practices.
               </p>
 
-              <SubHead title="4.4 Communications Information">
+              <SubHead title="5.4 Communications Information">
                 When you communicate with Sairr, we may collect and retain:
               </SubHead>
               <Bullets
@@ -235,7 +281,7 @@ export default function PrivacyPage() {
                 and where required by applicable law.
               </p>
 
-              <SubHead title="4.5 Website, Device and Technical Information">
+              <SubHead title="5.5 Website, Device and Technical Information">
                 When you use our website, we may collect certain technical
                 information, including:
               </SubHead>
@@ -258,7 +304,7 @@ export default function PrivacyPage() {
                 and analytics tools implemented on our website.
               </p>
 
-              <SubHead title="4.6 Information You Voluntarily Provide">
+              <SubHead title="5.6 Information You Voluntarily Provide">
                 You may choose to provide additional information to help us
                 understand your preferences, requirements or circumstances.
               </SubHead>
@@ -269,7 +315,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={5} title="Why We Collect and Use Your Information">
+            <Section number={6} title="Why We Collect and Use Your Information">
               <p>We may use personal information for purposes including:</p>
               <Bullets
                 items={[
@@ -300,7 +346,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={6} title="Our Data Privacy Principles">
+            <Section number={7} title="Our Data Privacy Principles">
               <p>
                 Sairr seeks to follow the following principles when handling
                 personal information:
@@ -335,7 +381,7 @@ export default function PrivacyPage() {
               </div>
             </Section>
 
-            <Section number={7} title="When We Share Personal Information">
+            <Section number={8} title="When We Share Personal Information">
               <p>
                 We may share personal information with third parties where
                 reasonably necessary to provide our services, comply with law, or
@@ -412,7 +458,7 @@ export default function PrivacyPage() {
               </div>
             </Section>
 
-            <Section number={8} title="We Share Only What Is Necessary">
+            <Section number={9} title="We Share Only What Is Necessary">
               <p>
                 Where information must be shared with a third party to deliver a
                 service, Sairr seeks to share only the information reasonably
@@ -434,7 +480,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={9} title="WhatsApp, Phone and Email">
+            <Section number={10} title="WhatsApp, Phone and Email">
               <p>
                 Sairr may communicate with you through WhatsApp, telephone and
                 email because these channels are important to how we plan and
@@ -452,7 +498,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={10} title="Marketing Communications">
+            <Section number={11} title="Marketing Communications">
               <p>We may send relevant communications about:</p>
               <Bullets
                 items={[
@@ -480,7 +526,7 @@ export default function PrivacyPage() {
             </Section>
 
             <Section
-              number={11}
+              number={12}
               title="Cookies, Analytics and Similar Technologies"
             >
               <p>
@@ -509,7 +555,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={12} title="AI and Technology-Enabled Services">
+            <Section number={13} title="AI and Technology-Enabled Services">
               <p>
                 Sairr may use artificial intelligence, automation and other
                 technology-enabled tools to support activities such as:
@@ -540,7 +586,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={13} title="Payment Processing">
+            <Section number={14} title="Payment Processing">
               <p>
                 Sairr currently accepts payment through methods such as UPI, NEFT
                 and RTGS.
@@ -564,7 +610,7 @@ export default function PrivacyPage() {
             </Section>
 
             <Section
-              number={14}
+              number={15}
               title="Government Identification and Travel Documents"
             >
               <p>
@@ -592,7 +638,7 @@ export default function PrivacyPage() {
             </Section>
 
             <Section
-              number={15}
+              number={16}
               title="Special Travel, Medical, Dietary and Accessibility Requirements"
             >
               <p>
@@ -628,7 +674,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={16} title="Emergency Contacts">
+            <Section number={17} title="Emergency Contacts">
               <p>
                 You may provide the name and contact details of an emergency
                 contact.
@@ -645,7 +691,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={17} title="Information About Other Travellers">
+            <Section number={18} title="Information About Other Travellers">
               <p>
                 A family member, friend or other person may make an enquiry or
                 booking on behalf of a traveller.
@@ -664,7 +710,7 @@ export default function PrivacyPage() {
             </Section>
 
             <Section
-              number={18}
+              number={19}
               title="International Travel and Cross-Border Processing"
             >
               <p>
@@ -685,7 +731,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={19} title="Data Storage and Security">
+            <Section number={20} title="Data Storage and Security">
               <p>
                 Sairr takes reasonable measures designed to protect personal
                 information against unauthorised access, loss, misuse,
@@ -723,7 +769,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={20} title="Data Breach and Security Incidents">
+            <Section number={21} title="Data Breach and Security Incidents">
               <p>
                 If Sairr becomes aware of a personal data breach or security
                 incident, we will take reasonable steps appropriate to the
@@ -742,7 +788,7 @@ export default function PrivacyPage() {
               />
             </Section>
 
-            <Section number={21} title="Data Retention and Deletion">
+            <Section number={22} title="Data Retention and Deletion">
               <p>
                 Sairr seeks to retain personal information only for as long as
                 reasonably necessary for the purpose for which it was collected,
@@ -778,7 +824,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={22} title="Your Privacy Rights and Choices">
+            <Section number={23} title="Your Privacy Rights and Choices">
               <p>
                 Subject to applicable law and verification requirements, you may
                 have rights and choices relating to your personal information,
@@ -812,7 +858,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={23} title="Your Responsibilities">
+            <Section number={24} title="Your Responsibilities">
               <p>
                 You are responsible for providing information that is accurate,
                 complete and current to the extent reasonably required for the
@@ -830,7 +876,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={24} title="Children">
+            <Section number={25} title="Children">
               <p>
                 Sairr’s services are primarily for travellers over 50 and their
                 families.
@@ -852,7 +898,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={25} title="Photography and Trip Content">
+            <Section number={26} title="Photography and Trip Content">
               <p>
                 During some journeys, a Sairr Host may capture photographs or
                 videos of travellers and moments from the journey to help document
@@ -880,7 +926,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={26} title="Third-Party Websites and Services">
+            <Section number={27} title="Third-Party Websites and Services">
               <p>
                 Our website or communications may contain links to websites,
                 platforms or services operated by third parties.
@@ -895,7 +941,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={27} title="Data Processors and Service Providers">
+            <Section number={28} title="Data Processors and Service Providers">
               <p>
                 Sairr may appoint third-party service providers to process
                 personal information on our behalf.
@@ -928,7 +974,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={28} title="No Sale or Unauthorised Commercial Use">
+            <Section number={29} title="No Sale or Unauthorised Commercial Use">
               <p>Sairr does not sell, rent or trade personal information.</p>
               <p>
                 We do not provide your personal information to advertisers, data
@@ -944,7 +990,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={29} title="Corporate Transactions">
+            <Section number={30} title="Corporate Transactions">
               <p>
                 If Sairr is involved in a merger, acquisition, investment,
                 restructuring, financing, sale of assets or other corporate
@@ -958,7 +1004,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={30} title="Changes to This Privacy Policy">
+            <Section number={31} title="Changes to This Privacy Policy">
               <p>We may update this Privacy Policy from time to time to reflect:</p>
               <Bullets
                 items={[
@@ -979,7 +1025,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={31} title="Governing Law">
+            <Section number={32} title="Governing Law">
               <p>
                 This Privacy Policy is governed by the laws of India, subject to
                 any mandatory rights or remedies available to you under
@@ -987,7 +1033,7 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section number={32} title="Privacy Contact and Grievance">
+            <Section number={33} title="Privacy Contact and Grievance">
               <p>
                 If you have a question, request or grievance regarding your
                 personal information or this Privacy Policy, you may contact us
@@ -1045,6 +1091,7 @@ export default function PrivacyPage() {
                 relevant details will be published or provided as required.
               </p>
             </Section>
+            </div>
           </div>
         </div>
       </section>

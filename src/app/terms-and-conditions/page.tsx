@@ -1,9 +1,10 @@
 import {
   Bullets,
-  LegalHero,
+  LegalBanner,
   Section,
   SubHead,
 } from "@/components/shared/LegalDoc";
+import { LegalToc } from "@/components/shared/LegalToc";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -32,12 +33,12 @@ const keyTerms: { term: string; definition: string }[] = [
   {
     term: "“Purchaser”",
     definition:
-      "means the person who books and pays for a gifted Journey, as described in Section 8.",
+      "means the person who books and pays for a gifted Journey, as described in Section 9.",
   },
   {
     term: "“Sairr Host”",
     definition:
-      "means the individual assigned by Sairr to coordinate and support a Journey, as described in Section 12.",
+      "means the individual assigned by Sairr to coordinate and support a Journey, as described in Section 13.",
   },
   {
     term: "“Supplier”",
@@ -47,7 +48,7 @@ const keyTerms: { term: string; definition: string }[] = [
   {
     term: "“Booking Confirmation”",
     definition:
-      "means the written confirmation Sairr issues once a booking is confirmed, as described in Section 3.",
+      "means the written confirmation Sairr issues once a booking is confirmed, as described in Section 4.",
   },
   {
     term: "“Journey”",
@@ -56,23 +57,61 @@ const keyTerms: { term: string; definition: string }[] = [
   },
 ];
 
+const tocItems = [
+  { id: "section-1", label: "1. Terms and Conditions" },
+  { id: "section-2", label: "2. About These Terms" },
+  { id: "section-3", label: "3. Sairr’s Services & Our Role" },
+  { id: "section-4", label: "4. Bookings & Confirmation" },
+  { id: "section-5", label: "5. Prices & Payments" },
+  { id: "section-6", label: "6. Cancellations & Refunds" },
+  { id: "section-7", label: "7. Changes & Rescheduling" },
+  { id: "section-8", label: "8. Third-Party Suppliers" },
+  { id: "section-9", label: "9. Group, Private & Gifted Journeys" },
+  {
+    id: "section-10",
+    label: "10. Travel Documents, Visas & International Travel",
+  },
+  { id: "section-11", label: "11. Traveller Responsibilities & Conduct" },
+  {
+    id: "section-12",
+    label: "12. Health, Accessibility, Dietary & Special Requirements",
+  },
+  { id: "section-13", label: "13. Sairr Host & On-Journey Support" },
+  { id: "section-14", label: "14. Travel Insurance" },
+  { id: "section-15", label: "15. Force Majeure & Unavoidable Events" },
+  { id: "section-16", label: "16. Liability" },
+  { id: "section-17", label: "17. Complaints & Customer Support" },
+  { id: "section-18", label: "18. Intellectual Property" },
+  { id: "section-19", label: "19. Privacy Policy Reference" },
+  { id: "section-20", label: "20. General Terms, Governing Law & Contact" },
+];
+
 export default function TermsPage() {
   return (
     <>
-      <LegalHero
-        eyebrow="Terms & Conditions"
-        title="Clear terms. No surprises."
-        intro="How bookings, payments, changes, cancellations and support work when you travel with Sairr."
-      />
+      <LegalBanner title="Terms & Conditions" />
 
       <section className="bg-mist pb-20 lg:pb-28">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <p className="text-sm font-medium text-brand">
-            Effective: 22 September 2026
-          </p>
+        <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+          <div className="mt-12 min-w-0 lg:mt-16 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
+            <aside className="hidden lg:block">
+              <LegalToc items={tocItems} />
+            </aside>
 
-          <div className="mt-8 space-y-10">
-            <Section number={1} title="About These Terms">
+            <div className="space-y-10">
+            <Section number={1} title="Terms and Conditions">
+              <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
+                Clear terms. No surprises.
+              </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+                Effective: 22 September 2026
+              </p>
+              <p>
+                How bookings, payments, changes, cancellations and support work
+                when you travel with Sairr.
+              </p>
+            </Section>
+            <Section number={2} title="About These Terms">
               <p>
                 These Terms & Conditions (“Terms”) govern the travel services
                 provided or arranged by Sairr, the brand under which Meenadeep
@@ -117,7 +156,7 @@ export default function TermsPage() {
               </dl>
             </Section>
 
-            <Section number={2} title="Sairr’s Services & Our Role">
+            <Section number={3} title="Sairr’s Services & Our Role">
               <p>
                 Sairr’s role is to plan, coordinate and support your Journey
                 end-to-end. This includes understanding your requirements,
@@ -145,12 +184,12 @@ export default function TermsPage() {
                 in your Booking Confirmation. Their independence does not
                 change Sairr’s role in coordinating your Journey or supporting
                 you when something arranged by Sairr doesn’t go as planned.
-                Section 15 (Liability) sets out the applicable liability
+                Section 16 (Liability) sets out the applicable liability
                 framework.
               </p>
             </Section>
 
-            <Section number={3} title="Bookings & Confirmation">
+            <Section number={4} title="Bookings & Confirmation">
               <p>
                 You can express interest or reserve a spot without payment. A
                 departure becomes confirmed once Sairr confirms that it will
@@ -173,7 +212,7 @@ export default function TermsPage() {
                 If information on Sairr’s website, social media, marketing
                 material or earlier communications differs from your Booking
                 Confirmation, the Booking Confirmation will govern. Any changes
-                after confirmation will be subject to Section 6 (Changes to
+                after confirmation will be subject to Section 7 (Changes to
                 Your Journey).
               </p>
               <p>
@@ -182,7 +221,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={4} title="Prices & Payments">
+            <Section number={5} title="Prices & Payments">
               <SubHead title="Prices" />
               <p>
                 Prices shown on Sairr’s website are indicative. The final price
@@ -197,7 +236,7 @@ export default function TermsPage() {
                 Once your booking is confirmed, the price stated in your
                 Booking Confirmation is final, except for changes permitted
                 under these Terms, including changes requested by you under
-                Section 6 (Changes to Your Journey) or government-imposed
+                Section 7 (Changes to Your Journey) or government-imposed
                 taxes, levies or charges that become applicable after
                 confirmation.
               </p>
@@ -210,7 +249,7 @@ export default function TermsPage() {
               <p>
                 You can express interest in a Journey and reserve a spot at no
                 cost. Once the departure meets the applicable minimum group
-                size and is confirmed to run, as described in Section 3, a 50%
+                size and is confirmed to run, as described in Section 4, a 50%
                 advance is due to secure your flights, accommodation, transport
                 and other arrangements. The remaining 50% is due 21 days before
                 departure. If you book within 21 days of departure, full
@@ -226,7 +265,7 @@ export default function TermsPage() {
                 Your Booking Confirmation will state the applicable payment
                 schedule and due dates. If a payment is not received by its due
                 date, the booking will be treated as cancelled and the
-                applicable cancellation charges under Section 5 (Cancellations
+                applicable cancellation charges under Section 6 (Cancellations
                 & Refunds) will apply.
               </p>
               <p>
@@ -237,7 +276,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={5} title="Cancellations & Refunds">
+            <Section number={6} title="Cancellations & Refunds">
               <p>
                 If you wish to cancel a confirmed booking, the following
                 cancellation charges apply based on how many days remain before
@@ -269,7 +308,7 @@ export default function TermsPage() {
               </p>
               <p>
                 This Section does not apply to cancellations arising from a
-                Force Majeure Event, which are governed by Section 14 (Force
+                Force Majeure Event, which are governed by Section 15 (Force
                 Majeure & Unavoidable Events).
               </p>
               <p>
@@ -285,7 +324,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={6} title="Changes & Rescheduling">
+            <Section number={7} title="Changes & Rescheduling">
               <SubHead title="Changes requested by you" />
               <p>
                 If you’d like to reschedule your travel dates, change the
@@ -304,7 +343,7 @@ export default function TermsPage() {
               <p>
                 If we’re unable to accommodate your requested change and you
                 choose not to proceed with your existing booking, the
-                cancellation terms in Section 5 (Cancellations & Refunds) will
+                cancellation terms in Section 6 (Cancellations & Refunds) will
                 apply.
               </p>
               <SubHead title="Changes made by Sairr" />
@@ -325,7 +364,7 @@ export default function TermsPage() {
               </p>
               <p>
                 If you don’t wish to proceed after such a change, the standard
-                cancellation terms in Section 5 (Cancellations & Refunds) will
+                cancellation terms in Section 6 (Cancellations & Refunds) will
                 apply.
               </p>
               <p>
@@ -336,11 +375,11 @@ export default function TermsPage() {
                 If your Journey needs to change or is disrupted due to
                 circumstances beyond reasonable control, including weather,
                 government restrictions or other Force Majeure Events, Section
-                14 (Force Majeure & Unavoidable Events) will apply.
+                15 (Force Majeure & Unavoidable Events) will apply.
               </p>
             </Section>
 
-            <Section number={7} title="Third-Party Suppliers">
+            <Section number={8} title="Third-Party Suppliers">
               <p>
                 Sairr carefully curates a trusted network of high-quality
                 Suppliers, including airlines, hotels, transportation
@@ -370,12 +409,12 @@ export default function TermsPage() {
               </p>
               <p>
                 Sairr’s responsibility and liability in relation to services
-                provided by independent Suppliers are set out in Section 15
+                provided by independent Suppliers are set out in Section 16
                 (Liability).
               </p>
             </Section>
 
-            <Section number={8} title="Group, Private & Gifted Journeys">
+            <Section number={9} title="Group, Private & Gifted Journeys">
               <SubHead title="Group journeys">
                 Group Journeys follow a fixed itinerary and shared inclusions
                 for all Travellers on that departure, as set out in the Booking
@@ -395,7 +434,7 @@ export default function TermsPage() {
             </Section>
 
             <Section
-              number={9}
+              number={10}
               title="Travel Documents, Visas & International Travel"
             >
               <p>
@@ -411,13 +450,13 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={10} title="Traveller Responsibilities & Conduct">
+            <Section number={11} title="Traveller Responsibilities & Conduct">
               <p>Each Traveller is responsible for:</p>
               <Bullets
                 items={[
                   "providing accurate and complete information to Sairr, and informing us promptly if any information relevant to their Journey changes;",
                   "making payments on time, in accordance with the Booking Confirmation;",
-                  "holding valid travel documents as described in Section 9;",
+                  "holding valid travel documents as described in Section 10;",
                   "taking care of their personal belongings and valuables during the Journey;",
                   "following safety instructions given by the Sairr Host or a Supplier during the Journey;",
                   "being ready and on time for scheduled departures, transfers and activities;",
@@ -437,7 +476,7 @@ export default function TermsPage() {
             </Section>
 
             <Section
-              number={11}
+              number={12}
               title="Health, Accessibility, Dietary & Special Requirements"
             >
               <p>
@@ -473,7 +512,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={12} title="Sairr Host & On-Journey Support">
+            <Section number={13} title="Sairr Host & On-Journey Support">
               <p>
                 A Sairr Host travels with the group throughout the Journey,
                 walking alongside you every step of the way. The Host takes
@@ -503,7 +542,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={13} title="Travel Insurance">
+            <Section number={14} title="Travel Insurance">
               <p>
                 Sairr recommends that every Traveller have appropriate travel
                 insurance for their Journey, including cover for matters such
@@ -531,7 +570,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={14} title="Force Majeure & Unavoidable Events">
+            <Section number={15} title="Force Majeure & Unavoidable Events">
               <p>
                 Neither Sairr nor a Supplier is responsible for a failure or
                 delay caused by circumstances beyond their control, including
@@ -556,7 +595,7 @@ export default function TermsPage() {
               <p>Sairr will handle every situation fairly and in good faith.</p>
             </Section>
 
-            <Section number={15} title="Liability">
+            <Section number={16} title="Liability">
               <SubHead title="How responsibility is shared" />
               <p>
                 Sairr is responsible for the services it directly provides,
@@ -568,7 +607,7 @@ export default function TermsPage() {
               </p>
               <p>
                 Each Traveller is responsible for the matters set out in
-                Sections 9, 10 and 11, principally accurate information, valid
+                Sections 10, 11 and 12, principally accurate information, valid
                 documents, timely payment, personal decisions and belongings,
                 and disclosure of relevant requirements.
               </p>
@@ -580,7 +619,7 @@ export default function TermsPage() {
               </p>
               <p>
                 Neither Sairr nor a Supplier is responsible for Force Majeure
-                Events, which are covered separately in Section 14.
+                Events, which are covered separately in Section 15.
               </p>
               <SubHead title="Legal position" />
               <p>
@@ -606,7 +645,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={16} title="Complaints & Customer Support">
+            <Section number={17} title="Complaints & Customer Support">
               <p>
                 If an issue arises during your Journey, please raise it with
                 your Sairr Host as soon as possible, so we have an opportunity
@@ -642,7 +681,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={17} title="Intellectual Property">
+            <Section number={18} title="Intellectual Property">
               <p>
                 The Sairr name, logo, brand assets, itinerary designs, written
                 content and other materials Sairr provides to you belong to
@@ -675,7 +714,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section number={18} title="Privacy Policy Reference">
+            <Section number={19} title="Privacy Policy Reference">
               <p>
                 Sairr’s collection, use, sharing and retention of your personal
                 information is governed by Sairr’s{" "}
@@ -698,7 +737,7 @@ export default function TermsPage() {
             </Section>
 
             <Section
-              number={19}
+              number={20}
               title="General Terms, Governing Law & Contact"
             >
               <SubHead title="Indemnity">
@@ -753,7 +792,7 @@ export default function TermsPage() {
                 For a specific Journey, these Terms and your Booking
                 Confirmation together constitute the agreement between you and
                 Sairr in relation to that Journey. Any applicable Supplier
-                terms referenced under Section 7 apply separately to the
+                terms referenced under Section 8 apply separately to the
                 specific Supplier service to which they relate. These Terms and
                 the Booking Confirmation supersede prior discussions or
                 representations on the same subject.
@@ -822,6 +861,7 @@ export default function TermsPage() {
                 </div>
               </address>
             </Section>
+            </div>
           </div>
         </div>
       </section>
