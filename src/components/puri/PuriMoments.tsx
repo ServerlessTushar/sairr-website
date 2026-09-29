@@ -46,7 +46,7 @@ export function PuriMoments({
           flush && "max-w-none px-0",
         )}
       >
-        <FadeIn>
+        <FadeIn className="text-center">
           <TextReveal
             as="h2"
             text={heading}
@@ -54,28 +54,30 @@ export function PuriMoments({
           />
         </FadeIn>
 
-        <div className="mt-8 bg-[#E9DFC8] py-6 pr-0 pl-4 sm:mt-10 sm:py-8 sm:pl-6 lg:pl-8">
-        <CarouselSection
-          slideClassName="py-2"
-          gap={12}
-          items={cards}
-          getKey={(item) => item.id}
-          renderItem={(item, index) => (
-            <CardRevealCarouselItem
-              index={index}
-              direction="bottom"
-              stagger={0.12}
-              hover={false}
-              revealOnScroll={false}
-              className="h-full bg-transparent"
-            >
-              <MomentCard moment={item} />
-            </CardRevealCarouselItem>
-          )}
-          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 2.15 }}
-          ariaLabel="Moments that make Puri"
-          autoplay={false}
-        />
+        <div className="mt-8 -mr-4 bg-[#E9DFC8] py-6 pl-4 sm:mt-10 sm:-mr-6 sm:py-8 sm:pl-6 lg:-mr-8 lg:pl-8">
+          <CarouselSection
+            slideClassName="py-2"
+            gap={12}
+            items={cards}
+            getKey={(item) => item.id}
+            renderItem={(item, index) => (
+              <CardRevealCarouselItem
+                index={index}
+                direction="bottom"
+                stagger={0.12}
+                hover={false}
+                revealOnScroll={false}
+                className="h-full bg-transparent"
+              >
+                <MomentCard moment={item} />
+              </CardRevealCarouselItem>
+            )}
+            slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 2.15 }}
+            ariaLabel="Moments that make Puri"
+            autoplay={false}
+            previousButtonClassName="border-transparent bg-[#F0F0F099] text-charcoal/50 hover:bg-[#F0F0F0] disabled:opacity-100"
+            nextButtonClassName="border-transparent bg-[#C8A867] text-white hover:bg-[#B99656] disabled:bg-[#F0F0F099] disabled:text-charcoal/50 disabled:opacity-100"
+          />
         </div>
       </div>
     </section>

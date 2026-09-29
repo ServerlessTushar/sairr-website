@@ -150,7 +150,7 @@ export function TimelineItinerary({
         <AnimatedSectionHeader
           heading={heading}
           description={description}
-          headingClassName="font-heading text-3xl font-semibold tracking-tight text-brand sm:text-4xl"
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
         />
 
         <FadeIn delay={0.1}>

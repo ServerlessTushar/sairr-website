@@ -34,7 +34,7 @@ export function TripGallerySection({
   return (
     <section
       id="gallery"
-      className={isDestination ? "bg-[#E9DFC8]" : "bg-[#F5F4EF]"}
+      className={isDestination ? "bg-[#E9DFC8]" : "bg-[#FDFBF2]"}
     >
       <div
         className={
@@ -67,7 +67,7 @@ export function TripGallerySection({
             <TextReveal
               as="h2"
               text={heading}
-              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-5xl"
+              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}

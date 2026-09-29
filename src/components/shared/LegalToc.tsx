@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { cn } from "@/lib/utils";
 
 export type LegalTocItem = {
@@ -31,6 +31,22 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
     };
   }, [items]);
 
+  const handleClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    const el = document.getElementById(id);
+    if (!el) return;
+    event.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Keep a shareable section URL without adding a browser-history entry.
+    // Preserving the current state also avoids discarding Next.js router state.
+    window.history.replaceState(window.history.state, "", `#${id}`);
+  };
+
   return (
     <nav aria-label="Table of contents" className="lg:sticky lg:top-24">
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal/50">
@@ -41,6 +57,7 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
           <li key={id}>
             <a
               href={`#${id}`}
+              onClick={(event) => handleClick(event, id)}
               aria-current={active === id ? "location" : undefined}
               className={cn(
                 "block rounded-full px-4 py-2 text-[13px] leading-snug transition-colors",

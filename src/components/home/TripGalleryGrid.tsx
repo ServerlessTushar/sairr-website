@@ -22,6 +22,8 @@ type GalleryTileProps = {
   className?: string;
   reduceMotion: boolean | null;
   index?: number;
+  moreImagesCount?: number;
+  ariaLabel?: string;
 };
 
 function GalleryTile({
@@ -30,6 +32,8 @@ function GalleryTile({
   className,
   reduceMotion,
   index = 0,
+  moreImagesCount,
+  ariaLabel,
 }: GalleryTileProps) {
   return (
     <motion.button
@@ -46,6 +50,7 @@ function GalleryTile({
       exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
       whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
       onClick={onClick}
+      aria-label={ariaLabel}
       className={cn(
         "group relative overflow-hidden rounded-[10px] bg-card text-left",
         className,
@@ -60,6 +65,11 @@ function GalleryTile({
         className="object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: image.objectPosition ?? "center" }}
       />
+      {moreImagesCount ? (
+        <span className="absolute inset-0 flex items-center justify-center bg-charcoal/55 font-heading text-3xl font-semibold text-white transition-colors group-hover:bg-charcoal/65 sm:text-4xl">
+          +{moreImagesCount}
+        </span>
+      ) : null}
     </motion.button>
   );
 }
@@ -71,6 +81,8 @@ function MobileGalleryBlock({
   indexOffset,
   onImageClick,
   reduceMotion,
+  moreImagesCount,
+  totalImages,
 }: {
   leftTop: GalleryImage;
   leftBottom: GalleryImage;
@@ -78,6 +90,8 @@ function MobileGalleryBlock({
   indexOffset: number;
   onImageClick: (index: number) => void;
   reduceMotion: boolean | null;
+  moreImagesCount?: number;
+  totalImages: number;
 }) {
   return (
     <div className="grid h-[18rem] grid-cols-2 grid-rows-[1fr_1fr] gap-2 sm:gap-3">
@@ -101,6 +115,12 @@ function MobileGalleryBlock({
         onClick={() => onImageClick(indexOffset + 2)}
         className="col-start-2 row-span-2 row-start-1 h-full min-h-0"
         index={indexOffset + 2}
+        moreImagesCount={moreImagesCount}
+        ariaLabel={
+          moreImagesCount
+            ? `View all ${totalImages} gallery images`
+            : undefined
+        }
       />
     </div>
   );
@@ -135,6 +155,7 @@ function GalleryMosaic({
   }
 
   const [first, second, third, fourth, fifth, sixth] = images;
+  const moreImagesCount = images.length - 6;
 
   const desktopPlacements = [
     { image: first, index: 0, className: "col-start-1 row-start-1 h-full" },
@@ -150,6 +171,7 @@ function GalleryMosaic({
       image: sixth,
       index: 5,
       className: "col-start-4 row-span-2 row-start-1 h-full",
+      moreImagesCount,
     },
   ];
 
@@ -165,6 +187,7 @@ function GalleryMosaic({
             indexOffset={0}
             onImageClick={onImageClick}
             reduceMotion={reduceMotion}
+            totalImages={images.length}
           />
           <MobileGalleryBlock
             key="mobile-gallery-bottom"
@@ -174,6 +197,8 @@ function GalleryMosaic({
             indexOffset={3}
             onImageClick={onImageClick}
             reduceMotion={reduceMotion}
+            moreImagesCount={moreImagesCount}
+            totalImages={images.length}
           />
         </AnimatePresence>
       </div>
@@ -183,7 +208,7 @@ function GalleryMosaic({
       >
         <AnimatePresence mode="popLayout">
           {desktopPlacements.map(
-            ({ image, index, className }) =>
+            ({ image, index, className, moreImagesCount: tileMoreImagesCount }) =>
               image && (
                 <GalleryTile
                   key={image.id}
@@ -192,6 +217,12 @@ function GalleryMosaic({
                   onClick={() => onImageClick(index)}
                   className={className}
                   index={index}
+                  moreImagesCount={tileMoreImagesCount}
+                  ariaLabel={
+                    tileMoreImagesCount
+                      ? `View all ${images.length} gallery images`
+                      : undefined
+                  }
                 />
               ),
           )}
@@ -289,6 +320,41 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                   objectPosition: activeImage.objectPosition ?? "center",
                 }}
               />
+
+              <div className="mt-4 w-full overflow-x-auto pb-1">
+                <div className="flex w-max min-w-full justify-center gap-2 px-1">
+                  {images.map((image, index) => {
+                    const isSelected = index === lightboxIndex;
+
+                    return (
+                      <button
+                        key={image.id}
+                        type="button"
+                        onClick={() => setLightboxIndex(index)}
+                        aria-label={`Show image ${index + 1} of ${images.length}`}
+                        aria-current={isSelected ? "true" : undefined}
+                        className={cn(
+                          "relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition sm:h-20 sm:w-20",
+                          isSelected
+                            ? "border-gold opacity-100"
+                            : "border-transparent opacity-60 hover:opacity-100",
+                        )}
+                      >
+                        <Image
+                          src={gallerySrc(image)}
+                          alt=""
+                          fill
+                          sizes="80px"
+                          className="object-cover"
+                          style={{
+                            objectPosition: image.objectPosition ?? "center",
+                          }}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               <div className="mt-4 flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 {/* <div>

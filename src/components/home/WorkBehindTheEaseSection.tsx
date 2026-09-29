@@ -110,7 +110,7 @@ export function WorkBehindTheEaseSection() {
             <TextReveal
               as="h2"
               text="The work behind the ease."
-              className="font-heading text-3xl font-semibold leading-[1.2] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]"
+              className="font-heading text-3xl font-semibold leading-[1.2] tracking-tight text-white sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
