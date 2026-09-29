@@ -104,7 +104,7 @@ export function JourneysSection() {
             <TextReveal
               as="h2"
               text="Journeys to look forward to"
-              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.75rem] lg:leading-tight"
+              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:leading-tight"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}

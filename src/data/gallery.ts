@@ -89,6 +89,28 @@ export const galleryImages: GalleryImage[] = [
     journeyLabel: "Puri",
     objectPosition: "center",
   },
+  {
+    id: "moments-7",
+    seed: "moments-5",
+    src: "/homepage/moments-5.webp",
+    alt: "Travellers exploring Puri",
+    caption: "Dolpo & Western Nepal",
+    location: "Puri, Odisha",
+    journey: "puri",
+    journeyLabel: "Puri",
+    objectPosition: "center",
+  },
+  {
+    id: "moments-8",
+    seed: "moments-6",
+    src: "/homepage/moments-6.webp",
+    alt: "Group dining during the Puri journey",
+    caption: "Dolpo & Western Nepal",
+    location: "Puri, Odisha",
+    journey: "puri",
+    journeyLabel: "Puri",
+    objectPosition: "center",
+  },
 ];
 
 export function getGalleryImages(journey: string = "all") {

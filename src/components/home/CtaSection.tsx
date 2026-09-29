@@ -37,7 +37,7 @@ export function CtaSection() {
           sizes="100vw"
         />
       </div>
-
+      {/* overlay card */}
       <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <FadeIn>
           <motion.div
@@ -45,7 +45,7 @@ export function CtaSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={scaleIn}
-            className="mx-auto max-w-2xl rounded-[17px] border border-white/50 bg-white/65 px-8 py-8 text-center shadow-[0_8px_40px_rgba(27,29,31,0.12)] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
+            className="mx-auto max-w-2xl rounded-[17px] border border-[#E8E8E8] bg-[#FFFFFFE5] px-8 py-8 text-center shadow-[0_4px_46px_0_#00000021] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
           >
             <motion.div
               variants={staggerContainer(0.1, 0.1)}

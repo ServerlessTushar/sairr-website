@@ -129,7 +129,7 @@ function IconBeliefCard({
 
 export function WhySairrSection() {
   return (
-    <section id="whySairr" className="border-t border-charcoal/10 bg-mist">
+    <section id="whySairr" className="border-t border-charcoal/10 bg-[#FDFBF2]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
@@ -137,7 +137,7 @@ export function WhySairrSection() {
               <TextReveal
                 as="h2"
                 text="Why Sairr"
-                className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
+                className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:leading-tight"
               />
               <motion.span
                 animate={{ y: [0, -2, 0] }}

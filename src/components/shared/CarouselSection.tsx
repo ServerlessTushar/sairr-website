@@ -41,6 +41,8 @@ type CarouselSectionProps<T> = {
   gap?: number;
   autoplay?: boolean;
   autoplayInterval?: number;
+  previousButtonClassName?: string;
+  nextButtonClassName?: string;
 };
 
 function useSlidesPerView(config: SlidesPerView) {
@@ -83,6 +85,8 @@ export function CarouselSection<T>({
   gap = DEFAULT_GAP_PX,
   autoplay = true,
   autoplayInterval = DEFAULT_AUTOPLAY_INTERVAL_MS,
+  previousButtonClassName,
+  nextButtonClassName,
 }: CarouselSectionProps<T>) {
   const visibleCount = useSlidesPerView(slidesPerView);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -202,7 +206,10 @@ export function CarouselSection<T>({
             aria-label="Previous slide"
             disabled={activeIndex <= 0}
             onClick={() => scrollToIndex(activeIndex - 1)}
-            className="size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40"
+            className={cn(
+              "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+              previousButtonClassName,
+            )}
           >
             <ChevronLeft className="size-4" />
           </Button>
@@ -213,7 +220,10 @@ export function CarouselSection<T>({
             aria-label="Next slide"
             disabled={activeIndex >= maxIndex}
             onClick={() => scrollToIndex(activeIndex + 1)}
-            className="size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40"
+            className={cn(
+              "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+              nextButtonClassName,
+            )}
           >
             <ChevronRight className="size-4" />
           </Button>

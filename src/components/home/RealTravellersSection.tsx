@@ -12,14 +12,14 @@ export function RealTravellersSection() {
   if (testimonials.length === 0) return null;
 
   return (
-    <section className="border-t border-charcoal/10 bg-mist">
+    <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
         <FadeIn>
           <div className="text-center lg:mx-auto lg:max-w-3xl lg:text-center">
             <TextReveal
               as="h2"
               text="In their words."
-              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-5xl"
+              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 12 }}
