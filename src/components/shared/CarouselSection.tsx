@@ -37,6 +37,7 @@ type CarouselSectionProps<T> = {
   slidesPerView?: SlidesPerView;
   className?: string;
   slideClassName?: string;
+  belowSlides?: ReactNode;
   ariaLabel?: string;
   gap?: number;
   autoplay?: boolean;
@@ -81,6 +82,7 @@ export function CarouselSection<T>({
   slidesPerView = { mobile: 1, tablet: 2, desktop: 3 },
   className,
   slideClassName,
+  belowSlides,
   ariaLabel = "Carousel",
   gap = DEFAULT_GAP_PX,
   autoplay = true,
@@ -196,6 +198,8 @@ export function CarouselSection<T>({
           </div>
         ))}
       </div>
+
+      {belowSlides}
 
       {showControls && (
         <div className="mt-2 md:mt-6 flex items-center justify-center gap-2">

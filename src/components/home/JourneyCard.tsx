@@ -10,10 +10,11 @@ import type { TravelDestination } from "@/lib/validations/contact";
 import underlineImg from "@/public/homepage/underline.png";
 import { imageHover } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const TEAL = "#0E5E6F";
-const CORAL = "#EC575E";
-const CARD_CAROUSEL_INTERVAL_MS = 1000;
+const CORAL = "#FF4859";
+const CARD_CAROUSEL_INTERVAL_MS = 2000;
 
 function formatPerk(perk: string) {
   return perk.replace(/ /g, "\u00A0");
@@ -42,16 +43,33 @@ function JourneyImageCarousel({
 }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [isResetting, setIsResetting] = useState(false);
+
+  const slides = [...images, images[0]];
 
   useEffect(() => {
     if (images.length <= 1 || reduceMotion) return;
 
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % images.length);
+      setIndex((current) => Math.min(current + 1, images.length));
     }, CARD_CAROUSEL_INTERVAL_MS);
 
     return () => window.clearInterval(id);
   }, [images.length, reduceMotion]);
+
+  useEffect(() => {
+    if (!isResetting) return;
+
+    const frame = window.requestAnimationFrame(() => setIndex(0));
+    return () => window.cancelAnimationFrame(frame);
+  }, [isResetting]);
+
+  useEffect(() => {
+    if (!isResetting || index !== 0) return;
+
+    const frame = window.requestAnimationFrame(() => setIsResetting(false));
+    return () => window.cancelAnimationFrame(frame);
+  }, [index, isResetting]);
 
   const activeImage = images[index] ?? images[0];
 
@@ -75,11 +93,18 @@ function JourneyImageCarousel({
       <motion.div
         className="flex h-full"
         animate={{ x: `-${index * 100}%` }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        transition={
+          isResetting
+            ? { duration: 0 }
+            : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+        }
+        onAnimationComplete={() => {
+          if (index === images.length) setIsResetting(true);
+        }}
       >
-        {images.map((image) => (
+        {slides.map((image, slideIndex) => (
           <div
-            key={image.src}
+            key={`${image.src}-${slideIndex}`}
             className="relative h-full min-w-full shrink-0"
           >
             <Image
@@ -143,7 +168,7 @@ export function JourneyCard({
       : [journey.image];
 
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl bg-white px-2 pt-2 pb-4 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]">
+    <article className={`group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] ${isOpen && journey.href ? "pb-0" : "pb-4"} shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]`}>
       <StatusBadge status={journey.status} />
 
       <div className="relative aspect-4/3 overflow-hidden rounded-xl">
@@ -158,14 +183,14 @@ export function JourneyCard({
               src={journey.image}
               alt={journey.title}
               fill
-              className="object-cover"
+              className="object-fit"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           </motion.div>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col pt-4 px-2 md:px-3">
+      <div className={`flex flex-1 flex-col pt-4 ${isOpen && journey.href ? "pb-0" : "pb-4 px-2 md:px-3"}`}>
         <p
           className="text-right text-xs font-semibold"
           style={{ color: TEAL }}
@@ -183,34 +208,41 @@ export function JourneyCard({
 
         <div className="mt-1 md:mt-4">
           {isOpen && journey.perks && (
-            <p className="text-[11px] md:text-xs leading-snug text-[#0E5E6F]">
+            <p className="text-[11px] md:text-[11px] leading-snug text-[#0E5E6F]">
               {journey.perks.map(formatPerk).join(" • ")}
             </p>
           )}
 
           {isOpen && journey.href ? (
+            // <Link
+            //   href={journey.href}
+            //   className="mt-4 inline-flex items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80"
+            //   style={{ color: CORAL }}
+            // >
+            //   Explore Journey
+            //   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            // </Link>
             <Link
               href={journey.href}
-              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80"
-              style={{ color: CORAL }}
+              className="-mx-[6px] -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#FF4859] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
             >
-              Explore Journey
-              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              See itinerary
+              <ArrowRight className="ml-2 size-4" />
             </Link>
           ) : journey.destination && onNotifyMe ? (
             <button
+              style={{ color: CORAL }}
               type="button"
               onClick={() => onNotifyMe(journey.destination!)}
-              className="cursor-pointer relative mt-4 inline-block pb-1 text-left text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+              className="w-full cursor-pointer relative mt-4 inline-block pb-1 text-center text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
             >
-              Notify Me
-              <NotifyMeUnderline />
+              I&apos;m Interested
             </button>
           ) : (
             <Link
               href={whatsappHref(
                 journey.notifyMessage ??
-                  `I'd like to be notified when ${journey.title} dates are announced.`,
+                `I'd like to be notified when ${journey.title} dates are announced.`,
               )}
               target="_blank"
               rel="noopener noreferrer"

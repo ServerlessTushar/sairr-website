@@ -69,10 +69,24 @@ export function Header() {
   );
   // Next.js same-page hash links do not always emit hashchange before paint.
   const [pendingHash, setPendingHash] = useState<string | null>(null);
+  // Keep the selected item stable while a route transition is in progress. Without
+  // this, clearing the hash for a non-hash route briefly makes Home active.
+  const [pendingNavHref, setPendingNavHref] = useState<string | null>(null);
+  const [pendingNavOrigin, setPendingNavOrigin] = useState<string | null>(null);
   const hash =
     pendingHash !== null && pendingHash !== locationHash
       ? pendingHash
       : locationHash;
+
+  const isNavigationPending =
+    pendingNavHref !== null &&
+    pendingNavOrigin === `${pathname}${locationHash}`;
+
+  function markNavigationPending(href: string) {
+    setPendingNavHref(href);
+    setPendingNavOrigin(`${pathname}${locationHash}`);
+    setPendingHash(hashFromNavHref(href));
+  }
 
   const isHome = pathname === "/";
   const [heroInView, setHeroInView] = useState(isHome);
@@ -106,10 +120,7 @@ export function Header() {
         "top-0 z-50 w-full transition-[background-color,border-color,backdrop-filter] duration-300",
         isHome && "fixed",
         !isHome && "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
-        homeHeaderOverHero &&
-          "border-b border-transparent bg-transparent backdrop-blur-none",
         isHome &&
-          !heroInView &&
           "border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
       )}
     >
@@ -130,21 +141,20 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
-            const isActive = isNavLinkActive(pathname, link.href, hash);
+            const isActive = isNavigationPending
+              ? pendingNavHref === link.href
+              : isNavLinkActive(pathname, link.href, hash);
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setPendingHash(hashFromNavHref(link.href))}
+                onClick={() => markNavigationPending(link.href)}
                 className={cn(
-                  "relative inline-block text-sm font-medium transition-colors md:text-lg",
-                  homeHeaderOverHero
-                    ? "text-white/90 hover:text-white hover:font-bold"
-                    : "text-[#1b1d1f] hover:text-brand hover:font-bold",
+                  "relative inline-block text-sm font-medium transition-colors md:text-lg text-[#1b1d1f] hover:text-brand hover:font-bold",
                   isActive &&
                     (homeHeaderOverHero
-                      ? "font-bold text-white"
+                      ? "font-bold text-[#0E5E6F]"
                       : "font-bold text-brand"),
                 )}
               >
@@ -156,7 +166,7 @@ export function Header() {
                     width={82}
                     height={6}
                     aria-hidden
-                    className="pointer-events-none absolute -bottom-1 left-0 h-auto w-full"
+                    className="pointer-events-none absolute -bottom-2 left-1/2 -translate-x-1/2 h-[8px] w-[50px]"
                   />
                 )}
               </Link>
@@ -197,14 +207,16 @@ export function Header() {
             </SheetHeader>
             <nav className="mt-8 flex flex-col gap-4">
               {navLinks.map((link) => {
-                const isActive = isNavLinkActive(pathname, link.href, hash);
+                const isActive = isNavigationPending
+                  ? pendingNavHref === link.href
+                  : isNavLinkActive(pathname, link.href, hash);
 
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => {
-                      setPendingHash(hashFromNavHref(link.href));
+                      markNavigationPending(link.href);
                       setOpen(false);
                     }}
                     className={cn(

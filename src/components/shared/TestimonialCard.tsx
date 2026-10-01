@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Testimonial } from "@/data/testimonials";
 import { PlaceholderVideo } from "@/components/shared/PlaceholderVideo";
 import { cn } from "@/lib/utils";
@@ -7,14 +8,55 @@ type TestimonialCardProps = {
   variant?: "default" | "quote-first";
 };
 
+function TestimonialMedia({
+  testimonial,
+  className,
+}: {
+  testimonial: Testimonial;
+  className?: string;
+}) {
+  const mediaClassName = cn(
+    "relative aspect-video shrink-0 overflow-hidden bg-charcoal/8",
+    className,
+  );
+
+  if (testimonial.media?.type === "image") {
+    return (
+      <div className={mediaClassName}>
+        <Image
+          src={testimonial.media.src}
+          alt={testimonial.media.alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+    );
+  }
+
+  if (testimonial.media?.type === "video") {
+    return (
+      <div className={mediaClassName}>
+        <video
+          controls
+          preload="metadata"
+          poster={testimonial.media.poster}
+          className="h-full w-full object-cover"
+        >
+          <source src={testimonial.media.src} />
+          Your browser does not support embedded video.
+        </video>
+      </div>
+    );
+  }
+
+  return <PlaceholderVideo className={className} />;
+}
+
 export function TestimonialCard({
   testimonial,
   variant = "default",
 }: TestimonialCardProps) {
-  const nameLine = testimonial.placeholder
-    ? `[${testimonial.name}], [${testimonial.age}]`
-    : `${testimonial.name}, ${testimonial.age}`;
-
   if (variant === "quote-first") {
     return (
       <article
@@ -27,10 +69,13 @@ export function TestimonialCard({
           &ldquo;{testimonial.quote}&rdquo;
         </blockquote>
 
-        <PlaceholderVideo className="mt-4 shrink-0 overflow-hidden rounded-xl" />
+        <TestimonialMedia
+          testimonial={testimonial}
+          className="mt-4 overflow-hidden rounded-xl"
+        />
 
         <div className="mt-4">
-          <p className="text-sm font-semibold text-charcoal">{nameLine}</p>
+          <p className="text-sm font-semibold text-charcoal">{testimonial.name}</p>
           <p className="mt-1 text-sm text-slate">{testimonial.destination}</p>
         </div>
       </article>
@@ -39,12 +84,12 @@ export function TestimonialCard({
 
   return (
     <article className="flex h-full flex-col">
-      <PlaceholderVideo className="shrink-0" />
+      <TestimonialMedia testimonial={testimonial} />
       <blockquote className="mt-5 flex-1 font-heading text-lg leading-relaxed text-charcoal">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
       <div className="mt-4">
-        <p className="text-sm text-slate">{nameLine}</p>
+        <p className="text-sm text-slate">{testimonial.name}</p>
         <p className="mt-1 text-sm text-slate">{testimonial.destination}</p>
       </div>
     </article>
