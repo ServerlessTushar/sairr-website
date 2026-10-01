@@ -9,18 +9,17 @@ import {
 } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
 import goldBirdIcon from "@/public/homepage/gold-bird.webp";
-import locationPinIcon from "@/public/homepage/location-pin.webp";
-import peopleIcon from "@/public/homepage/people.webp";
-import ratingStarIcon from "@/public/homepage/rating-star.webp";
+import locationPinIcon from "@/public/homepage/location-pin.png";
+import peopleIcon from "@/public/homepage/people.png";
+import ratingStarIcon from "@/public/homepage/rating-star.png";
 import featuredImage from "@/public/homepage/whySairr.webp";
 import { imageHover } from "@/lib/motion";
 
-const ICON_BOX = "bg-[#c4a46e]";
 const CARD_SHADOW = "shadow-[0_2px_16px_rgba(27,29,31,0.08)]";
 const CARD_TITLE =
   "font-sans text-base font-semibold leading-snug text-charcoal sm:text-lg md:text-[24px]";
 const CARD_DESC =
-  "mt-1.5 font-sans text-sm leading-relaxed text-[#5d5d5d] sm:mt-2 md:text-[17.6px]";
+  "mt-1.5 font-sans text-sm leading-relaxed text-[#5d5d5d] sm:mt-2 md:text-[18px]";
 
 type IconBeliefItem = {
   id: string;
@@ -64,9 +63,9 @@ function BeliefIcon({ src }: { src: StaticImageData }) {
     <Image
       src={src}
       alt=""
-      width={32}
-      height={32}
-      className="size-7 object-contain sm:size-8"
+      width={66}
+      height={66}
+      className="size-7 object-contain sm:size-[56px]"
       aria-hidden
     />
   );
@@ -80,14 +79,14 @@ function FeaturedBeliefCard({ index }: { index: number }) {
       hover={false}
       className={`flex flex-col overflow-hidden rounded-[14.3px] bg-white ${CARD_SHADOW}`}
     >
-      <div className="relative w-full shrink-0 overflow-hidden bg-mist md:h-[23.313rem] md:max-w-[39.188rem]">
+      <div className="relative w-full shrink-0 overflow-hidden bg-mist md:h-[373px] md:max-w-[627px]">
         <motion.div className="relative w-full md:h-full" whileHover={imageHover}>
           <Image
             src={featuredImage}
             alt="Travellers enjoying a journey with Sairr"
-            width={1881}
-            height={1119}
-            className="h-auto w-full md:absolute md:inset-0 md:h-full md:w-full md:object-cover"
+            width={627}
+            height={373}
+            className="h-auto w-full md:absolute md:inset-0 md:h-full md:w-full md:object-fit"
             sizes="(max-width: 768px) 100vw, 39.188rem"
           />
         </motion.div>
@@ -112,13 +111,10 @@ function IconBeliefCard({
       index={index}
       as="article"
       hover={false}
-      className={`flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-1 lg:px-6 lg:py-5 ${CARD_SHADOW}`}
+      className={`h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
     >
-      <div
-        className={`flex size-14 shrink-0 items-center justify-center rounded-xl sm:size-16 lg:size-[4.25rem] ${ICON_BOX}`}
-      >
-        <BeliefIcon src={item.icon} />
-      </div>
+
+      <BeliefIcon src={item.icon} />
       <div className="min-w-0 flex-1">
         <h3 className={CARD_TITLE}>{item.title}</h3>
         <p className={CARD_DESC}>{item.description}</p>
@@ -130,7 +126,7 @@ function IconBeliefCard({
 export function WhySairrSection() {
   return (
     <section id="whySairr" className="border-t border-charcoal/10 bg-[#FDFBF2]">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+      <div className="mb-20 mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:pb-14 lg:pt-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <div className="relative inline-block overflow-visible">

@@ -11,7 +11,7 @@ import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import type { TravelDestination } from "@/lib/validations/contact";
-import puri from "@/public/homepage/journey-puri-1.webp";
+import puri from "@/public/homepage/journey-puri-1-1.webp";
 import puri2 from "@/public/homepage/journey-puri-2.webp"
 import puri3 from "@/public/homepage/journey-puri-3.webp"
 import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
@@ -80,7 +80,7 @@ export function JourneysSection() {
   }
 
   return (
-    <section id="destinations" className="relative scroll-mt-24 bg-mist">
+    <section id="destinations" className="relative scroll-mt-24 bg-[#FDFBF2]">
       <div className="absolute inset-0" aria-hidden>
         <Image
           src={backgroundImgMobile}
@@ -98,7 +98,7 @@ export function JourneysSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pt-16 sm:px-6 md:px-0 lg:pt-20">
+      <div className="bg-transparent relative mx-auto max-w-7xl pxl-4 pt-16 sm:px-6 md:px-0 lg:pt-2">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
@@ -111,7 +111,7 @@ export function JourneysSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
+              className="mt-3 text-base leading-relaxed text-slate sm:text-xl"
             >
               There should always be another place worth discovering. Choose yours.
             </motion.p>
@@ -119,7 +119,7 @@ export function JourneysSection() {
         </FadeIn>
 
         <CarouselSection
-          className="mt-2 lg:mt-14"
+          className="mt-2 -mr-4 lg:mr-0 lg:mt-6"
           slideClassName="py-6"
           items={journeys}
           getKey={(journey) => journey.slug}
@@ -134,7 +134,7 @@ export function JourneysSection() {
         />
 
         <FadeIn delay={0.2}>
-          <div className="mt-6 md:mt-10 flex justify-center pb-10 lg:mt-12 lg:pb-12">
+          <div className="flex justify-center pb-10 pt-4 lg:pt-0 lg:ml-auto lg:w-[calc((100%-36px)/4)] lg:justify-end lg:pb-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -143,7 +143,7 @@ export function JourneysSection() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button
+              {/* <Button
                 type="button"
                 size="lg"
                 onClick={handleRequestCallback}
@@ -151,8 +151,10 @@ export function JourneysSection() {
               >
                 Get a Callback
                 <ArrowRight className="ml-2 size-4" />
-              </Button>
-              <p className="text-xs text-[#0E5E6F] !font-semibold mt-2">More destinations launching soon.</p>
+              </Button> */}
+              <p className="text-xs font-semibold text-[#0E5E6F]">
+                More destinations launching soon.
+              </p>
             </motion.div>
           </div>
         </FadeIn>

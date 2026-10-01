@@ -23,28 +23,28 @@ const whySairrItems: WhySairrItem[] = [
   {
     id: "chosen-stays",
     icon: chosenStays,
-    title: "Stays chosen with intent.",
+    title: "Stays chosen with intent",
     description:
       "4-star+ hotels and resorts, selected for comfort, location and sound sleep.",
   },
   {
     id: "worthy-itineraries",
     icon: worthyItineraries,
-    title: "Itineraries worth your time.",
+    title: "Itineraries worth your time",
     description:
       "Hand-picked experiences, thoughtfully paced and never rushed.",
   },
   {
     id: "breathable-transport",
     icon: breathableTransport,
-    title: "Transport with room to breathe.",
+    title: "Transport with room to breathe",
     description:
       "Hygienic, comfortable transport, never filled to the last seat.",
   },
   {
     id: "pre-validate",
     icon: prevalidateExp,
-    title: "We validate it before you experience it.",
+    title: "We validate it before you experience it",
     description:
       "Routes, stays and food checked on ground before we open a journey.",
   },
@@ -63,7 +63,7 @@ function WhySairrCard({
     <motion.article
       variants={variant}
       whileHover={cardHover}
-      className="group flex items-center gap-4 rounded-[4.32px] bg-white p-5 sm:gap-5 sm:py-6 sm:pl-6 sm:pr-40"
+      className="h-[178.5px] group flex items-center gap-4 rounded-[4.32px] bg-white p-5 sm:gap-6 sm:py-6 sm:pl-6 sm:pr-20"
     >
       <motion.div
         className="relative size-[4.5rem] shrink-0 sm:size-20"
@@ -93,7 +93,7 @@ function WhySairrCard({
         <h3 className="font-sans text-base font-semibold leading-snug text-charcoal sm:text-2xl">
           {item.title}
         </h3>
-        <p className="mt-1.5 text-sm md:text-base leading-relaxed text-slate">
+        <p className="mt-1.5 text-sm md:text-lg leading-relaxed text-slate">
           {item.description}
         </p>
       </div>

@@ -3,10 +3,8 @@
 import { motion } from "framer-motion";
 import { testimonials } from "@/data/testimonials";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
-import { CarouselSection } from "@/components/shared/CarouselSection";
-import { TestimonialCard } from "@/components/shared/TestimonialCard";
+import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
 
 export function RealTravellersSection() {
   if (testimonials.length === 0) return null;
@@ -33,25 +31,7 @@ export function RealTravellersSection() {
           </div>
         </FadeIn>
 
-        <CarouselSection
-          className="mt-6 md:mt-10"
-          slideClassName="pb-3 pr-2 md:pb-4 md:pr-4"
-          items={testimonials}
-          getKey={(item) => item.id}
-          renderItem={(item, index) => (
-            <CardRevealCarouselItem
-              index={index}
-              direction="bottom"
-              stagger={0.16}
-              hover={false}
-            >
-              <TestimonialCard testimonial={item} variant="quote-first" />
-            </CardRevealCarouselItem>
-          )}
-          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
-          ariaLabel="Traveller stories"
-          autoplay={false}
-        />
+        <TestimonialCarousel testimonials={testimonials} />
       </div>
     </section>
   );
