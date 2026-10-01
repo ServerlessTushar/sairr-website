@@ -21,7 +21,7 @@ import {
   puriDepartures,
 } from "@/data/puri";
 import type { TravelDestination } from "@/lib/validations/contact";
-import { galleryImages, type GalleryImage } from "@/data/gallery";
+import { puriGalleryImages, type GalleryImage } from "@/data/gallery";
 
 export type DestinationPageContent = {
   slug: string;
@@ -76,7 +76,7 @@ const puriPage: DestinationPageContent = {
   gallery: {
     heading: "A Few Frames From The Journey",
     para: "",
-    images: galleryImages,
+    images: puriGalleryImages,
   },
   cta: puriCtaSectionData,
 };
