@@ -176,7 +176,7 @@ export function Header() {
 
         <Button
           type="button"
-          onClick={() => openContactForm()}
+          onClick={() => openContactForm({ intent: "contact" })}
           className="cursor-pointer hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#E63B4C] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
         >
           Contact Us
@@ -232,7 +232,7 @@ export function Header() {
                 type="button"
                 onClick={() => {
                   setOpen(false);
-                  openContactForm();
+                  openContactForm({ intent: "contact" });
                 }}
                 className={cn(
                   "inline-block rounded-lg px-3 py-2 text-left text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",

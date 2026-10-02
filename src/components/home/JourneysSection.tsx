@@ -72,11 +72,11 @@ export function JourneysSection() {
   const { openContactForm } = useContactFormDialog();
 
   function handleNotifyMe(destination: TravelDestination) {
-    openContactForm(destination);
+    openContactForm({ destination, intent: "interest" });
   }
 
   function handleRequestCallback() {
-    openContactForm();
+    openContactForm({ intent: "callback" });
   }
 
   return (

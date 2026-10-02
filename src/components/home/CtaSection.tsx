@@ -82,7 +82,7 @@ export function CtaSection() {
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
                   <button
                     type="button"
-                    onClick={() => openContactForm()}
+                    onClick={() => openContactForm({ intent: "callback" })}
                     className="bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     Get a Callback

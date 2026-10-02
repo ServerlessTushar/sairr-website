@@ -1,12 +1,24 @@
 import { NextResponse } from "next/server";
 import { appendRowToSheet, isGoogleSheetsConfigured } from "@/lib/google-sheets";
 import { getContactSheetConfig } from "@/lib/sheets-config";
-import { contactFormSchema } from "@/lib/validations/contact";
+import {
+  contactFormSchema,
+  formatJourneyTypeForSubmission,
+  formatWhichDestinationForSheet,
+  formatWhereToTravelForSheet,
+} from "@/lib/validations/contact";
+import { z } from "zod";
+
+const contactRequestSchema = contactFormSchema.extend({
+  formIntent: z
+    .enum(["interest", "private-journey", "contact", "callback"])
+    .optional(),
+});
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const parsed = contactFormSchema.safeParse(body);
+    const parsed = contactRequestSchema.safeParse(body);
 
     if (!parsed.success) {
       return NextResponse.json(
@@ -49,8 +61,11 @@ export async function POST(request: Request) {
       values: [
         data.name,
         data.phone,
-        data.planningFor,
-        data.destination,
+        formatWhereToTravelForSheet(data),
+        formatWhichDestinationForSheet(data),
+        formatJourneyTypeForSubmission(data.journeyType),
+        data.departureCity ?? "",
+        data.preferredMonth ?? "",
         data.message ?? "",
         data.utm_source ?? "",
         data.utm_medium ?? "",

@@ -26,7 +26,12 @@ export function PuriCta({
     <ExperienceCtaSection
       {...sectionData}
       className={className}
-      onPrimaryClick={() => openContactForm(notifyDestination)}
+      onPrimaryClick={() =>
+        openContactForm({
+          destination: notifyDestination,
+          intent: "private-journey",
+        })
+      }
     />
   );
 }

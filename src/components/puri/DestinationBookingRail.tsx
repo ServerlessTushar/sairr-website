@@ -31,7 +31,7 @@ function splitDate(dateRange: string, year: string) {
   }
 
   const month = MONTHS[match[2]] ?? match[2].slice(0, 3);
-  return { days: match[1], when: `${month}' ${shortYear}` };
+  return { days: match[1], when: `${month}\u2019 ${shortYear}` };
 }
 
 export type DestinationBookingRailProps = {
@@ -95,7 +95,12 @@ export function DestinationBookingRail({
           </p>
           <button
             type="button"
-            onClick={() => openContactForm(notifyDestination)}
+            onClick={() =>
+              openContactForm({
+                destination: notifyDestination,
+                intent: "interest",
+              })
+            }
             className="inline-flex h-10 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             I&apos;m Interested
@@ -164,15 +169,6 @@ export function DestinationBookingRail({
                     ) : null}
                   </div>
                   <p className="mt-1 text-xs text-slate">{when}</p>
-                  {/* <button
-                    type="button"
-                    onClick={() =>
-                      openEnquiry({ departureId: card.id, intent: "interest" })
-                    }
-                    className="mt-3 text-sm font-semibold text-[#EC575E]"
-                  >
-                    I&apos;m Interested →
-                  </button> */}
                 </li>
               );
             })}
@@ -185,7 +181,12 @@ export function DestinationBookingRail({
           <span className="mr-4">Prefer a different date?</span>
           <button
             type="button"
-            onClick={() => openContactForm(notifyDestination)}
+            onClick={() =>
+              openContactForm({
+                destination: notifyDestination,
+                intent: "private-journey",
+              })
+            }
             className="mt-3 inline-flex h-10 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             Talk To Us

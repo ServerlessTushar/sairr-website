@@ -9,30 +9,63 @@ import {
   type ReactNode,
 } from "react";
 import { ContactFormDialog } from "@/components/forms/ContactFormDialog";
-import type { TravelDestination } from "@/lib/validations/contact";
+import type {
+  ContactFormIntent,
+  TravelDestination,
+} from "@/lib/validations/contact";
+
+export type ContactFormOpenOptions = {
+  destination?: TravelDestination;
+  intent?: ContactFormIntent;
+};
 
 type ContactFormDialogContextValue = {
-  openContactForm: (destination?: TravelDestination) => void;
+  openContactForm: (
+    options?: ContactFormOpenOptions | TravelDestination,
+  ) => void;
 };
 
 const ContactFormDialogContext =
   createContext<ContactFormDialogContextValue | null>(null);
+
+function normalizeOpenOptions(
+  options?: ContactFormOpenOptions | TravelDestination,
+): ContactFormOpenOptions {
+  if (typeof options === "string") {
+    return { destination: options, intent: "interest" };
+  }
+
+  if (!options) {
+    return { intent: "contact" };
+  }
+
+  return {
+    destination: options.destination,
+    intent: options.intent ?? "contact",
+  };
+}
 
 export function ContactFormDialogProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [destination, setDestination] = useState<
     TravelDestination | undefined
   >();
+  const [intent, setIntent] = useState<ContactFormIntent>("contact");
 
-  const openContactForm = useCallback((nextDestination?: TravelDestination) => {
-    setDestination(nextDestination);
-    setOpen(true);
-  }, []);
+  const openContactForm = useCallback(
+    (options?: ContactFormOpenOptions | TravelDestination) => {
+      const normalized = normalizeOpenOptions(options);
+      setDestination(normalized.destination);
+      setIntent(normalized.intent ?? "contact");
+      setOpen(true);
+    },
+    [],
+  );
 
   useEffect(() => {
     const fromHash = () => {
       if (window.location.hash !== "#enquire") return;
-      openContactForm();
+      openContactForm({ intent: "contact" });
       history.replaceState(
         null,
         "",
@@ -51,6 +84,7 @@ export function ContactFormDialogProvider({ children }: { children: ReactNode })
         open={open}
         onOpenChange={setOpen}
         destination={destination}
+        intent={intent}
       />
     </ContactFormDialogContext.Provider>
   );

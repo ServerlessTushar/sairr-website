@@ -56,7 +56,12 @@ export function GroupTravelSection({
           {contactDestination ? (
             <button
               type="button"
-              onClick={() => openContactForm(contactDestination)}
+              onClick={() =>
+                openContactForm({
+                  destination: contactDestination,
+                  intent: "private-journey",
+                })
+              }
               className={buttonClassName}
             >
               {buttonLabel}

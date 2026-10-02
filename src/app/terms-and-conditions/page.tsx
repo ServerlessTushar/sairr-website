@@ -58,7 +58,7 @@ const keyTerms: { term: string; definition: string }[] = [
 ];
 
 const tocItems = [
-  { id: "section-1", label: "1. Terms and Conditions" },
+  { id: "section-1", label: "1. About These Terms" },
   { id: "section-2", label: "2. About These Terms" },
   { id: "section-3", label: "3. Sairr’s Services & Our Role" },
   { id: "section-4", label: "4. Bookings & Confirmation" },
@@ -89,7 +89,11 @@ const tocItems = [
 export default function TermsPage() {
   return (
     <>
-      <LegalBanner title="Terms & Conditions" />
+      <LegalBanner
+        title="Terms & Conditions"
+        subtitle="Clear terms. No surprises."
+        effectiveDate="22 September 2026"
+      />
 
       <section className="bg-mist pb-20 lg:pb-28">
         <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
@@ -99,12 +103,9 @@ export default function TermsPage() {
             </aside>
 
             <div className="space-y-10">
-            <Section number={1} title="Terms and Conditions">
+            <Section number={1} title="About These Terms">
               <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
                 Clear terms. No surprises.
-              </p>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-                Effective: 22 September 2026
               </p>
               <p>
                 How bookings, payments, changes, cancellations and support work

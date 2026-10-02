@@ -24,8 +24,18 @@ export function PuriDates({
   return (
     <ExperienceDatesSection
       {...props}
-      onInterestClick={() => openContactForm(notifyDestination)}
-      onNotifyClick={() => openContactForm(notifyDestination)}
+      onInterestClick={() =>
+        openContactForm({
+          destination: notifyDestination,
+          intent: "interest",
+        })
+      }
+      onNotifyClick={() =>
+        openContactForm({
+          destination: notifyDestination,
+          intent: "interest",
+        })
+      }
     />
   );
 }
