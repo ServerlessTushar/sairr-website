@@ -139,11 +139,11 @@ export function TimelineItinerary({
   return (
     <section
       id={id}
-      className={cn("scroll-mt-24 border-t border-charcoal/10 bg-[#FDFBF2]", className)}
+      className={cn("scroll-mt-24 bg-[#FDFBF2]", className)}
     >
       <div
         className={cn(
-          "mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20",
+          "mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-12",
           flush && "max-w-none px-0",
         )}
       >

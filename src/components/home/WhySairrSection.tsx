@@ -13,7 +13,7 @@ import locationPinIcon from "@/public/homepage/location-pin.png";
 import peopleIcon from "@/public/homepage/people.png";
 import ratingStarIcon from "@/public/homepage/rating-star.png";
 import featuredImage from "@/public/homepage/whySairr.webp";
-import { imageHover } from "@/lib/motion";
+import { imageHover, springSnappy } from "@/lib/motion";
 
 const CARD_SHADOW = "shadow-[0_2px_16px_rgba(27,29,31,0.08)]";
 const CARD_TITLE =
@@ -60,14 +60,20 @@ const iconBeliefItems: IconBeliefItem[] = [
 
 function BeliefIcon({ src }: { src: StaticImageData }) {
   return (
-    <Image
-      src={src}
-      alt=""
-      width={66}
-      height={66}
-      className="size-7 object-contain sm:size-[56px]"
-      aria-hidden
-    />
+    <motion.div
+      className="relative size-7 shrink-0 sm:size-14"
+      whileHover={{ scale: 1.08, rotate: 4 }}
+      transition={springSnappy}
+    >
+      <Image
+        src={src}
+        alt=""
+        fill
+        className="object-contain"
+        sizes="56px"
+        aria-hidden
+      />
+    </motion.div>
   );
 }
 
@@ -110,8 +116,7 @@ function IconBeliefCard({
     <GridCardRevealItem
       index={index}
       as="article"
-      hover={false}
-      className={`h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
+      className={`h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 transition-shadow duration-300 ease-out hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)] sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
     >
 
       <BeliefIcon src={item.icon} />

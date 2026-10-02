@@ -74,7 +74,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "puri-5",
-    name: "Traveller name",
+    name: "Ravindra & Sarita Zalkey",
     age: "age",
     quote: "We met as strangers. But by the end of the trip, it felt like we'd known each other for years. We'd love to travel with Sairr again, with the same people.",
     destination: "Nagpur",

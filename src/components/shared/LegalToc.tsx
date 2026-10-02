@@ -41,9 +41,8 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
     const el = document.getElementById(id);
     if (!el) return;
     event.preventDefault();
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    // Keep a shareable section URL without adding a browser-history entry.
-    // Preserving the current state also avoids discarding Next.js router state.
+    const top = el.getBoundingClientRect().top + window.scrollY - MARKER + 16;
+    window.scrollTo({ top, behavior: "instant" });
     window.history.replaceState(window.history.state, "", `#${id}`);
   };
 

@@ -28,7 +28,7 @@ function TestimonialMedia({
           alt={testimonial.media.alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 768px) 85vw, (max-width: 1024px) 42vw, 28vw"
         />
       </div>
     );
@@ -61,22 +61,28 @@ export function TestimonialCard({
     return (
       <article
         className={cn(
-          "flex h-full flex-col rounded-[14.08px] bg-white p-5",
+          "flex h-full w-full flex-col rounded-[14.08px] bg-white px-4 py-6 sm:py-7 lg:px-[18px]",
           "shadow-testimonial md:shadow-testimonial-lg",
         )}
       >
-        <blockquote className="font-heading text-base leading-relaxed text-charcoal sm:text-[1.05rem]">
-          &ldquo;{testimonial.quote}&rdquo;
+        <blockquote className="min-h-0 flex-1 font-heading text-base leading-relaxed text-charcoal sm:text-[1.05rem]">
+          {testimonial.quote}
         </blockquote>
 
-        <TestimonialMedia
-          testimonial={testimonial}
-          className="mt-4 overflow-hidden rounded-xl"
-        />
+        <div className="mt-4 shrink-0">
+          <TestimonialMedia
+            testimonial={testimonial}
+            className="overflow-hidden rounded-xl"
+          />
 
-        <div className="mt-4">
-          <p className="text-sm font-semibold text-charcoal">{testimonial.name}</p>
-          <p className="mt-1 text-sm text-slate">{testimonial.destination}</p>
+          <div className="mt-4">
+            <p className="text-sm font-semibold text-charcoal">
+              {testimonial.name}
+            </p>
+            <p className="mt-1 text-sm italic text-slate">
+              {testimonial.destination}
+            </p>
+          </div>
         </div>
       </article>
     );
