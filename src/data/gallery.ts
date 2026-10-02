@@ -59,7 +59,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-4",
     seed: "moments-4",
-    src: "/homepage/moments-4.webp",
+    src: "/homepage/moments-4-1.webp",
     alt: "Temple dome in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -194,7 +194,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-4",
     seed: "moments-4",
-    src: "/homepage/moments-4.webp",
+    src: "/homepage/moments-4-1.webp",
     alt: "Temple dome in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",

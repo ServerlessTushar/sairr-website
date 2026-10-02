@@ -1,12 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { CardRevealCarouselItem } from "@/components/shared/CardReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
-import { Button } from "@/components/ui/button";
 import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
@@ -47,7 +45,7 @@ const journeys: Journey[] = [
   {
     slug: "andaman",
     title: "Andaman & Nicobar",
-    category: "Domestic leisure",
+    category: "Domestic",
     description: "Turquoise water, white sand, and island beauty.",
     image: andaman,
     status: "coming-soon",
@@ -73,10 +71,6 @@ export function JourneysSection() {
 
   function handleNotifyMe(destination: TravelDestination) {
     openContactForm({ destination, intent: "interest" });
-  }
-
-  function handleRequestCallback() {
-    openContactForm({ intent: "callback" });
   }
 
   return (
@@ -134,29 +128,27 @@ export function JourneysSection() {
         />
 
         <FadeIn delay={0.2}>
-          <div className="flex justify-center pb-10 pt-4 lg:pt-0 lg:ml-auto lg:w-[calc((100%-36px)/4)] lg:justify-end lg:pb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto flex w-full max-w-3xl items-center gap-3 px-4 pb-10 pt-4 sm:gap-4 sm:px-6 md:max-w-4xl lg:max-w-5xl lg:gap-6 lg:pb-12 lg:pt-8"
+          >
+            <div
+              className="h-px min-w-8 flex-1 bg-[#EC575E]"
+              aria-hidden
+            />
+            <p
+              className="shrink-0 text-center font-heading text-sm font-semibold leading-snug text-[#0E5E6F] sm:text-base"
             >
-              {/* <Button
-                type="button"
-                size="lg"
-                onClick={handleRequestCallback}
-                className="cursor-pointer bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 h-12 rounded-lg px-8 font-sans text-sm font-semibold text-white"
-              >
-                Get a Callback
-                <ArrowRight className="ml-2 size-4" />
-              </Button> */}
-              <p className="text-xs font-semibold text-[#0E5E6F]">
-                More destinations launching soon.
-              </p>
-            </motion.div>
-          </div>
+              More destinations launching soon.
+            </p>
+            <div
+              className="h-px min-w-8 flex-1 bg-[#EC575E]"
+              aria-hidden
+            />
+          </motion.div>
         </FadeIn>
       </div>
     </section>

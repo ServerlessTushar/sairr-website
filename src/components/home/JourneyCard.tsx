@@ -168,7 +168,11 @@ export function JourneyCard({
       : [journey.image];
 
   return (
-    <article className={`group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] ${isOpen && journey.href ? "pb-0" : "pb-4"} shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]`}>
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] pb-0 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]">
+      {/* Full-card link for booking-open cards with an href */}
+      {isOpen && journey.href ? (
+        <Link href={journey.href} className="absolute inset-0 z-0" aria-label={`View ${journey.title}`} tabIndex={-1} />
+      ) : null}
       <StatusBadge status={journey.status} />
 
       <div className="relative aspect-4/3 overflow-hidden rounded-xl">
@@ -190,29 +194,44 @@ export function JourneyCard({
         )}
       </div>
 
-      <div className={`flex flex-1 flex-col pt-4 ${isOpen && journey.href ? "pb-0" : "pb-4 px-2 md:px-3"}`}>
-        <p
-          className="text-right text-xs font-semibold"
-          style={{ color: TEAL }}
+      <div
+        className={`flex flex-1 flex-col pt-4 ${isOpen && journey.href ? "pb-0" : "px-2 pb-0 md:px-3"}`}
+      >
+        <div
+          className={cn(
+            "flex flex-1 flex-col",
+            isOpen && journey.href && "px-2 md:px-3",
+          )}
         >
-          {journey.category}
-        </p>
+          <p
+            className="text-right text-xs font-semibold"
+            style={{ color: TEAL }}
+          >
+            {journey.category}
+          </p>
 
-        <h3 className="mt-2 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
-          {journey.title}
-        </h3>
+          <h3 className="mt-2 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
+            {journey.title}
+          </h3>
 
-        <p className="flex-1 text-xs md:text-sm leading-relaxed text-slate">
-          {journey.description}
-        </p>
+          <p className="flex-1 text-xs md:text-sm leading-relaxed mt-1">
+            {journey.description}
+          </p>
 
-        <div className="mt-1 md:mt-4">
-          {isOpen && journey.perks && (
-            <p className="text-[11px] md:text-[11px] leading-snug text-[#0E5E6F]">
+          {isOpen && journey.perks ? (
+            <p className="mt-1 text-[11px] leading-snug text-[#0E5E6F] md:mt-4 md:text-[11px]">
               {journey.perks.map(formatPerk).join(" • ")}
             </p>
-          )}
+          ) : null}
+        </div>
 
+        <div
+          className={
+            isOpen && journey.href
+              ? undefined
+              : "mt-auto flex min-h-16 w-full items-center justify-center"
+          }
+        >
           {isOpen && journey.href ? (
             // <Link
             //   href={journey.href}
@@ -224,17 +243,16 @@ export function JourneyCard({
             // </Link>
             <Link
               href={journey.href}
-              className="-mx-[6px] -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#FF4859] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
+              className="relative z-10 -mx-[6px] capitalize -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#FF4859] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
             >
               See itinerary
-              <ArrowRight className="ml-2 size-4" />
             </Link>
           ) : journey.destination && onNotifyMe ? (
             <button
               style={{ color: CORAL }}
               type="button"
               onClick={() => onNotifyMe(journey.destination!)}
-              className="w-full cursor-pointer relative mt-4 inline-block pb-1 text-center text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+              className="relative inline-block w-full cursor-pointer pb-1 text-center text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
             >
               I&apos;m Interested
             </button>
@@ -246,7 +264,7 @@ export function JourneyCard({
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative mt-4 inline-block pb-1 text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+              className="relative inline-block pb-1 text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
             >
               Notify Me
               <NotifyMeUnderline />

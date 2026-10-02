@@ -27,10 +27,10 @@ export function TestimonialVideoSection({
   const resolvedTitle = videoTitle ?? heading;
 
   return (
-    <section className={cn("border-t border-charcoal/10", className)}>
+    <section className={cn("", className)}>
       <div
         className={cn(
-          "mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-28",
+          "mx-auto max-w-4xl px-4 pb-16 pt-10 text-center sm:px-6 sm:pb-20 lg:px-8 lg:pb-28",
           flush && "max-w-none px-0",
         )}
       >

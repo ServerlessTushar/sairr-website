@@ -42,7 +42,7 @@ export function PuriMoments({
     <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
       <div
         className={cn(
-          "mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20",
+          "mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:pb-10 lg:pt-20",
           flush && "max-w-none px-0",
         )}
       >

@@ -34,7 +34,7 @@ export function GroupTravelSection({
     "mt-4 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[#EC575E] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors hover:bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
   return (
-    <section className={cn("bg-[#FDFBF2] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12", className)}>
+    <section className={cn("bg-[#FDFBF2] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:pb-10 lg:pt-8", className)}>
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-2xl bg-[#0E5E6F] text-white md:h-[217.01px] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-stretch">
         <div className="relative aspect-[604/435] w-full min-h-48 md:aspect-auto md:h-full md:min-h-0">
           <Image
