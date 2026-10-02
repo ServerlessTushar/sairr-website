@@ -119,7 +119,7 @@ export function Header() {
       className={cn(
         "top-0 z-50 w-full transition-[background-color,border-color,backdrop-filter] duration-300",
         isHome && "fixed",
-        !isHome && "sticky border-b border-charcoal/10 bg-mist/95 backdrop-blur-lg",
+        !isHome && "sticky border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
         isHome &&
           "border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
       )}

@@ -13,12 +13,10 @@ import { puriFaqsSectionData } from "@/components/puri/puriFaqsData";
 import type { ExperienceCtaSectionData } from "@/components/puri/PuriCta";
 import { puriCtaSectionData } from "@/components/puri/puriCtaData";
 import { puriHeroSectionData } from "@/components/puri/puriHeroData";
-import type { DestinationEnquiryConfig } from "@/components/puri/PuriEnquiry";
 import {
   getLowestLivePrice,
   lowestLivePriceLabel,
   puriCopy,
-  puriDepartures,
 } from "@/data/puri";
 import type { TravelDestination } from "@/lib/validations/contact";
 import { puriGalleryImages, type GalleryImage } from "@/data/gallery";
@@ -31,7 +29,6 @@ export type DestinationPageContent = {
   offerPrice: string;
   stickyPriceLabel: string;
   notifyDestination: TravelDestination;
-  enquiry: DestinationEnquiryConfig;
   hero: ExperienceHeroSectionData;
   moments: {
     heading: string;
@@ -59,12 +56,6 @@ const puriPage: DestinationPageContent = {
   offerPrice: String(getLowestLivePrice()),
   stickyPriceLabel: lowestLivePriceLabel,
   notifyDestination: "Puri & Bhubaneswar",
-  enquiry: {
-    destinationName: "Puri",
-    departures: puriDepartures,
-    interestMessage: "Interested in the Puri journey.",
-    notifyMessage: "Notify me when the next Puri departure is announced.",
-  },
   hero: puriHeroSectionData,
   moments: puriMomentsSectionData,
   itineraryHeading: "Itinerary",

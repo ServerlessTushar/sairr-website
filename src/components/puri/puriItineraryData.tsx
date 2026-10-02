@@ -41,13 +41,14 @@ const dayServices = [
 ] as const;
 
 function ServiceIcon({ src }: { src: string }) {
+  const isProfile = src === "/destinations/profile.svg";
   return (
     <Image
       src={src}
       alt=""
       width={22}
       height={22}
-      className="size-[22px] object-contain"
+      className={isProfile ? "size-[14px] object-contain" : "size-[22px] object-contain"}
       aria-hidden
     />
   );

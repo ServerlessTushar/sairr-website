@@ -168,7 +168,7 @@ export function PuriHeroDetails({ sectionData }: PuriHeroProps) {
               alt=""
               width={28}
               height={28}
-              className="mt-0.5 size-7 shrink-0"
+              className={`mt-0.5 shrink-0 ${item.icon === "/destinations/profile.svg" ? "size-[22px]" : "size-7"}`}
               aria-hidden
             />
             <span>

@@ -7,7 +7,6 @@ import {
   type DateCardData,
   type ExperienceDatesSectionProps,
 } from "@/components/shared/ExperienceDatesSection";
-import { usePuriEnquiry } from "@/components/puri/PuriEnquiry";
 
 export type { DateCardData };
 
@@ -20,15 +19,12 @@ export function PuriDates({
   notifyDestination,
   ...props
 }: PuriDatesProps & { notifyDestination: TravelDestination }) {
-  const { openEnquiry } = usePuriEnquiry();
   const { openContactForm } = useContactFormDialog();
 
   return (
     <ExperienceDatesSection
       {...props}
-      onInterestClick={(cardId) =>
-        openEnquiry({ departureId: cardId, intent: "interest" })
-      }
+      onInterestClick={() => openContactForm(notifyDestination)}
       onNotifyClick={() => openContactForm(notifyDestination)}
     />
   );

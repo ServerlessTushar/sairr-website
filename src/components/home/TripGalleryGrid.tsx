@@ -66,8 +66,18 @@ function GalleryTile({
         style={{ objectPosition: image.objectPosition ?? "center" }}
       />
       {moreImagesCount ? (
-        <span className="absolute inset-0 flex items-center justify-center bg-charcoal/55 font-heading text-3xl font-semibold text-white transition-colors group-hover:bg-charcoal/65 sm:text-4xl">
-          +{moreImagesCount}
+        <span className="absolute inset-0 flex items-end justify-center pb-6">
+          <span className="cursor-pointer flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-charcoal" style={{ backgroundColor: "#FFFFFFE3" }}>
+            <Image
+              src="/destinations/photo.svg"
+              alt=""
+              width={18}
+              height={18}
+              className="size-[18px] shrink-0"
+              aria-hidden
+            />
+            See more photos
+          </span>
         </span>
       ) : null}
     </motion.button>

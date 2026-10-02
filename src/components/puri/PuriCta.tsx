@@ -4,23 +4,29 @@ import {
   ExperienceCtaSection,
   type ExperienceCtaSectionData,
 } from "@/components/shared/ExperienceCtaSection";
-import { usePuriEnquiry } from "@/components/puri/PuriEnquiry";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import type { TravelDestination } from "@/lib/validations/contact";
 
 export type { ExperienceCtaSectionData };
 
 export type PuriCtaProps = {
   sectionData: ExperienceCtaSectionData;
+  notifyDestination: TravelDestination;
   className?: string;
 };
 
-export function PuriCta({ sectionData, className }: PuriCtaProps) {
-  const { openEnquiry } = usePuriEnquiry();
+export function PuriCta({
+  sectionData,
+  notifyDestination,
+  className,
+}: PuriCtaProps) {
+  const { openContactForm } = useContactFormDialog();
 
   return (
     <ExperienceCtaSection
       {...sectionData}
       className={className}
-      onPrimaryClick={() => openEnquiry()}
+      onPrimaryClick={() => openContactForm(notifyDestination)}
     />
   );
 }
