@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
-import { usePuriEnquiry } from "@/components/puri/PuriEnquiry";
 import type { DateCardData } from "@/components/shared/ExperienceDatesSection";
 import type { TravelDestination } from "@/lib/validations/contact";
 import { cn } from "@/lib/utils";
@@ -54,7 +53,6 @@ export function DestinationBookingRail({
   cards,
   notifyDestination,
 }: DestinationBookingRailProps) {
-  const { openEnquiry } = usePuriEnquiry();
   const { openContactForm } = useContactFormDialog();
   const [notesOpen, setNotesOpen] = useState(false);
 
@@ -97,7 +95,7 @@ export function DestinationBookingRail({
           </p>
           <button
             type="button"
-            onClick={() => openEnquiry()}
+            onClick={() => openContactForm(notifyDestination)}
             className="inline-flex h-10 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             I&apos;m Interested

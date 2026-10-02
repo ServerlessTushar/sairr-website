@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -27,6 +28,21 @@ export function ContactFormDialogProvider({ children }: { children: ReactNode })
     setDestination(nextDestination);
     setOpen(true);
   }, []);
+
+  useEffect(() => {
+    const fromHash = () => {
+      if (window.location.hash !== "#enquire") return;
+      openContactForm();
+      history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, [openContactForm]);
 
   return (
     <ContactFormDialogContext.Provider value={{ openContactForm }}>

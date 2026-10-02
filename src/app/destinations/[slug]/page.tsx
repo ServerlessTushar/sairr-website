@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { PuriEnquiryProvider } from "@/components/puri/PuriEnquiry";
 import { PuriHero, PuriHeroDetails } from "@/components/puri/PuriHero";
 import { PuriMoments } from "@/components/puri/PuriMoments";
 import { PuriItinerary } from "@/components/puri/PuriItinerary";
@@ -84,8 +83,7 @@ export default async function DestinationPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <PuriEnquiryProvider config={destination.enquiry}>
-        <div className="bg-[#FDFBF2] pb-24 md:pb-0">
+      <div className="bg-[#FDFBF2] pb-24 md:pb-0">
           <PuriHero sectionData={destination.hero} />
 
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-4 lg:px-8">
@@ -108,13 +106,14 @@ export default async function DestinationPage({ params }: Props) {
                 imageSrc="/destinations/your-own-group1.webp"
                 imageAlt="Friends enjoying a trip together"
                 buttonLabel="Talk To Us"
+                contactDestination={destination.notifyDestination}
               />
               <PuriWords flush {...destination.words} />
               <PuriIncluded flush {...destination.included} />
             </div>
 
             <aside className="hidden self-stretch lg:block">
-              <div className="sticky top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto py-8 pr-1">
+              <div className="sticky top-24 py-8 pr-1">
                 {bookingRail}
               </div>
             </aside>
@@ -128,10 +127,16 @@ export default async function DestinationPage({ params }: Props) {
             showBird
           />
           <PuriFaqs id="faqs" {...destination.faqs} />
-          <PuriCta className="!bg-[#0E5E6F]" sectionData={destination.cta} />
-          <PuriStickyBar priceLabel={destination.stickyPriceLabel} />
+          <PuriCta
+            className="!bg-[#0E5E6F]"
+            sectionData={destination.cta}
+            notifyDestination={destination.notifyDestination}
+          />
+          <PuriStickyBar
+            priceLabel={destination.stickyPriceLabel}
+            notifyDestination={destination.notifyDestination}
+          />
         </div>
-      </PuriEnquiryProvider>
     </>
   );
 }

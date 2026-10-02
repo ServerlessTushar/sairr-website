@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import type { TravelDestination } from "@/lib/validations/contact";
 import { cn } from "@/lib/utils";
 
 export type GroupTravelSectionProps = {
@@ -8,6 +12,8 @@ export type GroupTravelSectionProps = {
   imageSrc: string;
   imageAlt: string;
   buttonLabel?: string;
+  /** Opens contact popup when set; otherwise uses `buttonHref`. */
+  contactDestination?: TravelDestination;
   buttonHref?: string;
   className?: string;
 };
@@ -18,9 +24,15 @@ export function GroupTravelSection({
   imageSrc,
   imageAlt,
   buttonLabel = "Talk To Us",
-  buttonHref = "#enquire",
+  contactDestination,
+  buttonHref = "/contact",
   className,
 }: GroupTravelSectionProps) {
+  const { openContactForm } = useContactFormDialog();
+
+  const buttonClassName =
+    "mt-4 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[#EC575E] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors hover:bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
   return (
     <section className={cn("bg-[#FDFBF2] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12", className)}>
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-2xl bg-[#0E5E6F] text-white md:h-[217.01px] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-stretch">
@@ -41,12 +53,19 @@ export function GroupTravelSection({
           <p className="mt-2 max-w-2xl text-sm leading-snug text-white/95">
             {description}
           </p>
-          <Link
-            href={buttonHref}
-            className="mt-4 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[#EC575E] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors hover:bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
-            {buttonLabel}
-          </Link>
+          {contactDestination ? (
+            <button
+              type="button"
+              onClick={() => openContactForm(contactDestination)}
+              className={buttonClassName}
+            >
+              {buttonLabel}
+            </button>
+          ) : (
+            <Link href={buttonHref} className={buttonClassName}>
+              {buttonLabel}
+            </Link>
+          )}
         </div>
       </div>
     </section>
