@@ -44,8 +44,8 @@ const contactMethods = [
 
 export default function ContactPage() {
   return (
-    <section className="border-t border-charcoal/10 bg-sand">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className="border-t border-charcoal/10 bg-sand pt-20">
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
         <FadeIn>
           <div className="max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">

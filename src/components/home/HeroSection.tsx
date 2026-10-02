@@ -123,6 +123,7 @@ export function HeroSection() {
   return (
     <section
       id="home-hero"
+      data-header-hero
       ref={sectionRef}
       className="relative min-h-dvh overflow-hidden"
     >

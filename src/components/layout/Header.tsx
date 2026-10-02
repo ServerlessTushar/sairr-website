@@ -88,40 +88,32 @@ export function Header() {
     setPendingHash(hashFromNavHref(href));
   }
 
-  const isHome = pathname === "/";
-  const [heroInView, setHeroInView] = useState(isHome);
+  const [heroBannerInView, setHeroBannerInView] = useState(false);
 
   useEffect(() => {
-    if (!isHome) {
-      return;
-    }
-
-    const hero = document.getElementById("home-hero");
-    if (!hero) {
+    const heroes = document.querySelectorAll("[data-header-hero]");
+    if (heroes.length === 0) {
+      setHeroBannerInView(false);
       return;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHeroInView(entry.isIntersecting);
+      (entries) => {
+        setHeroBannerInView(entries.some((entry) => entry.isIntersecting));
       },
       { threshold: 0 },
     );
 
-    observer.observe(hero);
+    heroes.forEach((hero) => observer.observe(hero));
     return () => observer.disconnect();
-  }, [isHome, pathname]);
+  }, [pathname]);
 
-  const homeHeaderOverHero = isHome && heroInView;
+  const homeHeaderOverHero = heroBannerInView;
 
   return (
     <header
       className={cn(
-        "top-0 z-50 w-full transition-[background-color,border-color,backdrop-filter] duration-300",
-        isHome && "fixed",
-        !isHome && "sticky border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
-        isHome &&
-          "border-b border-charcoal/10 bg-white/55 backdrop-blur-md",
+        "fixed top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
