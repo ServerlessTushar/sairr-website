@@ -181,11 +181,17 @@ export const contactFormSchema = z
 export type ContactFormFieldValues = z.input<typeof contactFormSchema>;
 export type ContactFormData = z.output<typeof contactFormSchema>;
 
-export function formatDestinationForSubmission(data: ContactFormData) {
-  if (data.destination === DESTINATION_SOMEWHERE_ELSE) {
-    return data.otherDestination?.trim() ?? DESTINATION_SOMEWHERE_ELSE;
-  }
+/** Column C — dropdown value (including "Somewhere else"). */
+export function formatWhereToTravelForSheet(data: ContactFormData) {
   return data.destination;
+}
+
+/** Column D — free-text only when "Somewhere else" is selected. */
+export function formatWhichDestinationForSheet(data: ContactFormData) {
+  if (data.destination !== DESTINATION_SOMEWHERE_ELSE) {
+    return "";
+  }
+  return data.otherDestination?.trim() ?? "";
 }
 
 export function formatJourneyTypeForSubmission(journeyType?: JourneyType) {

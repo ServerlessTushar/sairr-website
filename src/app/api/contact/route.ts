@@ -3,9 +3,9 @@ import { appendRowToSheet, isGoogleSheetsConfigured } from "@/lib/google-sheets"
 import { getContactSheetConfig } from "@/lib/sheets-config";
 import {
   contactFormSchema,
-  formatDestinationForSubmission,
   formatJourneyTypeForSubmission,
-  type ContactFormIntent,
+  formatWhichDestinationForSheet,
+  formatWhereToTravelForSheet,
 } from "@/lib/validations/contact";
 import { z } from "zod";
 
@@ -54,7 +54,6 @@ export async function POST(request: Request) {
     }
 
     const data = parsed.data;
-    const formIntent: ContactFormIntent = data.formIntent ?? "contact";
 
     await appendRowToSheet({
       sheetId: sheetConfig.sheetId,
@@ -62,12 +61,12 @@ export async function POST(request: Request) {
       values: [
         data.name,
         data.phone,
-        formatDestinationForSubmission(data),
+        formatWhereToTravelForSheet(data),
+        formatWhichDestinationForSheet(data),
         formatJourneyTypeForSubmission(data.journeyType),
         data.departureCity ?? "",
         data.preferredMonth ?? "",
         data.message ?? "",
-        formIntent,
         data.utm_source ?? "",
         data.utm_medium ?? "",
         data.utm_id ?? "",
