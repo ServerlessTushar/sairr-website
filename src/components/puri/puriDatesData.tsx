@@ -7,22 +7,43 @@ import {
 } from "@/data/puri";
 import puriDateBgImg from "@/public/experience/puriDatedBg.webp";
 
+const MONTH_ABBREV_TO_FULL: Record<string, string> = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December",
+};
+
 function parseDepartureDates(dates: string) {
   // Handle format like "8-11 Oct' 26"
-  const match = dates.match(/^(.+?)\s+([A-Za-z]+)'\s+(\d{2})$/);
+  const match = dates.match(/^(.+?)\s+([A-Za-z]+)['']\s+(\d{2})$/);
   if (match) {
+    const monthAbbrev = match[2];
+    const fullMonth = MONTH_ABBREV_TO_FULL[monthAbbrev] ?? monthAbbrev;
     return {
-      dateRange: match[1],
+      dateRange: `${match[1]} ${fullMonth}`,
       year: `20${match[3]}`,
     };
   }
-  
+
   // Fallback to original format like "8-11 October 2026"
-  const oldMatch = dates.match(/^(.+)\s+(\d{4})$/);
-  return {
-    dateRange: oldMatch?.[1] ?? dates,
-    year: oldMatch?.[2] ?? "",
-  };
+  const oldMatch = dates.match(/^(.+?)\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (oldMatch) {
+    return {
+      dateRange: `${oldMatch[1]} ${oldMatch[2]}`,
+      year: oldMatch[3],
+    };
+  }
+
+  return { dateRange: dates, year: "" };
 }
 
 const liveCards = getLiveDepartures().map((departure) => {

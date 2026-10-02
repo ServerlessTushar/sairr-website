@@ -1,14 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useMemo } from "react";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send, ChevronDown } from "lucide-react";
 import {
+  buildContactFormDefaults,
   contactFormSchema,
-  travelDestinations,
+  destinationCatalog,
+  DESTINATION_SOMEWHERE_ELSE,
+  getPreferredMonthOptions,
+  journeyTypeOptions,
   type ContactFormData,
   type ContactFormFieldValues,
+  type ContactFormIntent,
   type TravelDestination,
 } from "@/lib/validations/contact";
 import { Button } from "@/components/ui/button";
@@ -27,40 +32,53 @@ const labelClassName =
 
 const errorClassName = "text-sm text-destructive";
 
+const textareaClassName =
+  "min-h-32 rounded-xl border-border/60 bg-mist/80 px-4 py-3 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
+
 type ContactFormProps = {
+  intent?: ContactFormIntent;
   defaultDestination?: TravelDestination;
   onSubmitted?: () => void;
 };
 
+function SelectChevron() {
+  return (
+    <ChevronDown
+      className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-slate"
+      aria-hidden
+    />
+  );
+}
+
 export function ContactForm({
+  intent = "contact",
   defaultDestination,
   onSubmitted,
 }: ContactFormProps) {
+  const preferredMonths = useMemo(() => getPreferredMonthOptions(), []);
+
+  const defaultValues = useMemo(
+    () => buildContactFormDefaults(intent, defaultDestination),
+    [intent, defaultDestination],
+  );
+
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormFieldValues, unknown, ContactFormData>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: "",
-      phone: "",
-      planningFor: "",
-      destination: defaultDestination ?? "",
-      message: "",
-    },
+    defaultValues,
   });
 
+  const selectedDestination = useWatch({ control, name: "destination" });
+  const showOtherDestination = selectedDestination === DESTINATION_SOMEWHERE_ELSE;
+
   useEffect(() => {
-    reset({
-      name: "",
-      phone: "",
-      planningFor: "",
-      destination: defaultDestination ?? "",
-      message: "",
-    });
-  }, [defaultDestination, reset]);
+    reset(buildContactFormDefaults(intent, defaultDestination));
+  }, [defaultDestination, intent, reset]);
 
   async function onSubmit(data: ContactFormData) {
     try {
@@ -69,6 +87,7 @@ export function ContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
+          formIntent: intent,
           ...getStoredUtmParams(),
         }),
       });
@@ -79,13 +98,7 @@ export function ContactForm({
         throw new Error(result.error ?? "Failed to submit enquiry");
       }
 
-      reset({
-        name: "",
-        phone: "",
-        planningFor: "",
-        destination: defaultDestination ?? "",
-        message: "",
-      });
+      reset(buildContactFormDefaults(intent, defaultDestination));
       toast.success("Enquiry sent", {
         description: "Thank you! We'll be in touch within 24 hours.",
       });
@@ -109,7 +122,7 @@ export function ContactForm({
           </Label>
           <Input
             id="name"
-            placeholder="Your name"
+            placeholder="Your full name"
             aria-invalid={!!errors.name}
             className={cn(fieldClassName, errors.name && "border-destructive")}
             {...register("name")}
@@ -121,13 +134,13 @@ export function ContactForm({
 
         <div className="space-y-2">
           <Label htmlFor="phone" className={labelClassName}>
-            Phone
+            Phone number
           </Label>
           <Input
             id="phone"
             type="tel"
             inputMode="numeric"
-            placeholder="9876543210"
+            placeholder="Your 10-digit mobile number"
             maxLength={10}
             aria-invalid={!!errors.phone}
             className={cn(fieldClassName, errors.phone && "border-destructive")}
@@ -156,27 +169,8 @@ export function ContactForm({
 
         <div className="grid gap-6">
           <div className="space-y-2">
-            <Label htmlFor="planningFor" className={labelClassName}>
-              Who are you planning for?
-            </Label>
-            <Input
-              id="planningFor"
-              placeholder="e.g. My parents, age 65 and 70"
-              aria-invalid={!!errors.planningFor}
-              className={cn(
-                fieldClassName,
-                errors.planningFor && "border-destructive",
-              )}
-              {...register("planningFor")}
-            />
-            {errors.planningFor && (
-              <p className={errorClassName}>{errors.planningFor.message}</p>
-            )}
-          </div>
-
-          <div className="space-y-2">
             <Label htmlFor="destination" className={labelClassName}>
-              Where would you like to travel?
+              Where would you like to go?
             </Label>
             <div className="relative">
               <select
@@ -192,36 +186,143 @@ export function ContactForm({
                 <option value="" disabled>
                   Select a destination
                 </option>
-                {travelDestinations.map((destination) => (
-                  <option key={destination} value={destination}>
-                    {destination}
+                {destinationCatalog.map((entry) => (
+                  <option key={entry.value} value={entry.value}>
+                    {entry.value}
+                    {entry.status === "coming-soon" ? " (coming soon)" : ""}
                   </option>
                 ))}
+                <option value={DESTINATION_SOMEWHERE_ELSE}>
+                  {DESTINATION_SOMEWHERE_ELSE}
+                </option>
               </select>
-              <ChevronDown
-                className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-slate"
-                aria-hidden
-              />
+              <SelectChevron />
             </div>
             {errors.destination && (
               <p className={errorClassName}>{errors.destination.message}</p>
             )}
           </div>
 
+          {showOtherDestination ? (
+            <div className="space-y-2">
+              <Label htmlFor="otherDestination" className={labelClassName}>
+                Which destination?
+              </Label>
+              <Input
+                id="otherDestination"
+                placeholder="One place, or a few you're considering"
+                aria-invalid={!!errors.otherDestination}
+                className={cn(
+                  fieldClassName,
+                  errors.otherDestination && "border-destructive",
+                )}
+                {...register("otherDestination")}
+              />
+              {errors.otherDestination && (
+                <p className={errorClassName}>
+                  {errors.otherDestination.message}
+                </p>
+              )}
+            </div>
+          ) : null}
+
+          <div className="space-y-2">
+            <Label htmlFor="journeyType" className={labelClassName}>
+              Choose your journey type
+            </Label>
+            <div className="relative">
+              <select
+                id="journeyType"
+                aria-invalid={!!errors.journeyType}
+                className={cn(
+                  fieldClassName,
+                  "w-full appearance-none pr-10",
+                  errors.journeyType && "border-destructive",
+                )}
+                {...register("journeyType")}
+              >
+                <option value="">Group or private</option>
+                {journeyTypeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <SelectChevron />
+            </div>
+            {errors.journeyType && (
+              <p className={errorClassName}>{errors.journeyType.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="departureCity" className={labelClassName}>
+              Departure city{" "}
+              <span className="normal-case tracking-normal text-slate">
+                (optional)
+              </span>
+            </Label>
+            <Input
+              id="departureCity"
+              placeholder="Delhi, Bangalore, Mumbai, or anywhere else"
+              aria-invalid={!!errors.departureCity}
+              className={cn(
+                fieldClassName,
+                errors.departureCity && "border-destructive",
+              )}
+              {...register("departureCity")}
+            />
+            {errors.departureCity && (
+              <p className={errorClassName}>{errors.departureCity.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="preferredMonth" className={labelClassName}>
+              Preferred month{" "}
+              <span className="normal-case tracking-normal text-slate">
+                (optional)
+              </span>
+            </Label>
+            <div className="relative">
+              <select
+                id="preferredMonth"
+                aria-invalid={!!errors.preferredMonth}
+                className={cn(
+                  fieldClassName,
+                  "w-full appearance-none pr-10",
+                  errors.preferredMonth && "border-destructive",
+                )}
+                {...register("preferredMonth")}
+              >
+                <option value="">Select a month</option>
+                {preferredMonths.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+              <SelectChevron />
+            </div>
+            {errors.preferredMonth && (
+              <p className={errorClassName}>{errors.preferredMonth.message}</p>
+            )}
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="message" className={labelClassName}>
-              Anything else?{" "}
+              Anything else we should know?{" "}
               <span className="normal-case tracking-normal text-slate">
                 (optional)
               </span>
             </Label>
             <Textarea
               id="message"
-              placeholder="Dietary needs, mobility requirements, preferred dates..."
+              placeholder="Tell us who's travelling, how many, your preferences, or anything else you'd like us to know"
               rows={5}
               aria-invalid={!!errors.message}
               className={cn(
-                "min-h-32 rounded-xl border-border/60 bg-mist/80 px-4 py-3 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm",
+                textareaClassName,
                 errors.message && "border-destructive",
               )}
               {...register("message")}

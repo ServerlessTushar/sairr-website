@@ -52,12 +52,11 @@ export default function ContactPage() {
               Contact
             </p>
             <h1 className="mt-4 font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-5xl">
-              Talk to Sairr
+              Get in touch
             </h1>
             <div className="mt-6 h-px w-16 bg-gold" aria-hidden />
             <p className="mt-6 text-lg leading-relaxed text-slate">
-              Whether you know exactly where they want to go or need help
-              choosing, we&apos;re here to listen.
+              Ask us anything about travelling with Sairr.
             </p>
           </div>
         </FadeIn>
@@ -132,16 +131,15 @@ export default function ContactPage() {
                   Enquiry form
                 </p>
                 <h2 className="mt-3 font-heading text-2xl font-semibold text-charcoal sm:text-3xl">
-                  Send an enquiry
+                  Get in touch
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate">
-                  Share a few details and we&apos;ll help shape the journey —
-                  even if you&apos;re still deciding on the destination.
+                  Ask us anything about travelling with Sairr.
                 </p>
               </div>
 
               <div className="bg-mist/30 px-6 py-6 sm:px-8 sm:py-8">
-                <ContactForm />
+                <ContactForm intent="contact" />
               </div>
             </div>
           </FadeIn>

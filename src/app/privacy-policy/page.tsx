@@ -15,7 +15,7 @@ export const metadata = createMetadata({
 });
 
 const tocItems = [
-  { id: "section-1", label: "1. Privacy Policy" },
+  { id: "section-1", label: "1. About This Policy" },
   { id: "section-2", label: "2. About Sairr" },
   { id: "section-3", label: "3. Scope of This Privacy Policy" },
   { id: "section-4", label: "4. Our Role as a Data Fiduciary" },
@@ -72,7 +72,11 @@ function Principle({ name, children }: { name: string; children: string }) {
 export default function PrivacyPage() {
   return (
     <>
-      <LegalBanner title="Privacy Policy" />
+      <LegalBanner
+        title="Privacy Policy"
+        subtitle="What you share with us stays yours."
+        effectiveDate="22 September 2026"
+      />
 
       {/* Policy body */}
       <section className="bg-mist pb-20 lg:pb-28">
@@ -83,12 +87,9 @@ export default function PrivacyPage() {
             </aside>
 
             <div className="space-y-10">
-              <Section number={1} title="Privacy Policy">
+              <Section number={1} title="About This Policy">
                 <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
                   What you share with us stays yours.
-                </p>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-                  Effective: 22 September 2026
                 </p>
                 <p>
                   We collect only what we need to plan and deliver your journey,

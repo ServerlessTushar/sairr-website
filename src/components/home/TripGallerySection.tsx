@@ -40,7 +40,7 @@ export function TripGallerySection({
         className={
           isDestination
             ? "mx-auto max-w-7xl px-4 pt-14 pb-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20 lg:pb-28"
-            : "mx-auto max-w-7xl px-4 py-1 pb-14 sm:px-6 lg:px-8 lg:pt-0 lg:pb-28"
+            : "mx-auto max-w-7xl px-4 py-1 pb-14 sm:px-6 lg:px-8 lg:pt-0 lg:pb-24"
         }
       >
         <FadeIn>
@@ -81,7 +81,7 @@ export function TripGallerySection({
           </div>
         </FadeIn>
 
-        <TripGalleryGrid images={images} className="mt-8 lg:mt-14" />
+        <TripGalleryGrid images={images} className="mt-8 lg:mt-12" />
       </div>
     </section>
   );

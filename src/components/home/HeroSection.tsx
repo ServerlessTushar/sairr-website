@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import bannerUnderlineImg from "@/public/homepage/banner-underline.png";
+import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import {
   drawLine,
   fadeDown,
@@ -39,6 +40,7 @@ function HeroUnderline() {
 }
 
 export function HeroSection() {
+  const { openContactForm } = useContactFormDialog();
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -183,7 +185,7 @@ export function HeroSection() {
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="#experiences"
+                href="#destinations"
                 className="bg-[#FF4859] hover:bg-[#E63B4C] inline-flex h-10 md:h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-xs md:text-sm font-semibold text-white transition-opacity sm:w-auto sm:min-w-[12rem]"
               >
                 Explore Destinations
@@ -192,12 +194,13 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href="/contact"
-                className="inline-flex h-10 md:h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-xs md:text-sm font-semibold text-charcoal transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]"
+              <button
+                type="button"
+                onClick={() => openContactForm({ intent: "callback" })}
+                className="inline-flex h-10 md:h-12 w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-lg bg-white px-6 text-xs md:text-sm font-semibold text-charcoal transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]"
               >
                 Get a Callback
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         </motion.div>

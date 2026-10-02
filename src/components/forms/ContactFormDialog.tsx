@@ -8,37 +8,38 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { TravelDestination } from "@/lib/validations/contact";
+import {
+  getContactFormCopy,
+  type ContactFormIntent,
+  type TravelDestination,
+} from "@/lib/validations/contact";
 
 type ContactFormDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   destination?: TravelDestination;
+  intent: ContactFormIntent;
 };
 
 export function ContactFormDialog({
   open,
   onOpenChange,
   destination,
+  intent,
 }: ContactFormDialogProps) {
-  const isNotifyFlow = Boolean(destination);
+  const { title, description } = getContactFormCopy(intent, destination);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-xl sm:p-8">
+      <DialogContent className="max-h-[min(90dvh,48rem)] overflow-y-auto sm:max-w-xl sm:p-8">
         <DialogHeader>
-          <DialogTitle>
-            {isNotifyFlow ? "Get notified" : "Talk to Sairr"}
-          </DialogTitle>
-          <DialogDescription>
-            {isNotifyFlow
-              ? `Share your details and we'll notify you when ${destination} dates are announced.`
-              : "Share a few details and we'll be in touch within 24 hours."}
-          </DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
 
         <ContactForm
-          key={destination ?? "default"}
+          key={`${intent}-${destination ?? "default"}`}
+          intent={intent}
           defaultDestination={destination}
           onSubmitted={() => onOpenChange(false)}
         />
