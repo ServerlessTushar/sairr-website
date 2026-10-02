@@ -3,27 +3,29 @@ import { FadeIn } from "@/components/shared/FadeIn";
 export function LegalBanner({
   title,
   subtitle,
-  effectiveDate,
+  body,
 }: {
   title: string;
   subtitle?: string;
-  effectiveDate?: string;
+  body?: string;
 }) {
   return (
     <section className="bg-[#0E5E6F]">
-      <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <FadeIn>
-          <h1 className="font-heading text-4xl font-semibold text-[#FDFBF2] sm:text-5xl lg:text-[3.5rem]">
+          <h1 className="font-heading text-4xl font-semibold uppercase tracking-widest text-[#FDFBF2] sm:text-5xl lg:text-[3.25rem]">
             {title}
           </h1>
+          {/* thin gold divider */}
+          <div className="mx-auto mt-4 h-px w-16 bg-[#C8A867]" aria-hidden />
           {subtitle ? (
-            <p className="mt-4 text-lg text-[#FDFBF2]/80 sm:text-xl">
+            <p className="mt-5 font-heading text-2xl font-semibold text-[#FDFBF2] sm:text-3xl">
               {subtitle}
             </p>
           ) : null}
-          {effectiveDate ? (
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#FDFBF2]/60">
-              Effective: {effectiveDate}
+          {body ? (
+            <p className="mt-3 text-sm leading-relaxed text-[#FDFBF2]/70 sm:text-base">
+              {body}
             </p>
           ) : null}
         </FadeIn>

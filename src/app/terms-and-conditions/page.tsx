@@ -92,11 +92,14 @@ export default function TermsPage() {
       <LegalBanner
         title="Terms & Conditions"
         subtitle="Clear terms. No surprises."
-        effectiveDate="22 September 2026"
+        body="Everything you need to know about bookings, payments, changes, cancellations and travelling with Sairr."
       />
 
       <section className="bg-mist pb-20 lg:pb-28">
         <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+            Effective: 22 September 2026
+          </p>
           <div className="mt-12 min-w-0 lg:mt-16 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
             <aside className="hidden lg:block">
               <LegalToc items={tocItems} />
