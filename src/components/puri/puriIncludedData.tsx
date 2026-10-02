@@ -19,14 +19,15 @@ const includedImages = [
   included7
 ];
 
-function itemIcon(src: (typeof includedImages)[number]) {
+function itemIcon(src: (typeof includedImages)[number], index: number) {
+  const isProfile = index === 6; // included7 is profile.svg
   return (
     <Image
       src={src}
       alt=""
       width={40}
       height={40}
-      className="size-10 object-contain"
+      className={isProfile ? "size-6 object-contain" : "size-10 object-contain"}
       aria-hidden
     />
   );
@@ -38,7 +39,7 @@ export const puriIncludedSectionData = {
     "",
   included: puriIncluded.map(
     (item, index): IncludedExcludedItem => ({
-      icon: itemIcon(includedImages[index]),
+      icon: itemIcon(includedImages[index], index),
       text: item.text,
     }),
   ),

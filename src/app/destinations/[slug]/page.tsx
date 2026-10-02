@@ -88,7 +88,7 @@ export default async function DestinationPage({ params }: Props) {
         <div className="bg-[#FDFBF2] pb-24 md:pb-0">
           <PuriHero sectionData={destination.hero} />
 
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-10 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-4 lg:px-8">
             <div className="min-w-0">
               <PuriHeroDetails sectionData={destination.hero} />
               <div className="py-8 lg:hidden">{bookingRail}</div>
@@ -105,7 +105,7 @@ export default async function DestinationPage({ params }: Props) {
               <GroupTravelSection
                 heading="Traveling with your own group?"
                 description="We create private journeys for families and friends, tailored around your dates, interests and trip duration."
-                imageSrc="/destinations/your-own-group.webp"
+                imageSrc="/destinations/your-own-group1.webp"
                 imageAlt="Friends enjoying a trip together"
                 buttonLabel="Talk To Us"
               />

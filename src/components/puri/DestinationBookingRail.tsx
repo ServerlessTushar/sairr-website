@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { usePuriEnquiry } from "@/components/puri/PuriEnquiry";
@@ -54,14 +56,13 @@ export function DestinationBookingRail({
 }: DestinationBookingRailProps) {
   const { openEnquiry } = usePuriEnquiry();
   const { openContactForm } = useContactFormDialog();
+  const [notesOpen, setNotesOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
-      <article className="rounded-2xl border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)]">
-        <h2 className="font-heading text-xl font-semibold text-[#0E5E6F]">
-          {title}
-        </h2>
-        <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate">
+      <article className="rounded-2xl border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
+        <p className="text-xl font-semibold text-[#0E5E6F]">{title}</p>
+        <p className="border-b border-charcoal/10 pb-3 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate">
           <span className="flex items-center gap-1.5">
             <Image
               src="/destinations/gold-sun.svg"
@@ -86,10 +87,10 @@ export function DestinationBookingRail({
           ) : null}
         </p>
 
-        <div className="mt-5 flex items-end justify-between gap-3">
-          <p className="text-sm text-slate">
+        <div className="mt-3 flex items-end justify-between gap-3">
+          <p className="text-[9.51px]">
             Starting from
-            <span className="mt-1 block font-heading text-[20.3px] font-semibold text-[#0E5E6F]">
+            <span className="block text-[20.3px] font-semibold text-[#0E5E6F]">
               {priceLabel}
               <span className="text-[10px] font-normal">/person</span>
             </span>
@@ -97,35 +98,49 @@ export function DestinationBookingRail({
           <button
             type="button"
             onClick={() => openEnquiry()}
-            className="inline-flex h-11 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+            className="inline-flex h-10 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             I&apos;m Interested
           </button>
         </div>
 
-        <div className={`mt-4 text-[8px] text-slate flex flex-row gap-8`}>
+        <div className={`mt-4 text-[10px] text-black flex flex-row gap-8 bg-[#F9F6F6] py-1 -mx-5 px-5`}>
           <div>• Based on Delhi/NCR as origin</div>
           <div>• Reserve your spot @ ₹0</div>
         </div>
 
         {pricingNotes.length > 0 ? (
-          <div className="mt-4 border-t border-charcoal/10 pt-3">
-            <p className="text-sm font-medium text-charcoal">
+          <div className="mt-4">
+            <button
+              type="button"
+              onClick={() => setNotesOpen((open) => !open)}
+              className="flex w-full items-center justify-between text-left text-sm font-medium text-charcoal"
+              aria-expanded={notesOpen}
+            >
               Check Pricing notes
-            </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-[10px] leading-relaxed text-slate">
-              {pricingNotes.map((note) => (
-                <li key={note}>{note}</li>
-              ))}
-            </ul>
+              <ChevronDown
+                className={cn(
+                  "size-4 shrink-0 transition-transform",
+                  notesOpen && "rotate-180",
+                )}
+              />
+            </button>
+            {notesOpen ? (
+              <ul className="mt-3 list-disc space-y-1 pl-5 text-[10px] leading-relaxed text-slate">
+                {pricingNotes.map((note) => (
+                  <li key={note}>{note}</li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         ) : null}
       </article>
 
       {cards.length > 0 ? (
         <div>
-          <p className="font-heading text-lg font-semibold text-[#0E5E6F]">
-            Choose your dates
+          <p className="text-[16.8px] text-[#0E5E6F]">
+            <span className="font-semibold">Dates:</span>{" "}
+            <span className="text-[#E31E24]">Live · </span> Open for booking
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-3">
             {cards.map((card) => {
@@ -135,7 +150,7 @@ export function DestinationBookingRail({
                 <li
                   key={card.id}
                   className={cn(
-                    "rounded-[8px] bg-white px-3 py-3 border-[0.5px] border-solid border-[#C8A867]"
+                    "rounded-[8px] bg-white pl-3 py-3 border-[0.5px] border-solid border-[#C8A867]",
                   )}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -143,13 +158,15 @@ export function DestinationBookingRail({
                       {days}
                     </p>
                     {card.note ? (
-                      <p className={`inline-flex shrink-0 rounded-full ${card.note === 'BEST WEATHER' ? 'bg-[#E1F6F8]' : 'bg-[#F3E7C3]'} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}>
+                      <p
+                        className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
+                      >
                         {card.note}
                       </p>
                     ) : null}
                   </div>
                   <p className="mt-1 text-xs text-slate">{when}</p>
-                  <button
+                  {/* <button
                     type="button"
                     onClick={() =>
                       openEnquiry({ departureId: card.id, intent: "interest" })
@@ -157,7 +174,7 @@ export function DestinationBookingRail({
                     className="mt-3 text-sm font-semibold text-[#EC575E]"
                   >
                     I&apos;m Interested →
-                  </button>
+                  </button> */}
                 </li>
               );
             })}
@@ -165,13 +182,13 @@ export function DestinationBookingRail({
         </div>
       ) : null}
 
-      <div className="border-b border-[#E7B2B2] pb-5">
-        <div className="font-heading text-lg font-semibold text-[#0E5E6F]">
+      <div className="border-b border-[#EC575E] pb-5 -mt-3">
+        <div className="text-lg font-semibold text-[#0E5E6F]">
           <span className="mr-4">Prefer a different date?</span>
           <button
             type="button"
             onClick={() => openContactForm(notifyDestination)}
-            className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+            className="mt-3 inline-flex h-10 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             Talk To Us
           </button>
