@@ -15,6 +15,10 @@ export const siteConfig = {
   },
 } as const;
 
+export function phoneHref() {
+  return `tel:${siteConfig.phone.replace(/\s/g, "")}`;
+}
+
 export function whatsappHref(message?: string) {
   const base = `https://wa.me/${siteConfig.whatsapp}`;
   if (!message) return base;

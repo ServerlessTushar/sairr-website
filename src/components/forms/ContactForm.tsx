@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send, ChevronDown } from "lucide-react";
@@ -55,6 +56,7 @@ export function ContactForm({
   defaultDestination,
   onSubmitted,
 }: ContactFormProps) {
+  const router = useRouter();
   const preferredMonths = useMemo(() => getPreferredMonthOptions(), []);
 
   const defaultValues = useMemo(
@@ -98,11 +100,8 @@ export function ContactForm({
         throw new Error(result.error ?? "Failed to submit enquiry");
       }
 
-      reset(buildContactFormDefaults(intent, defaultDestination));
-      toast.success("Enquiry sent", {
-        description: "Thank you! We'll be in touch within 24 hours.",
-      });
       onSubmitted?.();
+      router.push("/thank-you");
     } catch (error) {
       toast.error("Something went wrong", {
         description:
@@ -241,7 +240,7 @@ export function ContactForm({
                 )}
                 {...register("journeyType")}
               >
-                <option value="">Group or private</option>
+                <option value="">Group or Private</option>
                 {journeyTypeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}

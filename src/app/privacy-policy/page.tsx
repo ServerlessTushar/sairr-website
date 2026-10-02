@@ -75,12 +75,15 @@ export default function PrivacyPage() {
       <LegalBanner
         title="Privacy Policy"
         subtitle="What you share with us stays yours."
-        effectiveDate="22 September 2026"
+        body="We collect only what we need to plan and deliver your journey, keep it secure, and never sell your personal information."
       />
 
       {/* Policy body */}
       <section className="bg-mist pb-20 lg:pb-28">
         <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+            Effective: 22 September 2026
+          </p>
           <div className="mt-12 min-w-0 lg:mt-16 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
             <aside className="hidden lg:block">
               <LegalToc items={tocItems} />

@@ -42,7 +42,8 @@ function HeroUnderline() {
 export function HeroSection() {
   const { openContactForm } = useContactFormDialog();
   const reduceMotion = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [enableParallax, setEnableParallax] = useState(false);
 
@@ -75,53 +76,46 @@ export function HeroSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // Play the correct video based on viewport, pause the other
   useEffect(() => {
-    const video = videoRef.current;
+    const desktop = desktopVideoRef.current;
+    const mobile = mobileVideoRef.current;
     const section = sectionRef.current;
-    if (!video) return;
 
-    const updateVideoFit = () => {
+    function updateVideoFit(video: HTMLVideoElement) {
       if (!section) return;
-
       const width = section.clientWidth;
       const height = section.clientHeight;
       if (!width || !height) return;
-
       const viewportAspect = width / height;
       const videoAspect =
         video.videoWidth > 0 && video.videoHeight > 0
           ? video.videoWidth / video.videoHeight
           : 16 / 9;
+      video.style.objectPosition =
+        viewportAspect > videoAspect ? "50% 28%" : "50% 50%";
+    }
 
-      // Wider than the video frame → object-cover crops top & bottom; bias upward.
-      if (viewportAspect > videoAspect) {
-        video.style.objectPosition = "50% 28%";
+    function setupVideo(video: HTMLVideoElement) {
+      video.addEventListener("loadedmetadata", () => updateVideoFit(video));
+      updateVideoFit(video);
+      if (!reduceMotion) {
+        void video.play().catch(() => {});
       } else {
-        video.style.objectPosition = "50% 50%";
+        video.pause();
       }
-    };
-
-    video.addEventListener("loadedmetadata", updateVideoFit);
-    const resizeObserver = new ResizeObserver(updateVideoFit);
-    if (section) {
-      resizeObserver.observe(section);
-    }
-    updateVideoFit();
-
-    if (reduceMotion) {
-      video.pause();
-      return () => {
-        video.removeEventListener("loadedmetadata", updateVideoFit);
-        resizeObserver.disconnect();
-      };
     }
 
-    void video.play().catch(() => {
-      // Autoplay may be blocked; poster/overlay still shows the hero.
+    if (desktop) setupVideo(desktop);
+    if (mobile) setupVideo(mobile);
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (desktop) updateVideoFit(desktop);
+      if (mobile) updateVideoFit(mobile);
     });
+    if (section) resizeObserver.observe(section);
 
     return () => {
-      video.removeEventListener("loadedmetadata", updateVideoFit);
       resizeObserver.disconnect();
     };
   }, [reduceMotion]);
@@ -137,16 +131,29 @@ export function HeroSection() {
           className="absolute inset-0 flex items-center justify-center origin-[50%_40%]"
           style={{ scale: videoScale }}
         >
+          {/* Desktop video */}
           <video
-            ref={videoRef}
+            ref={desktopVideoRef}
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
-            className="min-h-full min-w-full max-h-none max-w-none object-cover"
+            className="hidden md:block min-h-full min-w-full max-h-none max-w-none object-cover"
           >
-            <source src="/homepage/banner-gif-2.mp4" type="video/mp4" />
+            <source src="/homepage/Desktop_Website cover video.mp4" type="video/mp4" />
+          </video>
+          {/* Mobile video */}
+          <video
+            ref={mobileVideoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="block md:hidden min-h-full min-w-full max-h-none max-w-none object-cover"
+          >
+            <source src="/homepage/Mobile_website cover video.mp4" type="video/mp4" />
           </video>
         </motion.div>
         <div className="absolute inset-0 bg-charcoal/30" />
