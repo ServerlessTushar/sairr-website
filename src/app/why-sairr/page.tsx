@@ -17,7 +17,10 @@ export const metadata = createMetadata({
 export default function WhySairrPage() {
   return (
     <>
-      <section className="relative overflow-hidden py-20 lg:py-28">
+      <section
+        data-header-hero
+        className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28"
+      >
         <div className="absolute inset-0">
           <PlaceholderImage
             seed="why-sairr"

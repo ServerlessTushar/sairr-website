@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { ContactFormDialogProvider } from "@/components/forms/ContactFormDialogProvider";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { UtmCapture } from "@/components/shared/UtmCapture";
@@ -104,10 +102,7 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <UtmCapture />
           </Suspense>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <FloatingCallButton />
+          <SiteChrome>{children}</SiteChrome>
           <Toaster />
         </ContactFormDialogProvider>
       </body>
