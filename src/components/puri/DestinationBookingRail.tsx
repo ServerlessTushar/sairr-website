@@ -117,7 +117,7 @@ export function DestinationBookingRail({
             <button
               type="button"
               onClick={() => setNotesOpen((open) => !open)}
-              className="flex w-full items-center justify-between text-left text-sm font-medium text-charcoal"
+              className="flex w-full items-center justify-between text-left text-xs font-medium text-charcoal"
               aria-expanded={notesOpen}
             >
               Check Pricing notes
@@ -141,34 +141,41 @@ export function DestinationBookingRail({
 
       {cards.length > 0 ? (
         <div>
-          <p className="text-[16.8px] text-[#0E5E6F]">
-            <span className="font-semibold">Dates:</span>{" "}
-            <span className="text-[#E31E24]">Live · </span> Open for booking
+          <p className="text-[16.8px] text-[#0E5E6F] font-semibold">
+            Choose your dates
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-3">
             {cards.map((card) => {
               const { days, when } = splitDate(card.dateRange, card.year);
 
               return (
-                <li
-                  key={card.id}
-                  className={cn(
-                    "rounded-[8px] bg-white pl-3 py-3 border-[0.5px] border-solid border-[#C8A867]",
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="font-heading text-lg font-semibold leading-none text-charcoal">
-                      {days}
-                    </p>
-                    {card.note ? (
-                      <p
-                        className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
-                      >
-                        {card.note}
+                <li key={card.id}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openContactForm({
+                        destination: notifyDestination,
+                        intent: "interest",
+                      })
+                    }
+                    className={cn(
+                      "w-full cursor-pointer rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white py-3 pl-3 text-left transition-colors hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2]",
+                    )}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="font-heading text-lg font-semibold leading-none text-charcoal">
+                        {days}
                       </p>
-                    ) : null}
-                  </div>
-                  <p className="mt-1 text-xs text-slate">{when}</p>
+                      {card.note ? (
+                        <p
+                          className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
+                        >
+                          {card.note}
+                        </p>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 text-xs text-slate">{when}</p>
+                  </button>
                 </li>
               );
             })}
@@ -177,7 +184,7 @@ export function DestinationBookingRail({
       ) : null}
 
       <div className="border-b border-[#EC575E] pb-5 -mt-3">
-        <div className="text-lg font-semibold text-[#0E5E6F]">
+        <div className="text-[16.8px] font-semibold text-[#0E5E6F]">
           <span className="mr-4">Prefer a different date?</span>
           <button
             type="button"
@@ -196,7 +203,7 @@ export function DestinationBookingRail({
 
       <a
         href="#faqs"
-        className="flex items-center gap-2 font-heading text-lg font-semibold text-charcoal"
+        className="flex items-center gap-2 font-heading text-base font-semibold text-charcoal"
       >
         <Image
           src="/destinations/faq-icon.svg"

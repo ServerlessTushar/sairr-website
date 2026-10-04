@@ -60,10 +60,10 @@ function TimelineNode({
       className="relative flex w-3 shrink-0 flex-col items-center self-stretch"
       aria-hidden
     >
-      {!isFirst && <div className="h-5 w-px bg-charcoal/15" />}
+      {!isFirst && <div className="h-5 w-0 border-l border-dashed border-charcoal/30" />}
       <div className="size-3 shrink-0 rounded-full bg-gold" />
       {!isLast && (
-        <div className="mb-4 w-px flex-1 bg-charcoal/15" aria-hidden />
+        <div className="mb-4 w-0 flex-1 border-l border-dashed border-charcoal/30" aria-hidden />
       )}
     </div>
   );
@@ -86,7 +86,7 @@ function ItineraryImage({
         "relative shrink-0 overflow-hidden rounded-xl",
         variant === "collapsed"
           ? "aspect-[288/156.8] w-full max-w-[288px]"
-          : "aspect-[738.84/404.35] w-full max-w-[738.84px]",
+          : "aspect-[738.84/404.35] w-full",
         className,
       )}
     >
@@ -98,7 +98,7 @@ function ItineraryImage({
         sizes={
           variant === "collapsed"
             ? "(max-width: 640px) min(calc(100vw - 5rem), 288px), 288px"
-            : "(max-width: 768px) calc(100vw - 5rem), 739px"
+            : "(max-width: 1024px) 100vw, 850px"
         }
       />
     </div>
@@ -143,8 +143,8 @@ export function TimelineItinerary({
     >
       <div
         className={cn(
-          "mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-12",
-          flush && "max-w-none px-0",
+          "py-12 sm:py-16 lg:py-12",
+          flush ? "w-full px-0" : "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
         )}
       >
         <AnimatedSectionHeader
@@ -222,7 +222,7 @@ export function TimelineItinerary({
                     </AccordionTrigger>
 
                     <AccordionContent className="px-0 pb-0">
-                      <div className="mt-4 max-w-[920px]">
+                      <div className="mt-4 w-full">
                         <ItineraryImage
                           image={item.image}
                           alt={imageAlt}
@@ -230,17 +230,17 @@ export function TimelineItinerary({
                           className="mb-4"
                         />
 
-                        <div className="max-w-[830px]">
+                        <div className="w-full">
                           {item.para1 && (
                             <p className="mb-4 text-xs leading-relaxed sm:text-sm" style={{ color: "#5D5D5D" }}>{item.para1}</p>
                           )}
 
                           {item.activities1 && item.activities1.length > 0 && (
-                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
                               {item.activities1.map((activity, index) => (
                                 <li key={index} className="flex gap-3">
                                   <span
-                                    className="mt-2.5 size-1.5 shrink-0 rounded-full"
+                                    className="mt-2 size-1.5 shrink-0 rounded-full"
                                     style={{ backgroundColor: "#0E5E6F" }}
                                     aria-hidden
                                   />
@@ -260,7 +260,7 @@ export function TimelineItinerary({
                           )}
 
                           {item.activities2 && item.activities2.length > 0 && (
-                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
                               {item.activities2.map((activity, index) => (
                                 <li key={index} className="flex gap-3">
                                   <span

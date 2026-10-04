@@ -47,7 +47,7 @@ function HeroPhoto({
   sizes: string;
 }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl bg-charcoal/5", className)}>
+    <div className={cn("relative overflow-hidden rounded-lg bg-charcoal/5", className)}>
       <Image
         src={image.src}
         alt={image.alt}
@@ -154,15 +154,15 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
   );
 }
 
-export function PuriHeroDetails({ sectionData }: PuriHeroProps) {
+export function PuriHeroDetails({ sectionData, className }: PuriHeroProps) {
   return (
-    <div className="pt-6 pb-2 lg:pt-8">
-      <p className="max-w-3xl text-xs leading-relaxed text-charcoal sm:text-sm">
+    <div className={cn("w-full pt-6 pb-2 lg:pt-8", className)}>
+      <p className=" text-xs leading-relaxed text-charcoal sm:text-sm">
         {sectionData.body}
       </p>
-      <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-5 rounded-2xl bg-white px-4 py-5 shadow-[0_2px_16px_rgba(27,29,31,0.06)] sm:grid-cols-2 sm:px-6 sm:py-6 lg:grid-cols-3">
+      <ul className="mt-[1.9rem] grid grid-cols-1 gap-x-2 gap-y-5 rounded-2xl bg-white px-4 py-5 shadow-[0_2px_16px_rgba(27,29,31,0.06)] sm:grid-cols-2 sm:px-6 sm:py-6 lg:grid-cols-3">
         {sectionData.highlights.map((item) => (
-          <li key={item.title} className="flex items-start gap-3">
+          <li key={item.title} className="flex items-start gap-2">
             <Image
               src={item.icon}
               alt=""
@@ -175,7 +175,7 @@ export function PuriHeroDetails({ sectionData }: PuriHeroProps) {
               <span className="block text-sm font-semibold text-[#0E5E6F]">
                 {item.title}
               </span>
-              <span className="mt-0.5 block text-xs leading-snug text-slate">
+              <span className="mt-0.5 block text-[10px] leading-snug text-slate">
                 {item.detail}
               </span>
             </span>

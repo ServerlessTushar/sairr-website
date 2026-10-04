@@ -44,6 +44,15 @@ type CarouselSectionProps<T> = {
   autoplayInterval?: number;
   previousButtonClassName?: string;
   nextButtonClassName?: string;
+  /** On lg+ breakpoints, use a fixed slide width (e.g. design-spec cards). */
+  fixedSlideWidthLg?: number;
+  trackWrapperClassName?: string;
+  showDots?: boolean;
+  dotsClassName?: string;
+  activeDotClassName?: string;
+  inactiveDotClassName?: string;
+  controlsPosition?: "center" | "split";
+  controlsClassName?: string;
 };
 
 function useSlidesPerView(config: SlidesPerView) {
@@ -82,6 +91,7 @@ export function CarouselSection<T>({
   slidesPerView = { mobile: 1, tablet: 2, desktop: 3 },
   className,
   slideClassName,
+  trackWrapperClassName,
   belowSlides,
   ariaLabel = "Carousel",
   gap = DEFAULT_GAP_PX,
@@ -89,15 +99,55 @@ export function CarouselSection<T>({
   autoplayInterval = DEFAULT_AUTOPLAY_INTERVAL_MS,
   previousButtonClassName,
   nextButtonClassName,
+  fixedSlideWidthLg,
+  showDots = false,
+  dotsClassName,
+  activeDotClassName,
+  inactiveDotClassName,
+  controlsPosition = "center",
+  controlsClassName,
 }: CarouselSectionProps<T>) {
   const visibleCount = useSlidesPerView(slidesPerView);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isLg, setIsLg] = useState(false);
+  const [lgVisibleCount, setLgVisibleCount] = useState(visibleCount);
 
-  const maxIndex = Math.max(0, Math.ceil(items.length - visibleCount));
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const updateMq = () => setIsLg(mq.matches);
+    updateMq();
+    mq.addEventListener("change", updateMq);
+    return () => mq.removeEventListener("change", updateMq);
+  }, []);
+
+  useEffect(() => {
+    if (!fixedSlideWidthLg || !isLg) {
+      setLgVisibleCount(visibleCount);
+      return;
+    }
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      setLgVisibleCount(el.clientWidth / (fixedSlideWidthLg + gap));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [fixedSlideWidthLg, gap, isLg, visibleCount]);
+
+  const effectiveVisible =
+    fixedSlideWidthLg && isLg ? lgVisibleCount : visibleCount;
+
+  const maxIndex = Math.max(0, Math.ceil(items.length - effectiveVisible));
   const activeIndex = Math.min(index, maxIndex);
-  const showControls = items.length > visibleCount;
+  const showControls = items.length > effectiveVisible;
+
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const getStep = useCallback(() => {
     const el = scrollRef.current;
@@ -112,10 +162,33 @@ export function CarouselSection<T>({
       if (!el) return;
       const clamped = Math.max(0, Math.min(target, maxIndex));
       setIndex(clamped);
-      el.scrollTo({ left: clamped * getStep(), behavior: "smooth" });
+      const step = getStep();
+      const targetLeft = clamped * step;
+      el.scrollTo({ left: targetLeft, behavior: "smooth" });
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll > 0) {
+        setScrollProgress(Math.max(0, Math.min(1, targetLeft / maxScroll)));
+      }
     },
     [getStep, maxIndex],
   );
+
+  const scrollToDot = (dotIdx: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll > 0 && items.length > 1) {
+      const target = (dotIdx / (items.length - 1)) * maxScroll;
+      el.scrollTo({ left: target, behavior: "smooth" });
+      setScrollProgress(dotIdx / (items.length - 1));
+      const step = getStep();
+      if (step > 0) {
+        setIndex(Math.max(0, Math.min(Math.round(target / step), maxIndex)));
+      }
+    } else {
+      scrollToIndex(dotIdx);
+    }
+  };
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -126,7 +199,7 @@ export function CarouselSection<T>({
     if (Math.abs(el.scrollLeft - targetLeft) > 1) {
       el.scrollTo({ left: targetLeft });
     }
-  }, [getStep, maxIndex, visibleCount]);
+  }, [getStep, maxIndex, effectiveVisible]);
 
   useEffect(() => {
     if (!autoplay || !showControls || paused) return;
@@ -159,7 +232,20 @@ export function CarouselSection<T>({
     if (!step) return;
     const next = Math.round(el.scrollLeft / step);
     setIndex(Math.max(0, Math.min(next, maxIndex)));
+
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll > 0) {
+      setScrollProgress(Math.max(0, Math.min(1, el.scrollLeft / maxScroll)));
+    }
   };
+
+  const activeDotIndex =
+    items.length > 1
+      ? Math.min(
+          items.length - 1,
+          Math.max(0, Math.round(scrollProgress * (items.length - 1))),
+        )
+      : activeIndex;
 
   return (
     <div
@@ -175,63 +261,158 @@ export function CarouselSection<T>({
         }
       }}
     >
-      <div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex items-stretch overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        style={{ gap }}
-      >
-        {items.map((item, i) => (
-          <div
-            key={getKey(item, i)}
-            className={cn(
-              "flex shrink-0 snap-start flex-col self-stretch",
-              slideClassName,
-            )}
-            style={{
-              width: getSlideWidth(visibleCount, gap),
-            }}
-          >
-            <div className="flex h-full min-h-0 flex-1 flex-col">
-              {renderItem(item, i)}
+      <div className={trackWrapperClassName}>
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex items-stretch overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          style={{ gap }}
+        >
+          {items.map((item, i) => (
+            <div
+              key={getKey(item, i)}
+              className={cn(
+                "flex shrink-0 snap-start flex-col self-stretch",
+                slideClassName,
+              )}
+              style={{
+                width:
+                  fixedSlideWidthLg && isLg
+                    ? `${fixedSlideWidthLg}px`
+                    : getSlideWidth(visibleCount, gap),
+              }}
+            >
+              <div className="flex h-full min-h-0 flex-1 flex-col">
+                {renderItem(item, i)}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {belowSlides}
       </div>
 
-      {belowSlides}
-
       {showControls && (
-        <div className="mt-2 md:mt-6 flex items-center justify-center gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            aria-label="Previous slide"
-            disabled={activeIndex <= 0}
-            onClick={() => scrollToIndex(activeIndex - 1)}
+        controlsPosition === "split" ? (
+          <div
             className={cn(
-              "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
-              previousButtonClassName,
+              "relative mt-4 flex items-center justify-center min-h-9",
+              controlsClassName,
             )}
           >
-            <ChevronLeft className="size-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            aria-label="Next slide"
-            disabled={activeIndex >= maxIndex}
-            onClick={() => scrollToIndex(activeIndex + 1)}
+            {showDots && (
+              <div className="flex items-center gap-2">
+                {items.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => scrollToDot(i)}
+                    aria-label={`Go to slide ${i + 1}`}
+                    className={cn(
+                      "size-2 rounded-full transition-all cursor-pointer",
+                      activeDotIndex === i
+                        ? cn("bg-[#C8A867]", activeDotClassName)
+                        : cn(
+                            "bg-[#E5DECE] hover:bg-[#C8A867]/60",
+                            inactiveDotClassName,
+                          ),
+                      dotsClassName,
+                    )}
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="absolute right-0 flex items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                aria-label="Previous slide"
+                disabled={activeIndex <= 0}
+                onClick={() => scrollToIndex(activeIndex - 1)}
+                className={cn(
+                  "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+                  previousButtonClassName,
+                )}
+              >
+                <ChevronLeft className="size-4" />
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                aria-label="Next slide"
+                disabled={activeIndex >= maxIndex}
+                onClick={() => scrollToIndex(activeIndex + 1)}
+                className={cn(
+                  "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+                  nextButtonClassName,
+                )}
+              >
+                <ChevronRight className="size-4" />
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div
             className={cn(
-              "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
-              nextButtonClassName,
+              "mt-2 md:mt-6 flex items-center justify-center gap-2",
+              controlsClassName,
             )}
           >
-            <ChevronRight className="size-4" />
-          </Button>
-        </div>
+            {showDots && (
+              <div className="flex items-center gap-2 mr-4">
+                {items.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => scrollToDot(i)}
+                    aria-label={`Go to slide ${i + 1}`}
+                    className={cn(
+                      "size-2 rounded-full transition-all cursor-pointer",
+                      activeDotIndex === i
+                        ? cn("bg-[#C8A867]", activeDotClassName)
+                        : cn(
+                            "bg-[#E5DECE] hover:bg-[#C8A867]/60",
+                            inactiveDotClassName,
+                          ),
+                      dotsClassName,
+                    )}
+                  />
+                ))}
+              </div>
+            )}
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              aria-label="Previous slide"
+              disabled={activeIndex <= 0}
+              onClick={() => scrollToIndex(activeIndex - 1)}
+              className={cn(
+                "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+                previousButtonClassName,
+              )}
+            >
+              <ChevronLeft className="size-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              aria-label="Next slide"
+              disabled={activeIndex >= maxIndex}
+              onClick={() => scrollToIndex(activeIndex + 1)}
+              className={cn(
+                "size-9 border-charcoal/20 text-charcoal hover:bg-sand disabled:opacity-40",
+                nextButtonClassName,
+              )}
+            >
+              <ChevronRight className="size-4" />
+            </Button>
+          </div>
+        )
       )}
     </div>
   );

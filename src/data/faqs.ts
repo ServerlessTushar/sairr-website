@@ -1,11 +1,8 @@
-export type FaqAnswerBlock =
-  | { type: "para"; text: string }
-  | { type: "heading"; text: string; rule?: boolean }
-  | { type: "bullet"; text: string };
+import type { ReactNode } from "react";
 
 export type Faq = {
   question: string;
-  answer: string | FaqAnswerBlock[];
+  answer: string | ReactNode;
 };
 
 export const homeFaqs: Faq[] = [
