@@ -16,18 +16,8 @@ export type Departure = {
 export const puriDepartures: Departure[] = [
   {
     id: "sep-2026",
-    dates: "8-11 Oct' 26",
+    dates: "29 Oct - 1 Nov' 26",
     price: 51000,
-    seatsAvailable: "12–20 travellers",
-    status: "live",
-    origin: "Delhi/NCR",
-    duration: "3N/4D",
-    note: "BOOK EARLY",
-  },
-  {
-    id: "oct-2026-1",
-    dates: "15-18 Oct' 26",
-    price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
     origin: "Delhi/NCR",
@@ -73,6 +63,16 @@ export const puriDepartures: Departure[] = [
     origin: "Delhi/NCR",
     duration: "3N/4D",
     note: "Best weather",
+  },
+  {
+    id: "oct-2026-1",
+    dates: "10-13 Dec' 26",
+    price: 55000,
+    seatsAvailable: "12–20 travellers",
+    status: "live",
+    origin: "Delhi/NCR",
+    duration: "3N/4D",
+    note: "BOOK EARLY",
   },
 ];
 
@@ -301,10 +301,10 @@ export const puriNotIncluded =
   `Personal shopping and tips · Room service / in-room dining · Temple offerings and donations · Alcohol and mini-bar · Any activities or services not mentioned in "What's Included"`;
 
 export const puriPricingNotes = [
-  "Price per person, based on double occupancy",
+  "Price based on double occupancy",
   "Price based on flight fares from Delhi/NCR",
   "Prices for other origin cities may vary with flight fares",
-  "Prices across dates may slightly vary by season",
+  "Prices across dates may vary by season",
   "Early booking recommended for better pricing",
   "Reserve your spot @ ₹0, pay only once your departure is confirmed"
 ] as const;

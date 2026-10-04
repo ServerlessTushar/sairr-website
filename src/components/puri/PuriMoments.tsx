@@ -41,7 +41,7 @@ export function PuriMoments({
 }) {
 
   return (
-    <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
+    <section className=" bg-[#FDFBF2]">
       <div
         className={cn(
           "py-12 sm:py-16 lg:pb-10 lg:pt-20",

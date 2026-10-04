@@ -117,7 +117,7 @@ export function DestinationBookingRail({
             <button
               type="button"
               onClick={() => setNotesOpen((open) => !open)}
-              className="flex w-full items-center justify-between text-left text-sm font-medium text-charcoal"
+              className="flex w-full items-center justify-between text-left text-xs font-medium text-charcoal"
               aria-expanded={notesOpen}
             >
               Check Pricing notes
@@ -141,9 +141,8 @@ export function DestinationBookingRail({
 
       {cards.length > 0 ? (
         <div>
-          <p className="text-[16.8px] text-[#0E5E6F]">
-            <span className="font-semibold">Dates:</span>{" "}
-            <span className="text-[#E31E24]">Live · </span> Open for booking
+          <p className="text-[16.8px] text-[#0E5E6F] font-semibold">
+            Choose your dates
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-3">
             {cards.map((card) => {
@@ -177,7 +176,7 @@ export function DestinationBookingRail({
       ) : null}
 
       <div className="border-b border-[#EC575E] pb-5 -mt-3">
-        <div className="text-lg font-semibold text-[#0E5E6F]">
+        <div className="text-[16.8px] font-semibold text-[#0E5E6F]">
           <span className="mr-4">Prefer a different date?</span>
           <button
             type="button"
@@ -196,7 +195,7 @@ export function DestinationBookingRail({
 
       <a
         href="#faqs"
-        className="flex items-center gap-2 font-heading text-lg font-semibold text-charcoal"
+        className="flex items-center gap-2 font-heading text-base font-semibold text-charcoal"
       >
         <Image
           src="/destinations/faq-icon.svg"
