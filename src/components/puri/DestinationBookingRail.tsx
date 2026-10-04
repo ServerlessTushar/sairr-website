@@ -149,25 +149,33 @@ export function DestinationBookingRail({
               const { days, when } = splitDate(card.dateRange, card.year);
 
               return (
-                <li
-                  key={card.id}
-                  className={cn(
-                    "rounded-[8px] bg-white pl-3 py-3 border-[0.5px] border-solid border-[#C8A867]",
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="font-heading text-lg font-semibold leading-none text-charcoal">
-                      {days}
-                    </p>
-                    {card.note ? (
-                      <p
-                        className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
-                      >
-                        {card.note}
+                <li key={card.id}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openContactForm({
+                        destination: notifyDestination,
+                        intent: "interest",
+                      })
+                    }
+                    className={cn(
+                      "w-full cursor-pointer rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white py-3 pl-3 text-left transition-colors hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2]",
+                    )}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="font-heading text-lg font-semibold leading-none text-charcoal">
+                        {days}
                       </p>
-                    ) : null}
-                  </div>
-                  <p className="mt-1 text-xs text-slate">{when}</p>
+                      {card.note ? (
+                        <p
+                          className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
+                        >
+                          {card.note}
+                        </p>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 text-xs text-slate">{when}</p>
+                  </button>
                 </li>
               );
             })}
