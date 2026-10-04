@@ -58,15 +58,14 @@ export function PuriMoments({
           />
         </FadeIn>
 
-        <div
-          className={cn(
-            "mt-8 bg-[#E9DFC8] py-6 sm:mt-10 sm:py-8 rounded-2xl overflow-hidden",
-            flush
-              ? "w-full pl-5 pr-0"
-              : "-mr-4 pl-4 sm:-mr-6 sm:pl-6 lg:-mr-8 lg:pl-8",
-          )}
-        >
+        <div className="mt-8 sm:mt-10">
           <CarouselSection
+            trackWrapperClassName={cn(
+              "bg-[#E9DFC8] py-6 sm:py-8 overflow-hidden",
+              flush
+                ? "w-full pl-5 pr-0"
+                : "-mr-4 pl-4 sm:-mr-6 sm:pl-6 lg:-mr-8 lg:pl-8",
+            )}
             slideClassName="py-2"
             gap={20}
             fixedSlideWidthLg={MOMENT_CARD_WIDTH_PX}
@@ -87,6 +86,9 @@ export function PuriMoments({
             slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
             ariaLabel="Moments that make Puri"
             autoplay={false}
+            showDots
+            controlsPosition="split"
+            controlsClassName="mt-5"
             previousButtonClassName="border-transparent bg-[#F0F0F099] text-charcoal/50 hover:bg-[#F0F0F0] disabled:opacity-100"
             nextButtonClassName="border-transparent bg-[#C8A867] text-white hover:bg-[#B99656] disabled:bg-[#F0F0F099] disabled:text-charcoal/50 disabled:opacity-100"
           />

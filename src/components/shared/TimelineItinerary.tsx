@@ -60,10 +60,10 @@ function TimelineNode({
       className="relative flex w-3 shrink-0 flex-col items-center self-stretch"
       aria-hidden
     >
-      {!isFirst && <div className="h-5 w-px bg-charcoal/15" />}
+      {!isFirst && <div className="h-5 w-0 border-l border-dashed border-charcoal/30" />}
       <div className="size-3 shrink-0 rounded-full bg-gold" />
       {!isLast && (
-        <div className="mb-4 w-px flex-1 bg-charcoal/15" aria-hidden />
+        <div className="mb-4 w-0 flex-1 border-l border-dashed border-charcoal/30" aria-hidden />
       )}
     </div>
   );
@@ -236,11 +236,11 @@ export function TimelineItinerary({
                           )}
 
                           {item.activities1 && item.activities1.length > 0 && (
-                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
                               {item.activities1.map((activity, index) => (
                                 <li key={index} className="flex gap-3">
                                   <span
-                                    className="mt-2.5 size-1.5 shrink-0 rounded-full"
+                                    className="mt-2 size-1.5 shrink-0 rounded-full"
                                     style={{ backgroundColor: "#0E5E6F" }}
                                     aria-hidden
                                   />
@@ -260,7 +260,7 @@ export function TimelineItinerary({
                           )}
 
                           {item.activities2 && item.activities2.length > 0 && (
-                            <ul className="mb-4 space-y-3 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
                               {item.activities2.map((activity, index) => (
                                 <li key={index} className="flex gap-3">
                                   <span

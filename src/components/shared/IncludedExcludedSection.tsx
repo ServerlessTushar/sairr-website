@@ -25,7 +25,7 @@ function IncludedList({ items }: { items: IncludedExcludedItem[] }) {
     <ul className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-12">
       {items.map((item) => (
         <li key={item.text} className="flex items-start gap-5">
-          <span className="flex size-6 shrink-0 items-center justify-center text-charcoal md:size-8">
+          <span className="flex size-6 shrink-0 items-center justify-center text-charcoal">
             {item.icon}
           </span>
           <span className="text-sm leading-relaxed text-charcoal sm:text-base">
@@ -74,7 +74,7 @@ export function IncludedExcludedSection({
                   <Check className="size-4.5 stroke-[3]" />
                 </span>
                 <h3 id="included-heading" className="font-sans text-[20px] font-semibold text-brand sm:text-[26px]">
-                  What&apos;s Included
+                  What&apos;s included
                 </h3>
               </div>
               <div className="mt-6 sm:mt-8">
@@ -93,7 +93,7 @@ export function IncludedExcludedSection({
                   What&apos;s not included
                 </h3>
               </div>
-              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 text-sm leading-relaxed text-charcoal marker:text-charcoal sm:mt-8 sm:grid-cols-2 sm:text-base lg:gap-x-16">
+              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 sm:pl-16 text-sm leading-relaxed text-charcoal marker:text-charcoal sm:mt-8 sm:grid-cols-2 sm:text-base lg:gap-x-16">
                 {excluded.map((item) => (
                   <li key={item.text} className="pl-1">{item.text}</li>
                 ))}

@@ -18,13 +18,13 @@ const dayServices = [
     [serviceIcons.flight, "Flight", ""],
     [serviceIcons.host, "Dedicated host", ""],
     [serviceIcons.tickets, "Guide & entry tickets", ""],
-    [serviceIcons.meals, "", " Lunch and Dinner"],
+    [serviceIcons.meals, "", "Lunch · Dinner"],
   ],
   [
     [serviceIcons.host, "Dedicated host", ""],
     [serviceIcons.transfers, "Transfers", ""],
     [serviceIcons.temple, "VIP Darshan", ""],
-    [serviceIcons.meals, "", "Lunch and Dinner"],
+    [serviceIcons.meals, "", "Breakfast · Lunch · Dinner"],
   ],
   [
     [serviceIcons.host, "Dedicated host", ""],
