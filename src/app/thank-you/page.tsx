@@ -20,33 +20,26 @@ export default function ThankYouPage() {
 
         {/* Left — teal brand panel */}
         <div className="relative flex flex-col items-start justify-center overflow-hidden bg-[#0E5E6F] px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
-          {/* Decorative bird */}
-          <div className="pointer-events-none absolute top-8 right-8 opacity-20" aria-hidden>
-            <Image
-              src="/destinations/gold-bird-pair.webp"
-              alt=""
-              width={120}
-              height={90}
-              className="h-auto w-24"
-            />
-          </div>
-
           <FadeIn>
-            {/* Gold pill label */}
-            <span className="inline-block rounded-full border border-[#C8A867]/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#C8A867]">
-              We&apos;re on it
-            </span>
-
-            <h1 className="mt-6 font-heading text-4xl font-semibold leading-tight text-[#FDFBF2] sm:text-5xl">
-              Thank you for<br />reaching out.
-            </h1>
+            <div className="relative mt-6 inline-block">
+              <h1 className="font-heading text-4xl font-semibold leading-tight text-[#FDFBF2] sm:text-5xl">
+                Thank you for<br />reaching out to Sairr.
+              </h1>
+              <Image
+                src="/destinations/gold-bird-pair.webp"
+                alt=""
+                width={100}
+                height={75}
+                className="pointer-events-none absolute -top-8 -right-10 h-auto w-20 opacity-80"
+                aria-hidden
+              />
+            </div>
 
             {/* Gold divider */}
             <div className="mt-6 h-px w-14 bg-[#C8A867]" aria-hidden />
 
             <p className="mt-6 text-base leading-relaxed text-[#FDFBF2]/75 sm:text-lg">
-              One of our travel experts will be in touch with you shortly to
-              understand your requirements and help plan your perfect journey.
+              We've got your details. One of our travel experts will be in touch with you soon.
             </p>
 
             {/* Availability badge */}
@@ -66,10 +59,6 @@ export default function ThankYouPage() {
           <FadeIn>
             <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
               Want to connect sooner?
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate sm:text-base">
-              Give us a call or drop us a message on WhatsApp — we&apos;re happy
-              to chat.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -104,27 +93,7 @@ export default function ThankYouPage() {
             </div>
 
             {/* Divider */}
-            <div className="my-10 h-px w-full bg-charcoal/10" aria-hidden />
-
-            {/* What happens next */}
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#C8A867]">
-              What happens next
-            </p>
-            <ul className="mt-4 space-y-3">
-              {[
-                "Our team reviews your enquiry",
-                "A travel expert calls or messages you",
-                "We understand your dates, budget & preferences",
-                "You receive a personalised journey plan",
-              ].map((step, i) => (
-                <li key={step} className="flex items-start gap-3 text-sm text-slate">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0E5E6F]/10 text-xs font-semibold text-[#0E5E6F]">
-                    {i + 1}
-                  </span>
-                  {step}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-10 h-px w-full bg-charcoal/10" aria-hidden />
 
             <Link
               href="/"

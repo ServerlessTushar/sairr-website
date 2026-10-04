@@ -32,7 +32,7 @@ export function ContactFormDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[min(90dvh,48rem)] overflow-y-auto sm:max-w-xl sm:p-8">
-        <DialogHeader>
+        <DialogHeader className="text-center mb-2">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>

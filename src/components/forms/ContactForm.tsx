@@ -76,6 +76,8 @@ export function ContactForm({
   });
 
   const selectedDestination = useWatch({ control, name: "destination" });
+  const selectedJourneyType = useWatch({ control, name: "journeyType" });
+  const selectedPreferredMonth = useWatch({ control, name: "preferredMonth" });
   const showOtherDestination = selectedDestination === DESTINATION_SOMEWHERE_ELSE;
 
   useEffect(() => {
@@ -139,7 +141,7 @@ export function ContactForm({
             id="phone"
             type="tel"
             inputMode="numeric"
-            placeholder="Your 10-digit mobile number"
+            placeholder="Your 10-digit WhatsApp number"
             maxLength={10}
             aria-invalid={!!errors.phone}
             className={cn(fieldClassName, errors.phone && "border-destructive")}
@@ -178,6 +180,7 @@ export function ContactForm({
                 className={cn(
                   fieldClassName,
                   "w-full appearance-none pr-10",
+                  !selectedDestination ? "text-[#999]" : "text-gray-900",
                   errors.destination && "border-destructive",
                 )}
                 {...register("destination")}
@@ -236,11 +239,12 @@ export function ContactForm({
                 className={cn(
                   fieldClassName,
                   "w-full appearance-none pr-10",
+                  !selectedJourneyType ? "text-[#999]" : "text-gray-900",
                   errors.journeyType && "border-destructive",
                 )}
                 {...register("journeyType")}
               >
-                <option value="">Group or Private</option>
+                <option value="" disabled>Select group or private journey</option>
                 {journeyTypeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -290,11 +294,12 @@ export function ContactForm({
                 className={cn(
                   fieldClassName,
                   "w-full appearance-none pr-10",
+                  !selectedPreferredMonth ? "text-[#999]" : "text-gray-900",
                   errors.preferredMonth && "border-destructive",
                 )}
                 {...register("preferredMonth")}
               >
-                <option value="">Select a month</option>
+                <option value="" disabled>Select a month</option>
                 {preferredMonths.map((month) => (
                   <option key={month} value={month}>
                     {month}
@@ -333,10 +338,8 @@ export function ContactForm({
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-sm leading-relaxed text-slate">
-          We read every enquiry personally and usually respond within 24 hours.
-        </p>
+      <div className="flex flex-col gap-4 border-t border-border/60 pt-6">
+        <p className="text-[10px] sm:text-xs text-center text-slate-500">By submitting, you agree to be contacted by Sairr via phone or WhatsApp.</p>
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -345,12 +348,12 @@ export function ContactForm({
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Sending...
+              Submitting...
             </>
           ) : (
             <>
               <Send className="mr-2 h-4 w-4" />
-              Send enquiry
+              Submit
             </>
           )}
         </Button>
