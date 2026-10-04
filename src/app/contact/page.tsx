@@ -1,150 +1,115 @@
-import { ArrowUpRight, Clock3, Mail, MessageCircle, Phone } from "lucide-react";
-import { siteConfig, whatsappHref } from "@/data/site";
-import { ContactForm } from "@/components/forms/ContactForm";
+import Image from "next/image";
+import { Mail, Phone } from "lucide-react";
+import { ContactUsForm } from "@/components/forms/ContactUsForm";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { createMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { siteConfig, phoneHref, whatsappHref } from "@/data/site";
 
 export const metadata = createMetadata({
-  title: "Talk to Sairr — Plan a Journey",
+  title: "Contact Us — Sairr",
   description:
-    "Get in touch with Sairr to plan a thoughtful travel experience for your loved ones. WhatsApp, call, or send an enquiry.",
+    "Get in touch with Sairr. Ask us anything about our journeys, partnerships, or anything else.",
   path: "/contact",
 });
 
-const contactMethods = [
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "Chat with us",
-    href: whatsappHref("Hi Sairr — I'd like to talk about a journey."),
-    description: "Fastest way to reach us",
-    featured: true,
-    external: true,
-  },
-  {
-    icon: Phone,
-    label: "Call",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone}`,
-    description: "Speak with our team",
-    featured: false,
-    external: false,
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
-    description: "For detailed enquiries",
-    featured: false,
-    external: false,
-  },
-] as const;
-
 export default function ContactPage() {
   return (
-    <section className="border-t border-charcoal/10 bg-sand pt-20">
-      <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
-        <FadeIn>
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
-              Contact
-            </p>
-            <h1 className="mt-4 font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-5xl">
-              Get in touch
-            </h1>
-            <div className="mt-6 h-px w-16 bg-gold" aria-hidden />
-            <p className="mt-6 text-lg leading-relaxed text-slate">
-              Ask us anything about travelling with Sairr.
-            </p>
-          </div>
-        </FadeIn>
+    <main className="min-h-dvh bg-[#FDFBF2]">
+      <div className="mx-auto grid min-h-dvh max-w-6xl grid-cols-1 lg:grid-cols-2">
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
-          <FadeIn className="lg:sticky lg:top-24" delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-charcoal/10 bg-card shadow-sm">
-              <div className="border-b border-charcoal/10 bg-brand/5 px-6 py-5 sm:px-8">
-                <p className="text-sm font-medium text-charcoal">
-                  Prefer to reach out directly?
-                </p>
-                <p className="mt-1 text-sm text-slate">
-                  Choose whichever channel feels easiest.
-                </p>
-              </div>
-
-              <div className="space-y-3 p-4 sm:p-5">
-                {contactMethods.map((method) => (
-                  <a
-                    key={method.label}
-                    href={method.href}
-                    target={method.external ? "_blank" : undefined}
-                    rel={
-                      method.external ? "noopener noreferrer" : undefined
-                    }
-                    className={cn(
-                      "group flex items-start gap-4 rounded-xl border p-4 transition-all duration-300",
-                      method.featured
-                        ? "border-brand/20 bg-brand/5 hover:border-brand/35 hover:bg-brand/10"
-                        : "border-border/60 bg-mist/40 hover:border-brand/25 hover:bg-white",
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
-                        method.featured
-                          ? "bg-brand text-white"
-                          : "bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white",
-                      )}
-                    >
-                      <method.icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate">
-                          {method.label}
-                        </p>
-                        <ArrowUpRight className="h-4 w-4 shrink-0 text-slate/50 transition-colors group-hover:text-brand" />
-                      </div>
-                      <p className="mt-1 font-medium text-charcoal">
-                        {method.value}
-                      </p>
-                      <p className="mt-1 text-sm text-slate">
-                        {method.description}
-                      </p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3 border-t border-charcoal/10 px-6 py-4 text-sm text-slate sm:px-8">
-                <Clock3 className="h-4 w-4 shrink-0 text-gold" />
-                <span>We typically respond within 24 hours.</span>
-              </div>
+        {/* Left — teal brand panel */}
+        <div className="relative flex flex-col items-start justify-center overflow-hidden bg-[#0E5E6F] px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
+          <FadeIn>
+            <div className="relative inline-block">
+              <h1 className="font-heading text-4xl font-semibold leading-tight text-[#FDFBF2] sm:text-5xl">
+                Get in touch<br />with Sairr.
+              </h1>
+              <Image
+                src="/destinations/gold-bird-pair.webp"
+                alt=""
+                width={100}
+                height={75}
+                className="pointer-events-none absolute -top-8 -right-24 h-auto w-20 opacity-80"
+                aria-hidden
+              />
             </div>
+
+            {/* Gold divider */}
+            <div className="mt-6 h-px w-14 bg-[#C8A867]" aria-hidden />
+
+            <p className="mt-6 text-base leading-relaxed text-[#FDFBF2]/75 sm:text-lg">
+              Ask us anything — about our journeys, partnerships, careers, or
+              anything else on your mind.
+            </p>
+
+            {/* Contact details */}
+            <div className="mt-10 space-y-4">
+              <a
+                href={phoneHref()}
+                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
+              >
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
+                  <Phone className="size-4" aria-hidden />
+                </span>
+                <span className="text-sm">{siteConfig.phone}</span>
+              </a>
+
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
+              >
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
+                  <Mail className="size-4" aria-hidden />
+                </span>
+                <span className="text-sm">{siteConfig.email}</span>
+              </a>
+
+              <a
+                href={whatsappHref("Hi, I'd like to get in touch with Sairr.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
+              >
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
+                  <Image
+                    src="/homepage/whatsapp.png"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="size-4 brightness-[10]"
+                    aria-hidden
+                  />
+                </span>
+                <span className="text-sm">Chat on WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Availability note */}
+            <p className="mt-10 text-xs leading-relaxed text-[#FDFBF2]/50">
+              Our team is available{" "}
+              <span className="text-[#FDFBF2]/75">10 AM – 8 PM</span>, Monday
+              to Sunday.
+            </p>
           </FadeIn>
+        </div>
 
-          <FadeIn delay={0.15}>
-            <div className="overflow-hidden rounded-2xl border border-charcoal/10 bg-card shadow-sm">
-              <div className="border-b border-charcoal/10 px-6 py-6 sm:px-8 sm:py-8">
-                <p className="text-sm font-medium uppercase tracking-[0.18em] text-gold">
-                  Enquiry form
-                </p>
-                <h2 className="mt-3 font-heading text-2xl font-semibold text-charcoal sm:text-3xl">
-                  Get in touch
-                </h2>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate">
-                  Ask us anything about travelling with Sairr.
-                </p>
-              </div>
+        {/* Right — form panel */}
+        <div className="flex flex-col justify-center px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
+          <FadeIn>
+            <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
+              Send us a message
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate sm:text-base">
+              Fill in the form and we&apos;ll get back to you within 24 hours.
+            </p>
 
-              <div className="bg-mist/30 px-6 py-6 sm:px-8 sm:py-8">
-                <ContactForm intent="contact" />
-              </div>
+            <div className="mt-8">
+              <ContactUsForm />
             </div>
           </FadeIn>
         </div>
+
       </div>
-    </section>
+    </main>
   );
 }
