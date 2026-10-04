@@ -1,11 +1,11 @@
 import type { ExperienceHeroSectionData } from "@/components/puri/PuriHero";
 
 export const puriHeroSectionData: ExperienceHeroSectionData = {
-  heading: "Bhubaneswar & Jagannath Puri",
+  heading: "Jagannath Puri & Bhubaneswar",
   summaryTitle: "Bhubaneswar & Puri",
   duration: "4 days · 3 nights",
   groupSize: "10–15 travellers",
-  tagline: "Thoughtfully designed for the way you travel after 50.",
+  tagline: "Thoughtfully designed for travel after 50",
   body: "Two cities, very different in character, one shaped by centuries of temples and history, the other by the coast and the Jagannath Temple. You'll move between ancient sites, sacred rituals, local culture, and the shores of Puri, with good food and a little unplanned time in between. All of it, unhurried.",
   facts: [
     {
@@ -18,24 +18,24 @@ export const puriHeroSectionData: ExperienceHeroSectionData = {
     },
     {
       icon: "/destinations/gold-hero-heart.svg",
-      label: "Thoughtfully designed for the way you travel after 50.",
+      label: "Thoughtfully designed for travel after 50",
     },
   ],
   images: [
     {
-      src: "/destinations/puriBanner-1.webp",
+      src: "/destinations/puriBanner-1-1.webp",
       alt: "Jagannath Temple in Puri at sunset",
     },
     {
-      src: "/destinations/puriBanner-2.webp",
+      src: "/destinations/puriBanner-2-1.webp",
       alt: "Konark Sun Temple",
     },
     {
-      src: "/destinations/puriBanner-3.webp",
+      src: "/destinations/puriBanner-3-1.webp",
       alt: "Puri beach",
     },
     {
-      src: "/destinations/puriBanner-4.webp",
+      src: "/destinations/puriBanner-4-1.webp",
       alt: "White stupa in Bhubaneswar",
     },
   ],

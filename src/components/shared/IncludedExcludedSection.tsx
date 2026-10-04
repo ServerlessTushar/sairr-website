@@ -51,9 +51,11 @@ export function IncludedExcludedSection({
     <section className={cn("bg-[#FDFBF2]", className)}>
       <div
         className={cn(
-          "mx-auto max-w-6xl px-4 pb-8 pt-0 sm:px-6 sm:pb-8 lg:px-8 lg:pb-8 lg:pt-1",
+          "pb-8 pt-0 sm:pb-8 lg:pb-8 lg:pt-1",
           hasHeader && "sm:pt-12 lg:pt-16",
-          flush && "max-w-none px-0",
+          flush
+            ? "w-full px-0"
+            : "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
         )}
       >
         {hasHeader ? (

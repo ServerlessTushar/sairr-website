@@ -86,37 +86,40 @@ export default async function DestinationPage({ params }: Props) {
       <div className="bg-[#FDFBF2] pb-24 md:pb-0">
           <PuriHero sectionData={destination.hero} />
 
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-4 lg:px-8">
-            <div className="min-w-0">
-              <PuriHeroDetails sectionData={destination.hero} />
-              <div className="py-8 lg:hidden">{bookingRail}</div>
-              <PuriMoments
-                flush
-                heading={destination.moments.heading}
-                cards={destination.moments.cards}
-              />
-              <PuriItinerary
-                flush
-                heading={destination.itineraryHeading}
-                carouselData={destination.itinerary}
-              />
-              <GroupTravelSection
-                heading="Traveling with your own group?"
-                description="We create private journeys for families and friends, tailored around your dates, interests and trip duration."
-                imageSrc="/destinations/your-own-group1.webp"
-                imageAlt="Friends enjoying a trip together"
-                buttonLabel="Talk To Us"
-                contactDestination={destination.notifyDestination}
-              />
-              <PuriWords flush {...destination.words} />
-              <PuriIncluded flush {...destination.included} />
-            </div>
-
-            <aside className="hidden self-stretch lg:block">
-              <div className="sticky top-24 py-8 pr-1">
-                {bookingRail}
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start lg:gap-10">
+              <div className="min-w-0">
+                <PuriHeroDetails sectionData={destination.hero} />
+                <div className="py-8 lg:hidden">{bookingRail}</div>
+                <PuriMoments
+                  flush
+                  heading={destination.moments.heading}
+                  cards={destination.moments.cards}
+                />
+                <PuriItinerary
+                  flush
+                  heading={destination.itineraryHeading}
+                  carouselData={destination.itinerary}
+                />
+                <GroupTravelSection
+                  flush
+                  heading="Traveling with your own group?"
+                  description="We create private journeys for families and friends, tailored around your dates, interests and trip duration."
+                  imageSrc="/destinations/your-own-group1.webp"
+                  imageAlt="Friends enjoying a trip together"
+                  buttonLabel="Talk To Us"
+                  contactDestination={destination.notifyDestination}
+                />
+                <PuriWords flush {...destination.words} />
+                <PuriIncluded flush {...destination.included} />
               </div>
-            </aside>
+
+              <aside className="hidden self-stretch lg:block">
+                <div className="sticky top-24 pt-8 pb-4">
+                  {bookingRail}
+                </div>
+              </aside>
+            </div>
           </div>
           <div className="mt-20" />
           <TripGallerySection

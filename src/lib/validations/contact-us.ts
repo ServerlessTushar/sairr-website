@@ -52,7 +52,7 @@ export const contactUsFormSchema = z.object({
 
   // --- hidden / reserved fields ---
   numberOfTravellers: z
-    .number({ invalid_type_error: "Please enter a valid number" })
+    .number({ message: "Please enter a valid number" })
     .int()
     .positive()
     .max(999)

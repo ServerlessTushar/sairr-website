@@ -8,9 +8,11 @@ import { CarouselSection } from "@/components/shared/CarouselSection";
 import { cn } from "@/lib/utils";
 import { type PuriMomentCard } from "@/components/puri/puriMomentsData";
 
+const MOMENT_CARD_WIDTH_PX = 306.38;
+
 function MomentCard({ moment }: { moment: PuriMomentCard }) {
   return (
-    <article className="flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:p-[36.505px]">
+    <article className="flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:w-[306.38px] lg:p-7">
       <div className="relative aspect-square w-full shrink-0 bg-charcoal/5">
         <Image
           src={moment.image}
@@ -42,8 +44,10 @@ export function PuriMoments({
     <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
       <div
         className={cn(
-          "mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:pb-10 lg:pt-20",
-          flush && "max-w-none px-0",
+          "py-12 sm:py-16 lg:pb-10 lg:pt-20",
+          flush
+            ? "w-full"
+            : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
         )}
       >
         <FadeIn className="text-center">
@@ -54,10 +58,18 @@ export function PuriMoments({
           />
         </FadeIn>
 
-        <div className="mt-8 -mr-4 bg-[#E9DFC8] py-6 pl-4 sm:mt-10 sm:-mr-6 sm:py-8 sm:pl-6 lg:-mr-8 lg:pl-8">
+        <div
+          className={cn(
+            "mt-8 bg-[#E9DFC8] py-6 sm:mt-10 sm:py-8 rounded-2xl overflow-hidden",
+            flush
+              ? "w-full pl-5 pr-0"
+              : "-mr-4 pl-4 sm:-mr-6 sm:pl-6 lg:-mr-8 lg:pl-8",
+          )}
+        >
           <CarouselSection
             slideClassName="py-2"
-            gap={12}
+            gap={20}
+            fixedSlideWidthLg={MOMENT_CARD_WIDTH_PX}
             items={cards}
             getKey={(item) => item.id}
             renderItem={(item, index) => (
@@ -72,7 +84,7 @@ export function PuriMoments({
                 <MomentCard moment={item} />
               </CardRevealCarouselItem>
             )}
-            slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 2.15 }}
+            slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
             ariaLabel="Moments that make Puri"
             autoplay={false}
             previousButtonClassName="border-transparent bg-[#F0F0F099] text-charcoal/50 hover:bg-[#F0F0F0] disabled:opacity-100"

@@ -44,6 +44,8 @@ type CarouselSectionProps<T> = {
   autoplayInterval?: number;
   previousButtonClassName?: string;
   nextButtonClassName?: string;
+  /** On lg+ breakpoints, use a fixed slide width (e.g. design-spec cards). */
+  fixedSlideWidthLg?: number;
 };
 
 function useSlidesPerView(config: SlidesPerView) {
@@ -89,15 +91,47 @@ export function CarouselSection<T>({
   autoplayInterval = DEFAULT_AUTOPLAY_INTERVAL_MS,
   previousButtonClassName,
   nextButtonClassName,
+  fixedSlideWidthLg,
 }: CarouselSectionProps<T>) {
   const visibleCount = useSlidesPerView(slidesPerView);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isLg, setIsLg] = useState(false);
+  const [lgVisibleCount, setLgVisibleCount] = useState(visibleCount);
 
-  const maxIndex = Math.max(0, Math.ceil(items.length - visibleCount));
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const updateMq = () => setIsLg(mq.matches);
+    updateMq();
+    mq.addEventListener("change", updateMq);
+    return () => mq.removeEventListener("change", updateMq);
+  }, []);
+
+  useEffect(() => {
+    if (!fixedSlideWidthLg || !isLg) {
+      setLgVisibleCount(visibleCount);
+      return;
+    }
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      setLgVisibleCount(el.clientWidth / (fixedSlideWidthLg + gap));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [fixedSlideWidthLg, gap, isLg, visibleCount]);
+
+  const effectiveVisible =
+    fixedSlideWidthLg && isLg ? lgVisibleCount : visibleCount;
+
+  const maxIndex = Math.max(0, Math.ceil(items.length - effectiveVisible));
   const activeIndex = Math.min(index, maxIndex);
-  const showControls = items.length > visibleCount;
+  const showControls = items.length > effectiveVisible;
 
   const getStep = useCallback(() => {
     const el = scrollRef.current;
@@ -126,7 +160,7 @@ export function CarouselSection<T>({
     if (Math.abs(el.scrollLeft - targetLeft) > 1) {
       el.scrollTo({ left: targetLeft });
     }
-  }, [getStep, maxIndex, visibleCount]);
+  }, [getStep, maxIndex, effectiveVisible]);
 
   useEffect(() => {
     if (!autoplay || !showControls || paused) return;
@@ -189,7 +223,10 @@ export function CarouselSection<T>({
               slideClassName,
             )}
             style={{
-              width: getSlideWidth(visibleCount, gap),
+              width:
+                fixedSlideWidthLg && isLg
+                  ? `${fixedSlideWidthLg}px`
+                  : getSlideWidth(visibleCount, gap),
             }}
           >
             <div className="flex h-full min-h-0 flex-1 flex-col">

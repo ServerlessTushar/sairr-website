@@ -1,5 +1,4 @@
 import type { Faq } from "@/data/faqs";
-import { prod_tt_sasportal_v1alpha1 } from "googleapis";
 
 export type DepartureStatus = "live" | "upcoming";
 
