@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 const fieldClassName =
-  "h-12 rounded-xl border-border/60 bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
+  "h-12 rounded-xl border-border/60 bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
 
 const labelClassName =
   "text-xs font-medium uppercase tracking-[0.14em] text-charcoal";
@@ -28,12 +28,12 @@ const labelClassName =
 const errorClassName = "text-sm text-destructive";
 
 const textareaClassName =
-  "min-h-32 rounded-xl border-border/60 bg-mist/80 px-4 py-3 text-base shadow-none transition-colors placeholder:text-slate/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
+  "min-h-32 rounded-xl border-border/60 bg-mist/80 px-4 py-3 text-base shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
 
 function SelectChevron() {
   return (
     <ChevronDown
-      className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-slate"
+      className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-[#5d5d5d]"
       aria-hidden
     />
   );
@@ -137,7 +137,7 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
       <div className="space-y-2">
         <Label htmlFor="cu-email" className={labelClassName}>
           Email{" "}
-          <span className="normal-case tracking-normal text-slate">
+          <span className="normal-case tracking-normal text-[#5d5d5d]">
             (optional)
           </span>
         </Label>
@@ -192,7 +192,7 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
       <div className="space-y-2">
         <Label htmlFor="cu-message" className={labelClassName}>
           Anything else you&apos;d like to tell us?{" "}
-          <span className="normal-case tracking-normal text-slate">
+          <span className="normal-case tracking-normal text-[#5d5d5d]">
             (optional)
           </span>
         </Label>
@@ -213,7 +213,7 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
       </div>
 
       <div className="flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-        {/* <p className="max-w-sm text-sm leading-relaxed text-slate">
+        {/* <p className="max-w-sm text-sm leading-relaxed text-[#5d5d5d]">
           We read every message personally and usually respond within 24 hours.
         </p> */}
         <Button

@@ -21,7 +21,7 @@ export function LegalPage({ heading, note }: { heading: string; note?: string })
         <h1 className="font-heading text-3xl font-semibold text-charcoal sm:text-4xl">
           {heading}
         </h1>
-        <p className="mt-6 text-sm leading-relaxed text-slate">
+        <p className="mt-6 text-sm leading-relaxed text-[#5d5d5d]">
           {note ??
             "This page will be published before bookings open. If you have a question in the meantime, write to tanmay@sairr.in."}
         </p>

@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Testimonial } from "@/data/testimonials";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 
-const SLIDE_GAP_PX = 32;
+const SLIDE_GAP_PX = 40;
 
 type TestimonialCarouselProps = {
   testimonials: Testimonial[];

@@ -83,9 +83,9 @@ export function CtaSection() {
                   <button
                     type="button"
                     onClick={() => openContactForm({ intent: "callback" })}
-                    className="w-[10.68rem] bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    className="w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
-                    Get a Callback
+                    Get a callback
                   </button>
                 </motion.div>
 
@@ -94,7 +94,7 @@ export function CtaSection() {
                     href={whatsappHref("Hi Sairr — I'd like to talk about a journey.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[10.68rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
+                    className="w-[11rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
                   >
                     <Image
                       src={whatsappIcon}

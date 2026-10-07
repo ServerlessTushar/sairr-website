@@ -124,7 +124,7 @@ function DateCard({
         <button
           type="button"
           onClick={() => onInterestClick(card.id)}
-          className="bg-[#FF4859] hover:bg-[#E63B4C] cursor-pointer hover:scale-104 tab:hover-0.98 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white sm:w-auto"
+          className="bg-[#ec575e] hover:bg-[#dc4850] cursor-pointer hover:scale-104 tab:hover-0.98 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-white sm:w-auto"
         >
           {card.ctaLabel ?? "Tell Us You're Interested →"}
         </button>
@@ -200,8 +200,8 @@ export function ExperienceDatesSection({
         {pricingNotes && pricingNotes.length > 0 ? (
           <FadeIn delay={0.12}>
           <div className="mt-8 md:w-1/2 max-w-xl rounded-[10px] bg-white/50 p-4 backdrop-blur-sm sm:p-5 lg:mt-10">
-            <p className="text-xs font-bold text-slate">Pricing notes</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-xs leading-relaxed text-slate">
+            <p className="text-xs font-bold text-[#5d5d5d]">Pricing notes</p>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-xs leading-relaxed text-[#5d5d5d]">
               {pricingNotes.map((note) => (
                 <li key={note}>{note}</li>
               ))}

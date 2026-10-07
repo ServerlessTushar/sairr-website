@@ -185,7 +185,7 @@ export function TimelineItinerary({
                       />
 
                       {item.included.length > 0 ? (
-                        <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-[10px] italic text-slate sm:text-xs">
+                        <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-[10px] italic text-[#5d5d5d] sm:text-xs">
                           {item.included.map((included) => (
                             <span
                               key={`${included.title}-${included.details}`}
@@ -284,7 +284,7 @@ export function TimelineItinerary({
                           )}
 
                           {item.details && item.details.length > 0 && (
-                            <ul className="space-y-1 text-xs leading-relaxed text-slate sm:text-sm">
+                            <ul className="space-y-1 text-xs leading-relaxed text-[#5d5d5d] sm:text-sm">
                               {item.details.map((detail) => (
                                 <li key={detail} className="flex gap-3">
                                   <span

@@ -95,7 +95,7 @@ export function RtbCard({
       <h3 className="mt-5 font-heading text-lg font-semibold leading-snug text-brand">
         {reason.title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate">{reason.description}</p>
+      <p className="mt-2 text-sm leading-relaxed text-[#5d5d5d]">{reason.description}</p>
     </article>
   );
 }

@@ -14,7 +14,7 @@ export function PlaceholderVideo({
         className,
       )}
     >
-      <div className="flex flex-col items-center gap-3 text-slate">
+      <div className="flex flex-col items-center gap-3 text-[#5d5d5d]">
         <span className="flex h-12 w-12 items-center justify-center rounded-full border border-current/30">
           <svg
             viewBox="0 0 24 24"

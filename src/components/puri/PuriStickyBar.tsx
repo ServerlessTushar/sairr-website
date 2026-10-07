@@ -18,7 +18,7 @@ export function PuriStickyBar({
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-charcoal">
           From <span className="font-semibold">{priceLabel}</span>
-          <span className="text-slate"> / person</span>
+          <span className="text-[#5d5d5d]"> / person</span>
         </p>
         <Button
           type="button"

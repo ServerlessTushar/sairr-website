@@ -152,7 +152,7 @@ export default function TermsPage() {
                     <dt className="font-heading text-base font-semibold text-brand">
                       {term}
                     </dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-slate sm:text-base">
+                    <dd className="mt-1 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
                       {definition}
                     </dd>
                   </div>
@@ -826,7 +826,7 @@ export default function TermsPage() {
               <SubHead title="Contact Details" />
               <address className="not-italic">
                 <div className="rounded-xl bg-white p-5 shadow-sm sm:p-6">
-                  <div className="space-y-2 text-sm leading-relaxed text-slate sm:text-base">
+                  <div className="space-y-2 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
                     <p>
                       Meenadeep Experiences Private Limited, operating as
                       Sairr.

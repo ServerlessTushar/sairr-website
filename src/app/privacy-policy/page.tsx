@@ -62,7 +62,7 @@ function Principle({ name, children }: { name: string; children: string }) {
       <h3 className="font-heading text-base font-semibold text-brand">
         {name}
       </h3>
-      <p className="mt-1 text-sm leading-relaxed text-slate sm:text-base">
+      <p className="mt-1 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
         {children}
       </p>
     </div>
@@ -1048,7 +1048,7 @@ export default function PrivacyPage() {
                   <p className="font-heading text-base font-semibold text-charcoal">
                     Meenadeep Experiences Private Limited
                   </p>
-                  <div className="mt-3 space-y-2 text-sm leading-relaxed text-slate sm:text-base">
+                  <div className="mt-3 space-y-2 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
                     <p>Brand: Sairr</p>
                     <p>
                       Registered Office: 67, Sitanagar, Jaiprakash Nagar,

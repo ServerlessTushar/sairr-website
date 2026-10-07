@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactUsForm } from "@/components/forms/ContactUsForm";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { createMetadata } from "@/lib/seo";
@@ -82,6 +82,20 @@ export default function ContactPage() {
                 </span>
                 <span className="text-sm">Chat on WhatsApp</span>
               </a>
+
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=WeWork%2C+Platina+Tower%2C+Gurugram%2C+Haryana+122002"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
+              >
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
+                  <MapPin className="size-4" aria-hidden />
+                </span>
+                <span className="text-sm leading-relaxed">
+                  WeWork, Platina Tower, Gurugram, Haryana 122002
+                </span>
+              </a>
             </div>
 
             {/* Availability note */}
@@ -99,7 +113,7 @@ export default function ContactPage() {
             <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
               Send us a message
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
               Fill in the form and we&apos;ll get back to you within 24 hours.
             </p>
 

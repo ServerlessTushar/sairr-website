@@ -26,7 +26,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-1",
     seed: "moments-1",
-    src: "/homepage/moments-1.webp",
+    src: "/homepage/moments-1.png",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -76,12 +76,12 @@ export const galleryImages: GalleryImage[] = [
     location: "Puri, Odisha",
     journey: "puri",
     journeyLabel: "Puri",
-    objectPosition: "center",
+    objectPosition: "top",
   },
   {
     id: "moments-6",
     seed: "moments-6",
-    src: "/homepage/moments-6.webp",
+    src: "/homepage/moments-6.png",
     alt: "Group dining during the Puri journey",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -161,7 +161,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-1",
     seed: "moments-1",
-    src: "/homepage/moments-1.webp",
+    src: "/homepage/moments-1.png",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -216,7 +216,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-6",
     seed: "moments-6",
-    src: "/homepage/moments-6.webp",
+    src: "/homepage/moments-6.png",
     alt: "Group dining during the Puri journey",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",

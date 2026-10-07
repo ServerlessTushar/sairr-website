@@ -355,7 +355,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                           alt=""
                           fill
                           sizes="80px"
-                          className="object-cover"
+                          className="object-fit"
                           style={{
                             objectPosition: image.objectPosition ?? "center",
                           }}

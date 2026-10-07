@@ -79,7 +79,7 @@ export function TestimonialCard({
             <p className="text-sm font-semibold text-charcoal">
               {testimonial.name}
             </p>
-            <p className="mt-1 text-sm italic text-slate">
+            <p className="mt-1 text-sm italic text-[#5d5d5d]">
               {testimonial.destination}
             </p>
           </div>
@@ -95,8 +95,8 @@ export function TestimonialCard({
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
       <div className="mt-4">
-        <p className="text-sm text-slate">{testimonial.name}</p>
-        <p className="mt-1 text-sm text-slate">{testimonial.destination}</p>
+        <p className="text-sm text-[#5d5d5d]">{testimonial.name}</p>
+        <p className="mt-1 text-sm text-[#5d5d5d]">{testimonial.destination}</p>
       </div>
     </article>
   );

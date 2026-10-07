@@ -62,7 +62,7 @@ export function LegalToc({ items }: { items: LegalTocItem[] }) {
                 "block rounded-full px-4 py-2 text-[13px] leading-snug transition-colors",
                 active === id
                   ? "bg-brand font-semibold text-white"
-                  : "text-slate hover:bg-white hover:text-brand"
+                  : "text-[#5d5d5d] hover:bg-white hover:text-brand"
               )}
             >
               {label}

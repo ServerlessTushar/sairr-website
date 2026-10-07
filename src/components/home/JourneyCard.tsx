@@ -10,10 +10,9 @@ import type { TravelDestination } from "@/lib/validations/contact";
 import underlineImg from "@/public/homepage/underline.png";
 import { imageHover } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 const TEAL = "#0E5E6F";
-const CORAL = "#FF4859";
+const CORAL = "#ec575e";
 const CARD_CAROUSEL_INTERVAL_MS = 2000;
 
 function formatPerk(perk: string) {
@@ -133,7 +132,9 @@ function StatusBadge({ status }: { status: Journey["status"] }) {
       className={cn(
         "absolute top-8 right-0 z-10 rounded-l-full py-1.5 pr-6 pl-3 tracking-[0.14em] uppercase shadow-lg",
         "bg-white",
-        isOpen ? "text-[#EC575E] font-bold text-[10px]" : "text-[#6B7075] font-semibold text-[8px]",
+        isOpen
+          ? "text-[#EC575E] font-bold text-[10px]"
+          : "text-[#6B7075] font-semibold text-[8px]",
       )}
     >
       {isOpen ? "Booking open" : "Coming soon"}
@@ -154,6 +155,9 @@ function NotifyMeUnderline() {
   );
 }
 
+/** Bleeds through article horizontal padding (px-[6px]) for edge-to-edge footer. */
+const CARD_FOOTER_BLEED_CLASS = "-mx-[6px] -mb-px w-[calc(100%+12px)]";
+
 export function JourneyCard({
   journey,
   onNotifyMe,
@@ -162,114 +166,120 @@ export function JourneyCard({
   onNotifyMe?: (destination: TravelDestination) => void;
 }) {
   const isOpen = journey.status === "booking-open";
+  const hasItineraryLink = isOpen && Boolean(journey.href);
+  const canExpressInterest =
+    !isOpen && Boolean(journey.destination && onNotifyMe);
+
   const carouselImages =
     journey.images && journey.images.length > 0
       ? journey.images
       : [journey.image];
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] pb-0 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]">
-      {/* Full-card link for booking-open cards with an href */}
-      {isOpen && journey.href ? (
-        <Link href={journey.href} className="absolute inset-0 z-0" aria-label={`View ${journey.title}`} tabIndex={-1} />
+    <article
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] pb-0 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]"
+    >
+      {hasItineraryLink ? (
+        <Link
+          href={journey.href!}
+          className="absolute inset-0 z-20 rounded-2xl"
+          aria-label={`View ${journey.title} itinerary`}
+        />
       ) : null}
-      <StatusBadge status={journey.status} />
 
-      <div className="relative aspect-4/3 overflow-hidden rounded-xl">
-        {isOpen ? (
-          <JourneyImageCarousel images={carouselImages} alt={journey.title} />
-        ) : (
-          <motion.div
-            className="relative h-full w-full"
-            whileHover={imageHover}
-          >
-            <Image
-              src={journey.image}
-              alt={journey.title}
-              fill
-              className="object-fit"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            />
-          </motion.div>
-        )}
-      </div>
+      {canExpressInterest ? (
+        <button
+          type="button"
+          className="absolute inset-0 z-20 cursor-pointer rounded-2xl border-0 bg-transparent p-0"
+          aria-label={`I'm interested in ${journey.title}`}
+          onClick={() => onNotifyMe!(journey.destination!)}
+        />
+      ) : null}
 
-      <div
-        className={`flex flex-1 flex-col pt-4 ${isOpen && journey.href ? "pb-0" : "px-2 pb-0 md:px-3"}`}
-      >
-        <div
-          className={cn(
-            "flex flex-1 flex-col",
-            isOpen && journey.href && "px-2 md:px-3",
+      <div className="pointer-events-none relative flex min-h-0 flex-1 flex-col">
+        <StatusBadge status={journey.status} />
+
+        <div className="relative aspect-4/3 overflow-hidden rounded-xl">
+          {isOpen ? (
+            <JourneyImageCarousel images={carouselImages} alt={journey.title} />
+          ) : (
+            <motion.div
+              className="relative h-full w-full"
+              whileHover={imageHover}
+            >
+              <Image
+                src={journey.image}
+                alt={journey.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
+            </motion.div>
           )}
-        >
-          <p
-            className="text-right text-xs font-semibold"
-            style={{ color: TEAL }}
-          >
-            {journey.category}
-          </p>
-
-          <h3 className="mt-2 font-heading text-lg md:text-2xl font-semibold tracking-tight text-charcoal">
-            {journey.title}
-          </h3>
-
-          <p className="flex-1 text-xs md:text-sm leading-relaxed mt-1">
-            {journey.description}
-          </p>
-
-          {isOpen && journey.perks ? (
-            <p className="mt-1 text-[11px] leading-snug text-[#0E5E6F] md:mt-4 md:text-[11px]">
-              {journey.perks.map(formatPerk).join(" • ")}
-            </p>
-          ) : null}
         </div>
 
-        <div
-          className={
-            isOpen && journey.href
-              ? undefined
-              : "mt-auto flex min-h-16 w-full items-center justify-center"
-          }
-        >
-          {isOpen && journey.href ? (
-            // <Link
-            //   href={journey.href}
-            //   className="mt-4 inline-flex items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80"
-            //   style={{ color: CORAL }}
-            // >
-            //   Explore Journey
-            //   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-            // </Link>
-            <Link
-              href={journey.href}
-              className="relative z-10 -mx-[6px] capitalize -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#FF4859] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
+        <div className="flex min-h-0 flex-1 flex-col pt-4 pb-0">
+          <div className="flex min-h-0 flex-1 flex-col px-2 md:px-3">
+            <p
+              className="text-right text-xs font-semibold"
+              style={{ color: TEAL }}
             >
-              See itinerary
-            </Link>
-          ) : journey.destination && onNotifyMe ? (
-            <button
-              style={{ color: CORAL }}
-              type="button"
-              onClick={() => onNotifyMe(journey.destination!)}
-              className="relative inline-block w-full cursor-pointer pb-1 text-center text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
-            >
-              I&apos;m Interested
-            </button>
-          ) : (
-            <Link
-              href={whatsappHref(
-                journey.notifyMessage ??
-                `I'd like to be notified when ${journey.title} dates are announced.`,
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-block pb-1 text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
-            >
-              Notify Me
-              <NotifyMeUnderline />
-            </Link>
-          )}
+              {journey.category}
+            </p>
+
+            <h3 className="mt-2 font-heading text-lg font-semibold tracking-tight text-charcoal md:text-2xl">
+              {journey.title}
+            </h3>
+
+            <p className="mt-1 flex-1 text-xs leading-relaxed text-[#5d5d5d] md:text-sm">
+              {journey.description}
+            </p>
+
+            {isOpen && journey.perks ? (
+              <p className="mt-1 text-[11px] leading-snug text-[#0E5E6F] md:mt-4">
+                {journey.perks.map(formatPerk).join(" • ")}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="mt-auto">
+            {hasItineraryLink ? (
+              <div
+                className={cn(
+                  CARD_FOOTER_BLEED_CLASS,
+                  "mt-8 flex min-h-16 flex-row items-center justify-center bg-[#ec575e] px-3 py-2 text-sm font-semibold capitalize text-white",
+                )}
+              >
+                See itinerary
+                <ArrowRight className="ml-2 size-4" />
+              </div>
+            ) : canExpressInterest ? (
+              <div
+                className={cn(
+                  CARD_FOOTER_BLEED_CLASS,
+                  "mt-8 flex min-h-[3.9rem] flex-row items-center justify-center border-t-[0.5px] border-[#C8A867] bg-white px-3 py-2 text-sm font-semibold capitalize",
+                )}
+                style={{ color: CORAL }}
+              >
+                I&apos;m Interested
+              </div>
+            ) : (
+              <div className="mt-auto flex min-h-16 w-full items-center justify-center">
+                <Link
+                  href={whatsappHref(
+                    journey.notifyMessage ??
+                      `I'd like to be notified when ${journey.title} dates are announced.`,
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pointer-events-auto relative z-30 inline-block pb-1 text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+                >
+                  Notify Me
+                  <NotifyMeUnderline />
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </article>

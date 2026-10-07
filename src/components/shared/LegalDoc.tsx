@@ -51,7 +51,7 @@ export function Section({
       <h2 className="font-heading text-xl font-semibold text-charcoal sm:text-2xl">
         <span className="text-brand">{number}.</span> {title}
       </h2>
-      <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate sm:text-base">
+      <div className="mt-4 space-y-4 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
         {children}
       </div>
     </section>
@@ -71,7 +71,7 @@ export function SubHead({
         {title}
       </h3>
       {children ? (
-        <p className="mt-1 text-sm leading-relaxed text-slate sm:text-base">
+        <p className="mt-1 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
           {children}
         </p>
       ) : null}

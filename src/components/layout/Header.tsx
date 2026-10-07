@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
-import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -60,7 +59,6 @@ function getLocationHash() {
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { openContactForm } = useContactFormDialog();
   const pathname = usePathname();
   const locationHash = useSyncExternalStore(
     subscribeToLocationHash,
@@ -92,9 +90,12 @@ export function Header() {
 
   useEffect(() => {
     const heroes = document.querySelectorAll("[data-header-hero]");
+
     if (heroes.length === 0) {
-      setHeroBannerInView(false);
-      return;
+      const frame = requestAnimationFrame(() => {
+        setHeroBannerInView(false);
+      });
+      return () => cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(
@@ -113,10 +114,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
+        "fixed inset-x-0 top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="font-heading text-2xl font-semibold tracking-tight text-brand"
@@ -166,13 +167,13 @@ export function Header() {
           })}
         </nav>
 
-        <Button
-          type="button"
-          onClick={() => openContactForm({ intent: "contact" })}
-          className="cursor-pointer hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#E63B4C] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
+        <Link
+          href="/contact"
+          onClick={() => markNavigationPending("/contact")}
+          className="hidden h-10 cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-4 font-sans text-sm font-semibold text-white transition-all duration-300 hover:scale-104 hover:bg-[#dc4850] tab-0.98 md:inline-flex md:text-base"
         >
           Contact Us
-        </Button>
+        </Link>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -182,10 +183,7 @@ export function Header() {
                 variant="ghost"
                 size="icon"
                 aria-label="Open menu"
-                className={cn(
-                  homeHeaderOverHero &&
-                    "text-white hover:bg-white/10 hover:text-white",
-                )}
+                className="text-charcoal hover:bg-charcoal/10 hover:text-charcoal"
               >
                 <Menu className="h-5 w-5" />
               </Button>
@@ -220,19 +218,19 @@ export function Header() {
                   </Link>
                 );
               })}
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 onClick={() => {
+                  markNavigationPending("/contact");
                   setOpen(false);
-                  openContactForm({ intent: "contact" });
                 }}
                 className={cn(
-                  "inline-block rounded-lg px-3 py-2 text-left text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                  "inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
                   pathname === "/contact" && "font-bold text-brand",
                 )}
               >
                 Contact Us
-              </button>
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>
