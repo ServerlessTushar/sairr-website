@@ -96,7 +96,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased overflow-x-clip`}
     >
-      <body className="flex min-h-full flex-col font-sans">
+      <body className="flex min-h-full flex-col font-sans overflow-x-clip">
         <ContactFormDialogProvider>
           <JsonLd data={organizationJsonLd} />
           <Suspense fallback={null}>

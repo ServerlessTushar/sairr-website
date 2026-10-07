@@ -114,7 +114,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
+        "fixed inset-x-0 top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
@@ -183,10 +183,7 @@ export function Header() {
                 variant="ghost"
                 size="icon"
                 aria-label="Open menu"
-                className={cn(
-                  homeHeaderOverHero &&
-                    "text-white hover:bg-white/10 hover:text-white",
-                )}
+                className="text-charcoal hover:bg-charcoal/10 hover:text-charcoal"
               >
                 <Menu className="h-5 w-5" />
               </Button>
