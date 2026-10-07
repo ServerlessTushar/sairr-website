@@ -39,7 +39,7 @@ export default function ThankYouPage() {
             <div className="mt-6 h-px w-14 bg-[#C8A867]" aria-hidden />
 
             <p className="mt-6 text-base leading-relaxed text-[#FDFBF2]/75 sm:text-lg">
-              We've got your details. One of our travel experts will be in touch with you soon.
+              We&apos;ve got your details. One of our travel experts will be in touch with you soon.
             </p>
 
             {/* Availability badge */}

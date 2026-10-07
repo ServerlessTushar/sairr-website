@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
-import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -60,7 +59,6 @@ function getLocationHash() {
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { openContactForm } = useContactFormDialog();
   const pathname = usePathname();
   const locationHash = useSyncExternalStore(
     subscribeToLocationHash,
@@ -92,9 +90,12 @@ export function Header() {
 
   useEffect(() => {
     const heroes = document.querySelectorAll("[data-header-hero]");
+
     if (heroes.length === 0) {
-      setHeroBannerInView(false);
-      return;
+      const frame = requestAnimationFrame(() => {
+        setHeroBannerInView(false);
+      });
+      return () => cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(
@@ -166,13 +167,13 @@ export function Header() {
           })}
         </nav>
 
-        <Button
-          type="button"
-          onClick={() => openContactForm({ intent: "contact" })}
-          className="cursor-pointer hidden h-10 rounded-lg bg-[#ec575e] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#dc4850] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
+        <Link
+          href="/contact"
+          onClick={() => markNavigationPending("/contact")}
+          className="hidden h-10 cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-4 font-sans text-sm font-semibold text-white transition-all duration-300 hover:scale-104 hover:bg-[#dc4850] tab-0.98 md:inline-flex md:text-base"
         >
           Contact Us
-        </Button>
+        </Link>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -220,19 +221,19 @@ export function Header() {
                   </Link>
                 );
               })}
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 onClick={() => {
+                  markNavigationPending("/contact");
                   setOpen(false);
-                  openContactForm({ intent: "contact" });
                 }}
                 className={cn(
-                  "inline-block rounded-lg px-3 py-2 text-left text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
+                  "inline-block rounded-lg px-3 py-2 text-base transition-colors hover:bg-sand hover:text-brand hover:font-bold",
                   pathname === "/contact" && "font-bold text-brand",
                 )}
               >
                 Contact Us
-              </button>
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>
