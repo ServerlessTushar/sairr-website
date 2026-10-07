@@ -136,7 +136,7 @@ function HeroCtas({
       <button
         type="button"
         onClick={onPrimaryClick}
-        className="inline-flex h-12 cursor-pointer items-center justify-center rounded-lg bg-[#FF4859] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:scale-104 hover:bg-[#E63B4C] hover:opacity-90 sm:px-8 lg:h-11"
+        className="inline-flex h-12 cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:scale-104 hover:bg-[#dc4850] hover:opacity-90 sm:px-8 lg:h-11"
       >
         {primaryCtaLabel}
       </button>

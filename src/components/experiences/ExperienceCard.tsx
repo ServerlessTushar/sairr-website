@@ -48,11 +48,11 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
         <h3 className="mt-2 font-heading text-2xl font-semibold tracking-tight text-charcoal">
           {experience.title}
         </h3>
-        <p className="mt-1 text-sm leading-relaxed text-slate">
+        <p className="mt-1 text-sm leading-relaxed text-[#5d5d5d]">
           {comingSoon ? experience.datesLabel : experience.tagline}
         </p>
         {!comingSoon && experience.logistics && (
-          <p className="mt-2 text-sm text-slate">{experience.logistics}</p>
+          <p className="mt-2 text-sm text-[#5d5d5d]">{experience.logistics}</p>
         )}
         {!comingSoon && experience.price && (
           <p className="mt-1 text-sm text-charcoal">{experience.price}</p>

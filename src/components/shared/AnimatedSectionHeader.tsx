@@ -52,7 +52,7 @@ export function AnimatedSectionHeader({
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: 0.35, duration: 0.6 }}
             className={cn(
-              "mt-4 text-base leading-relaxed text-slate",
+              "mt-4 text-base leading-relaxed text-[#5d5d5d]",
               align === "center" && "mx-auto max-w-2xl",
               descriptionClassName,
             )}

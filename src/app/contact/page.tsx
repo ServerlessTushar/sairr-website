@@ -99,7 +99,7 @@ export default function ContactPage() {
             <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
               Send us a message
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
               Fill in the form and we&apos;ll get back to you within 24 hours.
             </p>
 

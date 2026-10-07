@@ -175,7 +175,7 @@ export function PuriHeroDetails({ sectionData, className }: PuriHeroProps) {
               <span className="block text-sm font-semibold text-[#0E5E6F]">
                 {item.title}
               </span>
-              <span className="mt-0.5 block text-[10px] leading-snug text-slate">
+              <span className="mt-0.5 block text-[10px] leading-snug text-[#5d5d5d]">
                 {item.detail}
               </span>
             </span>

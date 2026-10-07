@@ -26,7 +26,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-1",
     seed: "moments-1",
-    src: "/homepage/moments-1.webp",
+    src: "/homepage/moments-1.png",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -59,7 +59,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-4",
     seed: "moments-4",
-    src: "/homepage/moments-4-1.webp",
+    src: "/homepage/moments-4-1.png",
     alt: "Temple dome in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -70,18 +70,18 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "moments-5",
     seed: "moments-5",
-    src: "/homepage/moments-5-5.webp",
+    src: "/homepage/moments-5-5.png",
     alt: "Travellers exploring Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
     journey: "puri",
     journeyLabel: "Puri",
-    objectPosition: "center",
+    objectPosition: "top",
   },
   {
     id: "moments-6",
     seed: "moments-6",
-    src: "/homepage/moments-6.webp",
+    src: "/homepage/moments-6.png",
     alt: "Group dining during the Puri journey",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -161,7 +161,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-1",
     seed: "moments-1",
-    src: "/homepage/moments-1.webp",
+    src: "/homepage/moments-1.png",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -194,7 +194,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-4",
     seed: "moments-4",
-    src: "/homepage/moments-4-1.webp",
+    src: "/homepage/moments-4-1.png",
     alt: "Temple dome in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -205,7 +205,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-5",
     seed: "moments-5",
-    src: "/homepage/moments-5-5.webp",
+    src: "/homepage/moments-5-5.png",
     alt: "Travellers exploring Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -216,7 +216,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-6",
     seed: "moments-6",
-    src: "/homepage/moments-6.webp",
+    src: "/homepage/moments-6.png",
     alt: "Group dining during the Puri journey",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",

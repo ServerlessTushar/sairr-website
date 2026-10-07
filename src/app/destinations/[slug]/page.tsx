@@ -107,7 +107,7 @@ export default async function DestinationPage({ params }: Props) {
                   description="We create private journeys for families and friends, tailored around your dates, interests and trip duration."
                   imageSrc="/destinations/your-own-group1.webp"
                   imageAlt="Friends enjoying a trip together"
-                  buttonLabel="Talk To Us"
+                  buttonLabel="Talk to us"
                   contactDestination={destination.notifyDestination}
                 />
                 <PuriWords flush {...destination.words} />

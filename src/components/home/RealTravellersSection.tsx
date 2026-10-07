@@ -11,7 +11,7 @@ export function RealTravellersSection() {
 
   return (
     <section className="border-t border-charcoal/10 bg-[#FDFBF2]">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:pt-20 lg:pb-16">
         <FadeIn>
           <div className="text-center lg:mx-auto lg:max-w-3xl lg:text-center">
             <TextReveal
@@ -24,7 +24,7 @@ export function RealTravellersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-3 text-base text-slate sm:text-xl"
+              className="mt-3 text-base text-[#5d5d5d] sm:text-xl"
             >
               To know us is to hear from them.
             </motion.p>

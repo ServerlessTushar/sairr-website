@@ -68,7 +68,7 @@ export const testimonials: Testimonial[] = [
     placeholder: true,
     media: {
       type: "image",
-      src: "/homepage/testimonial-4.webp",
+      src: "/homepage/testimonial-4.png",
       alt: "Traveller in Puri",
     },
   },

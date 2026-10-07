@@ -52,7 +52,7 @@ export function ExperienceCtaSection({
           <button
             type="button"
             onClick={onPrimaryClick}
-            className="bg-[#FF4859] hover:bg-[#E63B4C] hover:scale-104 tab:hover-0.98 cursor-pointer! inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
+            className="bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer! inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:opacity-90 sm:h-[3.25rem] sm:px-8 sm:text-base"
           >
             {primaryCtaLabel}
           </button>

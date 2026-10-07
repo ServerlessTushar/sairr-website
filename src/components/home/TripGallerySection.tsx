@@ -39,7 +39,7 @@ export function TripGallerySection({
       <div
         className={
           isDestination
-            ? "mx-auto max-w-7xl px-4 pt-14 pb-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20 lg:pb-28"
+            ? "mx-auto max-w-7xl px-4 pt-14 pb-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-18 lg:pb-28"
             : "mx-auto max-w-7xl px-4 py-1 pb-14 sm:px-6 lg:px-8 lg:pt-0 lg:pb-24"
         }
       >
@@ -74,7 +74,7 @@ export function TripGallerySection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-slate sm:text-xl"
+              className="mt-3 text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
             >
               {para}
             </motion.p>

@@ -76,7 +76,7 @@ export function FaqAccordionSection({
                     aria-hidden
                   />
                 </AccordionTrigger>
-                <AccordionContent className="px-5 pb-5 text-sm leading-relaxed text-slate sm:px-6 sm:pb-6 sm:text-[0.95rem] sm:leading-[1.7]">
+                <AccordionContent className="px-5 pb-5 text-sm leading-relaxed text-[#5d5d5d] sm:px-6 sm:pb-6 sm:text-[0.95rem] sm:leading-[1.7]">
                   <FaqAnswer answer={faq.answer} />
                 </AccordionContent>
               </AccordionItem>

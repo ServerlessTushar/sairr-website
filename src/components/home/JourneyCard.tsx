@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const TEAL = "#0E5E6F";
-const CORAL = "#FF4859";
+const CORAL = "#ec575e";
 const CARD_CAROUSEL_INTERVAL_MS = 2000;
 
 function formatPerk(perk: string) {
@@ -80,8 +80,8 @@ function JourneyImageCarousel({
           src={activeImage}
           alt={alt}
           fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          className="w-[291px] h-[233px]"
+          //sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
           priority
         />
       </div>
@@ -214,7 +214,7 @@ export function JourneyCard({
             {journey.title}
           </h3>
 
-          <p className="flex-1 text-xs md:text-sm leading-relaxed mt-1">
+          <p className="flex-1 text-xs md:text-sm leading-relaxed mt-1 text-[#5d5d5d]">
             {journey.description}
           </p>
 
@@ -243,7 +243,7 @@ export function JourneyCard({
             // </Link>
             <Link
               href={journey.href}
-              className="relative z-10 -mx-[6px] capitalize -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#FF4859] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#E63B4C]"
+              className="relative z-10 -mx-[6px] capitalize -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] cursor-pointer flex-row items-center justify-center bg-[#ec575e] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#dc4850]"
             >
               See itinerary
             </Link>
@@ -252,7 +252,7 @@ export function JourneyCard({
               style={{ color: CORAL }}
               type="button"
               onClick={() => onNotifyMe(journey.destination!)}
-              className="relative inline-block w-full cursor-pointer pb-1 text-center text-sm font-semibold text-charcoal transition-colors hover:opacity-80"
+              className="relative z-10 -mx-[6px] capitalize -mb-px mt-8 flex min-h-16 w-[calc(100%+12px)] border-t-[0.5px] cursor-pointer flex-row items-center justify-center bg-white px-3 py-2 text-sm font-semibold text-white transition-colors"
             >
               I&apos;m Interested
             </button>

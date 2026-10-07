@@ -44,7 +44,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-mist text-slate">
+    <footer className="bg-mist text-[#5d5d5d]">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           <div className="max-w-sm">
@@ -57,7 +57,7 @@ export function Footer() {
                 className="h-[20.85px] w-[65.2px] md:h-[33.36px] md:w-[104.32px]"
               />
             </Link>
-            <p className="mt-2 text-sm md:text-[19.4px] leading-relaxed text-[#5D5D5D]">
+            <p className="mt-1 text-sm md:text-[19.4px] leading-relaxed text-[#5D5D5D]">
               With you, wherever you go next.
             </p>
 
@@ -77,25 +77,17 @@ export function Footer() {
                 );
               })}
             </div>
-
-            <Link
-              href="/about#founder"
-              className="mt-8 inline-flex items-center gap-1 text-sm md:text-lg font-medium text-brand transition-colors hover:text-forest"
-            >
-              A note from founder
-              <ArrowRight className="size-4" />
-            </Link>
           </div>
 
           <div className="flex gap-16 sm:gap-20 lg:gap-24">
             <div>
-              <h4 className="text-sm font-semibold text-charcoal">Explore</h4>
+              <div className="text-sm font-semibold text-charcoal">Explore</div>
               <ul className="mt-4 space-y-3">
                 {exploreLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate transition-colors hover:text-charcoal"
+                      className="text-sm text-[#5d5d5d] transition-colors hover:text-charcoal"
                     >
                       {link.label}
                     </Link>
@@ -105,12 +97,12 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-charcoal">Connect</h4>
+              <div className="text-sm font-semibold text-charcoal">Connect</div>
               <ul className="mt-4 space-y-3">
                 <li>
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="text-sm text-slate transition-colors hover:text-charcoal"
+                    className="text-sm text-[#5d5d5d] transition-colors hover:text-charcoal"
                   >
                     {siteConfig.email}
                   </a>
@@ -118,7 +110,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${siteConfig.phone}`}
-                    className="text-sm text-slate transition-colors hover:text-charcoal"
+                    className="text-sm text-[#5d5d5d] transition-colors hover:text-charcoal"
                   >
                     {siteConfig.phone}
                   </a>
@@ -128,16 +120,24 @@ export function Footer() {
           </div>
         </div>
 
+        <Link
+              href="/about#founder"
+              className="mt-8 inline-flex items-center gap-1 text-sm md:text-lg font-[400] text-brand transition-colors hover:text-[#0E5E6F]"
+            >
+              A note from founder
+              <ArrowRight className="size-4" />
+            </Link>
+
         <div
-          className="mt-14 border-t pt-6 sm:mt-16"
+          className="mt-2 border-t pt-4"
           style={{ borderColor: CORAL }}
         >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-            <p className="text-xs text-slate mb-1">
+            <p className="text-xs text-[#5d5d5d] mb-1">
               © 2026 {siteConfig.name}. All rights reserved.
             </p>
-            <p className="text-xs text-slate italic">
+            <p className="text-xs text-[#5d5d5d] italic">
               Meenadeep Experiences Pvt. Ltd.
             </p>
             </div>
@@ -146,7 +146,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs text-slate transition-colors hover:text-charcoal"
+                  className="text-xs text-[#5d5d5d] transition-colors hover:text-charcoal"
                 >
                   {link.label}
                 </Link>

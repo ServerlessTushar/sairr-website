@@ -116,7 +116,7 @@ export function Header() {
         "fixed top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="font-heading text-2xl font-semibold tracking-tight text-brand"
@@ -169,7 +169,7 @@ export function Header() {
         <Button
           type="button"
           onClick={() => openContactForm({ intent: "contact" })}
-          className="cursor-pointer hidden h-10 rounded-lg bg-[#FF4859] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#E63B4C] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
+          className="cursor-pointer hidden h-10 rounded-lg bg-[#ec575e] px-4 font-sans text-sm md:text-base font-semibold text-white hover:bg-[#dc4850] hover:scale-104 tab-0.98 transition-all duration-300 md:inline-flex"
         >
           Contact Us
         </Button>

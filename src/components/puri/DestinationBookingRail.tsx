@@ -60,7 +60,7 @@ export function DestinationBookingRail({
     <div className="flex flex-col gap-6">
       <article className="rounded-2xl border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
         <p className="text-xl font-semibold text-[#0E5E6F]">{title}</p>
-        <p className="border-b border-charcoal/10 pb-3 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate">
+        <p className="border-b border-charcoal/10 pb-3 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#5d5d5d]">
           <span className="flex items-center gap-1.5">
             <Image
               src="/destinations/gold-sun.svg"
@@ -129,7 +129,7 @@ export function DestinationBookingRail({
               />
             </button>
             {notesOpen ? (
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-[10px] leading-relaxed text-slate">
+              <ul className="mt-3 list-disc space-y-1 pl-5 text-[10px] leading-relaxed text-[#5d5d5d]">
                 {pricingNotes.map((note) => (
                   <li key={note}>{note}</li>
                 ))}
@@ -174,7 +174,7 @@ export function DestinationBookingRail({
                         </p>
                       ) : null}
                     </div>
-                    <p className="mt-1 text-xs text-slate">{when}</p>
+                    <p className="mt-1 text-xs text-[#5d5d5d]">{when}</p>
                   </button>
                 </li>
               );
@@ -196,7 +196,7 @@ export function DestinationBookingRail({
             }
             className="mt-3 inline-flex h-10 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
-            Talk To Us
+            Talk to us
           </button>
         </div>
       </div>

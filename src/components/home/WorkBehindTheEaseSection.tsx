@@ -93,7 +93,7 @@ function WhySairrCard({
         <h3 className="font-sans text-base font-semibold leading-snug text-charcoal sm:text-2xl">
           {item.title}
         </h3>
-        <p className="mt-1.5 text-sm md:text-lg leading-relaxed text-slate">
+        <p className="mt-1.5 text-sm md:text-lg leading-relaxed text-[#5d5d5d]">
           {item.description}
         </p>
       </div>

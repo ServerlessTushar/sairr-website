@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 import { puriMoments } from "@/data/puri";
-import moments1 from "@/public/destinations/puri-moments-1.webp";
+import moments1 from "@/public/homepage/moments-1.png";
 import moments2 from "@/public/destinations/puri-moments-2.webp";
 import moments3 from "@/public/destinations/puri-moments-3.webp";
-import moments4 from "@/public/homepage/moments-4-1.webp";
+import moments4 from "@/public/homepage/moments-4-1.png";
 import moments5 from "@/public/destinations/puri-moments-5.webp";
-import moments6 from "@/public/destinations/puri-moments-6.webp";
+import moments6 from "@/public/homepage/moments-6.png";
 
 export type PuriMomentCard = {
   id: string;
