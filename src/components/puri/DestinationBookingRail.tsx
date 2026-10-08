@@ -8,30 +8,13 @@ import type { DateCardData } from "@/components/shared/ExperienceDatesSection";
 import type { TravelDestination } from "@/lib/validations/contact";
 import { cn } from "@/lib/utils";
 
-const MONTHS: Record<string, string> = {
-  January: "Jan",
-  February: "Feb",
-  March: "Mar",
-  April: "Apr",
-  May: "May",
-  June: "Jun",
-  July: "Jul",
-  August: "Aug",
-  September: "Sep",
-  October: "Oct",
-  November: "Nov",
-  December: "Dec",
-};
+const PILL_BOOK_EARLY = "bg-[#FFF1D2]";
+const PILL_BEST_WEATHER = "bg-[#E1F6F8]";
 
-function splitDate(dateRange: string, year: string) {
-  const match = dateRange.match(/^(.+?)\s+([A-Za-z]+)$/);
-  const shortYear = year.slice(-2);
-  if (!match) {
-    return { days: dateRange, when: year };
-  }
-
-  const month = MONTHS[match[2]] ?? match[2].slice(0, 3);
-  return { days: match[1], when: `${month}\u2019 ${shortYear}` };
+function notePillClass(note: string) {
+  return note.trim().toUpperCase() === "BEST WEATHER"
+    ? PILL_BEST_WEATHER
+    : PILL_BOOK_EARLY;
 }
 
 export type DestinationBookingRailProps = {
@@ -58,7 +41,7 @@ export function DestinationBookingRail({
 
   return (
     <div className="flex flex-col gap-6">
-      <article className="rounded-2xl border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
+      <article className="rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
         <p className="text-xl font-semibold text-[#0E5E6F]">{title}</p>
         <p className="border-b border-charcoal/10 pb-3 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#5d5d5d]">
           <span className="flex items-center gap-1.5">
@@ -146,8 +129,6 @@ export function DestinationBookingRail({
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-3">
             {cards.map((card) => {
-              const { days, when } = splitDate(card.dateRange, card.year);
-
               return (
                 <li key={card.id}>
                   <button
@@ -158,23 +139,44 @@ export function DestinationBookingRail({
                         intent: "interest",
                       })
                     }
-                    className={cn(
-                      "w-full cursor-pointer rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white py-3 pl-3 text-left transition-colors hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2]",
-                    )}
+                    className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white text-left shadow-[0_2px_8px_rgba(27,29,31,0.04)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2] hover:shadow-[0_8px_24px_rgba(27,29,31,0.1)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(27,29,31,0.06)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   >
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="font-heading text-lg font-semibold leading-none text-charcoal">
-                        {days}
+                    <div className="flex min-h-0 items-center gap-2 border-b border-[#C8A867]/60 px-2.5 py-2.5">
+                      <Image
+                        src="/destinations/calender.svg"
+                        alt=""
+                        width={12}
+                        height={12}
+                        className="size-3 shrink-0"
+                        aria-hidden
+                      />
+                      <p className="min-w-0 flex-1 text-[11px] font-semibold leading-snug text-charcoal">
+                        {card.bookingDateLabel}
                       </p>
-                      {card.note ? (
-                        <p
-                          className={`inline-flex shrink-0 rounded-l-full ${card.note === "BEST WEATHER" ? "bg-[#FFC7CA]" : "bg-[#F6D797]"} px-2 py-0.5 text-[8px] font-semibold tracking-wide text-charcoal uppercase`}
-                        >
-                          {card.note}
-                        </p>
-                      ) : null}
                     </div>
-                    <p className="mt-1 text-xs text-[#5d5d5d]">{when}</p>
+
+                    <div className="flex min-h-[44px] items-center justify-between gap-2">
+                      {card.note ? (
+                        <span
+                          className={cn(
+                            "rounded-r-full py-1 pl-2.5 pr-2 text-[8px] font-semibold uppercase tracking-wide text-charcoal",
+                            notePillClass(card.note),
+                          )}
+                        >
+                          {card.note.toUpperCase()}
+                        </span>
+                      ) : (
+                        <span aria-hidden />
+                      )}
+                      <Image
+                        src="/destinations/right-red-arrow.svg"
+                        alt=""
+                        width={16}
+                        height={16}
+                        className="mr-2 size-4 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                        aria-hidden
+                      />
+                    </div>
                   </button>
                 </li>
               );

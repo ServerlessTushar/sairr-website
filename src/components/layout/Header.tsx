@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { Menu } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
@@ -45,11 +45,40 @@ function isNavLinkActive(pathname: string, href: string, hash: string) {
 }
 
 function subscribeToLocationHash(onStoreChange: () => void) {
+  const handleLinkClick = (event: MouseEvent) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const link = target.closest<HTMLAnchorElement>("a[href]");
+    if (!link) return;
+
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || !destination.hash) return;
+
+    // Next.js hash navigation can update history without emitting hashchange.
+    // Notify after Link has completed its click handler so the active item uses
+    // the new hash even when the pathname remains unchanged.
+    window.setTimeout(onStoreChange, 0);
+  };
+
   window.addEventListener("hashchange", onStoreChange);
   window.addEventListener("popstate", onStoreChange);
+  document.addEventListener("click", handleLinkClick, true);
   return () => {
     window.removeEventListener("hashchange", onStoreChange);
     window.removeEventListener("popstate", onStoreChange);
+    document.removeEventListener("click", handleLinkClick, true);
   };
 }
 
@@ -80,11 +109,36 @@ export function Header() {
     pendingNavHref !== null &&
     pendingNavOrigin === `${pathname}${locationHash}`;
 
-  function markNavigationPending(href: string) {
+  const markNavigationPending = useCallback((href: string) => {
     setPendingNavHref(href);
     setPendingNavOrigin(`${pathname}${locationHash}`);
     setPendingHash(hashFromNavHref(href));
-  }
+  }, [locationHash, pathname]);
+
+  useEffect(() => {
+    const markHashLinkActive = (event: MouseEvent) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const link = target.closest<HTMLAnchorElement>("a[href]");
+      if (!link) return;
+
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) return;
+
+      const href = `${destination.pathname}${destination.hash}`;
+      if (navLinks.some((navLink) => navLink.href === href)) {
+        markNavigationPending(href);
+      }
+    };
+
+    document.addEventListener("click", markHashLinkActive, true);
+    return () => document.removeEventListener("click", markHashLinkActive, true);
+  }, [markNavigationPending]);
 
   const [heroBannerInView, setHeroBannerInView] = useState(false);
 
@@ -114,7 +168,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 w-full border-b border-charcoal/10 bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
+        "fixed inset-x-0 top-0 z-50 w-full bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">

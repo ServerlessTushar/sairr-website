@@ -12,13 +12,13 @@ const MOMENT_CARD_WIDTH_PX = 306.38;
 
 function MomentCard({ moment }: { moment: PuriMomentCard }) {
   return (
-    <article className="flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:w-[306.38px] lg:p-7">
-      <div className="relative aspect-square w-full shrink-0 bg-charcoal/5">
+    <article className="group flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:w-[306.38px] lg:p-7">
+      <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-charcoal/5">
         <Image
           src={moment.image}
           alt={moment.alt}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           sizes="(max-width: 1024px) 80vw, 233px"
         />
       </div>
@@ -74,10 +74,8 @@ export function PuriMoments({
             renderItem={(item, index) => (
               <CardRevealCarouselItem
                 index={index}
-                direction="bottom"
-                stagger={0.12}
-                hover={false}
-                revealOnScroll={false}
+                direction="left"
+                stagger={0.1}
                 className="h-full bg-transparent"
               >
                 <MomentCard moment={item} />

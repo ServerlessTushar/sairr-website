@@ -7,7 +7,7 @@ import { whatsappHref } from "@/data/site";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
-import whatsappIcon from "@/public/homepage/whatsapp.png";
+import whatsappIcon from "@/public/whatsappLogo.svg";
 import bgImgDesktop from "@/public/homepage/homepage-bottom.webp";
 import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob.webp";
 import { scaleIn, springSnappy, staggerContainer } from "@/lib/motion";

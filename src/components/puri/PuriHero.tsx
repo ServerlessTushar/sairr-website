@@ -65,12 +65,12 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
 
   return (
     <section className={cn("bg-[#FDFBF2] scroll-mt-24", className)}>
-      <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 lg:px-8 lg:pt-28">
         <div className="relative">
           <TextReveal
             as="h1"
             text={sectionData.heading}
-            className="max-w-3xl font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]"
+            className="text-3xl font-semibold tracking-tight text-charcoal sm:text-[42px] lg:leading-[1.1]"
           />
           <Image
             src="/destinations/gold-bird-pair.webp"
@@ -82,7 +82,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
           />
         </div>
 
-        <ul className="mt-4 flex flex-col gap-2 text-sm text-charcoal sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
+        <ul className="mt-3 flex flex-col gap-2 text-sm text-charcoal sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
           {sectionData.facts.map((fact) => (
             <li key={fact.label} className="flex items-center gap-2">
               <Image
@@ -160,15 +160,15 @@ export function PuriHeroDetails({ sectionData, className }: PuriHeroProps) {
       <p className=" text-xs leading-relaxed text-charcoal sm:text-sm">
         {sectionData.body}
       </p>
-      <ul className="mt-[1.9rem] grid grid-cols-1 gap-x-2 gap-y-5 rounded-2xl bg-white px-4 py-5 shadow-[0_2px_16px_rgba(27,29,31,0.06)] sm:grid-cols-2 sm:px-6 sm:py-6 lg:grid-cols-3">
+      <ul className="mt-[1.9rem] grid grid-cols-1 gap-x-2 gap-y-5 rounded-[8px] bg-white px-4 py-5 shadow-[0_2px_16px_rgba(27,29,31,0.06)] sm:grid-cols-2 sm:px-6 sm:py-6 lg:grid-cols-3">
         {sectionData.highlights.map((item) => (
-          <li key={item.title} className="flex items-start gap-2">
+          <li key={item.title} className="flex items-start gap-3">
             <Image
               src={item.icon}
               alt=""
               width={28}
               height={28}
-              className={`mt-0.5 shrink-0 ${item.icon === "/destinations/profile.svg" ? "size-[22px]" : "size-7"}`}
+              className={`mt-0.5 shrink-0 ${item.icon === "/destinations/profile.svg" || item.icon === "/destinations/flight.svg" ? "size-[22px]" : "size-7"}`}
               aria-hidden
             />
             <span>

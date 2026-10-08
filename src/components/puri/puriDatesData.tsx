@@ -23,7 +23,29 @@ const MONTH_ABBREV_TO_FULL: Record<string, string> = {
 };
 
 function parseDepartureDates(dates: string) {
-  // Handle format like "8-11 Oct' 26"
+  const ranged = dates.match(
+    /^(\d+)\s+([A-Za-z]+)\s*-\s*(\d+)\s+([A-Za-z]+)['']\s*(\d{2})$/,
+  );
+  if (ranged) {
+    const [, startDay, startMonth, endDay, endMonth, yearShort] = ranged;
+    const fullStart = MONTH_ABBREV_TO_FULL[startMonth] ?? startMonth;
+    const fullEnd = MONTH_ABBREV_TO_FULL[endMonth] ?? endMonth;
+    const year = `20${yearShort}`;
+
+    if (startMonth.toLowerCase() === endMonth.toLowerCase()) {
+      return {
+        dateRange: `${startDay}-${endDay} ${fullStart}`,
+        year,
+      };
+    }
+
+    return {
+      dateRange: `${startDay} ${fullStart} - ${endDay} ${fullEnd}`,
+      year,
+    };
+  }
+
+  // Legacy: "8-11 Oct' 26"
   const match = dates.match(/^(.+?)\s+([A-Za-z]+)['']\s+(\d{2})$/);
   if (match) {
     const monthAbbrev = match[2];
@@ -53,6 +75,7 @@ const liveCards = getLiveDepartures().map((departure) => {
     id: departure.id,
     dateRange,
     year,
+    bookingDateLabel: departure.dates,
     duration: departure.duration,
     travellers: departure.seatsAvailable,
     price: departure.price != null ? formatInr(departure.price) : undefined,

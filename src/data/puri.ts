@@ -14,7 +14,7 @@ export type Departure = {
 export const puriDepartures: Departure[] = [
   {
     id: "sep-2026",
-    dates: "29 Oct - 1 Nov' 26",
+    dates: "29 Oct' 26 - 1 Nov' 26",
     price: 51000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -24,7 +24,7 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "oct-2026-2",
-    dates: "22-25 Oct' 26",
+    dates: "22 Oct' 26 - 25 Oct' 26",
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -34,7 +34,7 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "nov-2026-1",
-    dates: "19-22 Nov' 26",
+    dates: "19 Nov' 26 - 22 Nov' 26",
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -44,7 +44,7 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "nov-2026-2",
-    dates: "26-29 Nov' 26",
+    dates: "26 Nov' 26 - 29 Nov' 26",
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -54,7 +54,7 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "oct-2026",
-    dates: "3-6 Dec' 26",
+    dates: "3 Dec' 26 - 6 Dec' 26",
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -64,7 +64,7 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "oct-2026-1",
-    dates: "10-13 Dec' 26",
+    dates: "10 Dec' 26 - 13 Dec' 26",
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
