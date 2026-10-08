@@ -14,6 +14,8 @@ export type DateCardData = {
   id: string;
   dateRange: string;
   year: string;
+  /** Booking rail: shown exactly as written in `puriDepartures.dates`. */
+  bookingDateLabel: string;
   duration: string;
   travellers: string;
   price?: string;

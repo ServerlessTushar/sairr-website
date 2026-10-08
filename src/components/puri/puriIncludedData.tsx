@@ -21,13 +21,14 @@ const includedImages = [
 
 function itemIcon(src: (typeof includedImages)[number], index: number) {
   const isProfile = index === 6; // included7 is profile.svg
+  const isPlane = index === 0; // included1 is flight.svg
   return (
     <Image
       src={src}
       alt=""
       width={40}
       height={40}
-      className={isProfile ? "size-6 object-contain" : "size-10 object-contain"}
+      className={isProfile || isPlane ? "size-5 object-contain" : "size-10 object-contain"}
       aria-hidden
     />
   );

@@ -17,6 +17,7 @@ import {
   getDestinationPage,
   getDestinationPageParams,
 } from "@/data/destinationPages";
+import { SetFloatingCallMessage } from "@/components/layout/SetFloatingCallMessage";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -83,6 +84,13 @@ export default async function DestinationPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
+      <SetFloatingCallMessage
+        message={`Hi, I'd like to know more about the ${
+          destination.notifyDestination === "Puri & Bhubaneswar"
+            ? "Puri"
+            : destination.notifyDestination
+        } journey.`}
+      />
       <div className="bg-[#FDFBF2] pb-24 md:pb-0">
           <PuriHero sectionData={destination.hero} />
 

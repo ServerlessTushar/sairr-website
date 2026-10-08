@@ -257,7 +257,7 @@ export function JourneyCard({
               <div
                 className={cn(
                   CARD_FOOTER_BLEED_CLASS,
-                  "mt-8 flex min-h-[3.9rem] flex-row items-center justify-center border-t-[0.5px] border-[#C8A867] bg-white px-3 py-2 text-sm font-semibold capitalize",
+                  "mt-8 flex min-h-[3.9rem] flex-row items-center justify-center border-t-[0.5px] border-[#5d5d5d50] bg-white px-3 py-2 text-sm font-semibold capitalize",
                 )}
                 style={{ color: CORAL }}
               >

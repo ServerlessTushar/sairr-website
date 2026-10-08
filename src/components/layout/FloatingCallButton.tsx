@@ -1,16 +1,24 @@
-import whatsapp from "@/public/whatsapp-icon.svg";
-import Image from "next/image";
+"use client";
 
-const CALL_NUMBER = "9876543210";
+import whatsapp from "@/public/whatsappLogo.svg";
+import Image from "next/image";
+import { useFloatingCall } from "@/components/layout/FloatingCallContext";
+
+const WHATSAPP_NUMBER = "919971737186"; // include country code, no +
 
 export function FloatingCallButton() {
+  const { message } = useFloatingCall();
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
   return (
     <a
-      href={`tel:${CALL_NUMBER}`}
-      aria-label={`Call ${CALL_NUMBER}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
       className="fixed right-5 bottom-20 z-50 rounded-full shadow-lg sm:right-8 sm:bottom-8"
     >
-      <Image 
+      <Image
         src={whatsapp}
         alt="WhatsApp"
         width={65}
