@@ -13,29 +13,55 @@ import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob.webp";
 import { scaleIn, springSnappy, staggerContainer } from "@/lib/motion";
 
 const TEAL = "#0E5E6F";
-const CORAL = "#EC575E";
-const GRAY_BTN = "#E8E8E8";
 
-export function CtaSection() {
+type CtaSectionProps = {
+  backgroundImage?: string;
+  content?: Partial<CtaContent>;
+};
+
+type CtaContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  callbackLabel: string;
+  whatsappLabel: string;
+};
+
+const defaultContent: CtaContent = {
+  eyebrow: "Start a conversation",
+  title: "Where have you been meaning to go?",
+  description: "Not on our list yet? Tell us, and we'll make it happen for you.",
+  callbackLabel: "Get a callback",
+  whatsappLabel: "WhatsApp us",
+};
+
+export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
   const { openContactForm } = useContactFormDialog();
+  const ctaContent = { ...defaultContent, ...content };
 
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" aria-hidden>
-        <Image
-          src={bgImgMobile}
-          alt=""
-          fill
-          className="object-cover md:hidden"
-          sizes="100vw"
-        />
-        <Image
-          src={bgImgDesktop}
-          alt=""
-          fill
-          className="hidden object-cover md:block"
-          sizes="100vw"
-        />
+        {backgroundImage ? (
+          <Image src={backgroundImage} alt="" fill className="object-cover" sizes="100vw" />
+        ) : (
+          <>
+            <Image
+              src={bgImgMobile}
+              alt=""
+              fill
+              className="object-cover md:hidden"
+              sizes="100vw"
+            />
+            <Image
+              src={bgImgDesktop}
+              alt=""
+              fill
+              className="hidden object-cover md:block"
+              sizes="100vw"
+            />
+          </>
+        )}
       </div>
       {/* overlay card */}
       <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -58,12 +84,12 @@ export function CtaSection() {
                 className="text-[11px] font-bold uppercase tracking-[0.2em]"
                 style={{ color: TEAL }}
               >
-                Start a conversation
+                {ctaContent.eyebrow}
               </motion.p>
 
               <TextReveal
                 as="h2"
-                text="Where have you been meaning to go?"
+                text={ctaContent.title}
                 className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-charcoal sm:text-[2rem] md:text-3xl"
                 delay={0.1}
               />
@@ -72,7 +98,7 @@ export function CtaSection() {
                 variants={scaleIn}
                 className="mt-3 text-sm leading-snug text-[#6B7075] md:text-base"
               >
-                Not on our list yet? Tell us, and we&apos;ll make it happen for you.
+                {ctaContent.description}
               </motion.p>
 
               <motion.div
@@ -85,7 +111,7 @@ export function CtaSection() {
                     onClick={() => openContactForm({ intent: "callback" })}
                     className="w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
-                    Get a callback
+                    {ctaContent.callbackLabel}
                   </button>
                 </motion.div>
 
@@ -103,7 +129,7 @@ export function CtaSection() {
                       height={22}
                       className="size-[22px] shrink-0"
                     />
-                    WhatsApp us
+                    {ctaContent.whatsappLabel}
                   </Link>
                 </motion.div>
               </motion.div>
