@@ -18,10 +18,10 @@ import {
 } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { motion } from "framer-motion";
+import { springSnappy } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const CORAL = "#E44928";
-const GRAY_BTN = "#E8E8E8";
 const MAX_VISIBLE_IMAGES = 5;
 
 export type HeroImage = {
@@ -129,23 +129,37 @@ function HeroCtas({
   return (
     <div
       className={cn(
-        "flex w-full flex-col gap-3 sm:flex-row sm:items-center",
+        "flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-5",
         className,
       )}
     >
-      <button
-        type="button"
-        onClick={onPrimaryClick}
-        className="inline-flex h-12 cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(27,29,31,0.12)] transition-opacity hover:scale-104 hover:bg-[#dc4850] hover:opacity-90 sm:px-8 lg:h-11"
+      <motion.div
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.98 }}
+        transition={springSnappy}
+        className="sm:w-auto"
       >
-        {primaryCtaLabel}
-      </button>
-      <Link
-        href={secondaryCtaHref}
-        className="inline-flex h-12 items-center justify-center rounded-lg border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 shadow-[0_4px_14px_rgba(27,29,31,0.08)] transition-opacity hover:scale-104 hover:bg-gray-100 hover:opacity-90 sm:px-8 lg:h-11"
+        <button
+          type="button"
+          onClick={onPrimaryClick}
+          className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-6 text-sm font-semibold text-white transition-opacity hover:bg-[#dc4850] hover:opacity-90 sm:w-[11rem]"
+        >
+          {primaryCtaLabel}
+        </button>
+      </motion.div>
+      <motion.div
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.98 }}
+        transition={springSnappy}
+        className="sm:w-auto"
       >
-        {secondaryCtaLabel}
-      </Link>
+        <Link
+          href={secondaryCtaHref}
+          className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 transition-opacity hover:bg-gray-100 hover:opacity-90 sm:w-[11rem]"
+        >
+          {secondaryCtaLabel}
+        </Link>
+      </motion.div>
     </div>
   );
 }

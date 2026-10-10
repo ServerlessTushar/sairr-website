@@ -5,6 +5,7 @@ import underlineImg from "@/public/homepage/underline.png";
 import { AnimatedSectionHeader } from "@/components/shared/AnimatedSectionHeader";
 import { FadeIn, StaggerContainer, staggerItem } from "@/components/shared/FadeIn";
 import { motion } from "framer-motion";
+import type { DepartureDateRange } from "@/data/puri";
 import { cn } from "@/lib/utils";
 
 const CORAL = "#E44928";
@@ -14,8 +15,8 @@ export type DateCardData = {
   id: string;
   dateRange: string;
   year: string;
-  /** Booking rail: shown exactly as written in `puriDepartures.dates`. */
-  bookingDateLabel: string;
+  /** Booking rail styled range from `puriDepartures`. */
+  bookingDates: DepartureDateRange;
   duration: string;
   travellers: string;
   price?: string;

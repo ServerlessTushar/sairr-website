@@ -44,7 +44,7 @@ export function PuriMoments({
     <section className=" bg-[#FDFBF2]">
       <div
         className={cn(
-          "py-12 sm:py-16 lg:pb-10 lg:pt-20",
+          "py-12 sm:py-16 lg:pb-10 lg:pt-16",
           flush
             ? "w-full"
             : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
@@ -54,11 +54,11 @@ export function PuriMoments({
           <TextReveal
             as="h2"
             text={heading}
-            className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+            className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
           />
         </FadeIn>
 
-        <div className="mt-8 sm:mt-10">
+        <div className="mt-8 sm:mt-8">
           <CarouselSection
             trackWrapperClassName={cn(
               "bg-[#E9DFC8] py-6 sm:py-8 overflow-hidden",

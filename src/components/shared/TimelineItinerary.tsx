@@ -143,14 +143,14 @@ export function TimelineItinerary({
     >
       <div
         className={cn(
-          "py-12 sm:py-16 lg:py-12",
+          "py-12 sm:py-16 lg:pb-12 lg:pt-4",
           flush ? "w-full px-0" : "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
         )}
       >
         <AnimatedSectionHeader
           heading={heading}
           description={description}
-          headingClassName="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
+          headingClassName="-mb-2 font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
         />
 
         <FadeIn delay={0.1}>
@@ -236,9 +236,9 @@ export function TimelineItinerary({
                           )}
 
                           {item.activities1 && item.activities1.length > 0 && (
-                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm ml-2">
                               {item.activities1.map((activity, index) => (
-                                <li key={index} className="flex gap-3">
+                                <li key={index} className="flex gap-2">
                                   <span
                                     className="mt-2 size-1.5 shrink-0 rounded-full"
                                     style={{ backgroundColor: "#0E5E6F" }}
@@ -260,7 +260,7 @@ export function TimelineItinerary({
                           )}
 
                           {item.activities2 && item.activities2.length > 0 && (
-                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm">
+                            <ul className="mb-4 space-y-2 text-xs leading-relaxed sm:text-sm ml-2">
                               {item.activities2.map((activity, index) => (
                                 <li key={index} className="flex gap-3">
                                   <span

@@ -90,7 +90,7 @@ export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
               <TextReveal
                 as="h2"
                 text={ctaContent.title}
-                className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-charcoal sm:text-[2rem] md:text-3xl"
+                className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-black sm:text-[2rem] md:text-3xl"
                 delay={0.1}
               />
 

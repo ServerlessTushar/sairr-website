@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 import { puriMoments } from "@/data/puri";
-import moments1 from "@/public/homepage/moments-1.png";
+import moments1 from "@/public/destinations/moment-1.webp";
 import moments2 from "@/public/destinations/puri-moments-2.webp";
 import moments3 from "@/public/destinations/puri-moments-3.webp";
-import moments4 from "@/public/homepage/moments-4-1.webp";
+import moments4 from "@/public/destinations/moment-4.webp";
 import moments5 from "@/public/destinations/puri-moments-5.webp";
-import moments6 from "@/public/homepage/moments-6.png";
+import moments6 from "@/public/destinations/moment-6.webp";
 
 export type PuriMomentCard = {
   id: string;
@@ -26,7 +26,7 @@ const momentImages: Record<(typeof puriMoments)[number]["id"], StaticImageData> 
   };
 
 export const puriMomentsSectionData = {
-  heading: "Moments That Make Puri",
+  heading: "Moments that make Puri",
   cards: puriMoments.map((moment) => ({
     id: moment.id,
     title: moment.title,

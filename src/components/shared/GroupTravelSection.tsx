@@ -33,7 +33,7 @@ export function GroupTravelSection({
   const { openContactForm } = useContactFormDialog();
 
   const buttonClassName =
-    "mt-4 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors hover:bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+    "mt-6 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
   return (
     <section

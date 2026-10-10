@@ -16,8 +16,8 @@ const puriFaqs: Faq[] = [
     question: "What's the darshan & sightseeing experience like?",
     answer: (
       <div className="space-y-3 text-sm leading-relaxed sm:text-[0.95rem] sm:leading-[1.7]">
-        <p><strong>Darshan:</strong> At the Jagannath Temple, you skip the long queue and go straight in for VIP darshan, with a Pandit alongside you to explain the rituals, traditions and significance as you go. You'll also experience Mahaprasad and witness the evening flag change at the Nila Chakra.</p>
-        <p><strong>Sightseeing:</strong> We don't believe sightseeing should mean arriving, taking a photo, and moving on. From Lingaraj Temple and the Udayagiri & Khandagiri Caves to the Konark Sun Temple, every major stop is guided, with local experts sharing the stories, history and significance behind each place.</p>
+        <p><strong>Darshan:</strong> At the Jagannath Temple, you skip the long queue and go straight in for VIP darshan, with a Pandit alongside you to explain the rituals, traditions and significance as you go. You&apos;ll also experience Mahaprasad and witness the evening flag change at the Nila Chakra.</p>
+        <p><strong>Sightseeing:</strong> We don&apos;t believe sightseeing should mean arriving, taking a photo, and moving on. From Lingaraj Temple and the Udayagiri & Khandagiri Caves to the Konark Sun Temple, every major stop is guided, with local experts sharing the stories, history and significance behind each place.</p>
       </div>
     ),
   },
@@ -61,7 +61,7 @@ const puriFaqs: Faq[] = [
     answer: (
       <div className="space-y-3 text-sm leading-relaxed sm:text-[0.95rem] sm:leading-[1.7]">
         <h4 className="font-heading text-sm font-semibold text-charcoal sm:text-base">Payment Policy</h4>
-        <p>Secure your spot at no cost and pay only once the trip is confirmed. Once your departure meets the minimum group size and is confirmed to run, we collect a 50% advance to secure your flights, stay, transport and other arrangements. We'll keep you updated on your departure's status until then.</p>
+        <p>Secure your spot at no cost and pay only once the trip is confirmed. Once your departure meets the minimum group size and is confirmed to run, we collect a 50% advance to secure your flights, stay, transport and other arrangements. We&apos;ll keep you updated on your departure&apos;s status until then.</p>
         <p>The remaining 50% is due 21 days before departure. If you book within 21 days of departure, full payment is required upfront.</p>
         <p>Please note: If the balance payment is not received by the due date, the booking will be treated as a cancellation as of that date, and the cancellation charges applicable at that time will apply.</p>
         <h4 className="font-heading text-sm font-semibold text-charcoal sm:text-base border-t border-charcoal/10 pt-3">Cancellation Policy</h4>
@@ -78,6 +78,6 @@ const puriFaqs: Faq[] = [
 ];
 
 export const puriFaqsSectionData: PuriFaqsProps = {
-  heading: "FAQs - Frequently Asked Questions ",
+  heading: "FAQs - Frequently asked questions ",
   faqData: puriFaqs,
 };

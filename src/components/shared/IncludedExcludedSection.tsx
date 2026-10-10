@@ -93,7 +93,7 @@ export function IncludedExcludedSection({
                   What&apos;s not included
                 </h3>
               </div>
-              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 sm:pl-16 text-sm leading-relaxed text-charcoal marker:text-charcoal sm:mt-8 sm:grid-cols-2 sm:text-base lg:gap-x-16">
+              <ul className="mt-6 grid list-disc gap-x-10 gap-y-3 pl-6 sm:pl-16 text-sm leading-relaxed text-charcoal marker:text-charcoal sm:mt-6 sm:grid-cols-2 sm:text-base lg:gap-x-16">
                 {excluded.map((item) => (
                   <li key={item.text} className="pl-1">{item.text}</li>
                 ))}

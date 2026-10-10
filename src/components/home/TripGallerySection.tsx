@@ -39,7 +39,7 @@ export function TripGallerySection({
       <div
         className={
           isDestination
-            ? "mx-auto max-w-7xl px-4 pt-14 pb-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-18 lg:pb-28"
+            ? "mx-auto max-w-7xl px-4 pt-14 pb-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-18 lg:pb-16"
             : "mx-auto max-w-7xl px-4 py-1 pb-14 sm:px-6 lg:px-8 lg:pt-0 lg:pb-24"
         }
       >
@@ -51,7 +51,7 @@ export function TripGallerySection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.55 }}
-                className="pointer-events-none absolute top-2 right-0 translate-x-2 sm:top-4 sm:translate-x-4 md:translate-x-8 lg:translate-x-10"
+                className="pointer-events-none absolute top-2 right-0 translate-x-2 sm:-top-4 sm:translate-x-4 md:translate-x-8 lg:-translate-x-8"
                 aria-hidden
               >
                 <Image
@@ -67,7 +67,7 @@ export function TripGallerySection({
             <TextReveal
               as="h2"
               text={heading}
-              className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+              className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -81,7 +81,7 @@ export function TripGallerySection({
           </div>
         </FadeIn>
 
-        <TripGalleryGrid images={images} className="mt-8 lg:mt-12" />
+        <TripGalleryGrid images={images} className="mt-8 lg:mt-10" />
       </div>
     </section>
   );

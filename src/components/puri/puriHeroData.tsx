@@ -2,7 +2,7 @@ import type { ExperienceHeroSectionData } from "@/components/puri/PuriHero";
 
 export const puriHeroSectionData: ExperienceHeroSectionData = {
   heading: "Jagannath Puri & Bhubaneswar",
-  summaryTitle: "Bhubaneswar & Puri",
+  summaryTitle: "Puri & Bhubaneswar",
   duration: "4 days · 3 nights",
   groupSize: "10–15 travellers",
   tagline: "Thoughtfully designed for travel after 50",

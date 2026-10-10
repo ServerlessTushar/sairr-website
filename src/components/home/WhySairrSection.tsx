@@ -116,7 +116,7 @@ function IconBeliefCard({
     <GridCardRevealItem
       index={index}
       as="article"
-      className={`h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 transition-shadow duration-300 ease-out hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)] sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
+      className={`h-auto sm:h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 transition-shadow duration-300 ease-out hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)] sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
     >
 
       <BeliefIcon src={item.icon} />
@@ -138,7 +138,7 @@ export function WhySairrSection() {
               <TextReveal
                 as="h2"
                 text="Why Sairr"
-                className="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl lg:leading-tight"
+                className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
               />
               <motion.span
                 animate={{ y: [0, -2, 0] }}

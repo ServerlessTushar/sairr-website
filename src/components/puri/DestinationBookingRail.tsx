@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
 import type { DateCardData } from "@/components/shared/ExperienceDatesSection";
+import type { DepartureDateRange } from "@/data/puri";
 import type { TravelDestination } from "@/lib/validations/contact";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +16,24 @@ function notePillClass(note: string) {
   return note.trim().toUpperCase() === "BEST WEATHER"
     ? PILL_BEST_WEATHER
     : PILL_BOOK_EARLY;
+}
+
+function BookingDateLabel({ range }: { range: DepartureDateRange }) {
+  const { start, end } = range;
+
+  return (
+    <p className="min-w-0 flex-1 leading-tight text-charcoal">
+      <span className="text-[15px] font-bold">{start.day}</span>
+      <span className="text-[9px] font-normal">
+        &nbsp;{start.month}&apos; {start.year}
+      </span>
+      <span className="mx-0.5 text-[11px] font-normal">–</span>
+      <span className="text-[15px] font-bold">{end.day}</span>
+      <span className="text-[9px] font-normal">
+        &nbsp;{end.month}&apos; {end.year}
+      </span>
+    </p>
+  );
 }
 
 export type DestinationBookingRailProps = {
@@ -43,35 +62,37 @@ export function DestinationBookingRail({
     <div className="flex flex-col gap-6">
       <article className="rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
         <p className="text-xl font-semibold text-[#0E5E6F]">{title}</p>
-        <p className="border-b border-charcoal/10 pb-3 mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#5d5d5d]">
-          <span className="flex items-center gap-1.5">
-            <Image
-              src="/destinations/gold-sun.svg"
-              alt=""
-              width={16}
-              height={16}
-              className="size-4"
-            />
-            {duration}
-          </span>
-          {groupSize ? (
+        <div className="-mx-5 mt-2 border-b border-charcoal/10 px-5 pb-3">
+          <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-[#5d5d5d]">
             <span className="flex items-center gap-1.5">
               <Image
-                src="/destinations/gold-hero-people.svg"
+                src="/destinations/gold-sun.svg"
                 alt=""
                 width={16}
                 height={16}
                 className="size-4"
               />
-              Group Size: {groupSize}
+              {duration}
             </span>
-          ) : null}
-        </p>
+            {groupSize ? (
+              <span className="flex items-center gap-1.5">
+                <Image
+                  src="/destinations/gold-hero-people.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="size-4"
+                />
+                Group Size: {groupSize}
+              </span>
+            ) : null}
+          </p>
+        </div>
 
         <div className="mt-3 flex items-end justify-between gap-3">
           <p className="text-[9.51px]">
             Starting from
-            <span className="block text-[20.3px] font-semibold text-[#0E5E6F]">
+            <span className="block text-[20.3px] font-bold text-[#0E5E6F]">
               {priceLabel}
               <span className="text-[10px] font-normal">/person</span>
             </span>
@@ -90,7 +111,7 @@ export function DestinationBookingRail({
           </button>
         </div>
 
-        <div className={`mt-4 text-[10px] text-black flex flex-row gap-8 bg-[#F9F6F6] py-1 -mx-5 px-5`}>
+        <div className={`mt-4 text-[10px] text-black flex flex-row gap-8 bg-[#F9F6F6] py-2 -mx-5 px-5`}>
           <div>• Based on Delhi/NCR as origin</div>
           <div>• Reserve your spot @ ₹0</div>
         </div>
@@ -150,9 +171,7 @@ export function DestinationBookingRail({
                         className="size-3 shrink-0"
                         aria-hidden
                       />
-                      <p className="min-w-0 flex-1 text-[11px] font-semibold leading-snug text-charcoal">
-                        {card.bookingDateLabel}
-                      </p>
+                      <BookingDateLabel range={card.bookingDates} />
                     </div>
 
                     <div className="flex min-h-[44px] items-center justify-between gap-2">

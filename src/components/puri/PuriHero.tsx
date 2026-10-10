@@ -70,7 +70,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
           <TextReveal
             as="h1"
             text={sectionData.heading}
-            className="text-3xl font-semibold tracking-tight text-charcoal sm:text-[42px] lg:leading-[1.1]"
+            className="text-3xl font-semibold tracking-tight text-black sm:text-[42px] lg:leading-[1.1]"
           />
           <Image
             src="/destinations/gold-bird-pair.webp"

@@ -54,7 +54,7 @@ export function FaqAccordionSection({
         <AnimatedSectionHeader
           heading={heading}
           description={para}
-          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
         />
 
         <FadeIn delay={0.1}>

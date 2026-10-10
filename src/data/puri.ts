@@ -1,8 +1,19 @@
 export type DepartureStatus = "live" | "upcoming";
 
+export type DepartureDatePart = {
+  day: string;
+  month: string;
+  year: string;
+};
+
+export type DepartureDateRange = {
+  start: DepartureDatePart;
+  end: DepartureDatePart;
+};
+
 export type Departure = {
   id: string;
-  dates: string;
+  dates: DepartureDateRange;
   price: number | null;
   seatsAvailable: string;
   status: DepartureStatus;
@@ -11,10 +22,75 @@ export type Departure = {
   note?: string;
 };
 
+const MONTH_ABBREV_TO_FULL: Record<string, string> = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December",
+};
+
+export function formatDeparturePart(part: DepartureDatePart): string {
+  return `${part.day} ${part.month}' ${part.year}`;
+}
+
+export function formatDepartureRange(range: DepartureDateRange): string {
+  return `${formatDeparturePart(range.start)} - ${formatDeparturePart(range.end)}`;
+}
+
+/** Copy for large date cards (`ExperienceDatesSection`). */
+export function departureToExperienceDateFields(range: DepartureDateRange): {
+  dateRange: string;
+  year: string;
+} {
+  const fullStart =
+    MONTH_ABBREV_TO_FULL[range.start.month] ?? range.start.month;
+  const fullEnd = MONTH_ABBREV_TO_FULL[range.end.month] ?? range.end.month;
+  const year = `20${range.start.year}`;
+
+  if (
+    range.start.month === range.end.month &&
+    range.start.year === range.end.year
+  ) {
+    return {
+      dateRange: `${range.start.day}-${range.end.day} ${fullStart}`,
+      year,
+    };
+  }
+
+  return {
+    dateRange: `${range.start.day} ${fullStart} - ${range.end.day} ${fullEnd}`,
+    year,
+  };
+}
+
 export const puriDepartures: Departure[] = [
   {
+    id: "oct-2026-2",
+    dates: {
+      start: { day: "22", month: "Oct", year: "26" },
+      end: { day: "25", month: "Oct", year: "26" },
+    },
+    price: 55000,
+    seatsAvailable: "12–20 travellers",
+    status: "live",
+    origin: "Delhi/NCR",
+    duration: "3N/4D",
+    note: "BOOK EARLY",
+  },
+  {
     id: "sep-2026",
-    dates: "29 Oct' 26 - 1 Nov' 26",
+    dates: {
+      start: { day: "29", month: "Oct", year: "26" },
+      end: { day: "1", month: "Nov", year: "26" },
+    },
     price: 51000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -23,8 +99,11 @@ export const puriDepartures: Departure[] = [
     note: "BOOK EARLY",
   },
   {
-    id: "oct-2026-2",
-    dates: "22 Oct' 26 - 25 Oct' 26",
+    id: "nov-2026-1",
+    dates: {
+      start: { day: "19", month: "Nov", year: "26" },
+      end: { day: "22", month: "Nov", year: "26" },
+    },
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -33,18 +112,11 @@ export const puriDepartures: Departure[] = [
     note: "BOOK EARLY",
   },
   {
-    id: "nov-2026-1",
-    dates: "19 Nov' 26 - 22 Nov' 26",
-    price: 55000,
-    seatsAvailable: "12–20 travellers",
-    status: "live",
-    origin: "Delhi/NCR",
-    duration: "3N/4D",
-    note: "BEST WEATHER",
-  },
-  {
     id: "nov-2026-2",
-    dates: "26 Nov' 26 - 29 Nov' 26",
+    dates: {
+      start: { day: "26", month: "Nov", year: "26" },
+      end: { day: "29", month: "Nov", year: "26" },
+    },
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -54,7 +126,10 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "oct-2026",
-    dates: "3 Dec' 26 - 6 Dec' 26",
+    dates: {
+      start: { day: "3", month: "Dec", year: "26" },
+      end: { day: "6", month: "Dec", year: "26" },
+    },
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
@@ -64,13 +139,16 @@ export const puriDepartures: Departure[] = [
   },
   {
     id: "oct-2026-1",
-    dates: "10 Dec' 26 - 13 Dec' 26",
+    dates: {
+      start: { day: "10", month: "Dec", year: "26" },
+      end: { day: "13", month: "Dec", year: "26" },
+    },
     price: 55000,
     seatsAvailable: "12–20 travellers",
     status: "live",
     origin: "Delhi/NCR",
     duration: "3N/4D",
-    note: "BOOK EARLY",
+    note: "BEST WEATHER",
   },
 ];
 
@@ -160,9 +238,8 @@ export const puriDays = [
       { loc: "Lingaraj Temple", desc: "An 11th-century temple of Kalinga architecture, dedicated to Lord Shiva. Rising 180 feet above a complex of 150 smaller shrines, it is the largest temple in Bhubaneswar, second only to the Jagannath Temple you'll visit in Puri. A Pandit accompanies you inside, sharing its history and significance along the way." },
       { loc: "Udayagiri & Khandagiri Caves", desc: "More than 2,000 years old, this group of 33 caves was carved into two hills for Jain monks. A guide walks you through the carvings and inscriptions, and what they reveal about the monks who lived here." },
       { loc: "If time permits, the ISKCON Temple", desc: "a quieter, more contemporary stop to round off the evening." },
-      { loc: "", desc: "Followed by dinner and an overnight stay in Bhubaneswar." },
     ],
-    para2: "",
+    para2: "Followed by dinner and an overnight stay in Bhubaneswar.",
     activities2: [],
     summary: "",
     pictures: "Lingaraj Temple · Udayagiri & Khandagiri Caves",
@@ -192,7 +269,7 @@ export const puriDays = [
     activities2: [
       { loc: "VIP darshan at the Jagannath Temple", desc: "You skip the long queue and go straight in for darshan, with a Pandit alongside you to explain the rituals, traditions and significance of Lord Jagannath as you go." },
       { loc: "Mahaprasad", desc: "Rice, dal and sweets, offered to Jagannath first and then shared with you. You'll also visit the temple's kitchen, where meals for thousands are cooked daily in stacked earthen pots over an open fire, the top pot always cooking first. Wholesome, simple, and a meal that stays with you." },
-      { loc: "The Nila Chakra:", desc: "As evening falls, the temple's flag is changed by hand, hundreds of feet up, the same way it has been for centuries." },
+      { loc: "The Nila Chakra", desc: "As evening falls, the temple's flag is changed by hand, hundreds of feet up, the same way it has been for centuries." },
     ],
     summary: "The day closes the way it should: dinner, conversations, and a quiet walk along Puri beach, no plan, no rush.",
     pictures:

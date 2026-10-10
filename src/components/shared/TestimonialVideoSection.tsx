@@ -30,7 +30,7 @@ export function TestimonialVideoSection({
     <section className={cn("bg-[#FDFBF2]", className)}>
       <div
         className={cn(
-          "pb-16 pt-10 text-center sm:pb-20 lg:pb-28",
+          "pb-16 pt-10 text-center sm:pb-20 lg:pb-16",
           flush
             ? "w-full px-0"
             : "mx-auto max-w-4xl px-4 sm:px-6 lg:px-8",
@@ -39,11 +39,11 @@ export function TestimonialVideoSection({
         <AnimatedSectionHeader
           heading={heading}
           description={para}
-          headingClassName="font-heading text-3xl font-semibold tracking-tight text-charcoal sm:text-4xl"
+          headingClassName="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
           descriptionClassName="sm:text-lg"
         />
 
-        <FadeIn delay={0.1} className="mt-8 sm:mt-10 lg:mt-12">
+        <FadeIn delay={0.1} className="mt-8 sm:mt-10 lg:mt-8">
           <LazyYouTubeEmbed
             videoUrl={videoUrl}
             title={resolvedTitle}

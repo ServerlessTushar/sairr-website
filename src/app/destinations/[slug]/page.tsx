@@ -95,7 +95,7 @@ export default async function DestinationPage({ params }: Props) {
           <PuriHero sectionData={destination.hero} />
 
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start lg:gap-10">
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start lg:gap-[3.625rem]">
               <div className="min-w-0">
                 <PuriHeroDetails sectionData={destination.hero} />
                 <div className="py-8 lg:hidden">{bookingRail}</div>
@@ -129,7 +129,7 @@ export default async function DestinationPage({ params }: Props) {
               </aside>
             </div>
           </div>
-          <div className="mt-20" />
+          <div className="mt-10" />
           <TripGallerySection
             heading={destination.gallery.heading}
             para={destination.gallery.para}

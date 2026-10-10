@@ -2,7 +2,7 @@ import type { PuriWordsProps } from "@/components/puri/PuriWords";
 import { puriTestimonialYoutubeId } from "@/data/puri";
 
 export const puriWordsSectionData: PuriWordsProps = {
-  heading: "Puri With Sairr, In Their Words",
+  heading: "Puri with Sairr, in their words",
   para: "",
   videoUrl: puriTestimonialYoutubeId,
   videoTitle: "Puri traveller film",
