@@ -28,7 +28,7 @@ export function PuriStickyBar({
               intent: "interest",
             })
           }
-          className="h-auto max-w-[11.5rem] shrink-0 rounded-full bg-brand px-3 py-2 text-center text-[11px] leading-tight whitespace-normal hover:bg-forest"
+          className="h-auto max-w-[11.5rem] shrink-0 rounded bg-brand px-3 py-2 text-center text-[11px] leading-tight whitespace-normal hover:bg-forest"
         >
           I&apos;m interested
         </Button>

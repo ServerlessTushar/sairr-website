@@ -61,7 +61,7 @@ export function TestimonialCard({
     return (
       <article
         className={cn(
-          "flex h-full w-full flex-col rounded-[14.08px] bg-white px-4 py-6 sm:py-7 lg:px-[18px]",
+          "flex h-full w-full flex-col rounded-lg bg-white px-4 py-6 sm:py-7 lg:px-[18px]",
           "shadow-testimonial md:shadow-testimonial-lg",
         )}
       >
@@ -72,7 +72,7 @@ export function TestimonialCard({
         <div className="mt-4 shrink-0">
           <TestimonialMedia
             testimonial={testimonial}
-            className="overflow-hidden rounded-xl"
+            className="overflow-hidden rounded-lg"
           />
 
           <div className="mt-4">

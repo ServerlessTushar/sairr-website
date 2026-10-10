@@ -33,7 +33,7 @@ export function GroupTravelSection({
   const { openContactForm } = useContactFormDialog();
 
   const buttonClassName =
-    "mt-6 inline-flex min-h-10 min-w-36 items-center justify-center rounded-lg bg-[] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+    "mt-6 inline-flex min-h-10 min-w-36 items-center justify-center rounded bg-[] px-5 py-2 text-sm font-medium text-white shadow-[0_4px_14px_rgba(0,0,0,0.12)] transition-colors bg-[#dc4850] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
   return (
     <section
@@ -45,7 +45,7 @@ export function GroupTravelSection({
     >
       <div
         className={cn(
-          "mx-auto grid overflow-hidden rounded-2xl bg-[#0E5E6F] text-white md:h-[217.01px] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-stretch",
+          "mx-auto grid overflow-hidden rounded-lg bg-[#0E5E6F] text-white md:h-[217.01px] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-stretch",
           flush ? "w-full max-w-none" : "max-w-6xl",
         )}
       >

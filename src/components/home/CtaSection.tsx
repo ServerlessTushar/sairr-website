@@ -71,7 +71,7 @@ export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={scaleIn}
-            className="mx-auto max-w-2xl rounded-[17px] border border-[#E8E8E8] bg-[#FFFFFFE5] px-8 py-8 text-center shadow-[0_4px_46px_0_#00000021] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
+            className="mx-auto max-w-2xl rounded-lg border border-[#E8E8E8] bg-[#FFFFFFE5] px-8 py-8 text-center shadow-[0_4px_46px_0_#00000021] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
           >
             <motion.div
               variants={staggerContainer(0.1, 0.1)}
@@ -109,7 +109,7 @@ export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
                   <button
                     type="button"
                     onClick={() => openContactForm({ intent: "callback" })}
-                    className="w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    className="w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     {ctaContent.callbackLabel}
                   </button>
@@ -120,7 +120,7 @@ export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
                     href={whatsappHref("Hi Sairr — I'd like to talk about a journey.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[11rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
+                    className="w-[11rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
                   >
                     <Image
                       src={whatsappIcon}

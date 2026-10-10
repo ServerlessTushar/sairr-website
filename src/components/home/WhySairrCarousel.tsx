@@ -6,7 +6,7 @@ import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
 
 function WhySairrCard({ reason }: { reason: ReasonToBelieve }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5">
       <div className="relative aspect-[4/3] shrink-0 overflow-hidden">
         <PlaceholderImage
           seed={`why-sairr-${reason.id}`}

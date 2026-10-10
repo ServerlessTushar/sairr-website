@@ -43,7 +43,7 @@ export default function ThankYouPage() {
             </p>
 
             {/* Availability badge */}
-            <div className="mt-8 flex items-start gap-3 rounded-xl border border-[#FDFBF2]/10 bg-[#FDFBF2]/5 px-4 py-4">
+            <div className="mt-8 flex items-start gap-3 rounded-lg border border-[#FDFBF2]/10 bg-[#FDFBF2]/5 px-4 py-4">
               <Clock3 className="mt-0.5 size-4 shrink-0 text-[#C8A867]" aria-hidden />
               <p className="text-sm leading-relaxed text-[#FDFBF2]/70">
                 Our experts are available{" "}
@@ -65,7 +65,7 @@ export default function ThankYouPage() {
               {/* Call button */}
               <a
                 href={phoneHref()}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#EC575E] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52] sm:min-w-40"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded bg-[#EC575E] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52] sm:min-w-40"
               >
                 <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16z" />
@@ -78,7 +78,7 @@ export default function ThankYouPage() {
                 href={whatsappHref("Hi, I just submitted an enquiry and would like to know more.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-[#0E5E6F]/20 bg-white px-6 text-sm font-semibold text-[#0E5E6F] transition-colors hover:bg-[#0E5E6F]/5 sm:min-w-40"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded border border-[#0E5E6F]/20 bg-white px-6 text-sm font-semibold text-[#0E5E6F] transition-colors hover:bg-[#0E5E6F]/5 sm:min-w-40"
               >
                 <Image
                   src="/homepage/whatsapp.png"

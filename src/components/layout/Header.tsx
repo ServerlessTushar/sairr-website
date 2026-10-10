@@ -224,7 +224,7 @@ export function Header() {
         <Link
           href="/contact"
           onClick={() => markNavigationPending("/contact")}
-          className="hidden h-10 cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-4 font-sans text-sm font-semibold text-white transition-all duration-300 hover:scale-104 hover:bg-[#dc4850] tab-0.98 md:inline-flex md:text-base"
+          className="hidden h-10 cursor-pointer items-center justify-center rounded bg-[#ec575e] px-4 font-sans text-sm font-semibold text-white transition-all duration-300 hover:scale-104 hover:bg-[#dc4850] tab-0.98 md:inline-flex md:text-base"
         >
           Contact Us
         </Link>

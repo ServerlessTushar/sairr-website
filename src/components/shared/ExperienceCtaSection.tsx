@@ -50,7 +50,7 @@ export function ExperienceCtaSection({
           <button
             type="button"
             onClick={onPrimaryClick}
-            className="inline-flex h-12 w-[11rem] cursor-pointer items-center justify-center rounded-lg bg-[#ec575e] px-6 text-sm font-semibold text-white transition-opacity hover:bg-[#dc4850] hover:opacity-90"
+            className="inline-flex h-12 w-[11rem] cursor-pointer items-center justify-center rounded bg-[#ec575e] px-6 text-sm font-semibold text-white transition-opacity hover:bg-[#dc4850] hover:opacity-90"
           >
             {primaryCtaLabel}
           </button>
@@ -59,7 +59,7 @@ export function ExperienceCtaSection({
             href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 w-[11rem] items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 transition-opacity hover:bg-gray-100 hover:opacity-90"
+            className="inline-flex h-12 w-[11rem] items-center justify-center gap-2 rounded border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 transition-opacity hover:bg-gray-100 hover:opacity-90"
           >
             <Image
               src={whatsappIcon}

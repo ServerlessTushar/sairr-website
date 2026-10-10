@@ -12,8 +12,8 @@ const MOMENT_CARD_WIDTH_PX = 306.38;
 
 function MomentCard({ moment }: { moment: PuriMomentCard }) {
   return (
-    <article className="group flex h-full w-full flex-col bg-white p-4 sm:p-5 lg:h-[468.83px] lg:w-[306.38px] lg:p-7">
-      <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-charcoal/5">
+    <article className="group flex h-full w-full flex-col rounded-lg bg-white p-4 sm:p-5 lg:h-[468.83px] lg:w-[306.38px] lg:p-7">
+      <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-lg bg-charcoal/5">
         <Image
           src={moment.image}
           alt={moment.alt}

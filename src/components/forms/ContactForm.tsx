@@ -343,7 +343,7 @@ export function ContactForm({
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="h-12 rounded-full bg-brand px-8 text-sm font-semibold hover:bg-forest sm:min-w-[12rem]"
+          className="h-12 rounded bg-brand px-8 text-sm font-semibold hover:bg-forest sm:min-w-[12rem]"
         >
           {isSubmitting ? (
             <>

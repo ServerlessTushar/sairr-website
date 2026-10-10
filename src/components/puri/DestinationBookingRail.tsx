@@ -60,7 +60,7 @@ export function DestinationBookingRail({
 
   return (
     <div className="flex flex-col gap-6">
-      <article className="rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
+      <article className="rounded-lg border-[0.5px] border-solid border-[#C8A867] bg-white p-5 shadow-[0_8px_30px_rgba(27,29,31,0.06)] overflow-hidden">
         <p className="text-xl font-semibold text-[#0E5E6F]">{title}</p>
         <div className="-mx-5 mt-2 border-b border-charcoal/10 px-5 pb-3">
           <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-[#5d5d5d]">
@@ -105,7 +105,7 @@ export function DestinationBookingRail({
                 intent: "interest",
               })
             }
-            className="inline-flex h-10 cursor-pointer items-center justify-center rounded-lg bg-[#EC575E] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+            className="inline-flex h-10 cursor-pointer items-center justify-center rounded bg-[#EC575E] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             I&apos;m Interested
           </button>
@@ -160,7 +160,7 @@ export function DestinationBookingRail({
                         intent: "interest",
                       })
                     }
-                    className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-[8px] border-[0.5px] border-solid border-[#C8A867] bg-white text-left shadow-[0_2px_8px_rgba(27,29,31,0.04)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-1 hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2] hover:shadow-[0_8px_24px_rgba(27,29,31,0.1)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(27,29,31,0.06)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                    className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-lg border-[0.5px] border-solid border-[#C8A867] bg-white text-left shadow-[0_2px_8px_rgba(27,29,31,0.04)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-2 hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2] hover:shadow-[0_8px_24px_rgba(27,29,31,0.1)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(27,29,31,0.06)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   >
                     <div className="flex min-h-0 items-center gap-2 border-b border-[#C8A867]/60 px-2.5 py-2.5">
                       <Image
@@ -215,7 +215,7 @@ export function DestinationBookingRail({
                 intent: "private-journey",
               })
             }
-            className="mt-3 inline-flex h-10 items-center justify-center rounded-lg bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
+            className="mt-3 inline-flex h-10 items-center justify-center rounded bg-[#EC575E] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52]"
           >
             Talk to us
           </button>

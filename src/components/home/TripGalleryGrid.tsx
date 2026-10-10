@@ -48,11 +48,11 @@ function GalleryTile({
         ease: [0.22, 1, 0.36, 1],
       }}
       exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
-      whileHover={reduceMotion ? undefined : { y: -6, transition: { duration: 0.3 } }}
+      whileHover={reduceMotion ? undefined : { y: -8, transition: { duration: 0.3 } }}
       onClick={onClick}
       aria-label={ariaLabel}
       className={cn(
-        "group relative overflow-hidden rounded-[10px] bg-card text-left",
+        "group relative overflow-hidden rounded-lg bg-card text-left",
         className,
       )}
     >
@@ -67,7 +67,7 @@ function GalleryTile({
       />
       {moreImagesCount ? (
         <span className="absolute inset-0 flex items-end justify-center pb-6">
-          <span className="cursor-pointer flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-charcoal" style={{ backgroundColor: "#FFFFFFE3" }}>
+          <span className="cursor-pointer flex items-center gap-2 rounded px-4 py-2 text-sm font-medium text-charcoal" style={{ backgroundColor: "#FFFFFFE3" }}>
             <Image
               src="/destinations/photo.svg"
               alt=""
@@ -325,7 +325,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                 key={activeImage.id}
                 src={gallerySrc(activeImage)}
                 alt={activeImage.alt}
-                className="max-h-[75vh] w-auto max-w-full rounded-2xl border border-mist/15 object-contain shadow-2xl"
+                className="max-h-[75vh] w-auto max-w-full rounded-lg border border-mist/15 object-contain shadow-2xl"
                 style={{
                   objectPosition: activeImage.objectPosition ?? "center",
                 }}
@@ -384,7 +384,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                     type="button"
                     aria-label="Previous image"
                     onClick={showPrev}
-                    className="flex size-10 items-center justify-center rounded-full border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
+                    className="flex size-10 items-center justify-center rounded border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
                   >
                     <ChevronLeft className="size-5" />
                   </button>
@@ -395,7 +395,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                     type="button"
                     aria-label="Next image"
                     onClick={showNext}
-                    className="flex size-10 items-center justify-center rounded-full border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
+                    className="flex size-10 items-center justify-center rounded border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
                   >
                     <ChevronRight className="size-5" />
                   </button>
@@ -403,7 +403,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                     type="button"
                     aria-label="Close gallery"
                     onClick={closeLightbox}
-                    className="ml-2 flex size-10 items-center justify-center rounded-full border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
+                    className="ml-2 flex size-10 items-center justify-center rounded border border-mist/20 bg-mist/10 text-mist transition-colors hover:bg-mist/20"
                   >
                     <X className="size-5" />
                   </button>

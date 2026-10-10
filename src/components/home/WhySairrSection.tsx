@@ -83,7 +83,7 @@ function FeaturedBeliefCard({ index }: { index: number }) {
       index={index}
       as="article"
       hover={false}
-      className={`flex flex-col overflow-hidden rounded-[14.3px] bg-white ${CARD_SHADOW}`}
+      className={`flex flex-col overflow-hidden rounded-lg bg-white ${CARD_SHADOW}`}
     >
       <div className="relative w-full shrink-0 overflow-hidden bg-mist md:h-[373px] md:max-w-[627px]">
         <motion.div className="relative w-full md:h-full" whileHover={imageHover}>
@@ -116,7 +116,7 @@ function IconBeliefCard({
     <GridCardRevealItem
       index={index}
       as="article"
-      className={`h-auto sm:h-[10.781rem] flex items-start gap-4 rounded-[14.3px] bg-white px-4 py-5 transition-shadow duration-300 ease-out hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)] sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
+      className={`h-auto sm:h-[10.781rem] flex items-start gap-4 rounded-lg bg-white px-4 py-5 transition-shadow duration-300 ease-out hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)] sm:gap-5 sm:items-start sm:px-5 sm:py-6 md:gap-10 lg:flex-none lg:px-6 lg:py-6 ${CARD_SHADOW}`}
     >
 
       <BeliefIcon src={item.icon} />

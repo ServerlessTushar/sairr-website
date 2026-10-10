@@ -76,7 +76,7 @@ export function TestimonialCarousel({
           aria-label="Previous testimonial"
           disabled={atStart}
           onClick={() => scroll("previous")}
-          className="flex size-11 cursor-pointer items-center justify-center rounded-xl border border-charcoal/15 bg-white text-charcoal transition-colors hover:border-charcoal/30 disabled:cursor-not-allowed disabled:opacity-35"
+          className="flex size-11 cursor-pointer items-center justify-center rounded border border-charcoal/15 bg-white text-charcoal transition-colors hover:border-charcoal/30 disabled:cursor-not-allowed disabled:opacity-35"
         >
           <ChevronLeft className="size-5" />
         </button>
@@ -85,7 +85,7 @@ export function TestimonialCarousel({
           aria-label="Next testimonial"
           disabled={atEnd}
           onClick={() => scroll("next")}
-          className="flex size-11 cursor-pointer items-center justify-center rounded-xl border border-charcoal/15 bg-white text-charcoal transition-colors hover:border-charcoal/30 disabled:cursor-not-allowed disabled:opacity-35"
+          className="flex size-11 cursor-pointer items-center justify-center rounded border border-charcoal/15 bg-white text-charcoal transition-colors hover:border-charcoal/30 disabled:cursor-not-allowed disabled:opacity-35"
         >
           <ChevronRight className="size-5" />
         </button>

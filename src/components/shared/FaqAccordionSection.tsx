@@ -63,7 +63,7 @@ export function FaqAccordionSection({
               <AccordionItem
                 key={faq.question}
                 value={`faq-${index}`}
-                className="overflow-hidden rounded-2xl border border-charcoal/5 bg-white shadow-[0_2px_12px_rgba(27,29,31,0.04)] not-last:border-b-0"
+                className="overflow-hidden rounded-lg border border-charcoal/5 bg-white shadow-[0_2px_12px_rgba(27,29,31,0.04)] not-last:border-b-0"
               >
                 <AccordionTrigger
                   className="items-start gap-4 px-5 py-5 text-left hover:no-underline sm:px-6 sm:py-6 **:data-[slot=accordion-trigger-icon]:hidden"

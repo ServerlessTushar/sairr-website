@@ -48,23 +48,18 @@ export type TimelineItineraryProps = {
   flush?: boolean;
 };
 
-function TimelineNode({
-  isFirst,
-  isLast,
-}: {
-  isFirst: boolean;
-  isLast: boolean;
-}) {
+function TimelineNode({ isFirst }: { isFirst: boolean }) {
   return (
-    <div
-      className="relative flex w-3 shrink-0 flex-col items-center self-stretch"
-      aria-hidden
-    >
-      {!isFirst && <div className="h-5 w-0 border-l border-dashed border-charcoal/30" />}
-      <div className="size-3 shrink-0 rounded-full bg-gold" />
-      {!isLast && (
-        <div className="mb-4 w-0 flex-1 border-l border-dashed border-charcoal/30" aria-hidden />
-      )}
+    <div className="relative w-3 shrink-0 self-stretch" aria-hidden>
+      {!isFirst ? (
+        <div
+          className="absolute left-1/2 top-0 h-1.5 w-0 -translate-x-1/2 border-l border-dashed border-charcoal/30"
+        />
+      ) : null}
+      <div className="relative z-10 size-3 rounded-full bg-gold" />
+      <div
+        className="absolute left-1/2 top-6 bottom-0 w-0 -translate-x-1/2 border-l border-dashed border-charcoal/30"
+      />
     </div>
   );
 }
@@ -83,7 +78,7 @@ function ItineraryImage({
   return (
     <div
       className={cn(
-        "relative shrink-0 overflow-hidden rounded-xl",
+        "relative shrink-0 overflow-hidden rounded-lg",
         variant === "collapsed"
           ? "aspect-[288/156.8] w-full max-w-[288px]"
           : "aspect-[738.84/404.35] w-full",
@@ -162,14 +157,12 @@ export function TimelineItinerary({
               const value = `day-${index}`;
               const imageAlt = item.imageAlt ?? item.location;
               const isFirst = index === 0;
-              const isLast = index === carouselData.length - 1;
-
               return (
                 <div
                   key={value}
-                  className="flex gap-4 border-b border-gold/50 py-5 first:pt-0 last:border-b-0 sm:gap-6 sm:py-6"
+                  className="flex items-start gap-4 border-b border-gold/50 py-5 first:pt-0 last:border-b-0 sm:gap-6 sm:py-6"
                 >
-                  <TimelineNode isFirst={isFirst} isLast={isLast} />
+                  <TimelineNode isFirst={isFirst} />
 
                   <AccordionItem
                     value={value}

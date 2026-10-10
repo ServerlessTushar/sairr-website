@@ -177,12 +177,12 @@ export function JourneyCard({
 
   return (
     <article
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white px-[6px] pt-[6px] pb-0 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-white px-[6px] pt-[6px] pb-0 shadow-[0_2px_10px_rgba(27,29,31,0.05),0_8px_28px_rgba(27,29,31,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_4px_14px_rgba(27,29,31,0.07),0_16px_40px_rgba(27,29,31,0.11)]"
     >
       {hasItineraryLink ? (
         <Link
           href={journey.href!}
-          className="absolute inset-0 z-20 rounded-2xl"
+          className="absolute inset-0 z-20 rounded-lg"
           aria-label={`View ${journey.title} itinerary`}
         />
       ) : null}
@@ -190,7 +190,7 @@ export function JourneyCard({
       {canExpressInterest ? (
         <button
           type="button"
-          className="absolute inset-0 z-20 cursor-pointer rounded-2xl border-0 bg-transparent p-0"
+          className="absolute inset-0 z-20 cursor-pointer rounded-lg border-0 bg-transparent p-0"
           aria-label={`I'm interested in ${journey.title}`}
           onClick={() => onNotifyMe!(journey.destination!)}
         />
@@ -199,7 +199,7 @@ export function JourneyCard({
       <div className="pointer-events-none relative flex min-h-0 flex-1 flex-col">
         <StatusBadge status={journey.status} />
 
-        <div className="relative aspect-4/3 overflow-hidden rounded-xl">
+        <div className="relative aspect-4/3 overflow-hidden rounded-lg">
           {isOpen ? (
             <JourneyImageCarousel images={carouselImages} alt={journey.title} />
           ) : (

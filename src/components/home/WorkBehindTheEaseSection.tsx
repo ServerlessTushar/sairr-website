@@ -63,7 +63,7 @@ function WhySairrCard({
     <motion.article
       variants={variant}
       whileHover={cardHover}
-      className="h-[178.5px] group flex items-center gap-4 rounded-[4.32px] bg-white p-5 sm:gap-6 sm:py-6 sm:pl-6 sm:pr-20"
+      className="h-[178.5px] group flex items-center gap-4 rounded-lg bg-white p-5 sm:gap-6 sm:py-6 sm:pl-6 sm:pr-20"
     >
       <motion.div
         className="relative size-[4.5rem] shrink-0 sm:size-20"
