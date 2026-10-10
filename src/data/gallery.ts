@@ -95,7 +95,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-7",
     seed: "moments-7",
-    src: "/destinations/moments-7.webp",
+    src: "/puri/puri-1.webp",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -106,7 +106,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-8",
     seed: "moments-8",
-    src: "/destinations/moments-8.webp",
+    src: "/puri/puri-2.webp",
     alt: "Travellers sharing a meal in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -117,7 +117,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-9",
     seed: "moments-9",
-    src: "/destinations/moments-9.webp",
+    src: "/puri/puri-3.webp",
     alt: "Temple chariot in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -128,7 +128,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-10",
     seed: "moments-10",
-    src: "/destinations/moments-10.webp",
+    src: "/puri/puri-4.webp",
     alt: "Temple dome in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -139,7 +139,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-11",
     seed: "moments-11",
-    src: "/destinations/moments-11.webp",
+    src: "/puri/puri-4.webp",
     alt: "Travellers exploring Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -150,7 +150,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-12",
     seed: "moments-12",
-    src: "/destinations/moments-12.webp",
+    src: "/puri/puri-5.webp",
     alt: "Group dining during the Puri journey",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
@@ -161,7 +161,7 @@ export const puriGalleryImages: GalleryImage[] = [
   {
     id: "moments-1",
     seed: "moments-1",
-    src: "/homepage/moments-1.png",
+    src: "/puri/puri6.webp",
     alt: "Sairr travellers together in Puri",
     caption: "Dolpo & Western Nepal",
     location: "Puri, Odisha",
