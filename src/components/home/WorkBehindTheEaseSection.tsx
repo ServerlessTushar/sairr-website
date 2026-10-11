@@ -90,7 +90,7 @@ function WhySairrCard({
       />
 
       <div className="min-w-0">
-        <h3 className="font-sans text-base font-semibold leading-snug text-charcoal sm:text-2xl">
+        <h3 className="font-sans text-base font-semibold leading-snug text-black sm:text-2xl">
           {item.title}
         </h3>
         <p className="mt-1.5 text-sm md:text-lg leading-relaxed text-[#5d5d5d]">
@@ -104,20 +104,20 @@ function WhySairrCard({
 export function WorkBehindTheEaseSection() {
   return (
     <section className="bg-brand">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <TextReveal
               as="h2"
-              text="The work behind the ease."
-              className="font-heading text-3xl font-semibold leading-[1.2] tracking-tight text-white sm:text-4xl"
+              text="The work behind the ease"
+              className="font-heading text-[28px] font-semibold leading-[1.2] tracking-tight text-white sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-4 text-base leading-relaxed text-white/90 sm:text-xl"
+              className="mt-3 text-base leading-relaxed text-white/90 sm:text-xl"
             >
               Every journey is carefully planned, vetted and refined before you
               set off.
@@ -126,7 +126,7 @@ export function WorkBehindTheEaseSection() {
         </FadeIn>
 
         <StaggerContainer
-          className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-6"
+          className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mt-12 lg:grid-cols-2 lg:gap-6"
           stagger={0.14}
         >
           {whySairrItems.map((item, index) => (

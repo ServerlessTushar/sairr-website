@@ -115,7 +115,7 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
             id="cu-phone"
             type="tel"
             inputMode="numeric"
-            placeholder="Your 10-digit WhatsApp number"
+            placeholder="Your 10-digit WhatsApp no."
             maxLength={10}
             aria-invalid={!!errors.phone}
             className={cn(fieldClassName, errors.phone && "border-destructive")}

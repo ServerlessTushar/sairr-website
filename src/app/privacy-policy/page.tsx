@@ -94,9 +94,9 @@ export default function PrivacyPage() {
 
             <div className="space-y-10 lg:col-start-2">
               <Section number={1} title="About This Policy">
-                <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
+                {/* <p className="font-heading text-lg font-semibold text-charcoal sm:text-xl">
                   What you share with us stays yours.
-                </p>
+                </p> */}
                 <p>
                   We collect only what we need to plan and deliver your journey,
                   keep it secure, and never sell your personal information.

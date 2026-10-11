@@ -142,6 +142,11 @@ export default async function DestinationPage({ params }: Props) {
             className="!bg-[#0E5E6F]"
             sectionData={destination.cta}
             notifyDestination={destination.notifyDestination}
+            hrefTxt={`Hi, I'd like to know more about the ${
+              destination.notifyDestination === "Puri & Bhubaneswar"
+                ? "Puri"
+                : destination.notifyDestination
+            } journey.`}
           />
           <PuriStickyBar
             priceLabel={destination.stickyPriceLabel}

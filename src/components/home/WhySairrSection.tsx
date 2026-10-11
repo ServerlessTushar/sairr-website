@@ -17,7 +17,7 @@ import { imageHover, springSnappy } from "@/lib/motion";
 
 const CARD_SHADOW = "shadow-[0_2px_16px_rgba(27,29,31,0.08)]";
 const CARD_TITLE =
-  "font-sans text-base font-semibold leading-snug text-charcoal sm:text-lg md:text-[24px]";
+  "font-sans text-base font-semibold leading-snug text-black sm:text-lg md:text-[24px]";
 const CARD_DESC =
   "mt-1.5 font-sans text-sm leading-relaxed text-[#5d5d5d] sm:mt-2 md:text-[18px]";
 
@@ -131,14 +131,14 @@ function IconBeliefCard({
 export function WhySairrSection() {
   return (
     <section id="whySairr" className="border-t border-charcoal/10 bg-[#FDFBF2]">
-      <div className="mb-20 mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:pb-14 lg:pt-20">
+      <div className="mb-[3.8rem] mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-12 lg:px-8 lg:pb-14 lg:pt-20">
         <FadeIn>
           <div className="mx-auto max-w-3xl text-center">
             <div className="relative inline-block overflow-visible">
               <TextReveal
                 as="h2"
                 text="Why Sairr"
-                className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
+                className="font-heading text-[28px] font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
               />
               <motion.span
                 animate={{ y: [0, -2, 0] }}

@@ -183,8 +183,8 @@ export function HeroSection() {
             variants={heroLine}
             className="mt-8 font-heading text-4xl leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]"
           >
-            <span className="block font-normal">You show up.</span>
-            <span className="block font-bold">We handle the rest.</span>
+            <span className="block font-normal">You show up</span>
+            <span className="block font-bold">We handle the rest</span>
           </motion.h1>
 
           <motion.div
@@ -194,7 +194,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="#destinations"
-                className="bg-[#ec575e] capitalize hover:bg-[#dc4850] inline-flex h-10 md:h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded px-6 text-xs md:text-sm font-semibold text-white transition-opacity sm:w-auto sm:min-w-[12rem]"
+                className="bg-[#ec575e] capitalize hover:bg-[#dc4850] inline-flex h-10 md:h-12 w-[80%] sm:w-full items-center justify-center gap-2 whitespace-nowrap rounded px-6 text-xs md:text-sm font-semibold text-white transition-opacity sm:w-auto sm:min-w-[12rem]"
               >
                 Explore Destinations
               </Link>
@@ -204,7 +204,7 @@ export function HeroSection() {
               <button
                 type="button"
                 onClick={() => openContactForm({ intent: "callback" })}
-                className="inline-flex h-10 md:h-12 w-full cursor-pointer items-center justify-center whitespace-nowrap rounded bg-white px-6 text-xs md:text-sm font-semibold text-charcoal transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]"
+                className="inline-flex h-10 md:h-12 w-[80%] sm:w-full cursor-pointer items-center justify-center whitespace-nowrap rounded bg-white px-6 text-xs md:text-sm font-semibold text-black transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]"
               >
                 Get a Callback
               </button>

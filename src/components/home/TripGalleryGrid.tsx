@@ -187,7 +187,7 @@ function GalleryMosaic({
 
   return (
     <>
-      <div className="flex flex-col gap-3 sm:gap-4 lg:hidden">
+      <div className="flex flex-col gap-2 sm:gap-4 lg:hidden">
         <AnimatePresence mode="popLayout">
           <MobileGalleryBlock
             key="mobile-gallery-top"

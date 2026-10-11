@@ -65,7 +65,7 @@ export default function ContactPage() {
               </a>
 
               <a
-                href={whatsappHref("Hi, I'd like to get in touch with Sairr.")}
+                href={whatsappHref("Hi, I'd like to know more about travelling with Sairr.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"

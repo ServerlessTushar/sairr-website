@@ -23,7 +23,7 @@ const bottomLegalLinks = [
 
 const socialLinks = [
   {
-    href: whatsappHref(),
+    href: whatsappHref("Hi, I'd like to know more about travelling with Sairr."),
     label: "WhatsApp",
     icon: WhatsAppIcon,
     external: true,

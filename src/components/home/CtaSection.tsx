@@ -17,6 +17,7 @@ const TEAL = "#0E5E6F";
 type CtaSectionProps = {
   backgroundImage?: string;
   content?: Partial<CtaContent>;
+  hrefTxt?: string;
 };
 
 type CtaContent = {
@@ -35,7 +36,7 @@ const defaultContent: CtaContent = {
   whatsappLabel: "WhatsApp us",
 };
 
-export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
+export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProps) {
   const { openContactForm } = useContactFormDialog();
   const ctaContent = { ...defaultContent, ...content };
 
@@ -117,10 +118,10 @@ export function CtaSection({ backgroundImage, content }: CtaSectionProps) {
 
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
                   <Link
-                    href={whatsappHref("Hi Sairr — I'd like to talk about a journey.")}
+                    href={whatsappHref(hrefTxt)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[11rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded px-6 text-sm border border-gray-300 font-semibold text-charcoal transition-opacity hover:opacity-90"
+                    className="w-[11rem] bg-white hover:bg-gray-100 opacity-70 inline-flex h-12 items-center justify-center gap-2 rounded px-6 text-sm border border-gray-300 font-semibold text-black transition-opacity hover:opacity-90"
                   >
                     <Image
                       src={whatsappIcon}
