@@ -59,7 +59,7 @@ export function ExperienceCtaSection({
             href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 w-[11rem] items-center justify-center gap-2 rounded border border-gray-300 bg-white px-6 text-sm font-semibold text-charcoal opacity-70 transition-opacity hover:bg-gray-100 hover:opacity-90"
+            className="inline-flex h-12 w-[11rem] items-center justify-center gap-2 rounded border border-gray-300 bg-white px-6 text-sm font-semibold text-black opacity-70 transition-opacity hover:bg-gray-100 hover:opacity-90"
           >
             <Image
               src={whatsappIcon}

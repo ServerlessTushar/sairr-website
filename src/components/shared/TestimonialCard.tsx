@@ -65,7 +65,7 @@ export function TestimonialCard({
           "shadow-testimonial md:shadow-testimonial-lg",
         )}
       >
-        <blockquote className="min-h-0 flex-1 font-heading text-base leading-relaxed text-charcoal sm:text-[1.05rem]">
+        <blockquote className="min-h-0 flex-1 font-heading text-base leading-relaxed text-black sm:text-[1.05rem]">
           {testimonial.quote}
         </blockquote>
 
@@ -76,7 +76,7 @@ export function TestimonialCard({
           />
 
           <div className="mt-4">
-            <p className="text-sm font-semibold text-charcoal">
+            <p className="text-sm font-semibold text-black">
               {testimonial.name}
             </p>
             <p className="mt-1 text-sm italic text-[#5d5d5d]">

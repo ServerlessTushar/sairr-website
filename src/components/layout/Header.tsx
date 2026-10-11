@@ -171,7 +171,7 @@ export function Header() {
         "fixed inset-x-0 top-0 z-50 w-full bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-12 sm:h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="font-heading text-2xl font-semibold tracking-tight text-brand"

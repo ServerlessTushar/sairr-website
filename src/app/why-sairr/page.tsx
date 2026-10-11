@@ -110,6 +110,7 @@ export default function WhySairrPage() {
       <CtaSection
         backgroundImage="/why-sairr/ctaSectionBg.webp"
         content={ctaContent}
+        hrefTxt="Hi, I'd like to know more about travelling with Sairr."
       />
     </>
   );

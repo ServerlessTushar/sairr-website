@@ -13,12 +13,14 @@ export type PuriCtaProps = {
   sectionData: ExperienceCtaSectionData;
   notifyDestination: TravelDestination;
   className?: string;
+  hrefTxt?: string;
 };
 
 export function PuriCta({
   sectionData,
   notifyDestination,
   className,
+  hrefTxt,
 }: PuriCtaProps) {
   const { openContactForm } = useContactFormDialog();
 
@@ -32,6 +34,7 @@ export function PuriCta({
           intent: "private-journey",
         })
       }
+      whatsappMessage={hrefTxt}
     />
   );
 }

@@ -11,13 +11,13 @@ export function LegalBanner({
 }) {
   return (
     <section className="bg-[#0E5E6F]">
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:pb-24 lg:pt-36">
         <FadeIn>
-          <h1 className="font-heading text-4xl font-semibold uppercase tracking-widest text-[#FDFBF2] sm:text-5xl lg:text-[3.25rem]">
+          <h1 className="font-heading text-4xl font-semibold capitalize tracking-widest text-[#FDFBF2] sm:text-5xl lg:text-[3.25rem]">
             {title}
           </h1>
           {/* thin gold divider */}
-          <div className="mx-auto mt-4 h-px w-16 bg-[#C8A867]" aria-hidden />
+          <div className="mx-auto mt-4 h-px w-32 bg-[#C8A867]" aria-hidden />
           {subtitle ? (
             <p className="mt-5 font-heading text-2xl font-semibold text-[#FDFBF2] sm:text-3xl">
               {subtitle}

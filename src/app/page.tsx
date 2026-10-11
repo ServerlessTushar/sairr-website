@@ -25,11 +25,11 @@ export default function HomePage() {
       <WorkBehindTheEaseSection />
       <RealTravellersSection />
       <TripGallerySection
-        heading="The moments that stay with you."
+        heading="The moments that stay with you"
         para="A glimpse into life on a Sairr journey."
         images={galleryImages}
       />
-      <CtaSection />
+      <CtaSection hrefTxt="Hi, I'd like to know more about travelling with Sairr." />
     </>
   );
 }

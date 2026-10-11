@@ -6,5 +6,5 @@ export const puriWordsSectionData: PuriWordsProps = {
   para: "",
   videoUrl: puriTestimonialYoutubeId,
   videoTitle: "Puri traveller film",
-  thumbnail: "/destinations/puri-video-thumbnail.webp",
+  thumbnail: "/destinations/purivideothumbnail.webp",
 };

@@ -15,7 +15,7 @@ import puri3 from "@/public/homepage/journey-puri-3.webp";
 import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
 import andaman from "@/public/homepage/journey-andaman.webp";
 import bali from "@/public/homepage/journey-bali.webp";
-import backgroundImgDesktop from "@/public/homepage/Bg-Destination-Home2.webp";
+import backgroundImgDesktop from "@/public/homepage/BgDestinationHome1.png";
 import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob.webp";
 import { drawLine } from "@/lib/motion";
 import bannerUnderlineImg from "@/public/homepage/underline-journey.png";
@@ -112,13 +112,13 @@ export function JourneysSection() {
         />
       </div>
 
-      <div className="bg-transparent relative mx-auto max-w-7xl pxl-4 pt-16 sm:px-6 md:px-0 lg:pt-2">
+      <div className="bg-transparent relative mx-auto max-w-7xl pxl-4 pt-0 sm:px-6 md:px-0 lg:pt-2">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
               as="h2"
               text="Journeys to look forward to"
-              className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
+              className="font-heading text-[28px] font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -134,7 +134,7 @@ export function JourneysSection() {
         </FadeIn>
 
         <CarouselSection
-          className="mt-2 -mr-4 lg:mr-0 lg:mt-6"
+          className="mt-2 ml-4 mr-4 lg:ml-0 lg:mr-0 lg:mt-6"
           slideClassName="py-6"
           items={journeys}
           getKey={(journey) => journey.slug}

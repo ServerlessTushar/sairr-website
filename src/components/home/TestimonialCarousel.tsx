@@ -5,7 +5,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Testimonial } from "@/data/testimonials";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 
-const SLIDE_GAP_PX = 40;
+const SLIDE_GAP_MOBILE_PX = 30;
+const SLIDE_GAP_DESKTOP_PX = 40;
+
+function getSlideGapPx() {
+  if (typeof window === "undefined") return SLIDE_GAP_MOBILE_PX;
+  return window.matchMedia("(min-width: 768px)").matches
+    ? SLIDE_GAP_DESKTOP_PX
+    : SLIDE_GAP_MOBILE_PX;
+}
 
 type TestimonialCarouselProps = {
   testimonials: Testimonial[];
@@ -35,7 +43,8 @@ export function TestimonialCarousel({
 
     carousel.scrollBy({
       left:
-        (firstCard.offsetWidth + SLIDE_GAP_PX) * (direction === "next" ? 1 : -1),
+        (firstCard.offsetWidth + getSlideGapPx()) *
+          (direction === "next" ? 1 : -1),
       behavior: "smooth",
     });
   }
@@ -55,15 +64,14 @@ export function TestimonialCarousel({
       <div
         ref={carouselRef}
         onScroll={updateNavigationState}
-        style={{ gap: SLIDE_GAP_PX }}
-        className="-mr-4 flex overflow-x-auto scroll-smooth px-4 pb-5 pt-1 snap-x snap-mandatory scrollbar-none sm:-mr-6 lg:-mr-8 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="-mr-1 flex gap-5 overflow-x-auto scroll-smooth px-4 pb-5 pt-1 snap-x snap-mandatory scrollbar-none sm:-mr-6 md:gap-10 lg:-mr-8 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Traveller stories"
         aria-roledescription="carousel"
       >
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="flex w-[calc((100%-32px)/1.15)] shrink-0 snap-start sm:w-[calc((100%-64px)/2.15)] lg:w-[calc((100%-96px)/3.25)]"
+            className="flex w-[calc((100%-5px)/1.05)] shrink-0 snap-start sm:w-[calc((100%-40px)/2.15)] md:w-[calc((100%-80px)/2.15)] lg:w-[calc((100%-120px)/3.25)]"
           >
             <TestimonialCard testimonial={testimonial} variant="quote-first" />
           </div>

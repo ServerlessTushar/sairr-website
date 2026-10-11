@@ -221,22 +221,22 @@ export function JourneyCard({
         <div className="flex min-h-0 flex-1 flex-col pt-4 pb-0">
           <div className="flex min-h-0 flex-1 flex-col px-2 md:px-3">
             <p
-              className="text-right text-xs font-semibold"
+              className="text-right text-[10px] sm:text-xs font-medium sm:font-semibold"
               style={{ color: TEAL }}
             >
               {journey.category}
             </p>
 
-            <h3 className="mt-2 font-heading text-lg font-semibold tracking-tight text-charcoal md:text-2xl">
+            <h3 className="mt-2 font-heading text-xl font-semibold tracking-tight text-black md:text-2xl">
               {journey.title}
             </h3>
 
-            <p className="mt-1 flex-1 text-xs leading-relaxed text-[#5d5d5d] md:text-sm">
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-[#5d5d5d] md:text-sm">
               {journey.description}
             </p>
 
             {isOpen && journey.perks ? (
-              <p className="mt-1 text-[11px] leading-snug text-[#0E5E6F] md:mt-4">
+              <p className="mt-4 sm:mt-1 text-[11px] leading-snug text-[#0E5E6F] md:mt-4">
                 {journey.perks.map(formatPerk).join(" • ")}
               </p>
             ) : null}

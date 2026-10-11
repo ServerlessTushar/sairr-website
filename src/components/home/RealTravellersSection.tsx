@@ -16,8 +16,8 @@ export function RealTravellersSection() {
           <div className="text-center lg:mx-auto lg:max-w-3xl lg:text-center">
             <TextReveal
               as="h2"
-              text="In their words."
-              className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
+              text="In their words"
+              className="font-heading text-[28px] font-semibold tracking-tight text-black sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 12 }}
