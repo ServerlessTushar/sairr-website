@@ -78,6 +78,7 @@ export default async function DestinationPage({ params }: Props) {
       pricingNotes={destination.dates.pricingNotes}
       cards={destination.dates.cardsData}
       notifyDestination={destination.notifyDestination}
+      ctaPage={slug}
     />
   );
 
@@ -117,6 +118,7 @@ export default async function DestinationPage({ params }: Props) {
                   imageAlt="Friends enjoying a trip together"
                   buttonLabel="Talk to us"
                   contactDestination={destination.notifyDestination}
+                  ctaPage={slug}
                 />
                 <PuriWords flush {...destination.words} />
                 <PuriIncluded flush {...destination.included} />
@@ -141,6 +143,7 @@ export default async function DestinationPage({ params }: Props) {
           <PuriCta
             className="!bg-[#0E5E6F]"
             sectionData={destination.cta}
+            ctaPage={slug}
             notifyDestination={destination.notifyDestination}
             hrefTxt={`Hi, I'd like to know more about the ${
               destination.notifyDestination === "Puri & Bhubaneswar"
@@ -151,6 +154,7 @@ export default async function DestinationPage({ params }: Props) {
           <PuriStickyBar
             priceLabel={destination.stickyPriceLabel}
             notifyDestination={destination.notifyDestination}
+            ctaPage={slug}
           />
         </div>
     </>

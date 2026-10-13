@@ -8,6 +8,7 @@ import { TextReveal } from "@/components/shared/TextReveal";
 import { CarouselSection } from "@/components/shared/CarouselSection";
 import { JourneyCard, type Journey } from "@/components/home/JourneyCard";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import { ctaClass } from "@/lib/cta";
 import type { TravelDestination } from "@/lib/validations/contact";
 import puri from "@/public/homepage/journey-puri-1-2.png";
 import puri2 from "@/public/homepage/journey-puri-2.webp";
@@ -89,8 +90,13 @@ function HeroUnderline() {
 export function JourneysSection() {
   const { openContactForm } = useContactFormDialog();
 
-  function handleNotifyMe(destination: TravelDestination) {
-    openContactForm({ destination, intent: "interest" });
+  function handleNotifyMe(destination: TravelDestination, journeySlug: string) {
+    const journeyCta = ctaClass("home", "journey", journeySlug);
+    openContactForm({
+      destination,
+      intent: "interest",
+      ctaClass: journeyCta,
+    });
   }
 
   return (

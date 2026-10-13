@@ -12,6 +12,8 @@ import {
 } from "framer-motion";
 import bannerUnderlineImg from "@/public/homepage/banner-underline.png";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import { ctaClass } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import {
   drawLine,
   fadeDown,
@@ -41,6 +43,7 @@ function HeroUnderline() {
 
 export function HeroSection() {
   const { openContactForm } = useContactFormDialog();
+  const heroCallbackCta = ctaClass("home", "hero", "callback");
   const reduceMotion = useReducedMotion();
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
@@ -203,8 +206,16 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
               <button
                 type="button"
-                onClick={() => openContactForm({ intent: "callback" })}
-                className="inline-flex h-10 md:h-12 w-[80%] sm:w-full cursor-pointer items-center justify-center whitespace-nowrap rounded bg-white px-6 text-xs md:text-sm font-semibold text-black transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]"
+                onClick={() =>
+                  openContactForm({
+                    intent: "callback",
+                    ctaClass: heroCallbackCta,
+                  })
+                }
+                className={cn(
+                  heroCallbackCta,
+                  "inline-flex h-10 md:h-12 w-[80%] sm:w-full cursor-pointer items-center justify-center whitespace-nowrap rounded bg-white px-6 text-xs md:text-sm font-semibold text-black transition-opacity hover:bg-gray-300 sm:w-auto sm:min-w-[12rem]",
+                )}
               >
                 Get a Callback
               </button>

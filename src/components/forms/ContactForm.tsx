@@ -39,6 +39,8 @@ const textareaClassName =
 type ContactFormProps = {
   intent?: ContactFormIntent;
   defaultDestination?: TravelDestination;
+  /** `cta-*` class from the button that opened this form (modal flow). */
+  ctaClass?: string;
   onSubmitted?: () => void;
 };
 
@@ -54,6 +56,7 @@ function SelectChevron() {
 export function ContactForm({
   intent = "contact",
   defaultDestination,
+  ctaClass,
   onSubmitted,
 }: ContactFormProps) {
   const router = useRouter();
@@ -93,6 +96,8 @@ export function ContactForm({
           ...data,
           formIntent: intent,
           ...getStoredUtmParams(),
+          page_url: window.location.href,
+          cta_class: ctaClass ?? "",
         }),
       });
 

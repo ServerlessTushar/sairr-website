@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { whatsappHref } from "@/data/site";
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import { ctaClass } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/whatsappLogo.svg";
@@ -38,6 +40,7 @@ const defaultContent: CtaContent = {
 
 export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProps) {
   const { openContactForm } = useContactFormDialog();
+  const footerCallbackCta = ctaClass("home", "footer-cta", "callback");
   const ctaContent = { ...defaultContent, ...content };
 
   return (
@@ -109,8 +112,16 @@ export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProp
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
                   <button
                     type="button"
-                    onClick={() => openContactForm({ intent: "callback" })}
-                    className="w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    onClick={() =>
+                      openContactForm({
+                        intent: "callback",
+                        ctaClass: footerCallbackCta,
+                      })
+                    }
+                    className={cn(
+                      footerCallbackCta,
+                      "w-[11rem] bg-[#ec575e] hover:bg-[#dc4850] hover:scale-104 tab:hover-0.98 cursor-pointer inline-flex h-12 items-center justify-center rounded px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90",
+                    )}
                   >
                     {ctaContent.callbackLabel}
                   </button>
