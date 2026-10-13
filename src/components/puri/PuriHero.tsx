@@ -65,7 +65,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
 
   return (
     <section className={cn("bg-[#FDFBF2] scroll-mt-24", className)}>
-      <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 lg:px-8 lg:pt-28">
+      <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-28">
         <div className="relative">
           <TextReveal
             as="h1"

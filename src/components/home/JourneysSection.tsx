@@ -17,7 +17,7 @@ import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
 import andaman from "@/public/homepage/journey-andaman.webp";
 import bali from "@/public/homepage/journey-bali.webp";
 import backgroundImgDesktop from "@/public/homepage/BgDestinationHome1.png";
-import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob.webp";
+import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob2.webp";
 import { drawLine } from "@/lib/motion";
 import bannerUnderlineImg from "@/public/homepage/underline-journey.png";
 

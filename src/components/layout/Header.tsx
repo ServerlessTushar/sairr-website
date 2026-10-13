@@ -250,8 +250,14 @@ export function Header() {
           />
           <SheetContent side="right" className="w-[300px] bg-mist">
             <SheetHeader>
-              <SheetTitle className="font-heading text-left text-brand">
-                {siteConfig.name}
+              <SheetTitle className="text-left">
+                <Image
+                  src="/sairr-logo.webp"
+                  alt={siteConfig.name}
+                  width={130.4}
+                  height={41.7}
+                  className="h-[20.85px] w-[65.2px]"
+                />
               </SheetTitle>
             </SheetHeader>
             <nav className="mt-8 flex flex-col gap-4">
