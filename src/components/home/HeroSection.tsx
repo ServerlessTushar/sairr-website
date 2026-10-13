@@ -125,7 +125,7 @@ export function HeroSection() {
       id="home-hero"
       data-header-hero
       ref={sectionRef}
-      className="relative min-h-dvh overflow-hidden"
+      className="relative min-h-dvh scroll-mt-24 overflow-hidden"
     >
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <motion.div

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { siteConfig, whatsappHref } from "@/data/site";
+import { homeHeroHref, siteConfig, whatsappHref } from "@/data/site";
 import WhatsAppIcon from "@/public/whatsapp.svg";
 import InstagramIcon from "@/public/insta.svg";
 import LinkedInIcon from "@/public/linkedin.svg";
@@ -9,7 +9,7 @@ import LinkedInIcon from "@/public/linkedin.svg";
 const CORAL = "#EC575E";
 
 const exploreLinks = [
-  { href: "/", label: "Home" },
+  { href: homeHeroHref, label: "Home" },
   { href: "/#destinations", label: "Destinations" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About Us" },

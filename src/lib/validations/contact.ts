@@ -107,8 +107,6 @@ export function buildContactFormDefaults(
     isLiveDestination(destination)
   ) {
     journeyType = "group";
-  } else if (intent === "private-journey") {
-    journeyType = "custom";
   }
 
   return {

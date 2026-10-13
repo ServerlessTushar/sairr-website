@@ -25,8 +25,10 @@ export function whatsappHref(message?: string) {
   return `${base}?text=${encodeURIComponent(message)}`;
 }
 
+export const homeHeroHref = "/#home-hero";
+
 export const navLinks = [
-  { href: "/", label: "Home" },
+  { href: homeHeroHref, label: "Home" },
   { href: "/#destinations", label: "Destinations" },
   { href: "/why-sairr", label: "Why Sairr" },
   { href: "/about", label: "About" },
