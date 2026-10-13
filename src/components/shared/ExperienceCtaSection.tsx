@@ -20,6 +20,7 @@ export type ExperienceCtaSectionData = {
 
 export type ExperienceCtaSectionProps = ExperienceCtaSectionData & {
   onPrimaryClick: () => void;
+  primaryCtaClass?: string;
   className?: string;
 };
 
@@ -30,6 +31,7 @@ export function ExperienceCtaSection({
   whatsappLabel = "WhatsApp us",
   whatsappMessage = "Hi Sairr — I'd like to talk about a journey.",
   onPrimaryClick,
+  primaryCtaClass,
   className,
 }: ExperienceCtaSectionProps) {
   return (
@@ -50,7 +52,10 @@ export function ExperienceCtaSection({
           <button
             type="button"
             onClick={onPrimaryClick}
-            className="inline-flex h-12 w-[11rem] cursor-pointer items-center justify-center rounded bg-[#ec575e] px-6 text-sm font-semibold text-white transition-opacity hover:bg-[#dc4850] hover:opacity-90"
+            className={cn(
+              primaryCtaClass,
+              "inline-flex h-12 w-[11rem] cursor-pointer items-center justify-center rounded bg-[#ec575e] px-6 text-sm font-semibold text-white transition-opacity hover:bg-[#dc4850] hover:opacity-90",
+            )}
           >
             {primaryCtaLabel}
           </button>

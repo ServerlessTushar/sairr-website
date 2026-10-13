@@ -19,6 +19,7 @@ type ContactFormDialogProps = {
   onOpenChange: (open: boolean) => void;
   destination?: TravelDestination;
   intent: ContactFormIntent;
+  ctaClass?: string;
 };
 
 export function ContactFormDialog({
@@ -26,6 +27,7 @@ export function ContactFormDialog({
   onOpenChange,
   destination,
   intent,
+  ctaClass,
 }: ContactFormDialogProps) {
   const { title, description } = getContactFormCopy(intent, destination);
 
@@ -38,9 +40,10 @@ export function ContactFormDialog({
         </DialogHeader>
 
         <ContactForm
-          key={`${intent}-${destination ?? "default"}`}
+          key={`${intent}-${destination ?? "default"}-${ctaClass ?? ""}`}
           intent={intent}
           defaultDestination={destination}
+          ctaClass={ctaClass}
           onSubmitted={() => onOpenChange(false)}
         />
       </DialogContent>

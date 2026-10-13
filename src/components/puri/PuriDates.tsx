@@ -1,6 +1,7 @@
 "use client";
 
 import { useContactFormDialog } from "@/components/forms/ContactFormDialogProvider";
+import { ctaClass } from "@/lib/cta";
 import type { TravelDestination } from "@/lib/validations/contact";
 import {
   ExperienceDatesSection,
@@ -17,23 +18,30 @@ export type PuriDatesProps = Omit<
 
 export function PuriDates({
   notifyDestination,
+  ctaPage = "puri",
   ...props
-}: PuriDatesProps & { notifyDestination: TravelDestination }) {
+}: PuriDatesProps & {
+  notifyDestination: TravelDestination;
+  ctaPage?: string;
+}) {
   const { openContactForm } = useContactFormDialog();
+  const datesNotifyCta = ctaClass(ctaPage, "dates", "notify");
 
   return (
     <ExperienceDatesSection
       {...props}
-      onInterestClick={() =>
+      onInterestClick={(cardId) =>
         openContactForm({
           destination: notifyDestination,
           intent: "interest",
+          ctaClass: ctaClass(ctaPage, "dates", "card", cardId),
         })
       }
       onNotifyClick={() =>
         openContactForm({
           destination: notifyDestination,
           intent: "interest",
+          ctaClass: datesNotifyCta,
         })
       }
     />

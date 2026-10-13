@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { Menu } from "lucide-react";
-import { navLinks, siteConfig } from "@/data/site";
+import { homeHeroHref, navLinks, siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -30,15 +30,20 @@ function isNavLinkActive(pathname: string, href: string, hash: string) {
     return pathname === pathPart && hash === hashPart;
   }
 
-  if (href === "/") {
+  if (href === homeHeroHref) {
     const hashNavActive = navLinks.some((link) => {
       const i = link.href.indexOf("#");
       if (i === -1) return false;
-      const pathPart = link.href.slice(0, i) || "/";
       const hashPart = link.href.slice(i);
+      if (link.href === homeHeroHref) return false;
+      const pathPart = link.href.slice(0, i) || "/";
       return pathname === pathPart && hash === hashPart;
     });
-    return pathname === "/" && !hashNavActive;
+    return (
+      pathname === "/" &&
+      !hashNavActive &&
+      (hash === "" || hash === homeHeroHref.slice(homeHeroHref.indexOf("#")))
+    );
   }
 
   return pathname === href || pathname.startsWith(`${href}/`);

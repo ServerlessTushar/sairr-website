@@ -9,6 +9,7 @@ import { whatsappHref } from "@/data/site";
 import type { TravelDestination } from "@/lib/validations/contact";
 import underlineImg from "@/public/homepage/underline.png";
 import { imageHover } from "@/lib/motion";
+import { ctaClass } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
 const TEAL = "#0E5E6F";
@@ -163,9 +164,10 @@ export function JourneyCard({
   onNotifyMe,
 }: {
   journey: Journey;
-  onNotifyMe?: (destination: TravelDestination) => void;
+  onNotifyMe?: (destination: TravelDestination, journeySlug: string) => void;
 }) {
   const isOpen = journey.status === "booking-open";
+  const journeyInterestCta = ctaClass("home", "journey", journey.slug);
   const hasItineraryLink = isOpen && Boolean(journey.href);
   const canExpressInterest =
     !isOpen && Boolean(journey.destination && onNotifyMe);
@@ -190,9 +192,12 @@ export function JourneyCard({
       {canExpressInterest ? (
         <button
           type="button"
-          className="absolute inset-0 z-20 cursor-pointer rounded-lg border-0 bg-transparent p-0"
+          className={cn(
+            journeyInterestCta,
+            "absolute inset-0 z-20 cursor-pointer rounded-lg border-0 bg-transparent p-0",
+          )}
           aria-label={`I'm interested in ${journey.title}`}
-          onClick={() => onNotifyMe!(journey.destination!)}
+          onClick={() => onNotifyMe!(journey.destination!, journey.slug)}
         />
       ) : null}
 

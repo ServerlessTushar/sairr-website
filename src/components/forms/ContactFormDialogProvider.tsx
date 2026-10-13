@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { ContactFormDialog } from "@/components/forms/ContactFormDialog";
+import { ctaClass as buildCtaClass } from "@/lib/cta";
 import type {
   ContactFormIntent,
   TravelDestination,
@@ -17,6 +18,8 @@ import type {
 export type ContactFormOpenOptions = {
   destination?: TravelDestination;
   intent?: ContactFormIntent;
+  /** Same value as the `cta-*` class on the button that opened the form. */
+  ctaClass?: string;
 };
 
 type ContactFormDialogContextValue = {
@@ -42,6 +45,7 @@ function normalizeOpenOptions(
   return {
     destination: options.destination,
     intent: options.intent ?? "contact",
+    ctaClass: options.ctaClass,
   };
 }
 
@@ -51,12 +55,14 @@ export function ContactFormDialogProvider({ children }: { children: ReactNode })
     TravelDestination | undefined
   >();
   const [intent, setIntent] = useState<ContactFormIntent>("contact");
+  const [ctaClass, setCtaClass] = useState<string | undefined>();
 
   const openContactForm = useCallback(
     (options?: ContactFormOpenOptions | TravelDestination) => {
       const normalized = normalizeOpenOptions(options);
       setDestination(normalized.destination);
       setIntent(normalized.intent ?? "contact");
+      setCtaClass(normalized.ctaClass);
       setOpen(true);
     },
     [],
@@ -65,7 +71,10 @@ export function ContactFormDialogProvider({ children }: { children: ReactNode })
   useEffect(() => {
     const fromHash = () => {
       if (window.location.hash !== "#enquire") return;
-      openContactForm({ intent: "contact" });
+      openContactForm({
+        intent: "contact",
+        ctaClass: buildCtaClass("site", "hash-enquire"),
+      });
       history.replaceState(
         null,
         "",
@@ -85,6 +94,7 @@ export function ContactFormDialogProvider({ children }: { children: ReactNode })
         onOpenChange={setOpen}
         destination={destination}
         intent={intent}
+        ctaClass={ctaClass}
       />
     </ContactFormDialogContext.Provider>
   );
