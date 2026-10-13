@@ -51,12 +51,23 @@ export const contactUsFormSchema = z.object({
   message: z.string().max(1000, "Message is too long").optional(),
 
   // --- hidden / reserved fields ---
-  numberOfTravellers: z
-    .number({ message: "Please enter a valid number" })
-    .int()
-    .positive()
-    .max(999)
-    .optional(),
+  numberOfTravellers: z.preprocess(
+    (value) => {
+      if (value === "" || value === null || value === undefined) {
+        return undefined;
+      }
+      if (typeof value === "number" && Number.isNaN(value)) {
+        return undefined;
+      }
+      return value;
+    },
+    z
+      .number({ message: "Please enter a valid number" })
+      .int()
+      .positive()
+      .max(999)
+      .optional(),
+  ),
   preferredDate: z.string().max(50).optional(), // ISO date string from date picker
   howDidYouHear: z
     .string()
@@ -69,13 +80,25 @@ export const contactUsFormSchema = z.object({
     )
     .optional(),
 
-  // UTM
+  // Attribution (stored in session; not written to ContactUs tab unless columns are added)
   utm_source: utmField,
+  utm_subsource: utmField,
   utm_medium: utmField,
   utm_id: utmField,
   utm_content: utmField,
   utm_term: utmField,
   utm_campaign: utmField,
+  gclid: utmField,
+  fbclid: utmField,
+  ad_id: utmField,
+  adset_id: utmField,
+  campaign_id: utmField,
+  ad_name: utmField,
+  adset_name: utmField,
+  campaign_name: utmField,
+  placement: utmField,
+  site_source_name: utmField,
+  page_url: z.string().max(2048).optional(),
 });
 
 export type ContactUsFormFieldValues = z.input<typeof contactUsFormSchema>;
@@ -92,4 +115,23 @@ export function buildContactUsFormDefaults(): ContactUsFormFieldValues {
     preferredDate: "",
     howDidYouHear: "",
   };
+}
+
+/** ContactUs tab columns A–J (fixed order). */
+export function formatContactUsRowForSheet(
+  data: ContactUsFormData,
+  submittedAt = new Date(),
+) {
+  return [
+    data.name,
+    data.phone,
+    data.email ?? "",
+    data.topic,
+    data.message ?? "",
+    data.numberOfTravellers != null ? String(data.numberOfTravellers) : "",
+    data.preferredDate ?? "",
+    data.howDidYouHear ?? "",
+    submittedAt.toISOString(),
+    data.page_url ?? "",
+  ];
 }

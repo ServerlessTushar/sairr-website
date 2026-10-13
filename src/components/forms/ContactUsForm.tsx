@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +9,7 @@ import {
   buildContactUsFormDefaults,
   contactUsFormSchema,
   contactUsTopicOptions,
+  howDidYouHearOptions,
   type ContactUsFormData,
   type ContactUsFormFieldValues,
 } from "@/lib/validations/contact-us";
@@ -41,20 +43,36 @@ function SelectChevron() {
 
 type ContactUsFormProps = {
   onSubmitted?: () => void;
+  /**
+   * Prefill any fields (visible or hidden). Hidden reserved fields always map to
+   * sheet columns F–H regardless of whether they are shown in the UI.
+   */
+  prefill?: Partial<ContactUsFormFieldValues>;
+  /** Show reserved sheet columns F–H in the UI (default: hidden inputs only). */
+  showReservedFields?: boolean;
 };
 
-export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
+export function ContactUsForm({
+  onSubmitted,
+  prefill,
+  showReservedFields = false,
+}: ContactUsFormProps) {
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactUsFormFieldValues, unknown, ContactUsFormData>({
     resolver: zodResolver(contactUsFormSchema),
-    defaultValues: buildContactUsFormDefaults(),
+    defaultValues: { ...buildContactUsFormDefaults(), ...prefill },
   });
+
+  useEffect(() => {
+    reset({ ...buildContactUsFormDefaults(), ...prefill });
+  }, [prefill, reset]);
 
   const selectedTopic = useWatch({ control, name: "topic" });
 
@@ -66,6 +84,7 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
         body: JSON.stringify({
           ...data,
           ...getStoredUtmParams(),
+          page_url: window.location.href,
         }),
       });
 
@@ -89,6 +108,69 @@ export function ContactUsForm({ onSubmitted }: ContactUsFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+      {!showReservedFields ? (
+        <>
+          <input type="hidden" {...register("preferredDate")} />
+          <input type="hidden" {...register("howDidYouHear")} />
+          <input
+            type="hidden"
+            {...register("numberOfTravellers", { valueAsNumber: true })}
+          />
+        </>
+      ) : (
+        <div className="space-y-6">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="cu-travellers" className={labelClassName}>
+                Number of travellers
+              </Label>
+              <Input
+                id="cu-travellers"
+                type="number"
+                min={1}
+                max={999}
+                className={fieldClassName}
+                {...register("numberOfTravellers", { valueAsNumber: true })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="cu-preferred-date" className={labelClassName}>
+                Preferred date
+              </Label>
+              <Input
+                id="cu-preferred-date"
+                type="date"
+                className={fieldClassName}
+                {...register("preferredDate")}
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="cu-how-hear" className={labelClassName}>
+              How did you hear about us?
+            </Label>
+            <div className="relative">
+              <select
+                id="cu-how-hear"
+                className={cn(
+                  fieldClassName,
+                  "w-full appearance-none pr-10",
+                )}
+                {...register("howDidYouHear")}
+              >
+                <option value="">Select an option</option>
+                {howDidYouHearOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+              <SelectChevron />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Name + Phone */}
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">

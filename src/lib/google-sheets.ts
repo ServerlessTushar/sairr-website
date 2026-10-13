@@ -23,14 +23,22 @@ export function isGoogleSheetsConfigured(): boolean {
   return getCredentials() !== null;
 }
 
+function sheetTabRange(tabName: string, columns = "A:Z") {
+  const quoted = /[\s'!]/.test(tabName) ? `'${tabName.replace(/'/g, "''")}'` : tabName;
+  return `${quoted}!${columns}`;
+}
+
 export async function appendRowToSheet({
   sheetId,
   tabName,
   values,
+  columns,
 }: {
   sheetId: string;
   tabName: string;
   values: (string | number | boolean)[];
+  /** Column span for append range, e.g. `A:J` for ContactUs. */
+  columns?: string;
 }) {
   const credentials = getCredentials();
 
@@ -50,7 +58,7 @@ export async function appendRowToSheet({
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: `${tabName}!A:Z`,
+    range: sheetTabRange(tabName, columns),
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
     requestBody: {

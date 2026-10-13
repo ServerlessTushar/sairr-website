@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { appendRowToSheet, isGoogleSheetsConfigured } from "@/lib/google-sheets";
-import { contactUsFormSchema } from "@/lib/validations/contact-us";
-
-const CONTACT_US_TAB = "ContactUs";
+import { getContactUsSheetConfig } from "@/lib/sheets-config";
+import {
+  contactUsFormSchema,
+  formatContactUsRowForSheet,
+} from "@/lib/validations/contact-us";
 
 export async function POST(request: Request) {
   try {
@@ -20,8 +22,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const sheetId = process.env.GOOGLE_SHEET_ID;
-    if (!sheetId) {
+    const sheetConfig = getContactUsSheetConfig();
+    if (!sheetConfig) {
       return NextResponse.json(
         { success: false, error: "GOOGLE_SHEET_ID is not configured." },
         { status: 503 },
@@ -42,27 +44,10 @@ export async function POST(request: Request) {
     const data = parsed.data;
 
     await appendRowToSheet({
-      sheetId,
-      tabName: CONTACT_US_TAB,
-      values: [
-        data.name,
-        data.phone,
-        data.email ?? "",
-        data.topic,
-        data.message ?? "",
-        // reserved hidden fields
-        data.numberOfTravellers != null ? String(data.numberOfTravellers) : "",
-        data.preferredDate ?? "",
-        data.howDidYouHear ?? "",
-        // UTM
-        data.utm_source ?? "",
-        data.utm_medium ?? "",
-        data.utm_id ?? "",
-        data.utm_content ?? "",
-        data.utm_term ?? "",
-        data.utm_campaign ?? "",
-        new Date().toISOString(),
-      ],
+      sheetId: sheetConfig.sheetId,
+      tabName: sheetConfig.tabName,
+      columns: "A:J",
+      values: formatContactUsRowForSheet(data),
     });
 
     return NextResponse.json({ success: true });
