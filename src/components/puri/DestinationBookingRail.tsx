@@ -26,12 +26,12 @@ function BookingDateLabel({ range }: { range: DepartureDateRange }) {
     <p className="min-w-0 flex-1 leading-tight text-charcoal">
       <span className="text-[15px] font-bold">{start.day}</span>
       <span className="text-[9px] font-normal">
-        &nbsp;{start.month}&apos; {start.year}
+        &nbsp;{start.month}&apos;{start.year}
       </span>
       <span className="mx-0.5 text-[11px] font-normal">–</span>
       <span className="text-[15px] font-bold">{end.day}</span>
       <span className="text-[9px] font-normal">
-        &nbsp;{end.month}&apos; {end.year}
+        &nbsp;{end.month}&apos;{end.year}
       </span>
     </p>
   );
@@ -177,7 +177,7 @@ export function DestinationBookingRail({
                       "group flex w-full cursor-pointer flex-col overflow-hidden rounded-lg border-[0.5px] border-solid border-[#C8A867] bg-white text-left shadow-[0_2px_8px_rgba(27,29,31,0.04)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out hover:-translate-y-2 hover:border-[#0E5E6F]/35 hover:bg-[#FDFBF2] hover:shadow-[0_8px_24px_rgba(27,29,31,0.1)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(27,29,31,0.06)] motion-reduce:transition-none motion-reduce:hover:translate-y-0",
                     )}
                   >
-                    <div className="flex min-h-0 items-center gap-2 border-b border-[#C8A867]/60 px-2.5 py-2.5">
+                    <div className="flex min-h-0 items-center gap-1.5 sm:gap-2 border-b border-[#C8A867]/60 px-2.5 py-2.5">
                       <Image
                         src="/destinations/calender.svg"
                         alt=""

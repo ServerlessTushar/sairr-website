@@ -123,6 +123,7 @@ export function JourneysSection() {
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
               as="h2"
+              align="center"
               text="Journeys to look forward to"
               className="font-heading text-[28px] font-semibold tracking-tight text-black sm:text-4xl lg:leading-tight"
             />

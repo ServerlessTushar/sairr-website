@@ -41,6 +41,7 @@ export function AnimatedSectionHeader({
         ) : (
           <TextReveal
             as={headingAs}
+            align="center"
             text={heading}
             className={headingClassName}
           />

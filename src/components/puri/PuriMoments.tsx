@@ -44,7 +44,7 @@ export function PuriMoments({
     <section className=" bg-[#FDFBF2]">
       <div
         className={cn(
-          "py-12 sm:py-16 lg:pb-10 lg:pt-16",
+          "py-6 sm:py-16 lg:pb-10 lg:pt-16",
           flush
             ? "w-full"
             : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",

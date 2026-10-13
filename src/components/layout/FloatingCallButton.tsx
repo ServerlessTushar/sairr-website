@@ -16,7 +16,7 @@ export function FloatingCallButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed right-5 bottom-8 z-50 rounded-full shadow-lg sm:right-8 sm:bottom-8"
+      className="fixed right-5 bottom-16 z-50 rounded-full shadow-lg sm:right-8 sm:bottom-8"
     >
       <Image
         src={whatsapp}

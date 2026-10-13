@@ -19,11 +19,11 @@ export function PuriStickyBar({
   const stickyInterestedCta = ctaClass(ctaPage, "sticky", "interested");
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal/10 bg-mist/95 px-4 py-3 backdrop-blur-lg md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal/10 bg-[#ec575e] px-4 py-3 backdrop-blur-lg md:hidden">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-sm text-charcoal">
+        <p className="text-sm text-white">
           From <span className="font-semibold">{priceLabel}</span>
-          <span className="text-[#5d5d5d]"> / person</span>
+          <span className="text-white"> / person</span>
         </p>
         <Button
           type="button"

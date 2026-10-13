@@ -30,7 +30,7 @@ export function TestimonialVideoSection({
     <section className={cn("bg-[#FDFBF2]", className)}>
       <div
         className={cn(
-          "pb-16 pt-10 text-center sm:pb-20 lg:pb-16",
+          "py-8 text-center sm:pb-20 lg:pb-16",
           flush
             ? "w-full px-0"
             : "mx-auto max-w-4xl px-4 sm:px-6 lg:px-8",

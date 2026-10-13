@@ -11,7 +11,7 @@ import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/whatsappLogo.svg";
 import bgImgDesktop from "@/public/homepage/homepage-bottom.webp";
-import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob.webp";
+import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob2.webp";
 import { scaleIn, springSnappy, staggerContainer } from "@/lib/motion";
 
 const TEAL = "#0E5E6F";
@@ -94,7 +94,7 @@ export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProp
               <TextReveal
                 as="h2"
                 text={ctaContent.title}
-                className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-black sm:text-[2rem] md:text-3xl"
+                className="mt-3 text-center font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-black sm:text-[2rem] md:text-3xl"
                 delay={0.1}
               />
 
