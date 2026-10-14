@@ -99,7 +99,6 @@ export default async function DestinationPage({ params }: Props) {
             <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start lg:gap-[3.625rem]">
               <div className="min-w-0">
                 <PuriHeroDetails sectionData={destination.hero} />
-                <div className="py-8 lg:hidden">{bookingRail}</div>
                 <PuriMoments
                   flush
                   heading={destination.moments.heading}
@@ -110,6 +109,7 @@ export default async function DestinationPage({ params }: Props) {
                   heading={destination.itineraryHeading}
                   carouselData={destination.itinerary}
                 />
+                <div className="py-8 lg:hidden">{bookingRail}</div>
                 <GroupTravelSection
                   flush
                   heading="Traveling with your own group?"

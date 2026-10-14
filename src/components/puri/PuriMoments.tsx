@@ -66,7 +66,7 @@ export function PuriMoments({
                 ? "w-full pl-5 pr-0"
                 : "-mr-4 pl-4 sm:-mr-6 sm:pl-6 lg:-mr-8 lg:pl-8",
             )}
-            slideClassName="py-2"
+            slideClassName="py-2 last:mr-5"
             gap={{ mobile: 8, tablet: 20, desktop: 20 }}
             fixedSlideWidthLg={MOMENT_CARD_WIDTH_PX}
             items={cards}
@@ -87,7 +87,7 @@ export function PuriMoments({
             showDots
             controlsPosition="split"
             controlsClassName="mt-5"
-            previousButtonClassName="border-transparent bg-[#F0F0F099] text-charcoal/50 hover:bg-[#F0F0F0] disabled:opacity-100"
+            previousButtonClassName="border-transparent bg-[#C8A867] text-white hover:bg-[#B99656] disabled:bg-[#F0F0F099] disabled:text-charcoal/50 disabled:opacity-100"
             nextButtonClassName="border-transparent bg-[#C8A867] text-white hover:bg-[#B99656] disabled:bg-[#F0F0F099] disabled:text-charcoal/50 disabled:opacity-100"
           />
         </div>
