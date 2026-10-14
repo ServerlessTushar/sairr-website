@@ -67,7 +67,7 @@ export function PuriMoments({
                 : "-mr-4 pl-4 sm:-mr-6 sm:pl-6 lg:-mr-8 lg:pl-8",
             )}
             slideClassName="py-2"
-            gap={20}
+            gap={{ mobile: 8, tablet: 20, desktop: 20 }}
             fixedSlideWidthLg={MOMENT_CARD_WIDTH_PX}
             items={cards}
             getKey={(item) => item.id}
@@ -81,7 +81,7 @@ export function PuriMoments({
                 <MomentCard moment={item} />
               </CardRevealCarouselItem>
             )}
-            slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 3 }}
+            slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
             ariaLabel="Moments that make Puri"
             autoplay={false}
             showDots

@@ -91,8 +91,8 @@ export default function WhySairrPage() {
         className="relative overflow-hidden"
       >
         <Image
-          src="/why-sairr/HeroSectionImg.webp"
-          alt="Snow-covered mountain village in a forested valley"
+          src="/why-sairr/HeroSectionImg1.webp"
+          alt="European city"
           width={4536}
           height={1799}
           priority

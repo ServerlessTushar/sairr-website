@@ -1,9 +1,38 @@
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { ContactUsForm } from "@/components/forms/ContactUsForm";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { createMetadata } from "@/lib/seo";
-import { siteConfig, phoneHref, whatsappHref } from "@/data/site";
+import { phoneHref, siteConfig, whatsappHref } from "@/data/site";
+import { cn } from "@/lib/utils";
+
+const TEAL = "#0E5E6F";
+const HERO_OVERLAY = "#4A4949";
+
+const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=WeWork%2C+Platina+Tower%2C+Gurugram%2C+Haryana+122002";
+
+const socialPills = [
+  {
+    href: siteConfig.social.instagram,
+    label: "@sairr.in",
+    icon: "/contact/inta.svg",
+    showLabel: true,
+  },
+  {
+    href: siteConfig.social.youtube,
+    label: "YouTube",
+    icon: "/contact/youtube.svg",
+    showLabel: false,
+  },
+  {
+    href: siteConfig.social.linkedin,
+    label: "LinkedIn",
+    icon: "/contact/linkedin.svg",
+    showLabel: false,
+  },
+] as const;
 
 export const metadata = createMetadata({
   title: "Contact Us — Sairr",
@@ -12,118 +41,213 @@ export const metadata = createMetadata({
   path: "/contact",
 });
 
+type ContactChannelProps = {
+  href: string;
+  title: string;
+  subtitle: string;
+  iconSrc: string;
+  iconClassName?: string;
+  external?: boolean;
+  trailingIcon?: boolean;
+};
+
+function ContactChannel({
+  href,
+  title,
+  subtitle,
+  iconSrc,
+  iconClassName,
+  external,
+  trailingIcon,
+}: ContactChannelProps) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="flex items-center gap-4 rounded-xl border border-[#E8E8E8] bg-white px-4 py-4 transition-colors hover:border-[#0E5E6F]/25 hover:bg-[#FAFAFA] sm:px-5"
+    >
+      <span
+        className={cn(
+          "flex size-12 shrink-0 items-center justify-center rounded-lg",
+          iconClassName,
+        )}
+      >
+        <Image src={iconSrc} alt="" width={28} height={28} aria-hidden />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-semibold text-[#1a1a1a]">{title}</span>
+        <span className="mt-0.5 block text-sm text-[#5d5d5d]">{subtitle}</span>
+      </span>
+      {trailingIcon ? (
+        <ArrowUpRight className="size-5 shrink-0 text-[#5d5d5d]" aria-hidden />
+      ) : null}
+    </a>
+  );
+}
+
 export default function ContactPage() {
   return (
-    <main className="min-h-dvh bg-[#FDFBF2]">
-      <div className="mx-auto grid min-h-dvh max-w-6xl grid-cols-1 lg:grid-cols-2">
-
-        {/* Left — teal brand panel */}
-        <div className="relative flex flex-col items-start justify-center overflow-hidden bg-[#0E5E6F] px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
+    <main className="bg-[#FDFBF2]">
+      {/* Hero */}
+      <section
+        data-header-hero
+        className="relative flex min-h-[min(52vw,420px)] items-center justify-center overflow-hidden sm:min-h-[380px] lg:min-h-[420px]"
+      >
+        <Image
+          src="/why-sairr/HeroSectionImg1.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: `${HERO_OVERLAY}CC` }}
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 text-center text-white sm:px-6 sm:py-24">
           <FadeIn>
-            <div className="relative inline-block">
-              <h1 className="font-heading text-4xl font-semibold leading-tight text-[#FDFBF2] sm:text-5xl">
-                Get in touch<br />with Sairr.
-              </h1>
-              <Image
-                src="/destinations/gold-bird-pair.webp"
-                alt=""
-                width={100}
-                height={75}
-                className="pointer-events-none absolute -top-8 -right-24 h-auto w-20 opacity-80"
-                aria-hidden
-              />
+            <h1 className="font-heading text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem]">
+              Let&apos;s talk about your next journey
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
+              Planning a trip, or just want to know more about Sairr? Write to
+              us, call, or WhatsApp.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Contact card */}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:pb-16">
+        <div
+          className="-mt-16 overflow-hidden rounded-2xl bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:-mt-20 sm:rounded-3xl lg:-mt-24"
+        >
+          <div className="flex flex-col lg:grid lg:grid-cols-2">
+            {/* Form first on mobile */}
+            <div
+              className="order-1 px-6 py-10 sm:px-10 sm:py-12"
+              style={{ backgroundColor: TEAL }}
+            >
+              <FadeIn>
+                <h2 className="font-heading text-2xl font-semibold text-white sm:text-[1.75rem]">
+                  Get in touch
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-white/85 sm:text-base">
+                  Ask us anything about travelling with Sairr.
+                </p>
+                <div className="mt-8">
+                  <ContactUsForm appearance="teal" />
+                </div>
+              </FadeIn>
             </div>
 
-            {/* Gold divider */}
-            <div className="mt-6 h-px w-14 bg-[#C8A867]" aria-hidden />
+            {/* Direct contact */}
+            <div className="order-2 px-6 py-10 sm:px-10 sm:py-12">
+              <FadeIn delay={0.1}>
+                <h2 className="font-heading text-2xl font-semibold text-[#1a1a1a] sm:text-[1.75rem]">
+                  Prefer to reach out directly?
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
+                  Choose whichever channel feels easiest.
+                </p>
 
-            <p className="mt-6 text-base leading-relaxed text-[#FDFBF2]/75 sm:text-lg">
-              Ask us anything — about our journeys, partnerships, careers, or
-              anything else on your mind.
-            </p>
-
-            {/* Contact details */}
-            <div className="mt-10 space-y-4">
-              <a
-                href={phoneHref()}
-                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
-                  <Phone className="size-4" aria-hidden />
-                </span>
-                <span className="text-sm">{siteConfig.phone}</span>
-              </a>
-
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
-                  <Mail className="size-4" aria-hidden />
-                </span>
-                <span className="text-sm">{siteConfig.email}</span>
-              </a>
-
-              <a
-                href={whatsappHref("Hi, I'd like to know more about travelling with Sairr.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
-                  <Image
-                    src="/homepage/whatsapp.png"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="size-4 brightness-[10]"
-                    aria-hidden
+                <div className="mt-8 space-y-3">
+                  <ContactChannel
+                    href={whatsappHref(
+                      "Hi, I'd like to know more about travelling with Sairr.",
+                    )}
+                    title="Chat with us"
+                    subtitle="Usually faster replies"
+                    iconSrc="/contact/chat.svg"
+                    iconClassName="bg-[#0E5E6F]"
+                    external
+                    trailingIcon
                   />
-                </span>
-                <span className="text-sm">Chat on WhatsApp</span>
-              </a>
+                  <ContactChannel
+                    href={phoneHref()}
+                    title={siteConfig.phone}
+                    subtitle="Speak with our team"
+                    iconSrc="/contact/ringing-phone.svg"
+                    iconClassName="bg-[#E8EEF0]"
+                  />
+                  <ContactChannel
+                    href={`mailto:${siteConfig.email}`}
+                    title={siteConfig.email}
+                    subtitle="For detailed enquiries"
+                    iconSrc="/contact/mail.svg"
+                    iconClassName="bg-[#E8EEF0]"
+                  />
+                </div>
 
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=WeWork%2C+Platina+Tower%2C+Gurugram%2C+Haryana+122002"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-[#FDFBF2]/80 transition-colors hover:text-[#FDFBF2]"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FDFBF2]/10">
-                  <MapPin className="size-4" aria-hidden />
-                </span>
-                <span className="text-sm leading-relaxed">
-                  WeWork, Platina Tower, Gurugram, Haryana 122002
-                </span>
-              </a>
+                <p className="mt-8 text-sm leading-relaxed text-[#5d5d5d]">
+                  Our team is available{" "}
+                  <span className="font-medium text-[#1a1a1a]">
+                    10 AM – 8 PM
+                  </span>
+                  , Monday to Sunday.
+                </p>
+
+                <div className="mt-6">
+                  <p className="text-sm font-semibold text-[#1a1a1a]">
+                    Address
+                  </p>
+                  <Link
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-sm leading-relaxed text-[#5d5d5d] underline-offset-2 hover:text-[#0E5E6F] hover:underline"
+                  >
+                    WeWork, Platina Tower, Gurugram, Haryana
+                  </Link>
+                </div>
+              </FadeIn>
             </div>
-
-            {/* Availability note */}
-            <p className="mt-10 text-xs leading-relaxed text-[#FDFBF2]/50">
-              Our team is available{" "}
-              <span className="text-[#FDFBF2]/75">10 AM – 8 PM</span>, Monday
-              to Sunday.
-            </p>
-          </FadeIn>
+          </div>
         </div>
-
-        {/* Right — form panel */}
-        <div className="flex flex-col justify-center px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
-          <FadeIn>
-            <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
-              Send us a message
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
-              Fill in the form and we&apos;ll get back to you within 24 hours.
-            </p>
-
-            <div className="mt-8">
-              <ContactUsForm />
-            </div>
-          </FadeIn>
-        </div>
-
       </div>
+
+      {/* Follow along */}
+      <section className="mx-4 mb-10 rounded-3xl bg-[#E9DFC8]/50 px-4 py-12 sm:mx-6 sm:px-8 sm:py-14 lg:mx-auto lg:mb-16 lg:max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <FadeIn>
+            <h2 className="font-heading text-3xl font-semibold text-[#1a1a1a] sm:text-4xl">
+              Follow along
+            </h2>
+            <p className="mt-2 text-sm text-[#5d5d5d] sm:text-base">
+              See what Sairr is all about.
+            </p>
+
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              {socialPills.map((pill) => (
+                <a
+                  key={pill.href}
+                  href={pill.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[#E0D6C4] bg-white px-5 py-3 text-sm font-medium text-[#1a1a1a] shadow-sm transition-colors hover:bg-[#FDFBF2]"
+                >
+                  <Image
+                    src={pill.icon}
+                    alt=""
+                    width={22}
+                    height={22}
+                    aria-hidden
+                    className="size-[22px]"
+                  />
+                  {pill.showLabel ? (
+                    <span>{pill.label}</span>
+                  ) : (
+                    <span className="sr-only">{pill.label}</span>
+                  )}
+                </a>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
     </main>
   );
 }

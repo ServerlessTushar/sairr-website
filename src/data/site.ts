@@ -12,6 +12,7 @@ export const siteConfig = {
   social: {
     instagram: "https://www.instagram.com/sairr.in?igsh=Znk3cDZpbG4ydDdi",
     linkedin: "https://www.linkedin.com/company/sairr/about/?viewAsMember=true",
+    youtube: "https://youtube.com/@sairrofficial?si=26XU80RM031WizL5",
   },
 } as const;
 

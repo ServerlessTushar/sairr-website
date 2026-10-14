@@ -30,6 +30,8 @@ type SlidesPerView = {
   desktop?: number;
 };
 
+type Gap = number | SlidesPerView;
+
 type CarouselSectionProps<T> = {
   items: T[];
   renderItem: (item: T, index: number) => ReactNode;
@@ -39,7 +41,8 @@ type CarouselSectionProps<T> = {
   slideClassName?: string;
   belowSlides?: ReactNode;
   ariaLabel?: string;
-  gap?: number;
+  /** Gap between slides, optionally responsive by breakpoint. */
+  gap?: Gap;
   autoplay?: boolean;
   autoplayInterval?: number;
   previousButtonClassName?: string;
@@ -84,6 +87,15 @@ function useSlidesPerView(config: SlidesPerView) {
   return count;
 }
 
+function useResponsiveGap(gap: Gap) {
+  const config = typeof gap === "number" ? { mobile: gap } : gap;
+  return useSlidesPerView({
+    mobile: config.mobile ?? DEFAULT_GAP_PX,
+    tablet: config.tablet ?? config.mobile ?? DEFAULT_GAP_PX,
+    desktop: config.desktop ?? config.tablet ?? config.mobile ?? DEFAULT_GAP_PX,
+  });
+}
+
 export function CarouselSection<T>({
   items,
   renderItem,
@@ -108,6 +120,7 @@ export function CarouselSection<T>({
   controlsClassName,
 }: CarouselSectionProps<T>) {
   const visibleCount = useSlidesPerView(slidesPerView);
+  const gapPx = useResponsiveGap(gap);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -131,14 +144,14 @@ export function CarouselSection<T>({
     if (!el) return;
 
     const measure = () => {
-      setLgVisibleCount(el.clientWidth / (fixedSlideWidthLg + gap));
+      setLgVisibleCount(el.clientWidth / (fixedSlideWidthLg + gapPx));
     };
 
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [fixedSlideWidthLg, gap, isLg, visibleCount]);
+  }, [fixedSlideWidthLg, gapPx, isLg, visibleCount]);
 
   const effectiveVisible =
     fixedSlideWidthLg && isLg ? lgVisibleCount : visibleCount;
@@ -153,8 +166,8 @@ export function CarouselSection<T>({
     const el = scrollRef.current;
     if (!el?.firstElementChild) return 0;
     const child = el.firstElementChild as HTMLElement;
-    return child.offsetWidth + gap;
-  }, [gap]);
+    return child.offsetWidth + gapPx;
+  }, [gapPx]);
 
   const scrollToIndex = useCallback(
     (target: number) => {
@@ -266,7 +279,7 @@ export function CarouselSection<T>({
           ref={scrollRef}
           onScroll={handleScroll}
           className="flex items-stretch overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          style={{ gap }}
+          style={{ gap: gapPx }}
         >
           {items.map((item, i) => (
             <div
@@ -279,7 +292,7 @@ export function CarouselSection<T>({
                 width:
                   fixedSlideWidthLg && isLg
                     ? `${fixedSlideWidthLg}px`
-                    : getSlideWidth(visibleCount, gap),
+                    : getSlideWidth(visibleCount, gapPx),
               }}
             >
               <div className="flex h-full min-h-0 flex-1 flex-col">
