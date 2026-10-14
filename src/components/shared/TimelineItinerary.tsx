@@ -138,14 +138,14 @@ export function TimelineItinerary({
     >
       <div
         className={cn(
-          "py-12 sm:py-16 lg:pb-12 lg:pt-4",
+          "py-8 sm:py-16 lg:pb-12 lg:pt-4",
           flush ? "w-full px-0" : "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
         )}
       >
         <AnimatedSectionHeader
           heading={heading}
           description={description}
-          headingClassName="-mb-2 font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
+          headingClassName="-mb-3 font-heading text-3xl font-semibold tracking-tight text-black sm:text-4xl"
         />
 
         <FadeIn delay={0.1}>
@@ -178,7 +178,7 @@ export function TimelineItinerary({
                       />
 
                       {item.included.length > 0 ? (
-                        <div className="flex w-full flex-wrap gap-x-4 gap-y-1 pr-8 text-[10px] italic text-[#5d5d5d] sm:text-xs">
+                        <div className="flex w-full flex-wrap gap-x-[14px] sm:gap-x-4 gap-y-1 pr-8 text-[10px] italic text-[#5d5d5d] sm:text-xs">
                           {item.included.map((included) => (
                             <span
                               key={`${included.title}-${included.details}`}

@@ -36,7 +36,7 @@ export function ExperienceCtaSection({
 }: ExperienceCtaSectionProps) {
   return (
     <section
-      className={cn("px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-16", className)}
+      className={cn("px-4 py-8 sm:px-6 sm:py-20 lg:px-8 lg:py-16", className)}
       style={{ backgroundColor: GOLD_BG }}
     >
       <div className="mx-auto max-w-3xl text-center">

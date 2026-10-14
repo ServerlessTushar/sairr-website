@@ -92,7 +92,7 @@ export default async function DestinationPage({ params }: Props) {
             : destination.notifyDestination
         } journey.`}
       />
-      <div className="bg-[#FDFBF2] pb-24 md:pb-0">
+      <div className="bg-[#FDFBF2] pb-0">
           <PuriHero sectionData={destination.hero} />
 
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -131,7 +131,7 @@ export default async function DestinationPage({ params }: Props) {
               </aside>
             </div>
           </div>
-          <div className="mt-10" />
+          <div className="mt-6 sm:mt-10" />
           <TripGallerySection
             heading={destination.gallery.heading}
             para={destination.gallery.para}

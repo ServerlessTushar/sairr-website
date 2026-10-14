@@ -27,7 +27,7 @@ export const puriHeroSectionData: ExperienceHeroSectionData = {
       alt: "Jagannath Temple in Puri at sunset",
     },
     {
-      src: "/destinations/puriBanner-2-1.webp",
+      src: "/destinations/puriBanner-2-2.webp",
       alt: "Konark Sun Temple",
     },
     {

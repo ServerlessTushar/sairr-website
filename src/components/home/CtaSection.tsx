@@ -11,7 +11,7 @@ import { FadeIn } from "@/components/shared/FadeIn";
 import { TextReveal } from "@/components/shared/TextReveal";
 import whatsappIcon from "@/public/whatsappLogo.svg";
 import bgImgDesktop from "@/public/homepage/homepage-bottom.webp";
-import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob.webp";
+import bgImgMobile from "@/public/homepage/homepage-bottom-sec-mob2.webp";
 import { scaleIn, springSnappy, staggerContainer } from "@/lib/motion";
 
 const TEAL = "#0E5E6F";
@@ -75,7 +75,7 @@ export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProp
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={scaleIn}
-            className="mx-auto max-w-2xl rounded-lg border border-[#E8E8E8] bg-[#FFFFFFE5] px-8 py-8 text-center shadow-[0_4px_46px_0_#00000021] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
+            className="mx-auto max-w-2xl rounded-lg border border-white/50 bg-white/65 px-8 py-8 text-center shadow-[0_4px_46px_0_#00000021] backdrop-blur-md sm:px-12 sm:py-9 lg:px-14"
           >
             <motion.div
               variants={staggerContainer(0.1, 0.1)}
@@ -94,13 +94,13 @@ export function CtaSection({ backgroundImage, content, hrefTxt }: CtaSectionProp
               <TextReveal
                 as="h2"
                 text={ctaContent.title}
-                className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-black sm:text-[2rem] md:text-3xl"
+                className="mt-3 text-center font-heading text-2xl font-semibold leading-[1.15] tracking-tight text-black sm:text-[2rem] md:text-3xl"
                 delay={0.1}
               />
 
               <motion.p
                 variants={scaleIn}
-                className="mt-3 text-sm leading-snug text-[#6B7075] md:text-base"
+                className="mt-2 text-sm leading-snug text-[#6B7075] md:text-base"
               >
                 {ctaContent.description}
               </motion.p>

@@ -117,7 +117,7 @@ export function WorkBehindTheEaseSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-3 text-base leading-relaxed text-white/90 sm:text-xl"
+              className="mt-1 text-base leading-relaxed text-white/90 sm:text-xl"
             >
               Every journey is carefully planned, vetted and refined before you
               set off.

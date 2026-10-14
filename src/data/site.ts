@@ -31,13 +31,13 @@ export const navLinks = [
   { href: homeHeroHref, label: "Home" },
   { href: "/#destinations", label: "Destinations" },
   { href: "/why-sairr", label: "Why Sairr" },
-  { href: "/about", label: "About" },
+  { href: "#", label: "About" },
 ] as const;
 
 export const exploreLinks = [
   { href: "/#destinations", label: "Destinations" },
   { href: "/why-sairr", label: "Why Sairr" },
-  { href: "/about", label: "About Sairr" },
+  { href: "#", label: "About Sairr" },
 ] as const;
 
 export const legalLinks = [

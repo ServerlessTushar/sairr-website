@@ -43,7 +43,7 @@ export function GroupTravelSection({
   return (
     <section
       className={cn(
-        "bg-[#FDFBF2] py-8 sm:py-10 lg:pb-10 lg:pt-8",
+        "bg-[#FDFBF2] py-6 sm:py-10 lg:pb-10 lg:pt-8",
         flush ? "px-0" : "px-4 sm:px-6 lg:px-8",
         className,
       )}
@@ -54,7 +54,7 @@ export function GroupTravelSection({
           flush ? "w-full max-w-none" : "max-w-6xl",
         )}
       >
-        <div className="relative aspect-[604/435] w-full min-h-48 md:aspect-auto md:h-full md:min-h-0">
+        <div className="relative aspect-[604/335] w-full min-h-48 md:aspect-auto md:h-full md:min-h-0">
           <Image
             src={imageSrc}
             alt={imageAlt}

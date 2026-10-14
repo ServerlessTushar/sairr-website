@@ -17,7 +17,7 @@ import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
 import andaman from "@/public/homepage/journey-andaman.webp";
 import bali from "@/public/homepage/journey-bali.webp";
 import backgroundImgDesktop from "@/public/homepage/BgDestinationHome1.png";
-import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob.webp";
+import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob2.webp";
 import { drawLine } from "@/lib/motion";
 import bannerUnderlineImg from "@/public/homepage/underline-journey.png";
 
@@ -131,7 +131,7 @@ export function JourneysSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-3 text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
+              className="mt-0 text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
             >
               There should always be another place worth discovering. Choose
               yours.

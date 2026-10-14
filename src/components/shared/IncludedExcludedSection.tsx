@@ -22,7 +22,7 @@ export type IncludedExcludedSectionProps = {
 
 function IncludedList({ items }: { items: IncludedExcludedItem[] }) {
   return (
-    <ul className="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:gap-x-12">
+    <ul className="grid gap-x-8 gap-y-4 sm:gap-y-6 md:grid-cols-2 lg:gap-x-12">
       {items.map((item) => (
         <li key={item.text} className="flex items-start gap-5">
           <span className="flex size-6 shrink-0 items-center justify-center text-charcoal">
@@ -51,7 +51,7 @@ export function IncludedExcludedSection({
     <section className={cn("bg-[#FDFBF2]", className)}>
       <div
         className={cn(
-          "pb-8 pt-0 sm:pb-8 lg:pb-8 lg:pt-1",
+          "pb-8 pt-6 sm:pb-8 lg:pb-8 lg:pt-1",
           hasHeader && "sm:pt-12 lg:pt-16",
           flush
             ? "w-full px-0"

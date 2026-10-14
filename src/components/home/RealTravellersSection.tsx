@@ -24,7 +24,7 @@ export function RealTravellersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-3 text-base text-[#5d5d5d] sm:text-xl"
+              className="mt-0 sm:mt-1 text-base text-[#5d5d5d] sm:text-xl"
             >
               To know us is to hear from them.
             </motion.p>

@@ -51,7 +51,7 @@ export function TripGallerySection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.55 }}
-                className="pointer-events-none absolute -top-6 right-0 translate-x-2 sm:-top-4 sm:translate-x-4 md:translate-x-8 lg:-translate-x-8"
+                className="pointer-events-none absolute -top-8 right-4 translate-x-2 sm:-top-4 sm:translate-x-4 md:translate-x-8 lg:-translate-x-8"
                 aria-hidden
               >
                 <Image
@@ -67,14 +67,14 @@ export function TripGallerySection({
             <TextReveal
               as="h2"
               text={heading}
-              className="font-heading text-[28px] font-semibold tracking-tight text-black sm:text-4xl"
+              className="text-center font-heading text-[28px] leading-[1.2] font-semibold tracking-tight text-black sm:text-4xl"
             />
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-3 text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
+              className="mt-2 sm:mt-0 text-base leading-relaxed text-[#5d5d5d] sm:text-xl"
             >
               {para}
             </motion.p>

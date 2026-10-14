@@ -47,7 +47,7 @@ function HeroPhoto({
   sizes: string;
 }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-lg bg-charcoal/5", className)}>
+    <div className={cn("relative overflow-hidden rounded-md sm:rounded-lg bg-charcoal/5", className)}>
       <Image
         src={image.src}
         alt={image.alt}
@@ -65,12 +65,12 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
 
   return (
     <section className={cn("bg-[#FDFBF2] scroll-mt-24", className)}>
-      <div className="mx-auto max-w-7xl px-4 pt-28 sm:px-6 lg:px-8 lg:pt-28">
+      <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-28">
         <div className="relative">
           <TextReveal
             as="h1"
             text={sectionData.heading}
-            className="text-3xl font-semibold tracking-tight text-black sm:text-[42px] lg:leading-[1.1]"
+            className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-[42px] lg:leading-[1.1]"
           />
           <Image
             src="/destinations/gold-bird-pair.webp"
@@ -100,7 +100,7 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
 
         {main && tall && topRight && bottomRight ? (
           <>
-            <div className="mt-6 grid grid-cols-2 gap-3 lg:hidden">
+            <div className="mt-6 grid grid-cols-2 gap-1.5 sm:gap-3 lg:hidden">
               <HeroPhoto
                 image={main}
                 priority
