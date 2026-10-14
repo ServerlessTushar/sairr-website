@@ -5,6 +5,7 @@ import { homeHeroHref, siteConfig, whatsappHref } from "@/data/site";
 import WhatsAppIcon from "@/public/whatsapp.svg";
 import InstagramIcon from "@/public/insta.svg";
 import LinkedInIcon from "@/public/linkedin.svg";
+import YoutubeIcon from "@/public/youtube.svg";
 
 const CORAL = "#EC575E";
 
@@ -38,6 +39,12 @@ const socialLinks = [
     href: siteConfig.social.linkedin,
     label: "LinkedIn",
     icon: LinkedInIcon,
+    external: true,
+  },
+  {
+    href: siteConfig.social.youtube,
+    label: "Youtube",
+    icon: YoutubeIcon,
     external: true,
   },
 ] as const;

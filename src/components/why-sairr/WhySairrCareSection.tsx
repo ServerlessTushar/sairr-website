@@ -57,7 +57,7 @@ export function WhySairrCareSection({
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="grid grid-cols-2 items-start gap-5 sm:gap-8">
+            <div className="grid grid-cols-2 items-stretch placeholder-orange-200 gap-2 sm:items-start sm:gap-8">
               <Image
                 src={arrivalImage.src}
                 alt={arrivalImage.alt}
@@ -65,19 +65,21 @@ export function WhySairrCareSection({
                 height={arrivalImage.height}
                 className="h-auto w-full rounded-xl"
               />
-              <Image
-                src={mealImage.src}
-                alt={mealImage.alt}
-                width={mealImage.width}
-                height={mealImage.height}
-                className="h-auto w-[86%] justify-self-end rounded-xl"
-              />
+              <div className="flex h-full min-h-0 justify-end sm:contents">
+                <Image
+                  src={mealImage.src}
+                  alt={mealImage.alt}
+                  width={mealImage.width}
+                  height={mealImage.height}
+                  className="h-full w-full sm:w-[86%] rounded-xl max-sm:object-cover sm:h-auto sm:w-[86%] sm:justify-self-end"
+                />
+              </div>
               <Image
                 src={groupImage.src}
                 alt={groupImage.alt}
                 width={groupImage.width}
                 height={groupImage.height}
-                className="col-span-2 mt-5 h-auto w-3/4 justify-self-end rounded-xl sm:mt-8"
+                className="col-span-2 mt-0 md:mt-5 h-auto w-full rounded-xl sm:mt-8 sm:w-3/4 sm:justify-self-end"
               />
             </div>
           </FadeIn>

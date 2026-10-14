@@ -50,13 +50,29 @@ type ContactUsFormProps = {
   prefill?: Partial<ContactUsFormFieldValues>;
   /** Show reserved sheet columns F–H in the UI (default: hidden inputs only). */
   showReservedFields?: boolean;
+  /** Teal panel styling for the contact page. */
+  appearance?: "default" | "teal";
 };
 
 export function ContactUsForm({
   onSubmitted,
   prefill,
   showReservedFields = false,
+  appearance = "default",
 }: ContactUsFormProps) {
+  const isTeal = appearance === "teal";
+  const labels = isTeal
+    ? "text-[11px] font-medium uppercase tracking-[0.12em] text-white"
+    : labelClassName;
+  const fields = isTeal
+    ? "h-12 rounded-lg border-0 bg-white px-4 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
+    : fieldClassName;
+  const textareas = isTeal
+    ? "min-h-32 rounded-lg border-0 bg-white px-4 py-3 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
+    : textareaClassName;
+  const optionalMuted = isTeal
+    ? "normal-case tracking-normal text-white/70"
+    : "normal-case tracking-normal text-[#5d5d5d]";
   const router = useRouter();
 
   const {
@@ -121,7 +137,7 @@ export function ContactUsForm({
         <div className="space-y-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="cu-travellers" className={labelClassName}>
+              <Label htmlFor="cu-travellers" className={labels}>
                 Number of travellers
               </Label>
               <Input
@@ -129,31 +145,31 @@ export function ContactUsForm({
                 type="number"
                 min={1}
                 max={999}
-                className={fieldClassName}
+                className={fields}
                 {...register("numberOfTravellers", { valueAsNumber: true })}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="cu-preferred-date" className={labelClassName}>
+              <Label htmlFor="cu-preferred-date" className={labels}>
                 Preferred date
               </Label>
               <Input
                 id="cu-preferred-date"
                 type="date"
-                className={fieldClassName}
+                className={fields}
                 {...register("preferredDate")}
               />
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="cu-how-hear" className={labelClassName}>
+            <Label htmlFor="cu-how-hear" className={labels}>
               How did you hear about us?
             </Label>
             <div className="relative">
               <select
                 id="cu-how-hear"
                 className={cn(
-                  fieldClassName,
+                  fields,
                   "w-full appearance-none pr-10",
                 )}
                 {...register("howDidYouHear")}
@@ -174,14 +190,14 @@ export function ContactUsForm({
       {/* Name + Phone */}
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="cu-name" className={labelClassName}>
+          <Label htmlFor="cu-name" className={labels}>
             Name
           </Label>
           <Input
             id="cu-name"
             placeholder="Your full name"
             aria-invalid={!!errors.name}
-            className={cn(fieldClassName, errors.name && "border-destructive")}
+            className={cn(fields, errors.name && "border-destructive")}
             {...register("name")}
           />
           {errors.name && (
@@ -190,17 +206,17 @@ export function ContactUsForm({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="cu-phone" className={labelClassName}>
+          <Label htmlFor="cu-phone" className={labels}>
             Phone number
           </Label>
           <Input
             id="cu-phone"
             type="tel"
             inputMode="numeric"
-            placeholder="Your 10-digit WhatsApp no."
+            placeholder="Your 10 digit WhatsApp no"
             maxLength={10}
             aria-invalid={!!errors.phone}
-            className={cn(fieldClassName, errors.phone && "border-destructive")}
+            className={cn(fields, errors.phone && "border-destructive")}
             {...register("phone", {
               onChange: (event) => {
                 event.target.value = event.target.value
@@ -217,9 +233,9 @@ export function ContactUsForm({
 
       {/* Email (optional) */}
       <div className="space-y-2">
-        <Label htmlFor="cu-email" className={labelClassName}>
+        <Label htmlFor="cu-email" className={labels}>
           Email{" "}
-          <span className="normal-case tracking-normal text-[#5d5d5d]">
+          <span className={optionalMuted}>
             (optional)
           </span>
         </Label>
@@ -229,7 +245,7 @@ export function ContactUsForm({
           inputMode="email"
           placeholder="Your email address"
           aria-invalid={!!errors.email}
-          className={cn(fieldClassName, errors.email && "border-destructive")}
+          className={cn(fields, errors.email && "border-destructive")}
           {...register("email")}
         />
         {errors.email && (
@@ -239,7 +255,7 @@ export function ContactUsForm({
 
       {/* Topic */}
       <div className="space-y-2">
-        <Label htmlFor="cu-topic" className={labelClassName}>
+        <Label htmlFor="cu-topic" className={labels}>
           What is this about?
         </Label>
         <div className="relative">
@@ -247,7 +263,7 @@ export function ContactUsForm({
             id="cu-topic"
             aria-invalid={!!errors.topic}
             className={cn(
-              fieldClassName,
+              fields,
               "w-full appearance-none pr-10",
               !selectedTopic ? "text-[#999]" : "text-gray-900",
               errors.topic && "border-destructive",
@@ -272,19 +288,19 @@ export function ContactUsForm({
 
       {/* Message (optional) */}
       <div className="space-y-2">
-        <Label htmlFor="cu-message" className={labelClassName}>
+        <Label htmlFor="cu-message" className={labels}>
           Anything else you&apos;d like to tell us?{" "}
-          <span className="normal-case tracking-normal text-[#5d5d5d]">
+          <span className={optionalMuted}>
             (optional)
           </span>
         </Label>
         <Textarea
           id="cu-message"
-          placeholder="Tell us a little more…"
+          placeholder="Tell us little more"
           rows={5}
           aria-invalid={!!errors.message}
           className={cn(
-            textareaClassName,
+            textareas,
             errors.message && "border-destructive",
           )}
           {...register("message")}
@@ -294,14 +310,21 @@ export function ContactUsForm({
         )}
       </div>
 
-      <div className="flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-        {/* <p className="max-w-sm text-sm leading-relaxed text-[#5d5d5d]">
-          We read every message personally and usually respond within 24 hours.
-        </p> */}
+      <div
+        className={cn(
+          "flex flex-col gap-4 pt-2",
+          !isTeal && "border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between",
+        )}
+      >
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="h-12 rounded bg-brand px-8 text-sm font-semibold hover:bg-forest sm:min-w-[12rem]"
+          className={cn(
+            "h-12 px-8 text-sm font-semibold",
+            isTeal
+              ? "w-full rounded-lg bg-[#EC575E] text-white hover:bg-[#EC575E]/90 sm:w-auto sm:min-w-[12rem]"
+              : "rounded bg-brand hover:bg-forest sm:min-w-[12rem]",
+          )}
         >
           {isSubmitting ? (
             <>

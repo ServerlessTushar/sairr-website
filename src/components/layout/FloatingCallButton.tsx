@@ -2,13 +2,21 @@
 
 import whatsapp from "@/public/whatsappLogo.svg";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useFloatingCall } from "@/components/layout/FloatingCallContext";
+import { cn } from "@/lib/utils";
 
 const WHATSAPP_NUMBER = "919971737186"; // include country code, no +
 
+function isDestinationDetailPath(pathname: string) {
+  return /^\/destinations\/[^/]+$/.test(pathname);
+}
+
 export function FloatingCallButton() {
+  const pathname = usePathname();
   const { message } = useFloatingCall();
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const onDestinationDetail = isDestinationDetailPath(pathname ?? "");
 
   return (
     <a
@@ -16,7 +24,10 @@ export function FloatingCallButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed right-5 bottom-16 z-50 rounded-full shadow-lg sm:right-8 sm:bottom-8"
+      className={cn(
+        "fixed right-5 z-50 rounded-full shadow-lg sm:right-8 sm:bottom-8",
+        onDestinationDetail ? "bottom-16" : "bottom-8",
+      )}
     >
       <Image
         src={whatsapp}

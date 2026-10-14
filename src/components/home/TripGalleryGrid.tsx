@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -245,6 +245,7 @@ function GalleryMosaic({
 export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
   const reduceMotion = useReducedMotion();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const thumbnailRailRef = useRef<HTMLDivElement>(null);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
@@ -280,6 +281,18 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
     };
   }, [closeLightbox, lightboxIndex, showNext, showPrev]);
 
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const selectedThumbnail = thumbnailRailRef.current?.querySelector(
+      `[data-thumbnail-index="${lightboxIndex}"]`,
+    );
+    selectedThumbnail?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [lightboxIndex]);
+
   const activeImage =
     lightboxIndex !== null ? images[lightboxIndex] : null;
 
@@ -298,7 +311,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
       <AnimatePresence>
         {activeImage && lightboxIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -312,7 +325,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
             />
 
             <motion.div
-              className="relative z-10 flex w-full max-w-[min(90vw,1200px)] flex-col items-center"
+              className="relative z-10 my-auto flex w-full max-w-[min(90vw,1200px)] flex-col items-center"
               initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
@@ -331,8 +344,17 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                 }}
               />
 
-              <div className="mt-4 w-full overflow-x-auto pb-1">
-                <div className="flex w-max min-w-full justify-center gap-2 px-1">
+              <div
+                ref={thumbnailRailRef}
+                className="mt-4 w-full touch-pan-x overflow-x-auto overscroll-x-contain scroll-smooth pb-1"
+                onWheel={(event) => {
+                  const rail = event.currentTarget;
+                  if (!event.deltaY || rail.scrollWidth <= rail.clientWidth) return;
+                  rail.scrollLeft += event.deltaY;
+                  event.preventDefault();
+                }}
+              >
+                <div className="flex w-max min-w-full justify-start gap-2 px-1">
                   {images.map((image, index) => {
                     const isSelected = index === lightboxIndex;
 
@@ -343,6 +365,7 @@ export function TripGalleryGrid({ images, className }: TripGalleryGridProps) {
                         onClick={() => setLightboxIndex(index)}
                         aria-label={`Show image ${index + 1} of ${images.length}`}
                         aria-current={isSelected ? "true" : undefined}
+                        data-thumbnail-index={index}
                         className={cn(
                           "relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition sm:h-20 sm:w-20",
                           isSelected
