@@ -30,23 +30,25 @@ export function TextReveal({
       ? text.split("\n")
       : text.split(" ").filter(Boolean);
 
+  const isLine = splitBy === "line";
+
   return (
-    <Tag className={cn(className, splitBy === "line" && "flex flex-col")}>
+    <Tag className={className}>
       <motion.span
-        className={cn(
-          "inline-flex flex-wrap justify-start md:justify-center",
-          splitBy === "line" && "flex-col items-start",
-        )}
+        className={isLine ? "block" : "inline"}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        variants={staggerContainer(splitBy === "line" ? 0.14 : 0.06, delay)}
+        variants={staggerContainer(isLine ? 0.14 : 0.06, delay)}
         aria-label={text}
       >
         {parts.map((part, i) => (
           <motion.span
             key={`${part}-${i}`}
-            className="inline-block overflow-hidden"
+            className={cn(
+              "overflow-hidden",
+              isLine ? "block" : "inline-block",
+            )}
             variants={{
               hidden: { opacity: 0, y: "110%" },
               visible: {
@@ -56,9 +58,9 @@ export function TextReveal({
               },
             }}
           >
-            <span className="inline-block">
+            <span className={isLine ? "block" : "inline-block"}>
               {part}
-              {splitBy === "word" && i < parts.length - 1 ? "\u00A0" : ""}
+              {!isLine && i < parts.length - 1 ? "\u00A0" : ""}
             </span>
           </motion.span>
         ))}

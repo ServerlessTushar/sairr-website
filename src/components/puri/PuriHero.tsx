@@ -69,7 +69,6 @@ export function PuriHero({ sectionData, className }: PuriHeroProps) {
         <div className="relative">
           <TextReveal
             as="h1"
-            align="start"
             text={sectionData.heading}
             className="font-heading text-3xl font-semibold tracking-tight text-black sm:text-[42px] lg:leading-[1.1]"
           />

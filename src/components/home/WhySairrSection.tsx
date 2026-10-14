@@ -164,7 +164,7 @@ export function WhySairrSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-2 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg lg:text-xl"
+              className="-mt-1 font-sans text-base leading-relaxed text-[#5d5d5d] sm:text-lg lg:text-xl"
             >
               Sairr gives you the confidence to say yes, before you even book.
             </motion.p>
