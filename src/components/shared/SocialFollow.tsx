@@ -94,10 +94,11 @@ export function SocialFollow({ className }: SocialFollowProps) {
               See what Sairr is all about.
             </p>
           </div>
-          <div
-            className="h-14 w-px shrink-0 self-center bg-[#EC575E] lg:h-16"
-            aria-hidden
-          />
+          <div className="relative w-px shrink-0 self-center" aria-hidden>
+            <div
+              className="absolute left-0 top-1/2 h-14 w-px -translate-y-1/2 bg-[#EC575E] lg:h-24"
+            />
+          </div>
           <div className="grid grid-cols-3 items-center justify-items-center">
             {socialLinks.map((link) => (
               <SocialLinkItem
