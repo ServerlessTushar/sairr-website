@@ -9,6 +9,7 @@ import { UtmCapture } from "@/components/shared/UtmCapture";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({
   subsets: ["latin"],
@@ -96,6 +97,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${grenettePro.variable} h-full scroll-smooth antialiased overflow-x-clip`}
     >
+      <GoogleTagManager gtmId="GTM-PC7XMGZ8" />
       <body className="flex min-h-full flex-col font-sans overflow-x-clip">
         <ContactFormDialogProvider>
           <JsonLd data={organizationJsonLd} />
