@@ -85,7 +85,7 @@ export default function ThankYouPage() {
                 </div>
               </FadeIn>
             </div>
-
+            {/* talk directly */}
             <div className="flex flex-col bg-[#F5F0E1] px-6 py-6 md:pt-8 md:pb-6 sm:px-10 lg:h-full">
               <FadeIn delay={0.1} className="flex flex-1 flex-col">
                 <h2 className="font-heading text-2xl font-semibold text-black sm:text-[1.75rem]">
