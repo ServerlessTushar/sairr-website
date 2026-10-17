@@ -10,6 +10,7 @@ import {
   contactFormSchema,
   destinationCatalog,
   DESTINATION_SOMEWHERE_ELSE,
+  formatContactRowForSheet,
   getPreferredMonthOptions,
   journeyTypeOptions,
   type ContactFormData,
@@ -17,6 +18,7 @@ import {
   type ContactFormIntent,
   type TravelDestination,
 } from "@/lib/validations/contact";
+import { submitToGoogleSheet } from "@/lib/submit-to-sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -89,23 +91,17 @@ export function ContactForm({
 
   async function onSubmit(data: ContactFormData) {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          formIntent: intent,
-          ...getStoredUtmParams(),
-          page_url: window.location.href,
-          cta_class: ctaClass ?? "",
-        }),
+      const payload = {
+        ...data,
+        ...getStoredUtmParams(),
+        page_url: window.location.href,
+        cta_class: ctaClass ?? "",
+      };
+
+      await submitToGoogleSheet({
+        tabName: "Leads",
+        values: formatContactRowForSheet(payload),
       });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.error ?? "Failed to submit enquiry");
-      }
 
       onSubmitted?.();
       router.push("/thank-you");
