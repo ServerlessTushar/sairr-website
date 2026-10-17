@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Clock3 } from "lucide-react";
+import { ArrowLeft, Phone } from "lucide-react";
 import { FadeIn } from "@/components/shared/FadeIn";
-import { phoneHref, siteConfig, whatsappHref } from "@/data/site";
+import { SocialFollow } from "@/components/shared/SocialFollow";
+import { phoneHref, whatsappHref } from "@/data/site";
 import { createMetadata } from "@/lib/seo";
+
+const TEAL = "#0E5E6F";
 
 export const metadata = createMetadata({
   title: "Thank You — Sairr",
@@ -15,97 +18,136 @@ export const metadata = createMetadata({
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-dvh bg-[#FDFBF2]">
-      <div className="mx-auto grid min-h-dvh max-w-6xl grid-cols-1 lg:grid-cols-2">
+    <main className="bg-[#FDFBF2]">
+      <section
+        data-header-hero
+        className="relative flex min-h-[min(52vw,420px)] items-start overflow-hidden sm:min-h-[380px] lg:min-h-[420px]"
+      >
+        <Image
+          src="/thankyou-banner.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#4A4949]/40" aria-hidden />
 
-        {/* Left — teal brand panel */}
-        <div className="relative flex flex-col items-start justify-center overflow-hidden bg-[#0E5E6F] px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
-          <FadeIn>
-            <div className="relative mt-6 inline-block">
-              <h1 className="font-heading text-4xl font-semibold leading-tight text-[#FDFBF2] sm:text-5xl">
-                Thank you for<br />reaching out to Sairr.
-              </h1>
-              <Image
-                src="/destinations/gold-bird-pair.webp"
-                alt=""
-                width={100}
-                height={75}
-                className="pointer-events-none absolute -top-8 -right-10 h-auto w-20 opacity-80"
-                aria-hidden
-              />
-            </div>
-
-            {/* Gold divider */}
-            <div className="mt-6 h-px w-14 bg-[#C8A867]" aria-hidden />
-
-            <p className="mt-6 text-base leading-relaxed text-[#FDFBF2]/75 sm:text-lg">
-              We&apos;ve got your details. One of our travel experts will be in touch with you soon.
-            </p>
-
-            {/* Availability badge */}
-            <div className="mt-8 flex items-start gap-3 rounded-lg border border-[#FDFBF2]/10 bg-[#FDFBF2]/5 px-4 py-4">
-              <Clock3 className="mt-0.5 size-4 shrink-0 text-[#C8A867]" aria-hidden />
-              <p className="text-sm leading-relaxed text-[#FDFBF2]/70">
-                Our experts are available{" "}
-                <span className="font-medium text-[#FDFBF2]">10 AM – 8 PM</span>,
-                Monday to Sunday.
-              </p>
-            </div>
-          </FadeIn>
+        <div className="relative z-10 w-full px-4 pt-8 sm:px-6 sm:pt-10">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            <ArrowLeft className="size-4" aria-hidden />
+            Back to Home
+          </Link>
         </div>
+      </section>
 
-        {/* Right — cream action panel */}
-        <div className="flex flex-col items-start justify-center px-8 py-16 sm:px-12 lg:px-16 lg:py-24">
-          <FadeIn>
-            <p className="font-heading text-2xl font-semibold text-[#0E5E6F] sm:text-3xl">
-              Want to connect sooner?
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              {/* Call button */}
-              <a
-                href={phoneHref()}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded bg-[#EC575E] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#D04A52] sm:min-w-40"
-              >
-                <svg className="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16z" />
-                </svg>
-                Call Us
-              </a>
-
-              {/* WhatsApp button */}
-              <a
-                href={whatsappHref("Hi, I just submitted an enquiry and would like to know more.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded border border-[#0E5E6F]/20 bg-white px-6 text-sm font-semibold text-[#0E5E6F] transition-colors hover:bg-[#0E5E6F]/5 sm:min-w-40"
-              >
-                <Image
-                  src="/homepage/whatsapp.png"
-                  alt=""
-                  width={18}
-                  height={18}
-                  className="size-[18px]"
-                  aria-hidden
-                />
-                WhatsApp
-              </a>
-            </div>
-
-            {/* Divider */}
-            <div className="mt-10 h-px w-full bg-charcoal/10" aria-hidden />
-
-            <Link
-              href="/"
-              className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-[#0E5E6F] underline-offset-4 hover:underline"
+      <div className="relative z-10 mx-auto max-w-6xl pb-12 lg:pb-16">
+        <div
+          className="-mt-16 overflow-hidden rounded-lg bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:-mt-20 lg:-mt-28"
+        >
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
+            <div
+              className="flex flex-col px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[22rem] lg:h-full"
+              style={{ backgroundColor: TEAL }}
             >
-              <ArrowLeft className="size-3.5" aria-hidden />
-              Back to home
-            </Link>
-          </FadeIn>
-        </div>
+              <FadeIn className="flex flex-1 flex-col">
+                <div className="relative inline-block">
+                  <h1 className="font-heading text-4xl font-normal leading-tight text-white sm:text-5xl lg:text-[5.438rem]">
+                    Thank you
+                  </h1>
+                  <Image
+                    src="/golden-2birds.svg"
+                    alt=""
+                    width={100}
+                    height={75}
+                    className="pointer-events-none absolute -top-6 right-0 h-auto w-16 opacity-90 sm:-top-8 sm:w-20 lg:right-4"
+                    aria-hidden
+                  />
+                </div>
 
+                <p className="mt-6 max-w-md text-base leading-relaxed text-white sm:text-lg">
+                  We&apos;ve received your details. We&apos;ll call or message
+                  you on the number you shared.
+                </p>
+
+                <div className="mt-auto pt-10 lg:pt-12">
+                  <div className="rounded-lg border border-[#C8A867] px-4 py-4 backdrop-blur-[2px]">
+                    <p className="text-sm leading-relaxed text-white">
+                      Our team is available from{" "}
+                      <span className="font-medium text-white">10 AM to 8 PM</span>
+                      , Monday to Sunday. If you reach us outside these hours,
+                      we&apos;ll reply when we&apos;re back.
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+            <div className="flex flex-col bg-[#F5F0E1] px-6 py-10 sm:px-10 sm:py-12 lg:h-full">
+              <FadeIn delay={0.1} className="flex flex-1 flex-col">
+                <h2 className="font-heading text-2xl font-semibold text-[#1a1a1a] sm:text-[1.75rem]">
+                  Prefer to reach out directly?
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
+                  Choose whichever channel feels easiest.
+                </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                  <a
+                    href={phoneHref()}
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-[4px] bg-[#EC575E] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#EC575E]/90 sm:min-w-[9.5rem]"
+                  >
+                    <Image
+                      src="/phone.svg"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="size-5"
+                      aria-hidden
+                    />
+                    Call us
+                  </a>
+                  <a
+                    href={whatsappHref(
+                      "Hi, I just submitted an enquiry and would like to know more.",
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-[4px] border border-[#0E5E6F]/15 bg-white px-6 text-sm font-semibold text-[#1a1a1a] transition-colors hover:bg-white/80 sm:min-w-[9.5rem]"
+                  >
+                    <Image
+                      src="/whatsapp-icon.svg"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="size-5"
+                      aria-hidden
+                    />
+                    WhatsApp us
+                  </a>
+                </div>
+
+                <div
+                  className="mt-10 border-t border-charcoal/10 pt-10 lg:mt-auto"
+                >
+                  <h3 className="font-heading text-xl font-semibold text-[#1a1a1a] sm:text-2xl">
+                    Planning with family or friends?
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#5d5d5d] sm:text-base">
+                    We also offer private journeys, tailored to your group. Just
+                    let us know.
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <SocialFollow />
     </main>
   );
 }
