@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 const fieldClassName =
-  "h-12 rounded-xl border-border/60 bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
+  "h-10 rounded-xl border-border/60 bg-mist/80 px-4 text-base shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:border-brand focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand/15 md:text-sm";
 
 const labelClassName =
   "text-xs font-medium uppercase tracking-[0.14em] text-charcoal";
@@ -67,10 +67,10 @@ export function ContactUsForm({
     ? "text-[11px] font-medium uppercase tracking-[0.12em] text-white"
     : labelClassName;
   const fields = isTeal
-    ? "h-12 rounded-lg border-0 bg-white px-4 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
+    ? "h-10 rounded-lg border-0 bg-white px-4 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
     : fieldClassName;
   const textareas = isTeal
-    ? "min-h-32 rounded-lg border-0 bg-white px-4 py-3 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
+    ? "min-h-20 rounded-lg border-0 bg-white px-4 py-3 text-base text-charcoal shadow-none transition-colors placeholder:text-[#5d5d5d]/70 focus-visible:ring-2 focus-visible:ring-white/30 md:text-sm"
     : textareaClassName;
   const optionalMuted = isTeal
     ? "normal-case tracking-normal text-white/70"
@@ -121,7 +121,7 @@ export function ContactUsForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
       {!showReservedFields ? (
         <>
           <input type="hidden" {...register("preferredDate")} />
@@ -318,7 +318,7 @@ export function ContactUsForm({
           type="submit"
           disabled={isSubmitting}
           className={cn(
-            "h-12 px-8 text-sm font-semibold",
+            "h-10 px-8 text-sm font-semibold",
             isTeal
               ? "w-[12rem] rounded-[4px] bg-[#EC575E] px-6 text-white hover:bg-[#EC575E]/90"
               : "rounded bg-brand hover:bg-forest sm:min-w-[12rem]",

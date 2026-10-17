@@ -24,7 +24,7 @@ export default function ThankYouPage() {
         className="relative flex min-h-[min(52vw,420px)] items-start overflow-hidden sm:min-h-[380px] lg:min-h-[420px]"
       >
         <Image
-          src="/thankyou-banner.webp"
+          src="/thankyou-banner2.webp"
           alt=""
           fill
           priority
@@ -55,7 +55,7 @@ export default function ThankYouPage() {
             >
               <FadeIn className="flex flex-1 flex-col">
                 <div className="relative inline-block">
-                  <h1 className="font-heading text-4xl font-normal leading-tight text-white sm:text-5xl lg:text-[5.438rem]">
+                  <h1 className="font-heading text-4xl font-normal leading-tight text-white sm:text-5xl lg:text-[4.688rem]">
                     Thank you
                   </h1>
                   <Image
@@ -68,7 +68,7 @@ export default function ThankYouPage() {
                   />
                 </div>
 
-                <p className="mt-6 max-w-md text-base leading-relaxed text-white sm:text-lg">
+                <p className="mt-3 max-w-md text-base leading-relaxed text-white sm:text-lg">
                   We&apos;ve received your details. We&apos;ll call or message
                   you on the number you shared.
                 </p>
