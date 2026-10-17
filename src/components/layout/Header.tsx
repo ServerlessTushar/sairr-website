@@ -173,7 +173,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 w-full bg-white/55 backdrop-blur-md transition-[background-color,border-color,backdrop-filter] duration-300",
+        "fixed inset-x-0 top-0 z-50 w-full border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
+        homeHeaderOverHero
+          ? "border-white/30 bg-white/15 shadow-[0_4px_24px_rgba(27,29,31,0.06)] backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/10"
+          : "border-charcoal/8 bg-white/45 shadow-[0_2px_16px_rgba(27,29,31,0.04)] backdrop-blur-lg backdrop-saturate-125 supports-[backdrop-filter]:bg-white/35",
       )}
     >
       <div className="mx-auto flex h-12 sm:h-16 max-w-7xl items-center justify-between pl-5 pr-6 sm:px-6 lg:px-8">
