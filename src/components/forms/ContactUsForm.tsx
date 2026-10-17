@@ -322,7 +322,7 @@ export function ContactUsForm({
           className={cn(
             "h-12 px-8 text-sm font-semibold",
             isTeal
-              ? "w-full rounded-lg bg-[#EC575E] text-white hover:bg-[#EC575E]/90 sm:w-auto sm:min-w-[12rem]"
+              ? "w-[12rem] rounded-[4px] bg-[#EC575E] px-6 text-white hover:bg-[#EC575E]/90"
               : "rounded bg-brand hover:bg-forest sm:min-w-[12rem]",
           )}
         >

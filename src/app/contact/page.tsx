@@ -13,26 +13,54 @@ const HERO_OVERLAY = "#4A4949";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=WeWork%2C+Platina+Tower%2C+Gurugram%2C+Haryana+122002";
 
-const socialPills = [
+const socialLinks = [
   {
     href: siteConfig.social.instagram,
     label: "@sairr.in",
     icon: "/contact/inta.svg",
-    showLabel: true,
   },
   {
     href: siteConfig.social.youtube,
-    label: "YouTube",
+    label: "@SairrOfficial",
     icon: "/contact/youtube.svg",
-    showLabel: false,
   },
   {
     href: siteConfig.social.linkedin,
-    label: "LinkedIn",
+    label: "Sairr",
     icon: "/contact/linkedin.svg",
-    showLabel: false,
   },
 ] as const;
+
+function SocialLinkItem({
+  href,
+  label,
+  icon,
+  iconClassName = "size-11",
+}: {
+  href: string;
+  label: string;
+  icon: string;
+  iconClassName?: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col items-center gap-1.5 text-center transition-opacity hover:opacity-80"
+    >
+      <Image
+        src={icon}
+        alt=""
+        width={56}
+        height={56}
+        aria-hidden
+        className={iconClassName}
+      />
+      <span className="text-xs text-[#5d5d5d] sm:text-sm">{label}</span>
+    </a>
+  );
+}
 
 export const metadata = createMetadata({
   title: "Contact Us — Sairr",
@@ -95,24 +123,24 @@ export default function ContactPage() {
         className="relative flex min-h-[min(52vw,420px)] items-center justify-center overflow-hidden sm:min-h-[380px] lg:min-h-[420px]"
       >
         <Image
-          src="/why-sairr/HeroSectionImg1.webp"
+          src="/why-sairr/AlpineRiversideTownInBloom.webp"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-fit object-center"
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: `${HERO_OVERLAY}CC` }}
+          //style={{ backgroundColor: `${HERO_OVERLAY}CC` }}
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 text-center text-white sm:px-6 sm:py-24">
+        <div className="relative z-10 mx-auto px-4 py-20 text-center text-white sm:px-6 sm:py-24">
           <FadeIn>
-            <h1 className="font-heading text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem]">
+            <h1 className="font-heading text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.75rem] lg:text-[3.125rem]">
               Let&apos;s talk about your next journey
             </h1>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
+            <p className="mx-auto mt-4 text-base leading-relaxed text-white sm:text-lg md:text-2xl">
               Planning a trip, or just want to know more about Sairr? Write to
               us, call, or WhatsApp.
             </p>
@@ -121,14 +149,14 @@ export default function ContactPage() {
       </section>
 
       {/* Contact card */}
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:pb-16">
+      <div className="relative z-10 mx-auto max-w-6xl pb-12 lg:pb-16">
         <div
-          className="-mt-16 overflow-hidden rounded-2xl bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:-mt-20 sm:rounded-3xl lg:-mt-24"
+          className="-mt-16 overflow-hidden rounded-lg bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:-mt-20 sm:rounded-lg lg:-mt-24"
         >
-          <div className="flex flex-col lg:grid lg:grid-cols-2">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
             {/* Form first on mobile */}
             <div
-              className="order-1 px-6 py-10 sm:px-10 sm:py-12"
+              className="order-1 flex flex-col px-6 py-10 sm:px-10 sm:py-12 lg:h-full"
               style={{ backgroundColor: TEAL }}
             >
               <FadeIn>
@@ -145,8 +173,8 @@ export default function ContactPage() {
             </div>
 
             {/* Direct contact */}
-            <div className="order-2 px-6 py-10 sm:px-10 sm:py-12">
-              <FadeIn delay={0.1}>
+            <div className="order-2 flex flex-col bg-[#F5F0E1] px-6 py-10 sm:px-10 sm:py-12 lg:h-full">
+              <FadeIn delay={0.1} className="flex flex-1 flex-col">
                 <h2 className="font-heading text-2xl font-semibold text-[#1a1a1a] sm:text-[1.75rem]">
                   Prefer to reach out directly?
                 </h2>
@@ -183,17 +211,15 @@ export default function ContactPage() {
                 </div>
 
                 <p className="mt-8 text-sm leading-relaxed text-[#5d5d5d]">
-                  Our team is available{" "}
-                  <span className="font-medium text-[#1a1a1a]">
-                    10 AM – 8 PM
-                  </span>
-                  , Monday to Sunday.
+                  Our team is available from 10 AM to 8 PM, Monday to Sunday. If
+                  you reach us outside these hours, we&apos;ll reply when
+                  we&apos;re back.
                 </p>
 
-                <div className="mt-6">
-                  <p className="text-sm font-semibold text-[#1a1a1a]">
-                    Address
-                  </p>
+                <div className="mt-6 lg:mt-auto lg:pt-8">
+                  <div className="text-sm font-semibold text-[#1a1a1a] flex flex-row items-center gap-1">
+                    <Image src="/contact/location.svg" alt="Location" width={20} height={20} /> <span>Address</span>
+                  </div>
                   <Link
                     href={MAPS_URL}
                     target="_blank"
@@ -210,43 +236,54 @@ export default function ContactPage() {
       </div>
 
       {/* Follow along */}
-      <section className="mx-4 mb-10 rounded-3xl bg-[#E9DFC8]/50 px-4 py-12 sm:mx-6 sm:px-8 sm:py-14 lg:mx-auto lg:mb-16 lg:max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <FadeIn>
-            <h2 className="font-heading text-3xl font-semibold text-[#1a1a1a] sm:text-4xl">
+      <section className="mx-4 mb-10 rounded-lg bg-[#E9DFC8]/50 px-5 py-6 sm:mx-6 sm:px-8 md:py-7 lg:mx-auto lg:mb-16 lg:max-w-6xl lg:px-12">
+        <FadeIn>
+          {/* Mobile */}
+          <div className="text-center md:hidden">
+            <h2 className="font-heading text-3xl font-semibold text-[#1a1a1a]">
               Follow along
             </h2>
-            <p className="mt-2 text-sm text-[#5d5d5d] sm:text-base">
+            <p className="mt-1.5 text-sm text-[#5d5d5d]">
               See what Sairr is all about.
             </p>
-
-            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              {socialPills.map((pill) => (
-                <a
-                  key={pill.href}
-                  href={pill.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[#E0D6C4] bg-white px-5 py-3 text-sm font-medium text-[#1a1a1a] shadow-sm transition-colors hover:bg-[#FDFBF2]"
-                >
-                  <Image
-                    src={pill.icon}
-                    alt=""
-                    width={22}
-                    height={22}
-                    aria-hidden
-                    className="size-[22px]"
-                  />
-                  {pill.showLabel ? (
-                    <span>{pill.label}</span>
-                  ) : (
-                    <span className="sr-only">{pill.label}</span>
-                  )}
-                </a>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-10">
+              {socialLinks.map((link) => (
+                <SocialLinkItem
+                  key={link.href}
+                  {...link}
+                  iconClassName="size-12"
+                />
               ))}
             </div>
-          </FadeIn>
-        </div>
+          </div>
+
+          {/* Tablet & desktop — ~1/3 copy, divider, ~2/3 icons evenly spaced */}
+          <div
+            className="hidden md:grid md:grid-cols-[minmax(0,1fr)_1px_minmax(0,2fr)] md:items-center md:gap-x-10 lg:gap-x-14"
+          >
+            <div className="min-w-0 pr-2 lg:pr-4">
+              <h2 className="font-heading text-[1.75rem] font-semibold leading-tight text-[#1a1a1a] lg:text-4xl">
+                Follow along
+              </h2>
+              <p className="mt-1 text-sm text-[#5d5d5d] lg:text-base">
+                See what Sairr is all about.
+              </p>
+            </div>
+            <div
+              className="h-14 w-px shrink-0 self-center bg-[#EC575E] lg:h-16"
+              aria-hidden
+            />
+            <div className="grid grid-cols-3 items-center justify-items-center">
+              {socialLinks.map((link) => (
+                <SocialLinkItem
+                  key={link.href}
+                  {...link}
+                  iconClassName="size-12 lg:size-14"
+                />
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </section>
     </main>
   );
