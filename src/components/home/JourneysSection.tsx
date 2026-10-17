@@ -16,7 +16,7 @@ import puri3 from "@/public/homepage/journey-puri-3.webp";
 import rameshwaram from "@/public/homepage/journey-rameshwaram.webp";
 import andaman from "@/public/homepage/journey-andaman.webp";
 import bali from "@/public/homepage/journey-bali.webp";
-import backgroundImgDesktop from "@/public/homepage/BgDestinationHome1.png";
+import backgroundImgDesktop from "@/public/homepage/Bg-Destination-Home.webp";
 import backgroundImgMobile from "@/public/homepage/Bg-Destination-Home-mob2.webp";
 import { drawLine } from "@/lib/motion";
 import bannerUnderlineImg from "@/public/homepage/underline-journey.png";
@@ -101,24 +101,7 @@ export function JourneysSection() {
 
   return (
     <section id="destinations" className="relative scroll-mt-24 bg-[#FDFBF2]">
-      <div className="absolute inset-0" aria-hidden>
-        <Image
-          src={backgroundImgMobile}
-          alt=""
-          fill
-          className="object-contain object-bottom md:hidden"
-          sizes="100vw"
-        />
-        <Image
-          src={backgroundImgDesktop}
-          alt=""
-          fill
-          className="hidden object-contain object-bottom md:block"
-          sizes="100vw"
-        />
-      </div>
-
-      <div className="bg-transparent relative mx-auto max-w-7xl pxl-4 pt-0 sm:px-6 md:px-0 lg:pt-2">
+      <div className="mx-auto max-w-7xl px-4 pt-0 sm:px-6 md:px-0 lg:pt-2">
         <FadeIn>
           <div className="mx-auto max-w-4xl text-center">
             <TextReveal
@@ -138,51 +121,66 @@ export function JourneysSection() {
             </motion.p>
           </div>
         </FadeIn>
+      </div>
 
-        <CarouselSection
-          className="mt-2 ml-4 mr-4 lg:ml-0 lg:mr-0 lg:mt-6"
-          slideClassName="py-6"
-          items={journeys}
-          getKey={(journey) => journey.slug}
-          renderItem={(journey, index) => (
-            <CardRevealCarouselItem
-              index={index}
-              direction="left"
-              hover={false}
+      <div className="relative w-full">
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 w-full aspect-[786/708] md:aspect-[1514/553]"
+          aria-hidden
+        >
+          <Image
+            src={backgroundImgMobile}
+            alt=""
+            fill
+            className="object-cover object-bottom md:hidden"
+            sizes="100vw"
+          />
+          <Image
+            src={backgroundImgDesktop}
+            alt=""
+            fill
+            className="hidden object-cover object-bottom md:block"
+            sizes="100vw"
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-0">
+          <CarouselSection
+            className="mt-2 ml-4 mr-4 lg:ml-0 lg:mr-0 lg:mt-6"
+            slideClassName="py-6"
+            items={journeys}
+            getKey={(journey) => journey.slug}
+            renderItem={(journey, index) => (
+              <CardRevealCarouselItem
+                index={index}
+                direction="left"
+                hover={false}
+              >
+                <JourneyCard journey={journey} onNotifyMe={handleNotifyMe} />
+              </CardRevealCarouselItem>
+            )}
+            slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 4 }}
+            ariaLabel="Featured journeys"
+            autoplay={false}
+          />
+
+          <FadeIn delay={0.2}>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mx-auto flex w-full max-w-3xl items-center justify-center gap-3 px-4 pb-10 pt-4 sm:gap-4 sm:px-6 md:max-w-4xl lg:max-w-5xl lg:gap-6 lg:pb-12 lg:pt-8"
             >
-              <JourneyCard journey={journey} onNotifyMe={handleNotifyMe} />
-            </CardRevealCarouselItem>
-          )}
-          slidesPerView={{ mobile: 1.15, tablet: 2, desktop: 4 }}
-          ariaLabel="Featured journeys"
-          autoplay={false}
-        />
-
-        <FadeIn delay={0.2}>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mx-auto flex w-full max-w-3xl items-center justify-center gap-3 px-4 pb-10 pt-4 sm:gap-4 sm:px-6 md:max-w-4xl lg:max-w-5xl lg:gap-6 lg:pb-12 lg:pt-8"
-          >
-            {/* <div
-              className="h-px min-w-8 flex-1 bg-[#EC575E]"
-              aria-hidden
-            /> */}
-            <div className="text-center relative">
-              <p className=" shrink-0 text-center font-heading text-sm font-semibold leading-snug text-[#0E5E6F] sm:text-base mb-1">
-                More destinations launching soon
-              </p>
-              <HeroUnderline />
-            </div>
-
-            {/* <div
-              className="h-px min-w-8 flex-1 bg-[#EC575E]"
-              aria-hidden
-            /> */}
-          </motion.div>
-        </FadeIn>
+              <div className="relative text-center">
+                <p className="mb-1 shrink-0 text-center font-heading text-sm font-semibold leading-snug text-[#0E5E6F] sm:text-base">
+                  More destinations launching soon
+                </p>
+                <HeroUnderline />
+              </div>
+            </motion.div>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
