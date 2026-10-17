@@ -1,0 +1,52 @@
+---
+description: Keep changes small—few files, no extra layers, match existing patterns
+alwaysApply: true
+---
+
+# Simplicity first
+
+Default to the **smallest change that works**. This repo favors plain, readable code over “architecture.”
+
+## Files and layers
+
+- **Do not** add a new file if the change fits an existing one (page, route, component, or `lib/validations/*`).
+- **Do not** stack indirection: `data/foo.ts` + `foo-config.ts` + `submit-foo.ts` + a dedicated API route for the same job. Prefer **one API** and **one call site** when behavior is “append row / fetch / render.”
+- **Do not** extract a shared component until the **second** real duplicate (not “might reuse later”).
+- **One concern per PR-style change**: if the user asks to fix padding, do not refactor the header.
+
+## APIs and data
+
+- **One generic server route** when the operation is the same (e.g. write to Google Sheet with `sheetId`, `tabName`, `values`). Callers pass tab name and row data; avoid per-form duplicate routes.
+- Keep **row column order** in the existing validation module (`format*RowForSheet`), not in new config files.
+- Env: only what must be secret stays server-only. Do not add env vars for values that can be **hardcoded** (e.g. tab names `"Leads"`, `"ContactUs"`).
+
+## UI (React / Tailwind)
+
+- **No competing layout systems** on the same element (e.g. flex `justify-*` fighting `text-center` on headings). Prefer normal text flow unless animation truly needs wrappers.
+- **No hidden responsive behavior** inside shared components unless the user asked (e.g. don’t bake `md:justify-center` into a “text” component).
+- Match **existing** naming, imports, and folder layout (`components/`, `lib/`, `app/api/`).
+
+## Before you add anything
+
+Ask internally:
+
+1. Can this be **5–20 lines** in an existing file?
+2. Am I creating a file only because it “feels cleaner”?
+3. Did the user ask for this abstraction?
+
+If yes to (2) and no to (3), **don’t create the file**.
+
+## Examples (this project)
+
+```text
+❌ sheets.ts + sheets-config.ts + /api/contact + /api/contact-us + submit-to-sheet.ts
+✅ /api/send-data-to-sheet + forms call it with tabName + format*RowForSheet in validations
+
+❌ New SocialFollow.tsx when only one page needs it (until second use)
+✅ Shared component when contact + thank-you both need the same block
+
+❌ TextReveal with flex alignment + align prop + md overrides
+✅ className on the heading; motion wrapper uses display that respects text-align
+```
+
+When unsure, **implement the dumb version first** and let the user steer.

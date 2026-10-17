@@ -9,10 +9,12 @@ import {
   buildContactUsFormDefaults,
   contactUsFormSchema,
   contactUsTopicOptions,
+  formatContactUsRowForSheet,
   howDidYouHearOptions,
   type ContactUsFormData,
   type ContactUsFormFieldValues,
 } from "@/lib/validations/contact-us";
+import { submitToGoogleSheet } from "@/lib/submit-to-sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -94,21 +96,17 @@ export function ContactUsForm({
 
   async function onSubmit(data: ContactUsFormData) {
     try {
-      const response = await fetch("/api/contact-us", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          ...getStoredUtmParams(),
-          page_url: window.location.href,
-        }),
+      const payload = {
+        ...data,
+        ...getStoredUtmParams(),
+        page_url: window.location.href,
+      };
+
+      await submitToGoogleSheet({
+        tabName: "ContactUs",
+        columns: "A:J",
+        values: formatContactUsRowForSheet(payload),
       });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.error ?? "Failed to submit enquiry");
-      }
 
       onSubmitted?.();
       router.push("/thank-you");

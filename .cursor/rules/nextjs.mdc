@@ -1,0 +1,46 @@
+---
+description: Next.js 16 App Router — async APIs, docs-first, security (aligned with cursor.directory/nextjs)
+globs: "{src/app/**,src/components/**,src/lib/**}"
+alwaysApply: false
+---
+
+# Next.js (this repo)
+
+Also see [Cursor Directory — Next.js plugin](https://cursor.directory/plugins/nextjs): same spirit—**avoid unnecessary duplication and complexity**, pick the right tool, security-aware.
+
+## Before writing Next code
+
+Read the guide in `node_modules/next/dist/docs/` for this installed version. **Do not assume training-data Next.js** — APIs differ (see root `AGENTS.md`).
+
+## Async dynamic APIs (required)
+
+In Server Components, layouts, pages, route handlers, and `generateMetadata`:
+
+- `params` and `searchParams` are **`Promise`s** — `await` them.
+- `cookies()` and `headers()` from `next/headers` — **`await`** before use.
+
+```tsx
+type Props = { params: Promise<{ slug: string }> };
+
+export default async function Page({ params }: Props) {
+  const { slug } = await params;
+}
+```
+
+In **Client** components that receive a params Promise, use `React.use(params)`.
+
+## App structure (Sairr)
+
+- Routes: `src/app/` · UI: `src/components/` · shared logic: `src/lib/` (validations, `google-sheets`, etc.)
+- Prefer **Route Handlers** in `src/app/api/` for mutations used by forms (e.g. `send-data-to-sheet`).
+- **Server Actions** only if the user asks; treat as public POST endpoints—validate input, no secrets in client bundles.
+
+## Security
+
+- Never commit `.env` or service account keys.
+- API routes: validate body (Zod), allowlist sheet IDs server-side, no trusting client-only checks.
+- Forms: keep PII handling minimal; match existing patterns in `lib/validations/*`.
+
+## Simplicity
+
+Project rule `simplicity.mdc` wins over generic “best practice” that adds files or layers.

@@ -212,3 +212,40 @@ export function formatJourneyTypeForSubmission(journeyType?: JourneyType) {
     journeyType
   );
 }
+
+/** Leads tab — column order must match the sheet. */
+export function formatContactRowForSheet(
+  data: ContactFormData,
+  submittedAt = new Date(),
+) {
+  return [
+    data.name,
+    data.phone,
+    formatWhereToTravelForSheet(data),
+    formatWhichDestinationForSheet(data),
+    formatJourneyTypeForSubmission(data.journeyType),
+    data.departureCity ?? "",
+    data.preferredMonth ?? "",
+    data.message ?? "",
+    data.utm_source ?? "",
+    data.utm_subsource ?? "",
+    data.utm_medium ?? "",
+    data.utm_id ?? "",
+    data.utm_content ?? "",
+    data.utm_term ?? "",
+    data.utm_campaign ?? "",
+    submittedAt.toISOString(),
+    data.gclid ?? "",
+    data.fbclid ?? "",
+    data.ad_id ?? "",
+    data.adset_id ?? "",
+    data.campaign_id ?? "",
+    data.ad_name ?? "",
+    data.adset_name ?? "",
+    data.campaign_name ?? "",
+    data.placement ?? "",
+    data.site_source_name ?? "",
+    data.page_url ?? "",
+    data.cta_class ?? "",
+  ];
+}
