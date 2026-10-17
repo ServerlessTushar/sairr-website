@@ -43,7 +43,7 @@ function ContactChannel({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group flex items-center gap-4 rounded-xl border border-[#E8E8E8] bg-white px-4 py-4 transition-colors hover:bg-[#F8F7F7] sm:px-5"
+      className="group flex items-center gap-4 rounded-xl border border-[#E8E8E8] bg-white px-4 py-4 transition-[transform,background-color] duration-300 ease-out hover:-translate-y-2 hover:bg-[#F8F7F7] active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:px-5"
     >
       <span
         className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[#E8EEF0] transition-colors group-hover:bg-[#0E5E6F]"
@@ -90,7 +90,7 @@ export default function ContactPage() {
           sizes="100vw"
           className="object-fit object-center"
         />
-        <div className="absolute inset-0 bg-[#4A4949]/40" aria-hidden />
+        <div className="absolute inset-0 bg-[#4A4949]/30" aria-hidden />
         <div className="relative z-10 mx-auto px-4 py-20 text-center text-white sm:px-6 sm:py-24">
           <FadeIn>
             <h1 className="font-heading text-3xl font-semibold leading-tight sm:text-4xl md:text-[2.75rem] lg:text-[3.125rem]">
